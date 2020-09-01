@@ -1,14 +1,34 @@
 import java.util.Scanner;
 
 public class PlusPetit {
+
     public static void main(String[] arg) {
-        int nombre1, nombre2, nombre3, nombre4, nombre5, plusPetit;
+        /***********************************/
+        /*           VERSION 1             */
+        /***********************************/
+
+        int nombre1, nombresSuivants, plusPetit;
 
         nombre1 = print();
 
         plusPetit = nombre1;
 
-        nombre2 = print();
+        for(int i = 0; i < 4; i++) {
+            nombresSuivants = print();
+            if(nombresSuivants < plusPetit) {
+                plusPetit = nombresSuivants;
+            }
+        }
+
+        System.out.println("Le nombre le plus petit de la liste est le : " + plusPetit);
+
+        /***********************************/
+        /*           VERSION 2             */
+        /***********************************/
+
+        //int nombre1, nombre2, nombre3, nombre4, nombre5, plusPetit;
+
+        /*nombre2 = print();
 
         if(nombre2 < plusPetit) {
             plusPetit = nombre2;
@@ -32,7 +52,7 @@ public class PlusPetit {
             plusPetit = nombre5;
         }
 
-        System.out.println(plusPetit);
+        System.out.println("Le nombre le plus petit de la liste est le : " + plusPetit);*/
 
     }
 
