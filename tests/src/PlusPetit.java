@@ -4,7 +4,6 @@ public class PlusPetit {
     public static void main(String[] arg) {
         int nombre1, nombre2, nombre3, nombre4, nombre5, plusPetit;
 
-
         nombre1 = print();
 
         plusPetit = nombre1;
