@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Random {
     public static void main(String[] arg) {
-        int chiffreCache = chiffreRandom(), chiffreSaisi;
+        int chiffreCache = Tools.intRandom(), chiffreSaisi;
         boolean trouve = false;
         //System.out.println(chiffreCache + " (chiffre caché)");
         while(!trouve) {
@@ -20,11 +20,6 @@ public class Random {
                 }
             }
         }
-    }
-
-    public static int chiffreRandom() {
-        int resultRandom = (int)Math.floor(Math.random() * 101);
-        return resultRandom;
     }
 
     public static int print() {
