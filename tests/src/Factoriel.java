@@ -5,19 +5,19 @@ public class Factoriel {
 
     public static void main(String[] arg) {
 
-        Tools.toprint("Nombre de chevaux partants : ");
+        Tools.toprintln("Nombre de chevaux partants : ");
         int nbrHorses = Tools.askThing(1);
 
-        Tools.toprint("Nombre de chevaux joués : ");
+        Tools.toprintln("Nombre de chevaux joués : ");
         int nbrPlayingHorses = Tools.askThing(1);
 
         if(nbrPlayingHorses > nbrHorses) {
-            Tools.toprint("Le nombre de chevaux joués doit être suppérieur aux chevaux partants");
+            Tools.toprintln("Le nombre de chevaux joués doit être suppérieur aux chevaux partants");
         } else {
             order = orderShow(nbrHorses, nbrPlayingHorses);
             disorder = disorderShow(nbrHorses, nbrPlayingHorses);
-            Tools.toprint("Dans l'ordre : " + order);
-            Tools.toprint("Dans le désordre : " + disorder);
+            Tools.toprintln("Dans l'ordre : " + order);
+            Tools.toprintln("Dans le désordre : " + disorder);
         }
     }
     public static int orderShow(int nbrHorses, int nbrPlayingHorses) {

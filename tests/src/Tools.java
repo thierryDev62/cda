@@ -6,12 +6,25 @@ public class Tools {
      * @param toPrint
      */
     public static void toprint(String toPrint) {
-        System.out.println(toPrint);
+        System.out.print(toPrint);
     }
     /**
      * Show an integer
      */
     public static void toprint(int intPrint) {
+        System.out.print(String.valueOf(intPrint));
+    }
+    /**
+     * Show a string
+     * @param toPrint
+     */
+    public static void toprintln(String toPrint) {
+        System.out.println(toPrint);
+    }
+    /**
+     * Show an integer
+     */
+    public static void toprintln(int intPrint) {
         System.out.println(String.valueOf(intPrint));
     }
 
