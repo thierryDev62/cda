@@ -18,6 +18,10 @@ public class Legumes {
                 + "\nTotal oignons : - Poids demandé : " + oignons.getTotalPoids() + " kg " + "Prix : " + (float) oignons.getTotalProduit() + "€"
                 + "\nTotal général : " + (float) (tomates.getTotalProduit() + pommesDeTerre.getTotalProduit() + poivrons.getTotalProduit() + oignons.getTotalProduit()) + "€");
     }
+
+    /**
+     * Commande
+     */
     public static void commande() {
         Tools.toprintln("Votre choix 1, 2, 3 ou 4 - 0 pour finaliser");
 
