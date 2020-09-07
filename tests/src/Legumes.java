@@ -1,0 +1,82 @@
+public class Legumes {
+    public static Produits tomates = new Produits("Tomates", 2.0, 0,0,0,0);
+    public static Produits pommesDeTerre = new Produits("Pommes de terre", 1, 0,0,0,0);
+    public static Produits poivrons = new Produits("Poivrons", 4, 0,0,0,0);
+    public static Produits oignons = new Produits("Oignons", 1,0,0,0,0);
+    public static void main(String[] arg) {
+
+        Tools.toprintln("1 - " + tomates.getNom() + " : " + tomates.getPrixAuKilo() + "€");
+        Tools.toprintln("2 - " + pommesDeTerre.getNom() + " : " + pommesDeTerre.getPrixAuKilo() + "€");
+        Tools.toprintln("3 - " + poivrons.getNom() + " : " + poivrons.getPrixAuKilo() + "€");
+        Tools.toprintln("4 - " + oignons.getNom() + " : " + oignons.getPrixAuKilo() + "€");
+
+        Legumes.commande();
+
+        Tools.toprintln("Total tomates : - Poids demandé : " + tomates.getTotalPoids() + " kg " + "Prix : " + (float) tomates.getTotalProduit() + "€"
+                + "\nTotal pommes de terre : - Poids demandé : " + pommesDeTerre.getTotalPoids() + " kg " + "Prix : " + (float) pommesDeTerre.getTotalProduit() + "€"
+                + "\nTotal poivrons : - Poids demandé : " + poivrons.getTotalPoids() + " kg " + "Prix : " + (float) poivrons.getTotalProduit() + "€"
+                + "\nTotal oignons : - Poids demandé : " + oignons.getTotalPoids() + " kg " + "Prix : " + (float) oignons.getTotalProduit() + "€"
+                + "\nTotal général : " + (float) (tomates.getTotalProduit() + pommesDeTerre.getTotalProduit() + poivrons.getTotalProduit() + oignons.getTotalProduit()) + "€");
+    }
+    public static void commande() {
+        Tools.toprintln("Votre choix 1, 2, 3 ou 4 - 0 pour finaliser");
+
+        int rep = Tools.askThing(1);
+        if(rep == 1 || rep == 2 || rep == 3 || rep == 4 || rep == 0) {
+            switch(rep) {
+                case 1:
+                    Tools.toprintln("Quel poids pour les tomates");
+
+                    tomates.setPoids(Tools.askThing(0.1));
+                    tomates.setTotalPoids(tomates.getTotalPoids() + tomates.getPoids());
+
+                    tomates.setTotal(tomates.calcul(tomates.getPrixAuKilo(), (float) tomates.getPoids()));
+                    tomates.setTotalProduit(tomates.getTotalProduit() + tomates.getTotal());
+                    Tools.toprintln("Le prix total pour les tomates est de : " + (float) tomates.getTotalProduit() + "€ pour un poids total de : " + tomates.getTotalPoids() + " kilos");
+
+                    break;
+                case 2:
+                    Tools.toprintln("Quel poids pour les pommes de terre");
+
+                    pommesDeTerre.setPoids(Tools.askThing(0.1));
+                    pommesDeTerre.setTotalPoids(pommesDeTerre.getTotalPoids() + pommesDeTerre.getPoids());
+
+                    pommesDeTerre.setTotal(pommesDeTerre.calcul(pommesDeTerre.getPrixAuKilo(), (float) pommesDeTerre.getPoids()));
+                    pommesDeTerre.setTotalProduit(pommesDeTerre.getTotalProduit() + pommesDeTerre.getTotal());
+                    Tools.toprintln("Le prix total pour les pommes de terre est de : " + (float) pommesDeTerre.getTotalProduit() + "€ pour un poids total de : " + pommesDeTerre.getTotalPoids() + " kilos");
+
+                    break;
+                case 3:
+                    Tools.toprintln("Quel poids pour les poivrons");
+
+                    poivrons.setPoids(Tools.askThing(0.1));
+                    poivrons.setTotalPoids(poivrons.getTotalPoids() + poivrons.getPoids());
+
+                    poivrons.setTotal(poivrons.calcul(poivrons.getPrixAuKilo(), (float) poivrons.getPoids()));
+                    poivrons.setTotalProduit(poivrons.getTotalProduit() + poivrons.getTotal());
+                    Tools.toprintln("Le prix total pour les poivrons est de : " + (float) poivrons.getTotalProduit() + "€ pour un poids total de : " + poivrons.getTotalPoids() + " kilos");
+
+                    break;
+                case 4:
+                    Tools.toprintln("Quel poids pour les oignons");
+
+                    oignons.setPoids(Tools.askThing(0.1));
+                    oignons.setTotalPoids(oignons.getTotalPoids() + oignons.getPoids());
+
+                    oignons.setTotal(oignons.calcul(oignons.getPrixAuKilo(), (float) oignons.getPoids()));
+                    oignons.setTotalProduit(oignons.getTotalProduit() + oignons.getTotal());
+                    Tools.toprintln("Le prix total pour les oignons est de : " + (float) oignons.getTotalProduit() + "€ pour un poids total de : " + oignons.getTotalPoids() + " kilos");
+
+                    break;
+                case 0:
+                    Tools.toprintln("Facture finale");
+                    return;
+            }
+            Legumes.commande();
+        } else {
+            Legumes.commande();
+        }
+    }
+}
+
+
