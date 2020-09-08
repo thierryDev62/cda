@@ -1,38 +1,24 @@
+import diplo.tools.TConsole;
+
 import java.util.Scanner;
 
 public class Tools {
-    /**
-     * Show a string
-     * @param toPrint
+     /**
+     * Wait a delimited time before executing a lambda expression
+     * This method is used in async using a new Thread
+     * @param runnable lambda expression
+     * @param delay time to wait in ms
      */
-    public static void toprint(String toPrint) {
-        System.out.print(toPrint);
-    }
-    /**
-     * Show an integer
-     */
-    public static void toprint(int intPrint) {
-        System.out.print(String.valueOf(intPrint));
-    }
-    /**
-     * Show a string
-     * @param toPrint
-     */
-    public static void toprintln(String toPrint) {
-        System.out.println(toPrint);
-    }
-    /**
-     * Show an integer
-     */
-    public static void toprintln(int intPrint) {
-        System.out.println(String.valueOf(intPrint));
-    }
-
-    /**
-     * Show an float
-     */
-    public static void toprintln(float intPrint) {
-        System.out.println(String.valueOf(intPrint));
+    public static void setTimeoutAsync(Runnable runnable, int delay){
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            }
+            catch (Exception e){
+                System.err.println(e);
+            }
+        }).start();
     }
 
     /**
@@ -92,7 +78,7 @@ public class Tools {
         if(isInteger(rep)) {
             return Integer.parseInt(rep);
         }
-        Tools.toprint("Une erreur est survenue, veuillez recommencer");
+        TConsole.toprint("Une erreur est survenue, veuillez recommencer");
         return Tools.askThing(intWanted);
     }
     /**
@@ -106,7 +92,7 @@ public class Tools {
         if(isFloat(rep)) {
             return Float.parseFloat(rep);
         }
-        Tools.toprint("Une erreur est survenue, veuillez recommencer");
+        TConsole.toprint("Une erreur est survenue, veuillez recommencer");
         return Tools.askThing(floatWanted);
     }
 
@@ -121,7 +107,7 @@ public class Tools {
         if(isDouble(rep)) {
             return Double.parseDouble(rep);
         }
-        Tools.toprint("Une erreur est survenue, veuillez recommencer");
+        TConsole.toprint("Une erreur est survenue, veuillez recommencer");
         return Tools.askThing(doubleWanted);
     }
 

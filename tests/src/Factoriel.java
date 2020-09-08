@@ -1,3 +1,5 @@
+import diplo.tools.TConsole;
+
 public class Factoriel {
 
     private static int order;
@@ -5,19 +7,19 @@ public class Factoriel {
 
     public static void main(String[] arg) {
 
-        Tools.toprintln("Nombre de chevaux partants : ");
+        TConsole.toprintln("Nombre de chevaux partants : ");
         int nbrHorses = Tools.askThing(1);
 
-        Tools.toprintln("Nombre de chevaux joués : ");
+        TConsole.toprintln("Nombre de chevaux joués : ");
         int nbrPlayingHorses = Tools.askThing(1);
 
         if(nbrPlayingHorses > nbrHorses) {
-            Tools.toprintln("Le nombre de chevaux joués doit être suppérieur aux chevaux partants");
+            TConsole.toprintln("Le nombre de chevaux joués doit être suppérieur aux chevaux partants");
         } else {
             order = orderShow(nbrHorses, nbrPlayingHorses);
             disorder = disorderShow(nbrHorses, nbrPlayingHorses);
-            Tools.toprintln("Dans l'ordre : " + order);
-            Tools.toprintln("Dans le désordre : " + disorder);
+            TConsole.toprintln("Dans l'ordre : " + order);
+            TConsole.toprintln("Dans le désordre : " + disorder);
         }
     }
     public static int orderShow(int nbrHorses, int nbrPlayingHorses) {
