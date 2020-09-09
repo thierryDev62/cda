@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6c55414-2581-4a1e-8b09-e2d074558251" name="Default Changelist" comment="" />
+    <list default="true" id="f6c55414-2581-4a1e-8b09-e2d074558251" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/out/production/tests/Arrays.class" beforeDir="false" afterPath="$PROJECT_DIR$/tests/out/production/tests/Arrays.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/out/production/tests/SupprimeElementTableau.class" beforeDir="false" afterPath="$PROJECT_DIR$/tests/out/production/tests/SupprimeElementTableau.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/out/production/tests/diplo/tools/TConsole.class" beforeDir="false" afterPath="$PROJECT_DIR$/tests/out/production/tests/diplo/tools/TConsole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src/Arrays.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src/Arrays.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src/SupprimeElementTableau.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src/SupprimeElementTableau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/src/diplo/tools/TConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/src/diplo/tools/TConsole.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,9 +27,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mysweetlibrary" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -43,9 +52,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1599408621667">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1599651906523">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599651906523" />
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1599408621667" />
   </component>
 </project>

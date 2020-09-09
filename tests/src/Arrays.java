@@ -4,6 +4,7 @@ public class Arrays {
     public static void main(String[] arg) {
         TConsole.toprint("Tableau à une dimension");
         String[] tableauMots = {"Jean", "Robert", "Paul"};
+        tableauMots[3] = "Seb";
         for (String tableauMot : tableauMots) {
             TConsole.toprint(tableauMot);
         }

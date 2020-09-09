@@ -1,5 +1,5 @@
 import diplo.tools.TConsole;
-
+/*
 public class Legumes {
     public static Produits tomates = new Produits("Tomates", 2.0, 0,0,0,0);
     public static Produits pommesDeTerre = new Produits("Pommes de terre", 1, 0,0,0,0);
@@ -21,9 +21,7 @@ public class Legumes {
                 + "\nTotal général : " + (float) (tomates.getTotalProduit() + pommesDeTerre.getTotalProduit() + poivrons.getTotalProduit() + oignons.getTotalProduit()) + "€");
     }
 
-    /**
-     * Commande
-     */
+
     public static void commande() {
         TConsole.toprintln("Votre choix 1, 2, 3 ou 4 - 0 pour finaliser");
 
@@ -84,5 +82,7 @@ public class Legumes {
         }
     }
 }
+*/
+
 
 

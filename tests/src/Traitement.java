@@ -1,31 +1,44 @@
-public class Assurance {
-    /**
-     *  Calcul assurance
-     * @param arg
-     */
+import fr.cda.data.Fidelite;
+import fr.cda.data.Permis;
+import fr.cda.data.Personne;
+
+public class Traitement {
     public static void main(String[] arg) {
+        Permis permisPersonne1 = new Permis();
+        permisPersonne1.setNbrAnneesPermis(2);
 
-        /* Variables init */
+        Fidelite fidelitePersonne1 = new Fidelite();
+        fidelitePersonne1.setAnciennete(15);
+
+        Personne personne1 = new Personne("Thonon", "James", 40, 0);
+
+        personne1.setPermis(permisPersonne1);
+        personne1.setFidelite(fidelitePersonne1);
+
+        System.out.println("Nom : " + personne1.getNom() +
+                "\nPrénom : " + personne1.getPrenom() +
+                "\nAge : " + personne1.getAge() +
+                "\nNombre d'années de permis : " + personne1.getPermis().getNbrAnneesPermis() + " ans" +
+                "\nAncienneté : " + personne1.getFidelite().getAnciennete() + " ans" +
+                "\nNombre d'accident : " + personne1.getNbrAccident()
+                );
+       calcul(personne1.getAge(), personne1.getPermis().getNbrAnneesPermis(), personne1.getNbrAccident(), personne1.getFidelite().getAnciennete());
+
+    }
+    public static void calcul(int age, int anneesPermis, int nombreAccident, int anciennete){
         boolean ageSup25, totalAccident0, totalAccident1, totalAccident2, clientFidele, plusDeuxAnsPermis;
-        int anciennete, age, anneesPermis, nombreAccident, tarifRouge = 200, tarifOrange = 150, tarifVert = 100, tarifBleu = 50;
-
-        // Valeurs bruts
-        age = 26;
-        anneesPermis = 3;
-        nombreAccident = 1;
-        anciennete = 6;
+        int tarifRouge = 200, tarifOrange = 150, tarifVert = 100, tarifBleu = 50;
 
         /* Booleens des conditions */
-        ageSup25 = age >= 25  ? true : false;
-        plusDeuxAnsPermis = anneesPermis > 2 ? true : false;
-        totalAccident0 = nombreAccident == 0 ? true : false;
-        totalAccident1 = nombreAccident == 1 ? true : false;
-        totalAccident2 = nombreAccident == 2 ? true : false;
-        clientFidele = (anciennete > 5) ? true : false;
+        ageSup25 = age >= 25;
+        plusDeuxAnsPermis = anneesPermis >= 2;
+        totalAccident0 = nombreAccident == 0;
+        totalAccident1 = nombreAccident == 1;
+        totalAccident2 = nombreAccident == 2;
+        clientFidele = anciennete > 5;
 
         /* Cas 1 */
         if(!ageSup25 && !plusDeuxAnsPermis) {
-            System.out.println("Vous avez :\n" + anciennete + " années d'ancienneté\n" + age + " ans\n" + nombreAccident + " accidents\n" + anneesPermis + " années de permis");
             if(totalAccident0) {
                 if(!clientFidele) {
                     System.out.println("Le tarif rouge est appliqué soit " + tarifRouge + "€");
@@ -44,7 +57,6 @@ public class Assurance {
 
             /* Cas 2 */
         } else if(!ageSup25 && plusDeuxAnsPermis || ageSup25 && !plusDeuxAnsPermis) {
-            System.out.println("Vous avez :\n" + anciennete + " années d'ancienneté\n" + age + " ans\n" + nombreAccident + " accidents\n" + anneesPermis + " années de permis");
             if(totalAccident0) {
                 if(!clientFidele) {
                     System.out.println("Le tarif orange est appliqué soit " + tarifOrange + "€");
@@ -75,7 +87,6 @@ public class Assurance {
 
             /* Cas 3 */
         } else if(ageSup25 && plusDeuxAnsPermis) {
-            System.out.println("Vous avez :\n" + anciennete + " années d'ancienneté\n" + age + " ans\n" + nombreAccident + " accidents\n" + anneesPermis + " années de permis");
             if(totalAccident0) {
                 if(!clientFidele) {
                     System.out.println("Le tarif vert est appliqué soit " + tarifVert + "€");
@@ -117,7 +128,6 @@ public class Assurance {
             }
         }
     }
-
     /**
      * Calcul de la remise
      * @param montantCouleur
