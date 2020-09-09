@@ -5,38 +5,38 @@ import fr.cda.data.Personne;
 public class Traitement {
     public static void main(String[] arg) {
 
-        //TODO : faire scanner pour saisir les coordonnées
+        //TODO : faire scanner pour saisir les coordonnées + Voir pour type de permis
 
         /******************************************************************************************/
-        Personne personne1 = new Personne("Thonon", "James", 26, 0);
-        Permis permisPersonne1 = new Permis();
-        Fidelite fidelitePersonne1 = new Fidelite();
+        Personne assure = new Personne("Thonon", "James", 26, 0);
+        Permis permisAssure = new Permis();
+        Fidelite fideliteAssure = new Fidelite();
 
-        permisPersonne1.setNbrAnneesPermis(1);
-        fidelitePersonne1.setAnciennete(6);
-        personne1.setPermis(permisPersonne1);
-        personne1.setFidelite(fidelitePersonne1);
+        permisAssure.setNbrAnneesPermis(1);
+        fideliteAssure.setAnciennete(6);
+        assure.setPermis(permisAssure);
+        assure.setFidelite(fideliteAssure);
         /*****************************************************************************************/
 
-        Integer nbrAnneesPermisPersonne1 = permisPersonne1.getNbrAnneesPermis(),
-                nbrAnneesAnciennete = fidelitePersonne1.getAnciennete(),
-                nbrAccidents = personne1.getNbrAccident();
+        Integer nbrAnneesPermisAssure = permisAssure.getNbrAnneesPermis(),
+                nbrAnneesAnciennete = fideliteAssure.getAnciennete(),
+                nbrAccidents = assure.getNbrAccident();
 
         // Affichage des coordonnées
         System.out.println(
                 "\n*****************************************************************" +
-                "\nNom : " + personne1.getNom() +
-                "\nPrénom : " + personne1.getPrenom() +
-                "\nAge : " + personne1.getAge() +
+                "\nNom : " + assure.getNom() +
+                "\nPrénom : " + assure.getPrenom() +
+                "\nAge : " + assure.getAge() +
                 "\n*****************************************************************" +
-                "\nNombre d'années de permis : " + nbrAnneesPermisPersonne1 + " an" + (nbrAnneesPermisPersonne1 > 1 ? "s" : "") +
+                "\nNombre d'années de permis : " + nbrAnneesPermisAssure + " an" + (nbrAnneesPermisAssure > 1 ? "s" : "") +
                 "\nAncienneté : " + nbrAnneesAnciennete + " an" + (nbrAnneesAnciennete > 1 ? "s" : "") +
                 "\nNombre d'accident : " + nbrAccidents +
                 "\n*****************************************************************"
         );
 
         // On lance le calcul
-        calcul(personne1.getAge(), permisPersonne1.getNbrAnneesPermis(), personne1.getNbrAccident(), fidelitePersonne1.getAnciennete());
+        calcul(assure.getAge(), permisAssure.getNbrAnneesPermis(), assure.getNbrAccident(), fideliteAssure.getAnciennete());
 
     }
     public static void calcul(int age, int anneesPermis, int nombreAccident, int anciennete){
