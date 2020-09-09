@@ -69,11 +69,11 @@ public class Traitement {
 
         /**
          * Cas 1
-         * un conducteur de moins de 25 ans et titulaire du permis depuis moins de deux ans,
+         * Un conducteur de moins de 25 ans et titulaire du permis depuis moins de deux ans,
          * se voit attribuer le tarif rouge, si toutefois il n'a jamais été responsable d'accident.
          * Sinon, la compagnie refuse de l'assurer.
          */
-        
+
         if(!ageSup25 && !plusDeuxAnsPermis) {
             if(totalAccident0) {
                 if(!clientFidele) {
@@ -91,7 +91,7 @@ public class Traitement {
 
             /**
              * Cas 2
-             * un conducteur de moins de 25 ans et titulaire du permis depuis plus de deux ans,
+             * Un conducteur de moins de 25 ans et titulaire du permis depuis plus de deux ans,
              * ou de plus de 25 ans mais titulaire du permis depuis moins de deux ans a le droit au
              * tarif orange s'il n'a jamais provoqué d'accident, au tarif rouge pour un accident,
              * sinon il est refusé.
@@ -167,7 +167,7 @@ public class Traitement {
     }
     /**
      * Calcul de la remise
-     * pour encourager la fidélité des clients acceptés, la compagnie propose un contrat
+     * Pour encourager la fidélité des clients acceptés, la compagnie propose un contrat
      * de la couleur immédiatement la plus avantageuse s'il est entré dans la maison depuis
      * plus de cinq ans. Ainsi, s'il satisfait à cette exigence, un client normalement "vert"
      * devient "bleu", un client normalement "orange" devient "vert", et le "rouge" devient orange.
