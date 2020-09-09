@@ -18,12 +18,20 @@ public class Traitement {
         personne1.setFidelite(fidelitePersonne1);
         /*****************************************************************************************/
 
-        System.out.println("Nom : " + personne1.getNom() +
+        Integer nbrAnneesPermisPersonne1 = permisPersonne1.getNbrAnneesPermis(),
+                nbrAnneesAnciennete = fidelitePersonne1.getAnciennete(),
+                nbrAccidents = personne1.getNbrAccident();
+
+        // Affichage des coordonnées
+        System.out.println(
+                "\n*****************************************************************" +
+                "\nNom : " + personne1.getNom() +
                 "\nPrénom : " + personne1.getPrenom() +
                 "\nAge : " + personne1.getAge() +
-                "\nNombre d'années de permis : " + personne1.getPermis().getNbrAnneesPermis() + " ans" +
-                "\nAncienneté : " + personne1.getFidelite().getAnciennete() + " ans" +
-                "\nNombre d'accident : " + personne1.getNbrAccident() +
+                "\n*****************************************************************" +
+                "\nNombre d'années de permis : " + nbrAnneesPermisPersonne1 + " an" + (nbrAnneesPermisPersonne1 > 1 ? "s" : "") +
+                "\nAncienneté : " + nbrAnneesAnciennete + " an" + (nbrAnneesAnciennete > 1 ? "s" : "") +
+                "\nNombre d'accident : " + nbrAccidents +
                 "\n*****************************************************************"
         );
 
@@ -48,7 +56,8 @@ public class Traitement {
         String phraseTarifRouge = "Le tarif " + ANSI_RED + "rouge" + ANSI_RESET + " est appliqué soit ",
                 phraseTarifOrange = "Le tarif " + ANSI_ORANGE + "orange" + ANSI_RESET + " est appliqué soit ",
                 phraseTarifVert = "Le tarif " + ANSI_GREEN + "vert" + ANSI_RESET + " est appliqué soit ",
-                phraseTarifBleu = "Le tarif " + ANSI_BLUE + "bleu" + ANSI_RESET + " est appliqué soit ";
+                phraseTarifBleu = "Le tarif " + ANSI_BLUE + "bleu" + ANSI_RESET + " est appliqué soit ",
+                separateur = "\n*****************************************************************\n";
 
         // Booleens des conditions
         ageSup25 = age >= 25;
@@ -58,94 +67,97 @@ public class Traitement {
         totalAccident2 = nombreAccident == 2;
         clientFidele = anciennete > 5;
 
-        // Cas 1
-        /*****************************************************************************************/
-        /* un conducteur de moins de 25 ans et titulaire du permis depuis moins de deux ans,
-         se voit attribuer le tarif rouge, si toutefois il n'a jamais été responsable d'accident.
-         Sinon, la compagnie refuse de l'assurer. */
-        /****************************************************************************************/
+        /**
+         * Cas 1
+         * un conducteur de moins de 25 ans et titulaire du permis depuis moins de deux ans,
+         * se voit attribuer le tarif rouge, si toutefois il n'a jamais été responsable d'accident.
+         * Sinon, la compagnie refuse de l'assurer.
+         */
+        
         if(!ageSup25 && !plusDeuxAnsPermis) {
             if(totalAccident0) {
                 if(!clientFidele) {
-                    System.out.println(phraseTarifRouge + tarifRouge + "€");
+                    System.out.println(phraseTarifRouge + tarifRouge + "€" + separateur);
                     if(anciennete > 0) {
                         System.out.println("Montant avant remise : " + tarifRouge + "€\nMontant après remise : " + remise(tarifRouge, anciennete) + "€");
                     }
                 } else {
-                    System.out.println("Le tarif " + ANSI_ORANGE + "orange" + ANSI_RESET + " est appliqué");
+                    System.out.println("Le tarif " + ANSI_ORANGE + "orange" + ANSI_RESET + " est appliqué" + separateur);
                     System.out.println("Montant avant remise : " + tarifOrange + "€\nMontant après remise : " + remise(tarifOrange, anciennete) + "€");
                 }
             } else {
                 System.out.println("Désolé mais c'est un refus");
             }
 
-            // Cas 2
-            /*****************************************************************************************/
-            /* un conducteur de moins de 25 ans et titulaire du permis depuis plus de deux ans,
-             ou de plus de 25 ans mais titulaire du permis depuis moins de deux ans a le droit au
-             tarif orange s'il n'a jamais provoqué d'accident, au tarif rouge pour un accident,
-             sinon il est refusé.*/
-            /****************************************************************************************/
+            /**
+             * Cas 2
+             * un conducteur de moins de 25 ans et titulaire du permis depuis plus de deux ans,
+             * ou de plus de 25 ans mais titulaire du permis depuis moins de deux ans a le droit au
+             * tarif orange s'il n'a jamais provoqué d'accident, au tarif rouge pour un accident,
+             * sinon il est refusé.
+             */
+
         } else if(!ageSup25 || !plusDeuxAnsPermis) {
             if(totalAccident0) {
                 if(!clientFidele) {
-                    System.out.println(phraseTarifOrange + tarifOrange + "€");
+                    System.out.println(phraseTarifOrange + tarifOrange + "€" + separateur);
                     if(anciennete > 0) {
                         System.out.println("Montant avant remise : " + tarifOrange + "€\nMontant après remise : " + remise(tarifOrange, anciennete) + "€");
                     }
                 } else {
-                    System.out.println(phraseTarifVert + tarifVert + "€");
+                    System.out.println(phraseTarifVert + tarifVert + "€" + separateur);
                     System.out.println("Montant avant remise : " + tarifVert + "€\nMontant après remise : " + remise(tarifVert, anciennete) + "€");
                 }
             } else if(totalAccident1) {
                 if(!clientFidele) {
-                    System.out.println(phraseTarifRouge + tarifRouge + "€");
+                    System.out.println(phraseTarifRouge + tarifRouge + "€" + separateur);
                     if(anciennete > 0) {
                         System.out.println("Montant avant remise : " + tarifRouge + "€\nMontant après remise : " + remise(tarifRouge, anciennete) + "€");
                     }
                 } else {
-                    System.out.println(phraseTarifOrange + tarifOrange + "€");
+                    System.out.println(phraseTarifOrange + tarifOrange + "€" + separateur);
                     System.out.println("Montant avant remise : " + tarifOrange + "€\nMontant après remise : " + remise(tarifOrange, anciennete) + "€");
                 }
             } else {
                 System.out.println("Désolé mais c'est un refus");
             }
 
-            // Cas 3
-            /*****************************************************************************************/
-            /* Un conducteur de plus de 25 ans titulaire du permis depuis plus de deux ans bénéficie
-             du tarif vert s'il n'est à l'origine d'aucun accident et du tarif orange pour un accident,
-             du tarif rouge pour deux accidents, et refusé au-delà.*/
-            /****************************************************************************************/
+            /**
+             * Cas 3
+             * Un conducteur de plus de 25 ans titulaire du permis depuis plus de deux ans bénéficie
+             * du tarif vert s'il n'est à l'origine d'aucun accident et du tarif orange pour un accident,
+             * du tarif rouge pour deux accidents, et refusé au-delà.
+             */
+
         } else {
             if(totalAccident0) {
                 if(!clientFidele) {
-                    System.out.println(phraseTarifVert + tarifVert + "€");
+                    System.out.println(phraseTarifVert + tarifVert + "€" + separateur);
                     if(anciennete > 0) {
                         System.out.println("Montant avant remise : " + tarifVert + "€\nMontant après remise : " + remise(tarifVert, anciennete) + "€");
                     }
                 } else {
-                    System.out.println(phraseTarifBleu + tarifBleu + "€");
+                    System.out.println(phraseTarifBleu + tarifBleu + "€" + separateur);
                     System.out.println("Montant avant remise : " + tarifBleu + "€\nMontant après remise : " + remise(tarifBleu, anciennete) + "€");
                 }
             } else if(totalAccident1) {
                 if(!clientFidele) {
-                    System.out.println(phraseTarifOrange + tarifOrange + "€");
+                    System.out.println(phraseTarifOrange + tarifOrange + "€" + separateur);
                     if(anciennete > 0) {
                         System.out.println("Montant avant remise : " + tarifOrange + "€\nMontant après remise : " + remise(tarifOrange, anciennete) + "€");
                     }
                 } else {
-                    System.out.println(phraseTarifVert + tarifVert + "€");
+                    System.out.println(phraseTarifVert + tarifVert + "€" + separateur);
                     System.out.println("Montant avant remise : " + tarifVert + "€\nMontant après remise : " + remise(tarifVert, anciennete) + "€");
                 }
             } else if(totalAccident2) {
                 if(!clientFidele) {
-                    System.out.println(phraseTarifRouge + tarifRouge + "€");
+                    System.out.println(phraseTarifRouge + tarifRouge + "€" + separateur);
                     if(anciennete > 0) {
                         System.out.println("Montant avant remise : " + tarifRouge + "€\nMontant après remise : " + remise(tarifRouge, anciennete) + "€");
                     }
                 } else {
-                    System.out.println(phraseTarifOrange + tarifOrange + "€");
+                    System.out.println(phraseTarifOrange + tarifOrange + "€" + separateur);
                     System.out.println("Montant avant remise : " + tarifOrange + "€\nMontant après remise : " + remise(tarifOrange, anciennete) + "€");
                 }
             } else {
