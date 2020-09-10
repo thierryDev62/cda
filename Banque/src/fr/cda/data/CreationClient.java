@@ -19,35 +19,23 @@ public class CreationClient {
         TConsole.toprintln("Saisir le solde du compte client");
         Float soldeCompte = Tools.askThing((float)1.0);
 
-        TConsole.toprintln("Saisir le type de compte : 1 - Compte courant | 2 - Compte épargne");
-        Integer reponse = Tools.askThing(1);
+        TConsole.toprintln("Saisir le découvert du compte courant");
+        Integer decouvert = Tools.askThing(1);
 
-        switch(reponse) {
-            case 1 :
-                TConsole.toprintln("Compte courant");
-                CompteCourant compteCourant = new CompteCourant(numCodeCompte, soldeCompte, 500);
-                break;
-            case 2 :
-                TConsole.toprintln("Compte épargne");
-                CompteEpargne compteEpargne = new CompteEpargne(numCodeCompte, soldeCompte, 5);
-                break;
-        }
-
-
-        Client clientActuel = new Client(numClient, nomClient, prenomClient, numCodeCompte, soldeCompte);
+        Client clientActuel = new Client(numClient, nomClient, prenomClient, numCodeCompte, soldeCompte, decouvert);
         clientActuel.addClient();
 
         TConsole.toprintln("Récapitulatif de la création du compte client :" +
                 "\nNuméro de client : " + clientActuel.getNumeroClient() +
                 "\nNom : " + clientActuel.getNomClient() +
                 "\nPrénom : " + clientActuel.getPrenomClient() +
-                "\nNuméro de compte : " + clientActuel.getCompteClient().getCode() +
-                "\nSolde du compte de départ : " + clientActuel.getCompteClient().getSolde() +
+                "\nType de compte : " + "Compte courant - Découvert : " + clientActuel.getCompteCourant().getDecouvert() +
+                "\nNuméro de compte : " + clientActuel.getCompteCourant().getCode() +
+                "\nSolde du compte de départ : " + clientActuel.getCompteCourant().getSolde() +
                 "\n****************************************************************************" +
                 "\nLe nouveau client a bien été créé !" +
                 "\n****************************************************************************"
         );
 
     }
-
 }

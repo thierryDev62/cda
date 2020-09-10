@@ -6,16 +6,15 @@ public class Client {
     private Integer numeroClient;
     private String nomClient;
     private String prenomClient;
-    private Compte compteClient;
     private CompteCourant compteCourant;
-    private CompteEpargne compteEpargne;
+    private Integer decouvert;
     private static ArrayList<Client> clients = new ArrayList<>();
 
-    public Client(Integer numeroClient, String nomClient, String prenomClient, Integer code, Float solde) {
+    public Client(Integer numeroClient, String nomClient, String prenomClient, Integer code, Float solde, Integer decouvert) {
         this.numeroClient = numeroClient;
         this.nomClient = nomClient;
         this.prenomClient = prenomClient;
-        this.compteClient = new Compte(code, solde);
+        this.compteCourant = new CompteCourant(code, solde, decouvert);
     }
 
     public void addClient() {
@@ -54,11 +53,11 @@ public class Client {
         Client.clients = clients;
     }
 
-    public Compte getCompteClient() {
-        return compteClient;
+    public CompteCourant getCompteCourant() {
+        return compteCourant;
     }
 
-    public void setCompteClient(Compte compteClient) {
-        this.compteClient = compteClient;
+    public void setCompteCourant(CompteCourant compteCourant) {
+        this.compteCourant = compteCourant;
     }
 }

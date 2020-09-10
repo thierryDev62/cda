@@ -48,8 +48,8 @@ public class Traitement {
             System.out.println(Client.getClients().get(i).getNumeroClient() + " - " +
                     Client.getClients().get(i).getNomClient() + " " +
                     Client.getClients().get(i).getPrenomClient() + " - " +
-                    Client.getClients().get(i).getCompteClient().getCode() + " - " +
-                    Client.getClients().get(i).getCompteClient().getSolde() + "€"
+                    Client.getClients().get(i).getCompteCourant().getCode() + " - " +
+                    Client.getClients().get(i).getCompteCourant().getSolde() + "€"
             );
         }
         TConsole.toprintln("***********************************************");
@@ -66,8 +66,8 @@ public class Traitement {
                 System.out.println(Client.getClients().get(i).getNumeroClient() + " - " +
                         Client.getClients().get(i).getNomClient() + " " +
                         Client.getClients().get(i).getPrenomClient() + " - " +
-                        Client.getClients().get(i).getCompteClient().getCode() + " - " +
-                        Client.getClients().get(i).getCompteClient().getSolde() + "€"
+                        Client.getClients().get(i).getCompteCourant().getCode() + " - " +
+                        Client.getClients().get(i).getCompteCourant().getSolde() + "€"
                 );
                 Traitement.main(new String[0]);
                 return;
