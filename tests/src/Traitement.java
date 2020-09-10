@@ -1,3 +1,4 @@
+import diplo.tools.TConsole;
 import fr.cda.data.Fidelite;
 import fr.cda.data.Permis;
 import fr.cda.data.Personne;
@@ -5,15 +6,49 @@ import fr.cda.data.Personne;
 public class Traitement {
     public static void main(String[] arg) {
 
-        //TODO : faire scanner pour saisir les coordonnées + Voir pour type de permis
+        TConsole.toprintln("Saisir le nom");
+        String nom = Tools.askThing();
+        TConsole.toprintln("Saisir le prénom");
+        String prenom = Tools.askThing();
+        TConsole.toprintln("Saisir l'age");
+        Integer age = Tools.askThing(1);
+        TConsole.toprintln("Saisir le nombre d'années de permis");
+        Integer nbrAnneesPermis = Tools.askThing(1);
+        TConsole.toprintln("Saisir le nombre d'accidents");
+        Integer nbrAccidentsAssure = Tools.askThing(1);
+        TConsole.toprintln("Saisir le nombre d'années de fidèlité");
+        Integer nbrnbrAnneesFidelite = Tools.askThing(1);
 
         /******************************************************************************************/
-        Personne assure = new Personne("Thonon", "James", 26, 0);
+        Personne assure = new Personne(nom, prenom, age, nbrAccidentsAssure);
         Permis permisAssure = new Permis();
         Fidelite fideliteAssure = new Fidelite();
 
-        permisAssure.setNbrAnneesPermis(1);
-        fideliteAssure.setAnciennete(6);
+        /**
+         * Ajout des types de permis
+         */
+        permisAssure.addType();
+
+        TConsole.toprintln("Saisir le type de permis (A, B, C ou D)");
+        String typePermisChoisi = Tools.askThing();
+
+        switch(typePermisChoisi.toLowerCase()) {
+            case "a":
+                typePermisChoisi = permisAssure.getTypePermis().get(0);
+                break;
+            case "b":
+                typePermisChoisi = permisAssure.getTypePermis().get(1);
+                break;
+            case "c":
+                typePermisChoisi = permisAssure.getTypePermis().get(2);
+                break;
+            case "d":
+                typePermisChoisi = permisAssure.getTypePermis().get(3);
+                break;
+        }
+
+        permisAssure.setNbrAnneesPermis(nbrAnneesPermis);
+        fideliteAssure.setAnciennete(nbrnbrAnneesFidelite);
         assure.setPermis(permisAssure);
         assure.setFidelite(fideliteAssure);
         /*****************************************************************************************/
@@ -22,44 +57,57 @@ public class Traitement {
                 nbrAnneesAnciennete = fideliteAssure.getAnciennete(),
                 nbrAccidents = assure.getNbrAccident();
 
-        // Affichage des coordonnées
+        /**
+         * Affichage des coordonnées
+         */
         System.out.println(
                 "\n*****************************************************************" +
                 "\nNom : " + assure.getNom() +
                 "\nPrénom : " + assure.getPrenom() +
                 "\nAge : " + assure.getAge() +
                 "\n*****************************************************************" +
+                "\nType de permis : " + typePermisChoisi +
                 "\nNombre d'années de permis : " + nbrAnneesPermisAssure + " an" + (nbrAnneesPermisAssure > 1 ? "s" : "") +
                 "\nAncienneté : " + nbrAnneesAnciennete + " an" + (nbrAnneesAnciennete > 1 ? "s" : "") +
                 "\nNombre d'accident : " + nbrAccidents +
                 "\n*****************************************************************"
         );
 
-        // On lance le calcul
+        /**
+         * On lance le calcul
+         */
         calcul(assure.getAge(), permisAssure.getNbrAnneesPermis(), assure.getNbrAccident(), fideliteAssure.getAnciennete());
 
     }
     public static void calcul(int age, int anneesPermis, int nombreAccident, int anciennete){
 
-        // Initialisation des variables
+        /**
+         * Initialisation des variables
+         */
         boolean ageSup25, totalAccident0, totalAccident1, totalAccident2, clientFidele, plusDeuxAnsPermis;
         int tarifRouge = 200, tarifOrange = 150, tarifVert = 100, tarifBleu = 50;
 
-        // Couleurs
+        /**
+         * Couleurs
+         */
         String ANSI_RED = "\u001B[31m",
                 ANSI_GREEN = "\u001B[32m",
                 ANSI_BLUE = "\u001B[34m",
                 ANSI_ORANGE = "\u001B[33m",
                 ANSI_RESET = "\u001B[0m";
 
-        // Phrases sur les tarifs
+        /**
+         * Phrases sur les tarifs
+         */
         String phraseTarifRouge = "Le tarif " + ANSI_RED + "rouge" + ANSI_RESET + " est appliqué soit ",
                 phraseTarifOrange = "Le tarif " + ANSI_ORANGE + "orange" + ANSI_RESET + " est appliqué soit ",
                 phraseTarifVert = "Le tarif " + ANSI_GREEN + "vert" + ANSI_RESET + " est appliqué soit ",
                 phraseTarifBleu = "Le tarif " + ANSI_BLUE + "bleu" + ANSI_RESET + " est appliqué soit ",
                 separateur = "\n*****************************************************************\n";
 
-        // Booleens des conditions
+        /**
+         * Booleens des conditions
+         */
         ageSup25 = age >= 25;
         plusDeuxAnsPermis = anneesPermis > 2;
         totalAccident0 = nombreAccident == 0;
@@ -73,7 +121,6 @@ public class Traitement {
          * se voit attribuer le tarif rouge, si toutefois il n'a jamais été responsable d'accident.
          * Sinon, la compagnie refuse de l'assurer.
          */
-
         if(!ageSup25 && !plusDeuxAnsPermis) {
             if(totalAccident0) {
                 if(!clientFidele) {
@@ -96,7 +143,6 @@ public class Traitement {
              * tarif orange s'il n'a jamais provoqué d'accident, au tarif rouge pour un accident,
              * sinon il est refusé.
              */
-
         } else if(!ageSup25 || !plusDeuxAnsPermis) {
             if(totalAccident0) {
                 if(!clientFidele) {
@@ -128,7 +174,6 @@ public class Traitement {
              * du tarif vert s'il n'est à l'origine d'aucun accident et du tarif orange pour un accident,
              * du tarif rouge pour deux accidents, et refusé au-delà.
              */
-
         } else {
             if(totalAccident0) {
                 if(!clientFidele) {
