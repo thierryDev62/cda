@@ -7,7 +7,9 @@ public class Client {
     private String nomClient;
     private String prenomClient;
     private Compte compteClient;
-    private static ArrayList<Client> clients = new ArrayList<Client>();
+    private CompteCourant compteCourant;
+    private CompteEpargne compteEpargne;
+    private static ArrayList<Client> clients = new ArrayList<>();
 
     public Client(Integer numeroClient, String nomClient, String prenomClient, Integer code, Float solde) {
         this.numeroClient = numeroClient;

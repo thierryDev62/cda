@@ -12,10 +12,26 @@ public class CreationClient {
         String nomClient = Tools.askThing();
         TConsole.toprintln("Saisir le prénom du client");
         String prenomClient = Tools.askThing();
+
+
         TConsole.toprintln("Saisir le numero de code du compte client");
         Integer numCodeCompte = Tools.askThing(1);
         TConsole.toprintln("Saisir le solde du compte client");
         Float soldeCompte = Tools.askThing((float)1.0);
+
+        TConsole.toprintln("Saisir le type de compte : 1 - Compte courant | 2 - Compte épargne");
+        Integer reponse = Tools.askThing(1);
+
+        switch(reponse) {
+            case 1 :
+                TConsole.toprintln("Compte courant");
+                CompteCourant compteCourant = new CompteCourant(numCodeCompte, soldeCompte, 500);
+                break;
+            case 2 :
+                TConsole.toprintln("Compte épargne");
+                CompteEpargne compteEpargne = new CompteEpargne(numCodeCompte, soldeCompte, 5);
+                break;
+        }
 
 
         Client clientActuel = new Client(numClient, nomClient, prenomClient, numCodeCompte, soldeCompte);

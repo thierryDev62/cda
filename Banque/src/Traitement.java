@@ -9,6 +9,7 @@ public class Traitement {
                 "\n1 - Créer un nouveau client" +
                 "\n2 - Consultation de la liste des clients" +
                 "\n3 - Consultation de la fiche d'un client" +
+                "\n4 - Effectuer un versement sur un compte" +
                 "\n0 - Fin"
         );
         Integer choix = Tools.askThing(1);
@@ -24,6 +25,7 @@ public class Traitement {
                 ficheClient();
                 break;
             case 0:
+                TConsole.toprintln("Merci de votre visite, au revoir !");
                 return;
             default:
                 main(arg);
@@ -55,15 +57,23 @@ public class Traitement {
     }
     public static void ficheClient() {
         TConsole.toprintln("Saisir le numéro de client");
+
         Integer numeroClientDemande = Tools.askThing(1);
 
         for(int i = 0 ; i < Client.getClients().size(); i++) {
             if(numeroClientDemande.equals(Client.getClients().get(i).getNumeroClient())) {
                 TConsole.toprintln("Ok client trouvé !");
-            } else {
-                TConsole.toprintln("Le client n'a pas été trouvé dans la base de données");
+                System.out.println(Client.getClients().get(i).getNumeroClient() + " - " +
+                        Client.getClients().get(i).getNomClient() + " " +
+                        Client.getClients().get(i).getPrenomClient() + " - " +
+                        Client.getClients().get(i).getCompteClient().getCode() + " - " +
+                        Client.getClients().get(i).getCompteClient().getSolde() + "€"
+                );
+                Traitement.main(new String[0]);
+                return;
             }
-            Traitement.main(new String[0]);
         }
+        TConsole.toprintln("Le client n'a pas été trouvé dans la base de données");
+        Traitement.main(new String[0]);
     }
 }
