@@ -3,9 +3,9 @@ package fr.cda.data;
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
 
-public class CreationClient {
+public class CreationClientCompteCourant {
 
-    public void creation() {
+    public void creationCompteCourant() {
         TConsole.toprintln("Saisir le numero de client");
         Integer numClient = Tools.askThing(1);
         TConsole.toprintln("Saisir le nom du client");

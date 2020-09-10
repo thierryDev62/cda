@@ -1,27 +1,31 @@
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.cda.data.Client;
-import fr.cda.data.CreationClient;
+import fr.cda.data.CreationClientCompteCourant;
 
 public class Traitement {
     public static void main(String[] arg) {
         TConsole.toprintln("Faites votre choix : " +
-                "\n1 - Créer un nouveau client" +
-                "\n2 - Consultation de la liste des clients" +
-                "\n3 - Consultation de la fiche d'un client" +
-                "\n4 - Effectuer un versement sur un compte" +
+                "\n1 - Créer un nouveau client - Compte courant" +
+                "\n2 - Créer un nouveau client - Compte épargne" +
+                "\n3 - Consultation de la liste des clients" +
+                "\n4 - Consultation de la fiche d'un client" +
+                "\n5 - Effectuer un versement sur un compte" +
                 "\n0 - Fin"
         );
         Integer choix = Tools.askThing(1);
 
         switch(choix) {
             case 1:
-                newClient();
+                newClientCompteCourant();
                 break;
-            case 2 :
-                voirClient();
+            case 2:
+                newClientCompteEpargne();
                 break;
             case 3 :
+                voirClient();
+                break;
+            case 4 :
                 ficheClient();
                 break;
             case 0:
@@ -31,9 +35,13 @@ public class Traitement {
                 main(arg);
         }
     }
-    public static void newClient() {
-        CreationClient nouveauClient = new CreationClient();
-        nouveauClient.creation();
+    public static void newClientCompteCourant() {
+        CreationClientCompteCourant nouveauClient = new CreationClientCompteCourant();
+        nouveauClient.creationCompteCourant();
+        Traitement.main(new String[0]);
+    }
+    public static void newClientCompteEpargne() {
+
         Traitement.main(new String[0]);
     }
     public static void voirClient() {
