@@ -6,14 +6,14 @@ public class Client {
     private Integer numeroClient;
     private String nomClient;
     private String prenomClient;
-    private Integer compte;
+    private Integer typeCompte;
     private static ArrayList<Client> clients = new ArrayList<>();
 
-    public Client(Integer numeroClient, String nomClient, String prenomClient, Integer compte) {
+    public Client(Integer numeroClient, String nomClient, String prenomClient, Integer typeCompte) {
         this.numeroClient = numeroClient;
         this.nomClient = nomClient;
         this.prenomClient = prenomClient;
-        this.compte = compte;
+        this.typeCompte = typeCompte;
     }
 
     public void addClient() {
