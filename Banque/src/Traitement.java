@@ -63,7 +63,7 @@ public class Traitement {
                     Client.getClients().get(i).getNomClient() + " " +
                     Client.getClients().get(i).getPrenomClient() + " - " +
                     Client.getClients().get(i).getCompteCourant().getCode() + " - " +
-                    Client.getClients().get(i).getCompteCourant().getSolde() + "€"
+                    Client.getClients().get(i).getCompteCourant().getSolde() + "€" +
             );
         }
         TConsole.toprintln("***********************************************");
