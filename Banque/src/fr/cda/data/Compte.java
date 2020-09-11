@@ -10,6 +10,9 @@ public class Compte {
         this.solde = solde;
         this.typeDeCompte = typeDeCompte;
     }
+    public void creationCompte(){
+
+    }
 
     public Integer getCode() {
         return code;
