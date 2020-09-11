@@ -1,7 +1,10 @@
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.cda.data.Client;
+import fr.cda.data.Compte;
+
 import fr.cda.data.CreationClientCompteCourant;
+import fr.cda.data.CreationClientCompteEpargne;
 
 public class Traitement {
     public static void main(String[] arg) {
@@ -28,6 +31,8 @@ public class Traitement {
             case 4 :
                 ficheClient();
                 break;
+            case 5 :
+                versement();
             case 0:
                 TConsole.toprintln("Merci de votre visite, au revoir !");
                 return;
@@ -41,7 +46,8 @@ public class Traitement {
         Traitement.main(new String[0]);
     }
     public static void newClientCompteEpargne() {
-
+        CreationClientCompteEpargne nouveauClient = new CreationClientCompteEpargne();
+        nouveauClient.creationCompteEpargne();
         Traitement.main(new String[0]);
     }
     public static void voirClient() {
@@ -77,6 +83,37 @@ public class Traitement {
                         Client.getClients().get(i).getCompteCourant().getCode() + " - " +
                         Client.getClients().get(i).getCompteCourant().getSolde() + "€"
                 );
+                Traitement.main(new String[0]);
+                return;
+            }
+        }
+        TConsole.toprintln("Le client n'a pas été trouvé dans la base de données");
+        Traitement.main(new String[0]);
+    }
+    public static void versement(){
+        TConsole.toprintln("Saisir le numéro de client concerné");
+        Integer clientConcerne = Tools.askThing(1);
+        for(int i = 0; i < Client.getClients().size(); i++) {
+            if(clientConcerne.equals(Client.getClients().get(i).getNumeroClient())) {
+                TConsole.toprintln("Ok client trouvé !" +
+                        "\nClient : " + Client.getClients().get(i).getNomClient() + " " + Client.getClients().get(i).getPrenomClient()
+                );
+
+                TConsole.toprintln("Quelle somme voulez-vous verser ?");
+                int sommeVersee = Tools.askThing(1);
+
+                Float solde = Client.getClients().get(i).getCompteCourant().getSolde();
+
+                Float total = sommeVersee + solde;
+
+                Client.getClients().get(i).getCompteCourant().setSolde(total);
+
+                TConsole.toprintln("Récapitulatif de la transaction" +
+                        "\nSolde de départ : " + solde + "€" +
+                        "\nSomme versée : " + sommeVersee + "€" +
+                        "\nSolde final : " + total + "€"
+                );
+
                 Traitement.main(new String[0]);
                 return;
             }

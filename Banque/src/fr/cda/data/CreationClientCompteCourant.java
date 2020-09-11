@@ -13,7 +13,6 @@ public class CreationClientCompteCourant {
         TConsole.toprintln("Saisir le prénom du client");
         String prenomClient = Tools.askThing();
 
-
         TConsole.toprintln("Saisir le numero de code du compte client");
         Integer numCodeCompte = Tools.askThing(1);
         TConsole.toprintln("Saisir le solde du compte client");
@@ -22,7 +21,10 @@ public class CreationClientCompteCourant {
         TConsole.toprintln("Saisir le découvert du compte courant");
         Integer decouvert = Tools.askThing(1);
 
-        Client clientActuel = new Client(numClient, nomClient, prenomClient, numCodeCompte, soldeCompte, decouvert);
+        Integer interet = 0;
+        Integer typeDecompte = 2;
+
+        Client clientActuel = new Client(numClient, nomClient, prenomClient, numCodeCompte, soldeCompte, decouvert, interet, typeDecompte);
         clientActuel.addClient();
 
         TConsole.toprintln("Récapitulatif de la création du compte client :" +
@@ -32,6 +34,7 @@ public class CreationClientCompteCourant {
                 "\nType de compte : " + "Compte courant - Découvert : " + clientActuel.getCompteCourant().getDecouvert() +
                 "\nNuméro de compte : " + clientActuel.getCompteCourant().getCode() +
                 "\nSolde du compte de départ : " + clientActuel.getCompteCourant().getSolde() +
+                "\nMontant du découvert autorisé : " + clientActuel.getCompteCourant().getDecouvert() +
                 "\n****************************************************************************" +
                 "\nLe nouveau client a bien été créé !" +
                 "\n****************************************************************************"

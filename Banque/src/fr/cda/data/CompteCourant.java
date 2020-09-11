@@ -1,10 +1,11 @@
 package fr.cda.data;
 
 public class CompteCourant extends Compte{
+    private static final Integer typeDeCompte = 1;
     private Integer decouvert;
 
-    public CompteCourant(Integer code, Float solde, Integer decouvert) {
-        super(code, solde);
+    public CompteCourant(Integer code, Float solde, Integer integer, Integer decouvert) {
+        super(code, solde, typeDeCompte);
         this.decouvert = decouvert;
     }
 

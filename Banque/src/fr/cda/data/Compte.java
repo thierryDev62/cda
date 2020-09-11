@@ -1,14 +1,14 @@
 package fr.cda.data;
 
-import java.util.ArrayList;
-
 public class Compte {
     private Integer code;
     private Float solde;
+    private Integer typeDeCompte;
 
-    public Compte(Integer code, Float solde) {
+    public Compte(Integer code, Float solde, Integer typeDeCompte) {
         this.code = code;
         this.solde = solde;
+        this.typeDeCompte = typeDeCompte;
     }
 
     public Integer getCode() {
@@ -25,5 +25,13 @@ public class Compte {
 
     public void setSolde(Float solde) {
         this.solde = solde;
+    }
+
+    public Integer getTypeDeCompte() {
+        return typeDeCompte;
+    }
+
+    public void setTypeDeCompte(Integer typeDeCompte) {
+        this.typeDeCompte = typeDeCompte;
     }
 }
