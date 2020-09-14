@@ -31,6 +31,8 @@ public class Traitement {
                 Traitement.main(new String[0]);
                 break;
             case 4:
+                Operation.virement();
+                Traitement.main(new String[0]);
                 break;
             case 5:
                 Compte.consultationSolde();

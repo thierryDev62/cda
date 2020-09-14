@@ -13,8 +13,17 @@ public class CompteEpargne extends Compte {
         super(code, solde);
         this.tauxInteret = tauxInteret;
     }
-    public void addCompte() {
-        listeCompte.add(this);
+
+    public static void rechercheCompteEpargne(Integer saisiNumeroCompte) {
+        for (CompteEpargne compte : Compte.getListeCompteEpargne()) {
+            if (saisiNumeroCompte.equals(compte.getCode())) {
+                System.out.println("Numéro de compte : " +
+                        compte.getCode() + " - Compte épargne" +
+                        "\nSolde du compte : " + compte.getSolde() + "€"
+                );
+                return;
+            }
+        }
     }
 
     public Integer getTauxInteret() {

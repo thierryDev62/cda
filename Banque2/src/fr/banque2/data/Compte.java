@@ -29,7 +29,7 @@ public class Compte {
         TConsole.toprintln("Création d'un nouveau compte" +
                 "\n*********************************************************"
         );
-        TConsole.toprintln("Quel type de compte voulez-vous créer ? - 1 - Compte courant | 2 - Compte épargne");
+        TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
         Integer choix = Tools.askThing(1);
 
         if(choix == 1) {
@@ -94,30 +94,14 @@ public class Compte {
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
-        for(CompteCourant compte : Compte.getListeCompteCourant()) {
-            if (saisiNumeroCompte.equals(compte.getCode())) {
-                System.out.println("Numéro de compte : " +
-                        compte.getCode() + " - Compte courant" +
-                        "\nSolde du compte : " + compte.getSolde() + "€"
-                );
-                return;
-            }
-        }
-        for(CompteEpargne compte : Compte.getListeCompteEpargne()) {
-            if (saisiNumeroCompte.equals(compte.getCode())) {
-                System.out.println("Numéro de compte : " +
-                        compte.getCode() + " - Compte épargne" +
-                        "\nSolde du compte : " + compte.getSolde() + "€"
-                );
-                return;
-            }
-        }
-
         if(saisiNumeroCompte == 0) {
             TConsole.toprintln(".:: Annulation de l'opération ::.");
-            return;
         }
-        TConsole.toprintln("Le compte n'a pas été trouvé !");
+
+        CompteCourant.rechercheCompteCourant(saisiNumeroCompte);
+
+        CompteEpargne.rechercheCompteEpargne(saisiNumeroCompte);
+
     }
 
     public Integer getCode() {
