@@ -87,7 +87,6 @@ public class Operation {
                     TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé");
                     return;
                 } else {
-
                     compte.setSolde(soldeFinal);
                     System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€");
                     TConsole.toprintln("Le retrait de " + montantRetrait + "€ à bien été effectué !");
@@ -107,7 +106,6 @@ public class Operation {
                     TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé");
                     return;
                 } else {
-
                     compte.setSolde(soldeFinal);
                     System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€");
                     TConsole.toprintln("Le retrait de " + montantRetrait + "€ à bien été effectué !");
@@ -121,18 +119,47 @@ public class Operation {
     }
     /**
      * Virement de compte à compte
+     * @return
      */
     public static void virement() {
-        TConsole.toprintln("Retrait sur un compte" +
+        Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null;
+        TConsole.toprintln("Virement de compte à compte" +
                 "\n*********************************************************"
         );
         TConsole.toprintln("Saisir le numéro de compte à débiter");
         Integer compteDebit = Tools.askThing(1);
-        TConsole.toprintln("Saisir le montant à débiter");
-        Integer montantDebit = Tools.askThing(1);
+        for(CompteCourant compte : Compte.getListeCompteCourant()){
+            if(compteDebit.equals(compte.getCode())){
+                soldeCompteDebiteur = compte.getSolde();
+                compteDebit = compte.getCode();
+            }
+        }
+        for(CompteEpargne compte : Compte.getListeCompteEpargne()){
+            if(compteDebit.equals(compte.getCode())){
+                soldeCompteDebiteur = compte.getSolde();
+                compteDebit = compte.getCode();
+            }
+        }
+
+        System.out.println("Compte débiteur : " + compteDebit + " - Solde : " + soldeCompteDebiteur + "€");
+
         TConsole.toprintln("Saisir le numéro de compte à créditer");
         Integer compteCredit = Tools.askThing(1);
+        for(CompteCourant compte : Compte.getListeCompteCourant()){
+            if(compteCredit.equals(compte.getCode())){
+                soldeCompteCrediteur = compte.getSolde();
+                compteCredit = compte.getCode();
+            }
+        }
+        for(CompteEpargne compte : Compte.getListeCompteEpargne()){
+            if(compteCredit.equals(compte.getCode())){
+                soldeCompteCrediteur = compte.getSolde();
+                compteCredit = compte.getCode();
+            }
+        }
+        System.out.println("Compte créditeur : " + compteCredit + " - Solde : " + soldeCompteCrediteur + "€");
 
+        Integer montantDebit = Tools.askThing(1);
 
 
     }
