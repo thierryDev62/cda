@@ -1,5 +1,8 @@
 package fr.banque2.data;
 
+import diplo.tools.TConsole;
+import diplo.tools.Tools;
+
 import java.util.ArrayList;
 
 public class CompteCourant extends Compte{
