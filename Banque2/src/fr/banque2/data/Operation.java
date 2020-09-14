@@ -122,7 +122,7 @@ public class Operation {
      * @return
      */
     public static void virement() {
-        Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null;
+        Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinal = null;
         TConsole.toprintln("Virement de compte à compte" +
                 "\n*********************************************************"
         );
@@ -135,9 +135,9 @@ public class Operation {
                 compteDebit = compte.getCode();
                 TConsole.toprintln("Saisir le montant à débiter");
                 Integer montantDebit = Tools.askThing(1);
-                Integer soldeFinal = soldeCompteDebiteur - montantDebit;
+                soldeFinal = soldeCompteDebiteur - montantDebit;
                 compte.setSolde(soldeFinal);
-                //TODO - J'en suis ici
+                soldeFinal = compte.getSolde();
             }
         }
         for(CompteEpargne compte : Compte.getListeCompteEpargne()){
@@ -146,14 +146,17 @@ public class Operation {
                 compteDebit = compte.getCode();
                 TConsole.toprintln("Saisir le montant à débiter");
                 Integer montantDebit = Tools.askThing(1);
-                Integer soldeFinal = soldeCompteDebiteur - montantDebit;
+                soldeFinal = soldeCompteDebiteur - montantDebit;
                 compte.setSolde(soldeFinal);
+                soldeFinal = compte.getSolde();
             }
         }
 
 
-        System.out.println("Compte débiteur : " + compteDebit + " - Solde : " + soldeCompteDebiteur + "€");
+        System.out.println("Compte débiteur : " + compteDebit + " - Solde avant traitement : " + soldeCompteDebiteur + "€" + " - Solde après traitement : " + soldeFinal + "€");
 
+
+        //TODO - J'en suis là
         TConsole.toprintln("Saisir le numéro de compte à créditer");
         Integer compteCredit = Tools.askThing(1);
         for(CompteCourant compte : Compte.getListeCompteCourant()){
