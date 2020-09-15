@@ -41,9 +41,7 @@ public class Compte {
             TConsole.toprintln("Saisir le numéro de compte");
             Integer numeroCompte = Tools.askThing(1);
 
-            /**
-             * Test si le numéro de compte existe déjà
-             */
+            //TODO - * Test si le numéro de compte existe déjà
 
             TConsole.toprintln("Saisir le solde du compte");
             Integer soldeDuCompte = Tools.askThing(1);
@@ -81,7 +79,7 @@ public class Compte {
                     "\nRécapitulatif de la création du compte épargne :" +
                     "\nNuméro de compte : " + nouveauCompte.getCode() +
                     "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
-                    "\nDécouvert autorisé : " + nouveauCompte.getTauxInteret() + "%" +
+                    "\nTaux d'interêt : " + nouveauCompte.getTauxInteret() + "%" +
                     "\n*********************************************************" +
                     "\n*     Le nouveau compte épargne a bien été créé !       *" +
                     "\n*********************************************************"
@@ -104,9 +102,9 @@ public class Compte {
             TConsole.toprintln(".:: Annulation de l'opération ::.");
         }
 
-        CompteCourant.rechercheCompteCourant(saisiNumeroCompte);
+        CompteCourant.soldeCompteCourant(saisiNumeroCompte);
 
-        CompteEpargne.rechercheCompteEpargne(saisiNumeroCompte);
+        CompteEpargne.soldeCompteEpargne(saisiNumeroCompte);
 
     }
 
