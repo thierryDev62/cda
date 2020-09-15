@@ -167,10 +167,10 @@ public class Operation {
                         "\nSolde du compte avant le retrait : " + compte.getSolde() + "€" +
                         "\nDécouvert autorisé : " + compte.getDecouvert() + "€"
                 );
-                Integer soldeFinal = (compte.getSolde() + compte.getDecouvert()) - montantRetrait;
+                Integer soldeFinal = compte.getSolde() - montantRetrait;
 
-                if(soldeFinal < 0) {
-                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé");
+                if(soldeFinal < (compte.getCode() + compte.getDecouvert())) {
+                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé soit : " + (compte.getSolde() + compte.getDecouvert()) + "€");
                     return;
                 } else {
                     compte.setSolde(soldeFinal);
@@ -211,7 +211,7 @@ public class Operation {
                 Integer soldeFinal = compte.getSolde() - montantRetrait;
 
                 if(soldeFinal < 0) {
-                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé");
+                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
                     return;
                 } else {
                     compte.setSolde(soldeFinal);
@@ -266,6 +266,14 @@ public class Operation {
                 soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
                 compte.setSolde(soldeFinalCompteDebiteur);
                 soldeFinalCompteDebiteur = compte.getSolde();
+                /**
+                 * Résumé de l'opération
+                 */
+                Integer numeroCompteOperation = compte.getCode();
+                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
+                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement envoyé", montantDebit);
+                operation.addOperation();
+
             }
         }
         for(CompteEpargne compte : Compte.getListeCompteEpargne()){
@@ -275,6 +283,13 @@ public class Operation {
                 soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
                 compte.setSolde(soldeFinalCompteDebiteur);
                 soldeFinalCompteDebiteur = compte.getSolde();
+                /**
+                 * Résumé de l'opération
+                 */
+                Integer numeroCompteOperation = compte.getCode();
+                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
+                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement envoyé", montantDebit);
+                operation.addOperation();
             }
         }
 
@@ -292,6 +307,13 @@ public class Operation {
                 soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
                 compte.setSolde(soldeFinalCompteCrediteur);
                 soldeFinalCompteCrediteur = compte.getSolde();
+                /**
+                 * Résumé de l'opération
+                 */
+                Integer numeroCompteOperation = compte.getCode();
+                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
+                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement reçu", montantDebit);
+                operation.addOperation();
             }
         }
         for(CompteEpargne compte : Compte.getListeCompteEpargne()){
@@ -301,12 +323,20 @@ public class Operation {
                 soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
                 compte.setSolde(soldeFinalCompteCrediteur);
                 soldeFinalCompteCrediteur = compte.getSolde();
+                /**
+                 * Résumé de l'opération
+                 */
+                Integer numeroCompteOperation = compte.getCode();
+                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
+                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement reçu", montantDebit);
+                operation.addOperation();
             }
         }
         System.out.println("*******************************************************************************" +
                 "\nCompte créditeur : " + compteCredit + " - Solde avant traitement : " + soldeCompteCrediteur + "€" + " - Solde après traitement : " + soldeFinalCompteCrediteur + "€" +
                 "\n*******************************************************************************"
         );
+
         TConsole.toprintln("*********************************************************" +
                 "\n*         Le virement a bien été effectué !             *" +
                 "\n*********************************************************");

@@ -12,7 +12,8 @@ public class Traitement {
                 "5 - Consultation solde | " +
                 "6 - Liste des opérations effectuées | " +
                 "7 - Total des versements | " +
-                "8 - Total des retraits"
+                "8 - Total des retraits | " +
+                "9 - Liste de tous les comptes"
         );
         Integer choix = Tools.askThing(1);
 
@@ -42,18 +43,21 @@ public class Traitement {
                 Traitement.main(new String[0]);
                 break;
             case 7:
-                totalVersements();
+                Compte.totalVersements();
+                Traitement.main(new String[0]);
                 break;
             case 8:
-                totalRetraits();
+                Compte.totalRetraits();
+                Traitement.main(new String[0]);
+                break;
+            case 9:
+                Compte.listeTousLesComptes();
+                Traitement.main(new String[0]);
+                break;
+            default:
+                TConsole.toprintln("Veuillez saisir un chiffre de 1 à 9");
+                Traitement.main(new String[0]);
                 break;
         }
     }
-
-    private static void totalRetraits() {
-    }
-
-    private static void totalVersements() {
-    }
-
 }

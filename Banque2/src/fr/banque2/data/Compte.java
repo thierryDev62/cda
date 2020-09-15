@@ -41,6 +41,21 @@ public class Compte {
             TConsole.toprintln("Saisir le numéro de compte");
             Integer numeroCompte = Tools.askThing(1);
 
+            for(CompteCourant listeCompteCourant : Compte.getListeCompteCourant()) {
+                if (numeroCompte.equals(listeCompteCourant.getCode())) {
+                    TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
+                    Compte.creationNouveauCompte();
+                    return;
+                }
+            }
+            for (CompteEpargne listeCompteEpargne : Compte.getListeCompteEpargne()) {
+                if (numeroCompte.equals(listeCompteEpargne.getCode())) {
+                    TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
+                    Compte.creationNouveauCompte();
+                    return;
+                }
+            }
+
             //TODO - * Test si le numéro de compte existe déjà
 
             TConsole.toprintln("Saisir le solde du compte");
@@ -67,6 +82,23 @@ public class Compte {
             );
             TConsole.toprintln("Saisir le numéro de compte");
             Integer numeroCompte = Tools.askThing(1);
+
+            for(CompteCourant listeCompteCourant : Compte.getListeCompteCourant()) {
+                if (numeroCompte.equals(listeCompteCourant.getCode())) {
+                    TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
+                    Compte.creationNouveauCompte();
+                    return;
+                }
+            }
+
+            for (CompteEpargne listeCompteEpargne : Compte.getListeCompteEpargne()) {
+                if (numeroCompte.equals(listeCompteEpargne.getCode())) {
+                    TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
+                    Compte.creationNouveauCompte();
+                    return;
+                }
+            }
+
             TConsole.toprintln("Saisir le solde du compte");
             Integer soldeDuCompte = Tools.askThing(1);
             TConsole.toprintln("Saisir le taux d'intérêt");
@@ -84,6 +116,9 @@ public class Compte {
                     "\n*     Le nouveau compte épargne a bien été créé !       *" +
                     "\n*********************************************************"
             );
+        } else {
+            TConsole.toprintln("Vous devez saisir 1 ou 2");
+            Compte.creationNouveauCompte();
         }
     }
     /**
@@ -129,7 +164,63 @@ public class Compte {
         }
         TConsole.toprintln("*************************************************************************************");
     }
+    /**
+     * Total des versements
+     */
+    public static void totalVersements() {
+        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        Integer saisiNumeroCompte = Tools.askThing(1);
+        Integer totalVersement = 0;
+        TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
+        for(Operation versement : Operation.getListeOperations()) {
+            if(saisiNumeroCompte.equals(versement.getNumeroCompteOperation()) && versement.getLibelleOperation().equals("Versement")) {
+                totalVersement += versement.getMontantOperation();
+            }
+        }
+        TConsole.toprintln("Montant total : " + totalVersement + "€");
+    }
+    /**
+     * Total des retraits
+     */
+    public static void totalRetraits() {
+        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        Integer saisiNumeroCompte = Tools.askThing(1);
+        Integer totalRetrait = 0;
+        TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
+        for(Operation retrait : Operation.getListeOperations()) {
+            if(saisiNumeroCompte.equals(retrait.getNumeroCompteOperation()) && retrait.getLibelleOperation().equals("Retrait")) {
+                totalRetrait += retrait.getMontantOperation();
+            }
+        }
+        TConsole.toprintln("Montant total : " + totalRetrait + "€");
+    }
 
+    /**
+     * Liste de tous les comptes
+     */
+    public static void listeTousLesComptes() {
+        TConsole.toprintln("Liste de tous les comptes créés :");
+        TConsole.toprintln("Comptes courants :");
+
+        if (Compte.getListeCompteCourant().size() > 0) {
+            for (CompteCourant listeComptesCourants : Compte.getListeCompteCourant()) {
+                System.out.println("- Numéro de compte : " + listeComptesCourants.getCode() + " - Solde : " + listeComptesCourants.getSolde() + "€ - Découvert autorisé : " + listeComptesCourants.getDecouvert() + "€"
+                );
+            }
+        } else {
+            TConsole.toprintln("Aucun");
+        }
+
+        TConsole.toprintln("Comptes épargnes :");
+        if (Compte.getListeCompteEpargne().size() > 0) {
+            for (CompteEpargne listeComptesEpargne : Compte.getListeCompteEpargne()) {
+                System.out.println("- Numéro de compte : " + listeComptesEpargne.getCode() + " - Solde : " + listeComptesEpargne.getSolde() + "€ - Taux d'interêt : " + listeComptesEpargne.getTauxInteret() + "%"
+                );
+            }
+        } else {
+            TConsole.toprintln("Aucun");
+        }
+    }
     public Integer getCode() {
         return code;
     }
