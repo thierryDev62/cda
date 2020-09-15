@@ -108,6 +108,26 @@ public class Compte {
 
     }
 
+    /**
+     * Liste des opérations sur un compte
+     */
+    public static void listeOperations() {
+        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        Integer saisiNumeroCompte = Tools.askThing(1);
+
+        for (Operation operation : Operation.getListeOperations()) {
+            if (saisiNumeroCompte.equals(operation.getNumeroCompteOperation())) {
+                        System.out.println("- Compte : " + operation.getNumeroCompteOperation() +
+                                " - Numéro d'opération : " + operation.getNumeroOperation() +
+                                " - Date : " + operation.getDateOperation() +
+                                " - Type : " + operation.getLibelleOperation() +
+                                " - Montant : " + operation.getMontantOperation() + "€"
+                        );
+                return;
+            }
+        }
+    }
+
     public Integer getCode() {
         return code;
     }

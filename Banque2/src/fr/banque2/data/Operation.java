@@ -12,13 +12,19 @@ public class Operation {
     private Integer numeroOperation;
     private String dateOperation;
     private String libelleOperation;
+    private Integer montantOperation;
     private static ArrayList<Operation> listeOperations = new ArrayList<>();
 
-    public Operation(Integer numeroCompteOperation, Integer numeroOperation, String dateOperation, String libelleOperation) {
+    public Operation(Integer numeroCompteOperation, Integer numeroOperation, String dateOperation, String libelleOperation, Integer montantOperation) {
         this.numeroCompteOperation = numeroCompteOperation;
         this.numeroOperation = numeroOperation;
         this.dateOperation = dateOperation;
         this.libelleOperation = libelleOperation;
+        this.montantOperation = montantOperation;
+    }
+
+    public void addOperation(){
+        listeOperations.add(this);
     }
 
     public static String dateDuJour(){
@@ -29,7 +35,6 @@ public class Operation {
         String dateAujourdhui = shortDateFormat.format(aujourdhui);
         return dateAujourdhui;
     }
-
     /**
      * Versement sur un compte
      */
@@ -78,13 +83,14 @@ public class Operation {
                  */
                 Integer numeroCompteOperation = compte.getCode();
                 Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
-                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Versement");
-
+                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Versement", montantVersement);
+                operation.addOperation();
                 System.out.println("Récapitulatif de l'opération :" +
                         "\nNuméro de compte : " + operation.numeroCompteOperation +
                         "\nDate d'opération : " + operation.dateOperation +
                         "\nNuméro d'opération : " + operation.numeroOperation +
                         "\nLibellé de l'opération : " + operation.libelleOperation +
+                        "\nMontant : " + montantVersement + "€" +
                         "\n*******************************************************************************"
                 );
 
@@ -118,13 +124,14 @@ public class Operation {
                  */
                 Integer numeroCompteOperation = compte.getCode();
                 Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
-                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Versement");
-
+                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Versement", montantVersement);
+                operation.addOperation();
                 System.out.println("Récapitulatif de l'opération :" +
                         "\nNuméro de compte : " + operation.numeroCompteOperation +
                         "\nDate d'opération : " + operation.dateOperation +
                         "\nNuméro d'opération : " + operation.numeroOperation +
                         "\nLibellé de l'opération : " + operation.libelleOperation +
+                        "\nMontant : " + montantVersement + "€" +
                         "\n*******************************************************************************"
                 );
                 return;
@@ -303,6 +310,14 @@ public class Operation {
 
     public String getLibelleOperation() {
         return libelleOperation;
+    }
+
+    public Integer getMontantOperation() {
+        return montantOperation;
+    }
+
+    public void setMontantOperation(Integer montantOperation) {
+        this.montantOperation = montantOperation;
     }
 
     public void setLibelleOperation(String libelleOperation) {

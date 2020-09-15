@@ -38,7 +38,8 @@ public class Traitement {
                 Traitement.main(new String[0]);
                 break;
             case 6:
-                listeOperations();
+                Compte.listeOperations();
+                Traitement.main(new String[0]);
                 break;
             case 7:
                 totalVersements();
@@ -53,9 +54,6 @@ public class Traitement {
     }
 
     private static void totalVersements() {
-    }
-
-    private static void listeOperations() {
     }
 
 }
