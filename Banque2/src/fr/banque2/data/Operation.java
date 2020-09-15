@@ -40,8 +40,6 @@ public class Operation {
      */
     public static void versementSurUnCompte() {
 
-        //TConsole.toprintln(dateDuJour());
-
         TConsole.toprintln("*********************************************************" +
                 "\nVersement sur un compte" +
                 "\n*********************************************************"
