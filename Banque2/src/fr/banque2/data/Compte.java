@@ -115,17 +115,19 @@ public class Compte {
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
+        TConsole.toprintln("Liste des opérations sur le compte n°" + saisiNumeroCompte);
+        TConsole.toprintln("*************************************************************************************");
         for (Operation operation : Operation.getListeOperations()) {
             if (saisiNumeroCompte.equals(operation.getNumeroCompteOperation())) {
-                        System.out.println("- Compte : " + operation.getNumeroCompteOperation() +
-                                " - Numéro d'opération : " + operation.getNumeroOperation() +
+                System.out.println(
+                        " - Numéro d'opération : " + operation.getNumeroOperation() +
                                 " - Date : " + operation.getDateOperation() +
                                 " - Type : " + operation.getLibelleOperation() +
                                 " - Montant : " + operation.getMontantOperation() + "€"
-                        );
-                return;
+                );
             }
         }
+        TConsole.toprintln("*************************************************************************************");
     }
 
     public Integer getCode() {

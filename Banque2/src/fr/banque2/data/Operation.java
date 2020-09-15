@@ -183,6 +183,21 @@ public class Operation {
                             "\nLe retrait de " + montantRetrait + "€ à bien été effectué !" +
                             "\n*******************************************************************************"
                     );
+                    /**
+                     * Résumé de l'opération
+                     */
+                    Integer numeroCompteOperation = compte.getCode();
+                    Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
+                    Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Retrait", montantRetrait);
+                    operation.addOperation();
+                    System.out.println("Récapitulatif de l'opération :" +
+                            "\nNuméro de compte : " + operation.numeroCompteOperation +
+                            "\nDate d'opération : " + operation.dateOperation +
+                            "\nNuméro d'opération : " + operation.numeroOperation +
+                            "\nLibellé de l'opération : " + operation.libelleOperation +
+                            "\nMontant : -" + montantRetrait + "€" +
+                            "\n*******************************************************************************"
+                    );
                     return;
                 }
             }
@@ -207,6 +222,21 @@ public class Operation {
                     );
                     TConsole.toprintln("\n*******************************************************************************" +
                             "\nLe retrait de " + montantRetrait + "€ à bien été effectué !" +
+                            "\n*******************************************************************************"
+                    );
+                    /**
+                     * Résumé de l'opération
+                     */
+                    Integer numeroCompteOperation = compte.getCode();
+                    Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
+                    Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Retrait", montantRetrait);
+                    operation.addOperation();
+                    System.out.println("Récapitulatif de l'opération :" +
+                            "\nNuméro de compte : " + operation.numeroCompteOperation +
+                            "\nDate d'opération : " + operation.dateOperation +
+                            "\nNuméro d'opération : " + operation.numeroOperation +
+                            "\nLibellé de l'opération : " + operation.libelleOperation +
+                            "\nMontant : -" + montantRetrait + "€" +
                             "\n*******************************************************************************"
                     );
                     return;

@@ -41,7 +41,7 @@ public class Tools {
      * @return
      */
     public static int intRandom() {
-        int resultRandom = (int)Math.floor(Math.random() * 101);
+        int resultRandom = (int)Math.floor(Math.random() * 10001);
         return resultRandom;
     }
 
