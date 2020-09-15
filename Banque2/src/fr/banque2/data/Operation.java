@@ -8,7 +8,8 @@ public class Operation {
      * Versement sur un compte
      */
     public static void versementSurUnCompte() {
-        TConsole.toprintln("Versement sur un compte" +
+        TConsole.toprintln("*********************************************************" +
+                "\nVersement sur un compte" +
                 "\n*********************************************************"
         );
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
@@ -22,43 +23,57 @@ public class Operation {
         TConsole.toprintln("Saisir le montant que vous voulez verser sur le compte");
         Integer montantVersement = Tools.askThing(1);
 
-
         for(CompteCourant compte : Compte.getListeCompteCourant()) {
             if (saisiNumeroCompte.equals(compte.getCode())) {
-                System.out.println("Numéro de compte : " +
+                System.out.println("*********************************************************" +
+                        "\nNuméro de compte : " +
                         compte.getCode() +
+                        "\nMontant versé : " + montantVersement + "€" +
                         "\nSolde du compte avant versement : " + compte.getSolde() + "€"
                 );
                 Integer soldeFinal = montantVersement + compte.getSolde();
                 compte.setSolde(soldeFinal);
-                System.out.println("Solde de compte après versement : " + compte.getSolde() + "€");
-                TConsole.toprintln("Le versement de " + montantVersement + "€ à bien été effectué !");
+                System.out.println("Solde de compte après versement : " + compte.getSolde() + "€" +
+                        "\n*********************************************************"
+                );
+                TConsole.toprintln(
+                        "*******************************************************************************" +
+                        "\nLe versement de " + montantVersement + "€ à bien été effectué !" +
+                        "\n*******************************************************************************"
+                );
                 return;
             }
         }
         for(CompteEpargne compte : Compte.getListeCompteEpargne()) {
             if (saisiNumeroCompte.equals(compte.getCode())) {
-                System.out.println("Numéro de compte : " +
+                System.out.println("*********************************************************" +
+                        "\nNuméro de compte : " +
                         compte.getCode() +
+                        "\nMontant versé : " + montantVersement + "€" +
                         "\nSolde du compte avant versement : " + compte.getSolde() + "€"
                 );
                 Integer soldeFinal = montantVersement + compte.getSolde();
                 compte.setSolde(soldeFinal);
-                System.out.println("Solde de compte après versement : " + compte.getSolde() + "€");
-                TConsole.toprintln("Le versement de " + montantVersement + "€ à bien été effectué !");
+                System.out.println("Solde de compte après versement : " + compte.getSolde() + "€" +
+                        "\n*********************************************************"
+                );
+                TConsole.toprintln(
+                        "*******************************************************************************" +
+                        "\nLe versement de " + montantVersement + "€ à bien été effectué !" +
+                        "\n*******************************************************************************"
+                        );
                 return;
             }
         }
 
-
         TConsole.toprintln("Le compte n'a pas été trouvé !");
-
     }
     /**
      * Retrait sur un compte
      */
     public static void retraitSurUnCompte() {
-        TConsole.toprintln("Retrait sur un compte" +
+        TConsole.toprintln("*********************************************************" +
+                "\nRetrait sur un compte" +
                 "\n*********************************************************"
         );
 
@@ -75,9 +90,10 @@ public class Operation {
 
         for (CompteCourant compte : Compte.getListeCompteCourant()) {
             if (saisiNumeroCompte.equals(compte.getCode())) {
-                System.out.println("Numéro de compte : " +
+                System.out.println("*********************************************************" +
+                        "\nNuméro de compte : " +
                         compte.getCode() +
-                        "\nMontant demandé : " + saisiNumeroCompte +
+                        "\nMontant demandé : " + montantRetrait + "€" +
                         "\nSolde du compte avant le retrait : " + compte.getSolde() + "€" +
                         "\nDécouvert autorisé : " + compte.getDecouvert() + "€"
                 );
@@ -88,16 +104,23 @@ public class Operation {
                     return;
                 } else {
                     compte.setSolde(soldeFinal);
-                    System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€");
-                    TConsole.toprintln("Le retrait de " + montantRetrait + "€ à bien été effectué !");
+                    System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€" +
+                            "\n*********************************************************"
+                    );
+                    TConsole.toprintln("*******************************************************************************" +
+                            "\nLe retrait de " + montantRetrait + "€ à bien été effectué !" +
+                            "\n*******************************************************************************"
+                    );
                     return;
                 }
             }
         }
         for (CompteEpargne compte : Compte.getListeCompteEpargne()) {
             if (saisiNumeroCompte.equals(compte.getCode())) {
-                System.out.println("Numéro de compte : " +
+                System.out.println("*********************************************************" +
+                        "\nNuméro de compte : " +
                         compte.getCode() +
+                        "\nMontant demandé : " + montantRetrait + "€" +
                         "\nSolde du compte avant le retrait : " + compte.getSolde() + "€"
                 );
                 Integer soldeFinal = compte.getSolde() - montantRetrait;
@@ -107,72 +130,85 @@ public class Operation {
                     return;
                 } else {
                     compte.setSolde(soldeFinal);
-                    System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€");
-                    TConsole.toprintln("Le retrait de " + montantRetrait + "€ à bien été effectué !");
+                    System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€" +
+                            "\n*********************************************************"
+                            );
+                    TConsole.toprintln("\n*******************************************************************************" +
+                            "\nLe retrait de " + montantRetrait + "€ à bien été effectué !" +
+                            "\n*******************************************************************************"
+                    );
                     return;
                 }
             }
         }
-
         TConsole.toprintln("Le compte n'a pas été trouvé !");
-
     }
     /**
      * Virement de compte à compte
      * @return
      */
     public static void virement() {
-        Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinal = null;
-        TConsole.toprintln("Virement de compte à compte" +
+        Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinalCompteDebiteur = null, soldeFinalCompteCrediteur = null, montantDebit = null;
+        TConsole.toprintln("*********************************************************" +
+                "\nVirement de compte à compte" +
                 "\n*********************************************************"
         );
         TConsole.toprintln("Saisir le numéro de compte à débiter");
         Integer compteDebit = Tools.askThing(1);
 
+        TConsole.toprintln("Saisir le montant à débiter");
+        montantDebit = Tools.askThing(1);
+
         for(CompteCourant compte : Compte.getListeCompteCourant()){
             if(compteDebit.equals(compte.getCode())){
                 soldeCompteDebiteur = compte.getSolde();
                 compteDebit = compte.getCode();
-                TConsole.toprintln("Saisir le montant à débiter");
-                Integer montantDebit = Tools.askThing(1);
-                soldeFinal = soldeCompteDebiteur - montantDebit;
-                compte.setSolde(soldeFinal);
-                soldeFinal = compte.getSolde();
+                soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
+                compte.setSolde(soldeFinalCompteDebiteur);
+                soldeFinalCompteDebiteur = compte.getSolde();
             }
         }
         for(CompteEpargne compte : Compte.getListeCompteEpargne()){
             if(compteDebit.equals(compte.getCode())){
                 soldeCompteDebiteur = compte.getSolde();
                 compteDebit = compte.getCode();
-                TConsole.toprintln("Saisir le montant à débiter");
-                Integer montantDebit = Tools.askThing(1);
-                soldeFinal = soldeCompteDebiteur - montantDebit;
-                compte.setSolde(soldeFinal);
-                soldeFinal = compte.getSolde();
+                soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
+                compte.setSolde(soldeFinalCompteDebiteur);
+                soldeFinalCompteDebiteur = compte.getSolde();
             }
         }
 
+        System.out.println("*******************************************************************************" +
+                "\nCompte débiteur : " + compteDebit + " - Solde avant traitement : " + soldeCompteDebiteur + "€" + " - Solde après traitement : " + soldeFinalCompteDebiteur + "€" +
+                "\n*******************************************************************************"
+        );
 
-        System.out.println("Compte débiteur : " + compteDebit + " - Solde avant traitement : " + soldeCompteDebiteur + "€" + " - Solde après traitement : " + soldeFinal + "€");
-
-
-        //TODO - J'en suis là
         TConsole.toprintln("Saisir le numéro de compte à créditer");
         Integer compteCredit = Tools.askThing(1);
         for(CompteCourant compte : Compte.getListeCompteCourant()){
             if(compteCredit.equals(compte.getCode())){
                 soldeCompteCrediteur = compte.getSolde();
                 compteCredit = compte.getCode();
+                soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
+                compte.setSolde(soldeFinalCompteCrediteur);
+                soldeFinalCompteCrediteur = compte.getSolde();
             }
         }
         for(CompteEpargne compte : Compte.getListeCompteEpargne()){
             if(compteCredit.equals(compte.getCode())){
                 soldeCompteCrediteur = compte.getSolde();
                 compteCredit = compte.getCode();
+                soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
+                compte.setSolde(soldeFinalCompteCrediteur);
+                soldeFinalCompteCrediteur = compte.getSolde();
             }
         }
-        System.out.println("Compte créditeur : " + compteCredit + " - Solde : " + soldeCompteCrediteur + "€");
-
-
+        System.out.println("*******************************************************************************" +
+                "\nCompte créditeur : " + compteCredit + " - Solde avant traitement : " + soldeCompteCrediteur + "€" + " - Solde après traitement : " + soldeFinalCompteCrediteur + "€" +
+                "\n*******************************************************************************"
+        );
+        TConsole.toprintln("*********************************************************" +
+                "\n*         Le virement a bien été effectué !             *" +
+                "\n*********************************************************");
     }
 }

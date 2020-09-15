@@ -26,14 +26,16 @@ public class Compte {
      * Creation compte
      */
     public static void creationNouveauCompte(){
-        TConsole.toprintln("Création d'un nouveau compte" +
+        TConsole.toprintln("*********************************************************" +
+                "\nCréation d'un nouveau compte" +
                 "\n*********************************************************"
         );
         TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
         Integer choix = Tools.askThing(1);
 
         if(choix == 1) {
-            TConsole.toprintln("Création d'un compte courant" +
+            TConsole.toprintln("*********************************************************" +
+                    "\nCréation d'un compte courant" +
                     "\n*********************************************************"
             );
             TConsole.toprintln("Saisir le numéro de compte");
@@ -51,16 +53,18 @@ public class Compte {
             CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, decouvert);
             nouveauCompte.addCompteCourant();
 
-            TConsole.toprintln("Récapitulatif de la création du compte courant :" +
+            TConsole.toprintln("*********************************************************" +
+                    "\nRécapitulatif de la création du compte courant :" +
                     "\nNuméro de compte : " + nouveauCompte.getCode() +
                     "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
                     "\nDécouvert autorisé : " + nouveauCompte.getDecouvert() + "€" +
                     "\n*********************************************************" +
-                    "\n*       Le nouveau compte a bien été créé !             *" +
+                    "\n*       Le nouveau compte courant a bien été créé !     *" +
                     "\n*********************************************************"
             );
         } else if(choix == 2) {
-            TConsole.toprintln("Création d'un compte épargne" +
+            TConsole.toprintln("*********************************************************" +
+                    "\nCréation d'un compte épargne" +
                     "\n*********************************************************"
             );
             TConsole.toprintln("Saisir le numéro de compte");
@@ -73,12 +77,13 @@ public class Compte {
             CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, tauxInteret);
             nouveauCompte.addCompteEpargne();
 
-            TConsole.toprintln("Récapitulatif de la création du compte épargne :" +
+            TConsole.toprintln("*********************************************************" +
+                    "\nRécapitulatif de la création du compte épargne :" +
                     "\nNuméro de compte : " + nouveauCompte.getCode() +
                     "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
                     "\nDécouvert autorisé : " + nouveauCompte.getTauxInteret() + "%" +
                     "\n*********************************************************" +
-                    "\n*       Le nouveau compte a bien été créé !             *" +
+                    "\n*     Le nouveau compte épargne a bien été créé !       *" +
                     "\n*********************************************************"
             );
         }
@@ -87,7 +92,8 @@ public class Compte {
      * Consultation du solde d'un compte
      */
     public static void consultationSolde() {
-        TConsole.toprintln("Consultation du solde d'un compte" +
+        TConsole.toprintln("*********************************************************" +
+                "\nConsultation du solde d'un compte" +
                 "\n*********************************************************"
         );
 

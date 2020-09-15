@@ -16,7 +16,9 @@ public class CompteCourant extends Compte{
             if (saisiNumeroCompte.equals(compte.getCode())) {
                 System.out.println("Numéro de compte : " +
                         compte.getCode() + " - Compte courant" +
-                        "\nSolde du compte : " + compte.getSolde() + "€"
+                        "\n*********************************************************" +
+                        "\nSolde du compte : " + compte.getSolde() + "€" +
+                        "\n*********************************************************"
                 );
                 return;
             }

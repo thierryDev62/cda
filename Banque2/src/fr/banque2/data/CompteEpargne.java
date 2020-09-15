@@ -19,7 +19,9 @@ public class CompteEpargne extends Compte {
             if (saisiNumeroCompte.equals(compte.getCode())) {
                 System.out.println("Numéro de compte : " +
                         compte.getCode() + " - Compte épargne" +
-                        "\nSolde du compte : " + compte.getSolde() + "€"
+                        "\n*********************************************************" +
+                        "\nSolde du compte : " + compte.getSolde() + "€" +
+                        "\n*********************************************************"
                 );
                 return;
             }
