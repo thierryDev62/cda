@@ -8,13 +8,15 @@ import java.util.ArrayList;
 public class Compte {
     private final Integer code;
     private Integer solde;
+    private Integer typeDeCompte; // 1 - Compte courant - 2 - Compte épargne
     private static ArrayList<CompteCourant> listeCompteCourant = new ArrayList<>();
     private static ArrayList<CompteEpargne> listeCompteEpargne = new ArrayList<>();
     private static ArrayList<Compte> listeDesComptes = new ArrayList<>();
 
-    public Compte(Integer code, Integer solde) {
+    public Compte(Integer code, Integer solde, Integer typeDeCompte) {
         this.code = code;
         this.solde = solde;
+        this.typeDeCompte = typeDeCompte;
         listeDesComptes.add(this);
     }
 
@@ -50,7 +52,7 @@ public class Compte {
             TConsole.toprintln("Saisir le découvert autorisé");
             Integer decouvert = Tools.askThing(1);
 
-            CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, decouvert);
+            CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert);
 
             TConsole.toprintln("*********************************************************" +
                     "\nRécapitulatif de la création du compte courant :" +
@@ -82,7 +84,7 @@ public class Compte {
             TConsole.toprintln("Saisir le taux d'intérêt");
             Integer tauxInteret = Tools.askThing(1);
 
-            CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, tauxInteret);
+            CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, 2, tauxInteret);
 
             TConsole.toprintln("*********************************************************" +
                     "\nRécapitulatif de la création du compte épargne :" +
@@ -116,9 +118,15 @@ public class Compte {
 
         for (Compte compte : Compte.getListeDesComptes()) {
             if (saisiNumeroCompte.equals(compte.getCode())) {
-
+                Integer typeDeCompte = compte.getTypeDeCompte();
+                String type = "";
+                if(typeDeCompte == 1) {
+                    type = "Compte courant";
+                } else if(typeDeCompte == 2) {
+                    type = "Compte épargne";
+                }
                 System.out.println("Numéro de compte : " +
-                        compte.getCode() +
+                        compte.getCode() + " | Type de compte : " + type +
                         "\n*********************************************************" +
                         "\nSolde du compte : " + compte.getSolde() + "€" +
                         "\n*********************************************************"
@@ -185,25 +193,22 @@ public class Compte {
      */
     public static void listeTousLesComptes() {
         TConsole.toprintln("Liste de tous les comptes créés :");
-        TConsole.toprintln("Comptes courants :");
-
-        if (Compte.getListeCompteCourant().size() > 0) {
-            for (CompteCourant listeComptesCourants : Compte.getListeCompteCourant()) {
-                System.out.println("- Numéro de compte : " + listeComptesCourants.getCode() + " - Solde : " + listeComptesCourants.getSolde() + "€ - Découvert autorisé : " + listeComptesCourants.getDecouvert() + "€"
-                );
+        if(Compte.getListeDesComptes().size() > 0) {
+            for (Compte compte : Compte.getListeDesComptes()) {
+                Integer typeDeCompte = compte.getTypeDeCompte();
+                String type = "";
+                if (typeDeCompte == 1) {
+                    Integer decouvert = ((CompteCourant) compte).getDecouvert();
+                    type = "Compte courant : ";
+                    System.out.println(type + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Découvert autorisé : " + decouvert + "€");
+                } else if (typeDeCompte == 2) {
+                    Integer tauxInteret = ((CompteEpargne) compte).getTauxInteret();
+                    type = "Compte épargne : ";
+                    System.out.println(type + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Taux d'interêt : " + tauxInteret + "%");
+                }
             }
         } else {
-            TConsole.toprintln("Aucun");
-        }
-
-        TConsole.toprintln("Comptes épargnes :");
-        if (Compte.getListeCompteEpargne().size() > 0) {
-            for (CompteEpargne listeComptesEpargne : Compte.getListeCompteEpargne()) {
-                System.out.println("- Numéro de compte : " + listeComptesEpargne.getCode() + " - Solde : " + listeComptesEpargne.getSolde() + "€ - Taux d'interêt : " + listeComptesEpargne.getTauxInteret() + "%"
-                );
-            }
-        } else {
-            TConsole.toprintln("Aucun");
+            TConsole.toprintln("Aucun compte de créé !");
         }
     }
     public Integer getCode() {
@@ -240,5 +245,13 @@ public class Compte {
 
     public static void setListeDesComptes(ArrayList<Compte> listeDesComptes) {
         Compte.listeDesComptes = listeDesComptes;
+    }
+
+    public Integer getTypeDeCompte() {
+        return typeDeCompte;
+    }
+
+    public void setTypeDeCompte(Integer typeDeCompte) {
+        this.typeDeCompte = typeDeCompte;
     }
 }

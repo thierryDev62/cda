@@ -21,15 +21,14 @@ public class Operation {
         this.dateOperation = dateOperation;
         this.libelleOperation = libelleOperation;
         this.montantOperation = montantOperation;
-        //listeOperations.add(this);
-    }
-
-    public void addOperation(){
         listeOperations.add(this);
     }
 
+    /**
+     * Récupère la date du jour
+     * @return la date du jour au format jj/mm/AAAA
+     */
     public static String dateDuJour(){
-        // Récupère la date du jour
         Date aujourdhui = new Date();
         DateFormat shortDateFormat = DateFormat.getDateInstance(
                 DateFormat.SHORT);
@@ -46,7 +45,6 @@ public class Operation {
         Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
 
         Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), typeOperation, montant);
-        operation.addOperation();
         System.out.println("*******************************************************************************" +
                 "\nRécapitulatif de l'opération :" +
                 "\nDate d'opération : " + operation.dateOperation +
@@ -56,7 +54,7 @@ public class Operation {
                 "\n*******************************************************************************"
         );
         TConsole.toprintln(
-                        "Le "+ typeOperation + " de " + montant + "€ à bien été effectué !" +
+                "Le "+ typeOperation + " de " + montant + "€ à bien été effectué !" +
                         "\n*******************************************************************************"
         );
     }
@@ -83,11 +81,7 @@ public class Operation {
         /**
          * Versement sur un compte courant
          */
-
-        /*Compte test = new Compte(123,500);
-        CompteCourant compteCourant = (CompteCourant) test;*/
-
-
+//TODO : Voir pour factoriser les versements
         for(Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteCourant;
 
@@ -160,65 +154,71 @@ public class Operation {
         TConsole.toprintln("Saisir le montant que vous voulez retirer du compte");
         Integer montantRetrait = Tools.askThing(1);
 
-        for (Compte compteCourant : Compte.getListeDesComptes()) {
+        for (Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteCourant;
 
-            if (saisiNumeroCompte.equals(compteCourant.getCode())) {
-                //TODO : Rajouter un type de compte sinon il cast qd même pour n'importe quel compte
+            if (saisiNumeroCompte.equals(compte.getCode())) {
+                Integer typeDeCompte = compte.getTypeDeCompte();
 
-                Integer decouvert = ((CompteCourant) compteCourant).getDecouvert();
-                System.out.println("*********************************************************" +
-                        "\nNuméro de compte : " +
-                        compteCourant.getCode() +
-                        "\nMontant demandé : " + montantRetrait + "€" +
-                        "\nSolde du compte avant le retrait : " + compteCourant.getSolde() + "€" +
-                        "\nDécouvert autorisé : " + decouvert + "€"
-                );
-                soldeFinalCompteCourant = compteCourant.getSolde() - montantRetrait;
-
-
-                if(soldeFinalCompteCourant < (compteCourant.getCode() + decouvert)) {
-                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé soit : " + (compteCourant.getSolde() + ((CompteCourant) compteCourant).getDecouvert()) + "€");
-                    return;
-                } else {
-                    compteCourant.setSolde(soldeFinalCompteCourant);
-                    System.out.println("Solde de compte après retrait : " + compteCourant.getSolde() + "€"
+                /**
+                 * Retrait sur un compte courant
+                 */
+                if(typeDeCompte == 1) {
+                    Integer decouvert = ((CompteCourant) compte).getDecouvert();
+                    System.out.println("*********************************************************" +
+                            "\nNuméro de compte : " +
+                            compte.getCode() +
+                            "\nMontant demandé : " + montantRetrait + "€" +
+                            "\nSolde du compte avant le retrait : " + compte.getSolde() + "€" +
+                            "\nDécouvert autorisé : " + decouvert + "€"
                     );
+                    soldeFinalCompteCourant = compte.getSolde() - montantRetrait;
 
+                    if(soldeFinalCompteCourant < (compte.getCode() + decouvert)) {
+                        TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
+                        return;
+                    } else {
+                        compte.setSolde(soldeFinalCompteCourant);
+                        System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
+                        );
+
+                        /**
+                         * Résumé de l'opération
+                         */
+                        Integer numeroCompteOperation = compte.getCode();
+                        nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
+                        return;
+                    }
                     /**
-                     * Résumé de l'opération
+                     * Retrait sur un compte épargne
                      */
-                    Integer numeroCompteOperation = compteCourant.getCode();
-                    nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
-                    return;
-                }
-            }
-        }
-        for (Compte compteEpargne : Compte.getListeDesComptes()) {
-            Integer soldeFinalCompteEpargne;
-            if (saisiNumeroCompte.equals(compteEpargne.getCode())) {
-                System.out.println("*********************************************************" +
-                        "\nNuméro de compte : " +
-                        compteEpargne.getCode() +
-                        "\nMontant demandé : " + montantRetrait + "€" +
-                        "\nSolde du compte avant le retrait : " + compteEpargne.getSolde() + "€"
-                );
-                soldeFinalCompteEpargne = compteEpargne.getSolde() - montantRetrait;
+                } else if(typeDeCompte == 2) {
+                    Integer soldeFinalCompteEpargne;
+                    if (saisiNumeroCompte.equals(compte.getCode())) {
+                        System.out.println("*********************************************************" +
+                                "\nNuméro de compte : " +
+                                compte.getCode() +
+                                "\nMontant demandé : " + montantRetrait + "€" +
+                                "\nSolde du compte avant le retrait : " + compte.getSolde() + "€"
+                        );
+                        soldeFinalCompteEpargne = compte.getSolde() - montantRetrait;
 
-                if(soldeFinalCompteEpargne < 0) {
-                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compteEpargne.getSolde() + "€");
-                    return;
-                } else {
-                    compteEpargne.setSolde(soldeFinalCompteEpargne);
-                    System.out.println("Solde de compte après retrait : " + compteEpargne.getSolde() + "€"
-                    );
-                    /**
-                     * Résumé de l'opération
-                     */
-                    Integer numeroCompteOperation = compteEpargne.getCode();
-                    nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
+                        if(soldeFinalCompteEpargne < 0) {
+                            TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
+                            return;
+                        } else {
+                            compte.setSolde(soldeFinalCompteEpargne);
+                            System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
+                            );
+                            /**
+                             * Résumé de l'opération
+                             */
+                            Integer numeroCompteOperation = compte.getCode();
+                            nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
 
-                    return;
+                            return;
+                        }
+                    }
                 }
             }
         }
@@ -228,12 +228,19 @@ public class Operation {
      * Virement de compte à compte
      * @return
      */
+
+    //TODO : faire les virements
+
     public static void virement() {
         Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinalCompteDebiteur = null, soldeFinalCompteCrediteur = null, montantDebit;
         TConsole.toprintln("*********************************************************" +
                 "\nVirement de compte à compte" +
                 "\n*********************************************************"
         );
+
+        /**
+         * Compte débiteur
+         */
         TConsole.toprintln("Saisir le numéro de compte à débiter");
         Integer compteDebit = Tools.askThing(1);
 
@@ -253,7 +260,6 @@ public class Operation {
                 Integer numeroCompteOperation = compte.getCode();
                 Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
                 Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement envoyé", montantDebit);
-                //operation.addOperation();
 
             }
         }
@@ -270,7 +276,6 @@ public class Operation {
                 Integer numeroCompteOperation = compte.getCode();
                 Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
                 Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement envoyé", montantDebit);
-                //operation.addOperation();
             }
         }
 
@@ -279,6 +284,9 @@ public class Operation {
                 "\n*******************************************************************************"
         );
 
+        /**
+         * Compte créditeur
+         */
         TConsole.toprintln("Saisir le numéro de compte à créditer");
         Integer compteCredit = Tools.askThing(1);
         for(CompteCourant compte : Compte.getListeCompteCourant()){
@@ -294,7 +302,6 @@ public class Operation {
                 Integer numeroCompteOperation = compte.getCode();
                 Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
                 Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement reçu", montantDebit);
-                //operation.addOperation();
             }
         }
         for(CompteEpargne compte : Compte.getListeCompteEpargne()){
@@ -310,7 +317,6 @@ public class Operation {
                 Integer numeroCompteOperation = compte.getCode();
                 Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
                 Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement reçu", montantDebit);
-                //operation.addOperation();
             }
         }
         System.out.println("*******************************************************************************" +
