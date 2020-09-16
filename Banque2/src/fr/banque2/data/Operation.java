@@ -90,7 +90,6 @@ public class Operation {
 
         for(Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteCourant;
-            CompteCourant compteCourant = (CompteCourant)compte;
 
             if (saisiNumeroCompte.equals(compte.getCode())) {
                 System.out.println("*********************************************************" +
@@ -116,7 +115,7 @@ public class Operation {
         /**
          * Versement sur un compte épargne
          */
-        for(CompteEpargne compte : Compte.getListeCompteEpargne()) {
+        for(Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteEpargne;
             if (saisiNumeroCompte.equals(compte.getCode())) {
                 System.out.println("*********************************************************" +
@@ -161,58 +160,64 @@ public class Operation {
         TConsole.toprintln("Saisir le montant que vous voulez retirer du compte");
         Integer montantRetrait = Tools.askThing(1);
 
-        for (Compte compte : Compte.getListeDesComptes()) {
+        for (Compte compteCourant : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteCourant;
-            if (saisiNumeroCompte.equals(compte.getCode())) {
+
+            if (saisiNumeroCompte.equals(compteCourant.getCode())) {
+                //TODO : Rajouter un type de compte sinon il cast qd même pour n'importe quel compte
+
+                Integer decouvert = ((CompteCourant) compteCourant).getDecouvert();
                 System.out.println("*********************************************************" +
                         "\nNuméro de compte : " +
-                        compte.getCode() +
+                        compteCourant.getCode() +
                         "\nMontant demandé : " + montantRetrait + "€" +
-                        "\nSolde du compte avant le retrait : " + compte.getSolde() + "€" +
-                        "\nDécouvert autorisé : " + ((CompteCourant) compte).getDecouvert() + "€"
+                        "\nSolde du compte avant le retrait : " + compteCourant.getSolde() + "€" +
+                        "\nDécouvert autorisé : " + decouvert + "€"
                 );
-                soldeFinalCompteCourant = compte.getSolde() - montantRetrait;
-//TODO : ici
-                if(soldeFinalCompteCourant < (compte.getCode() + ((CompteCourant) compte).getDecouvert())) {
-                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
+                soldeFinalCompteCourant = compteCourant.getSolde() - montantRetrait;
+
+
+                if(soldeFinalCompteCourant < (compteCourant.getCode() + decouvert)) {
+                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé soit : " + (compteCourant.getSolde() + ((CompteCourant) compteCourant).getDecouvert()) + "€");
                     return;
                 } else {
-                    compte.setSolde(soldeFinalCompteCourant);
-                    System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
+                    compteCourant.setSolde(soldeFinalCompteCourant);
+                    System.out.println("Solde de compte après retrait : " + compteCourant.getSolde() + "€"
                     );
 
                     /**
                      * Résumé de l'opération
                      */
-                    Integer numeroCompteOperation = compte.getCode();
+                    Integer numeroCompteOperation = compteCourant.getCode();
                     nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
                     return;
                 }
             }
         }
-        for (CompteEpargne compte : Compte.getListeCompteEpargne()) {
+        for (Compte compteEpargne : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteEpargne;
-            if (saisiNumeroCompte.equals(compte.getCode())) {
+            if (saisiNumeroCompte.equals(compteEpargne.getCode())) {
                 System.out.println("*********************************************************" +
                         "\nNuméro de compte : " +
-                        compte.getCode() +
+                        compteEpargne.getCode() +
                         "\nMontant demandé : " + montantRetrait + "€" +
-                        "\nSolde du compte avant le retrait : " + compte.getSolde() + "€"
+                        "\nSolde du compte avant le retrait : " + compteEpargne.getSolde() + "€"
                 );
-                soldeFinalCompteEpargne = compte.getSolde() - montantRetrait;
+                soldeFinalCompteEpargne = compteEpargne.getSolde() - montantRetrait;
 
                 if(soldeFinalCompteEpargne < 0) {
-                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
+                    TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compteEpargne.getSolde() + "€");
                     return;
                 } else {
-                    compte.setSolde(soldeFinalCompteEpargne);
-                    System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
+                    compteEpargne.setSolde(soldeFinalCompteEpargne);
+                    System.out.println("Solde de compte après retrait : " + compteEpargne.getSolde() + "€"
                     );
                     /**
                      * Résumé de l'opération
                      */
-                    Integer numeroCompteOperation = compte.getCode();
+                    Integer numeroCompteOperation = compteEpargne.getCode();
                     nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
+
                     return;
                 }
             }
