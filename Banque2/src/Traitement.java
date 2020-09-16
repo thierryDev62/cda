@@ -15,7 +15,7 @@ public class Traitement {
                 "8 - Total des retraits | " +
                 "9 - Liste de tous les comptes"
         );
-        Integer choix = Tools.askThing(1);
+        int choix = Tools.askThing(1);
 
         switch(choix) {
             case 1:

@@ -8,20 +8,6 @@ public class CompteCourant extends Compte{
         this.decouvert = decouvert;
     }
 
-    public static void soldeCompteCourant(Integer saisiNumeroCompte) {
-        for (CompteCourant compte : Compte.getListeCompteCourant()) {
-            if (saisiNumeroCompte.equals(compte.getCode())) {
-                System.out.println("Numéro de compte : " +
-                        compte.getCode() + " - Compte courant" +
-                        "\n*********************************************************" +
-                        "\nSolde du compte : " + compte.getSolde() + "€" +
-                        "\n*********************************************************"
-                );
-                return;
-            }
-        }
-    }
-
     public Integer getDecouvert() {
         return decouvert;
     }

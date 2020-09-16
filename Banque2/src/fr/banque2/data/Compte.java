@@ -10,18 +10,14 @@ public class Compte {
     private Integer solde;
     private static ArrayList<CompteCourant> listeCompteCourant = new ArrayList<>();
     private static ArrayList<CompteEpargne> listeCompteEpargne = new ArrayList<>();
+    private static ArrayList<Compte> listeDesComptes = new ArrayList<>();
 
     public Compte(Integer code, Integer solde) {
         this.code = code;
         this.solde = solde;
+        listeDesComptes.add(this);
     }
 
-    public void addCompteCourant() {
-        listeCompteCourant.add((CompteCourant) this);
-    }
-    public void addCompteEpargne() {
-        listeCompteEpargne.add((CompteEpargne) this);
-    }
     /**
      * Creation compte
      */
@@ -31,7 +27,7 @@ public class Compte {
                 "\n*********************************************************"
         );
         TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
-        Integer choix = Tools.askThing(1);
+        int choix = Tools.askThing(1);
 
         if(choix == 1) {
             TConsole.toprintln("*********************************************************" +
@@ -41,22 +37,13 @@ public class Compte {
             TConsole.toprintln("Saisir le numéro de compte");
             Integer numeroCompte = Tools.askThing(1);
 
-            for(CompteCourant listeCompteCourant : Compte.getListeCompteCourant()) {
-                if (numeroCompte.equals(listeCompteCourant.getCode())) {
+            for(Compte liste : Compte.getListeDesComptes()) {
+                if(numeroCompte.equals(liste.getCode())) {
                     TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
                     Compte.creationNouveauCompte();
                     return;
                 }
             }
-            for (CompteEpargne listeCompteEpargne : Compte.getListeCompteEpargne()) {
-                if (numeroCompte.equals(listeCompteEpargne.getCode())) {
-                    TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
-                    Compte.creationNouveauCompte();
-                    return;
-                }
-            }
-
-            //TODO - * Test si le numéro de compte existe déjà
 
             TConsole.toprintln("Saisir le solde du compte");
             Integer soldeDuCompte = Tools.askThing(1);
@@ -64,7 +51,6 @@ public class Compte {
             Integer decouvert = Tools.askThing(1);
 
             CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, decouvert);
-            nouveauCompte.addCompteCourant();
 
             TConsole.toprintln("*********************************************************" +
                     "\nRécapitulatif de la création du compte courant :" +
@@ -83,16 +69,8 @@ public class Compte {
             TConsole.toprintln("Saisir le numéro de compte");
             Integer numeroCompte = Tools.askThing(1);
 
-            for(CompteCourant listeCompteCourant : Compte.getListeCompteCourant()) {
-                if (numeroCompte.equals(listeCompteCourant.getCode())) {
-                    TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
-                    Compte.creationNouveauCompte();
-                    return;
-                }
-            }
-
-            for (CompteEpargne listeCompteEpargne : Compte.getListeCompteEpargne()) {
-                if (numeroCompte.equals(listeCompteEpargne.getCode())) {
+            for(Compte liste : Compte.getListeDesComptes()) {
+                if(numeroCompte.equals(liste.getCode())) {
                     TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
                     Compte.creationNouveauCompte();
                     return;
@@ -105,7 +83,6 @@ public class Compte {
             Integer tauxInteret = Tools.askThing(1);
 
             CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, tauxInteret);
-            nouveauCompte.addCompteEpargne();
 
             TConsole.toprintln("*********************************************************" +
                     "\nRécapitulatif de la création du compte épargne :" +
@@ -137,9 +114,18 @@ public class Compte {
             TConsole.toprintln(".:: Annulation de l'opération ::.");
         }
 
-        CompteCourant.soldeCompteCourant(saisiNumeroCompte);
+        for (Compte compte : Compte.getListeDesComptes()) {
+            if (saisiNumeroCompte.equals(compte.getCode())) {
 
-        CompteEpargne.soldeCompteEpargne(saisiNumeroCompte);
+                System.out.println("Numéro de compte : " +
+                        compte.getCode() +
+                        "\n*********************************************************" +
+                        "\nSolde du compte : " + compte.getSolde() + "€" +
+                        "\n*********************************************************"
+                );
+                return;
+            }
+        }
 
     }
 
@@ -237,15 +223,23 @@ public class Compte {
         return listeCompteCourant;
     }
 
-    public static void setListeCompteCourant(ArrayList<CompteCourant> listeCompteCourant) {
-        Compte.listeCompteCourant = listeCompteCourant;
-    }
-
     public static ArrayList<CompteEpargne> getListeCompteEpargne() {
         return listeCompteEpargne;
     }
 
     public static void setListeCompteEpargne(ArrayList<CompteEpargne> listeCompteEpargne) {
         Compte.listeCompteEpargne = listeCompteEpargne;
+    }
+
+    public static void setListeCompteCourant(ArrayList<CompteCourant> listeCompteCourant) {
+        Compte.listeCompteCourant = listeCompteCourant;
+    }
+
+    public static ArrayList<Compte> getListeDesComptes() {
+        return listeDesComptes;
+    }
+
+    public static void setListeDesComptes(ArrayList<Compte> listeDesComptes) {
+        Compte.listeDesComptes = listeDesComptes;
     }
 }
