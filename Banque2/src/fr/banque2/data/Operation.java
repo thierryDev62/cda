@@ -247,35 +247,33 @@ public class Operation {
         TConsole.toprintln("Saisir le montant à débiter");
         montantDebit = Tools.askThing(1);
 
-        for(CompteCourant compte : Compte.getListeCompteCourant()){
+        for(Compte compte : Compte.getListeDesComptes()){
             if(compteDebit.equals(compte.getCode())){
-                soldeCompteDebiteur = compte.getSolde();
-                compteDebit = compte.getCode();
-                soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
-                compte.setSolde(soldeFinalCompteDebiteur);
-                soldeFinalCompteDebiteur = compte.getSolde();
-                /**
-                 * Résumé de l'opération
-                 */
-                Integer numeroCompteOperation = compte.getCode();
-                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
-                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement envoyé", montantDebit);
+                Integer typeDeCompte = compte.getTypeDeCompte();
+//TODO : faire méthode pour opération débit
+                if(typeDeCompte == 1) {
+                    CompteCourant compteCourant = (CompteCourant) compte;
+                    Integer decouvert = compteCourant.getDecouvert();
+                    soldeCompteDebiteur = compte.getSolde();
+                    compteDebit = compte.getCode();
+                    soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
+                    compte.setSolde(soldeFinalCompteDebiteur);
+                    soldeFinalCompteDebiteur = compte.getSolde();
 
-            }
-        }
-        for(CompteEpargne compte : Compte.getListeCompteEpargne()){
-            if(compteDebit.equals(compte.getCode())){
-                soldeCompteDebiteur = compte.getSolde();
-                compteDebit = compte.getCode();
-                soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
-                compte.setSolde(soldeFinalCompteDebiteur);
-                soldeFinalCompteDebiteur = compte.getSolde();
-                /**
-                 * Résumé de l'opération
-                 */
-                Integer numeroCompteOperation = compte.getCode();
-                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
-                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement envoyé", montantDebit);
+                    Integer numeroCompteOperation = compte.getCode();
+                    nouvelleOperation(numeroCompteOperation, "Virement envoyé", montantDebit);
+                } else if(typeDeCompte == 2) {
+                    CompteEpargne compteEpargne = (CompteEpargne) compte;
+                    Integer tauxInteret = compteEpargne.getTauxInteret();
+                    soldeCompteDebiteur = compte.getSolde();
+                    compteDebit = compte.getCode();
+                    soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
+                    compte.setSolde(soldeFinalCompteDebiteur);
+                    soldeFinalCompteDebiteur = compte.getSolde();
+
+                    Integer numeroCompteOperation = compte.getCode();
+                    nouvelleOperation(numeroCompteOperation, "Virement envoyé", montantDebit);
+                }
             }
         }
 
@@ -289,36 +287,37 @@ public class Operation {
          */
         TConsole.toprintln("Saisir le numéro de compte à créditer");
         Integer compteCredit = Tools.askThing(1);
-        for(CompteCourant compte : Compte.getListeCompteCourant()){
+
+        for(Compte compte : Compte.getListeDesComptes()) {
             if(compteCredit.equals(compte.getCode())){
-                soldeCompteCrediteur = compte.getSolde();
-                compteCredit = compte.getCode();
-                soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
-                compte.setSolde(soldeFinalCompteCrediteur);
-                soldeFinalCompteCrediteur = compte.getSolde();
-                /**
-                 * Résumé de l'opération
-                 */
-                Integer numeroCompteOperation = compte.getCode();
-                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
-                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement reçu", montantDebit);
+                Integer typeDeCompte = compte.getTypeDeCompte();
+
+                if(typeDeCompte == 1) {
+                    CompteCourant compteCourant = (CompteCourant) compte;
+                    Integer decouvert = compteCourant.getDecouvert();
+                    soldeCompteCrediteur = compte.getSolde();
+                    compteCredit = compte.getCode();
+                    soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
+                    compte.setSolde(soldeFinalCompteCrediteur);
+                    soldeFinalCompteCrediteur = compte.getSolde();
+
+                    Integer numeroCompteOperation = compte.getCode();
+                    nouvelleOperation(numeroCompteOperation, "Virement reçu", montantDebit);
+                } else if(typeDeCompte == 2) {
+                    CompteEpargne compteEpargne = (CompteEpargne) compte;
+                    Integer tauxInteret = compteEpargne.getTauxInteret();
+                    soldeCompteCrediteur = compte.getSolde();
+                    compteCredit = compte.getCode();
+                    soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
+                    compte.setSolde(soldeFinalCompteCrediteur);
+                    soldeFinalCompteCrediteur = compte.getSolde();
+
+                    Integer numeroCompteOperation = compte.getCode();
+                    nouvelleOperation(numeroCompteOperation, "Virement reçu", montantDebit);
+                }
             }
         }
-        for(CompteEpargne compte : Compte.getListeCompteEpargne()){
-            if(compteCredit.equals(compte.getCode())){
-                soldeCompteCrediteur = compte.getSolde();
-                compteCredit = compte.getCode();
-                soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
-                compte.setSolde(soldeFinalCompteCrediteur);
-                soldeFinalCompteCrediteur = compte.getSolde();
-                /**
-                 * Résumé de l'opération
-                 */
-                Integer numeroCompteOperation = compte.getCode();
-                Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
-                Operation operation = new Operation(numeroCompteOperation, resultRandom, dateDuJour(), "Virement reçu", montantDebit);
-            }
-        }
+
         System.out.println("*******************************************************************************" +
                 "\nCompte créditeur : " + compteCredit + " - Solde avant traitement : " + soldeCompteCrediteur + "€" + " - Solde après traitement : " + soldeFinalCompteCrediteur + "€" +
                 "\n*******************************************************************************"
