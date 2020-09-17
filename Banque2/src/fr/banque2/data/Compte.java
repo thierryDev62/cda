@@ -29,6 +29,7 @@ public class Compte {
                 "\n*********************************************************"
         );
         TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
+        TConsole.toprint(">");
         int choix = Tools.askThing(1);
 
         if(choix == 1) {
@@ -37,6 +38,7 @@ public class Compte {
                     "\n*********************************************************"
             );
             TConsole.toprintln("Saisir le numéro de compte");
+            TConsole.toprint(">");
             Integer numeroCompte = Tools.askThing(1);
 
             for(Compte liste : Compte.getListeDesComptes()) {
@@ -48,8 +50,10 @@ public class Compte {
             }
 
             TConsole.toprintln("Saisir le solde du compte");
+            TConsole.toprint(">");
             Integer soldeDuCompte = Tools.askThing(1);
             TConsole.toprintln("Saisir le découvert autorisé");
+            TConsole.toprint(">");
             Integer decouvert = Tools.askThing(1);
 
             CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert);
@@ -69,6 +73,7 @@ public class Compte {
                     "\n*********************************************************"
             );
             TConsole.toprintln("Saisir le numéro de compte");
+            TConsole.toprint(">");
             Integer numeroCompte = Tools.askThing(1);
 
             for(Compte liste : Compte.getListeDesComptes()) {
@@ -80,8 +85,10 @@ public class Compte {
             }
 
             TConsole.toprintln("Saisir le solde du compte");
+            TConsole.toprint(">");
             Integer soldeDuCompte = Tools.askThing(1);
             TConsole.toprintln("Saisir le taux d'intérêt");
+            TConsole.toprint(">");
             Integer tauxInteret = Tools.askThing(1);
 
             CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, 2, tauxInteret);
@@ -110,6 +117,7 @@ public class Compte {
         );
 
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         if(saisiNumeroCompte == 0) {
@@ -141,6 +149,7 @@ public class Compte {
      */
     public static void listeOperations() {
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         TConsole.toprintln("Liste des opérations sur le compte n°" + saisiNumeroCompte);
@@ -162,6 +171,7 @@ public class Compte {
      */
     public static void totalVersements() {
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
         Integer totalVersement = 0;
         TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
@@ -177,6 +187,7 @@ public class Compte {
      */
     public static void totalRetraits() {
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
         Integer totalRetrait = 0;
         TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
@@ -195,16 +206,12 @@ public class Compte {
         TConsole.toprintln("Liste de tous les comptes créés :");
         if(Compte.getListeDesComptes().size() > 0) {
             for (Compte compte : Compte.getListeDesComptes()) {
-                Integer typeDeCompte = compte.getTypeDeCompte();
-                String type = "";
-                if (typeDeCompte == 1) {
+                if (compte instanceof CompteCourant) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
-                    type = "Compte courant : ";
-                    System.out.println(type + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Découvert autorisé : " + decouvert + "€");
-                } else if (typeDeCompte == 2) {
+                    System.out.println("Compte courant : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Découvert autorisé : " + decouvert + "€");
+                } else if (compte instanceof CompteEpargne) {
                     Integer tauxInteret = ((CompteEpargne) compte).getTauxInteret();
-                    type = "Compte épargne : ";
-                    System.out.println(type + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Taux d'interêt : " + tauxInteret + "%");
+                    System.out.println("Compte épargne : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Taux d'interêt : " + tauxInteret + "%");
                 }
             }
         } else {

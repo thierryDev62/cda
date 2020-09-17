@@ -68,6 +68,7 @@ public class Operation {
                 "\n*********************************************************"
         );
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         if(saisiNumeroCompte == 0) {
@@ -76,6 +77,7 @@ public class Operation {
         }
 
         TConsole.toprintln("Saisir le montant que vous voulez verser sur le compte");
+        TConsole.toprint(">");
         Integer montantVersement = Tools.askThing(1);
 
         /**
@@ -144,6 +146,7 @@ public class Operation {
         );
 
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
+        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         if(saisiNumeroCompte == 0) {
@@ -152,6 +155,7 @@ public class Operation {
         }
 
         TConsole.toprintln("Saisir le montant que vous voulez retirer du compte");
+        TConsole.toprint(">");
         Integer montantRetrait = Tools.askThing(1);
 
         for (Compte compte : Compte.getListeDesComptes()) {
@@ -237,43 +241,36 @@ public class Operation {
                 "\nVirement de compte à compte" +
                 "\n*********************************************************"
         );
-
+//TODO : pour le compte débiteur voir si dépasse découvert
         /**
          * Compte débiteur
          */
         TConsole.toprintln("Saisir le numéro de compte à débiter");
+        TConsole.toprint(">");
         Integer compteDebit = Tools.askThing(1);
 
         TConsole.toprintln("Saisir le montant à débiter");
+        TConsole.toprint(">");
         montantDebit = Tools.askThing(1);
 
         for(Compte compte : Compte.getListeDesComptes()){
+
             if(compteDebit.equals(compte.getCode())){
+                soldeCompteDebiteur = compte.getSolde();
+                compteDebit = compte.getCode();
                 Integer typeDeCompte = compte.getTypeDeCompte();
-//TODO : faire méthode pour opération débit
                 if(typeDeCompte == 1) {
                     CompteCourant compteCourant = (CompteCourant) compte;
                     Integer decouvert = compteCourant.getDecouvert();
-                    soldeCompteDebiteur = compte.getSolde();
-                    compteDebit = compte.getCode();
-                    soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
-                    compte.setSolde(soldeFinalCompteDebiteur);
-                    soldeFinalCompteDebiteur = compte.getSolde();
-
-                    Integer numeroCompteOperation = compte.getCode();
-                    nouvelleOperation(numeroCompteOperation, "Virement envoyé", montantDebit);
                 } else if(typeDeCompte == 2) {
                     CompteEpargne compteEpargne = (CompteEpargne) compte;
-                    Integer tauxInteret = compteEpargne.getTauxInteret();
-                    soldeCompteDebiteur = compte.getSolde();
-                    compteDebit = compte.getCode();
-                    soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
-                    compte.setSolde(soldeFinalCompteDebiteur);
-                    soldeFinalCompteDebiteur = compte.getSolde();
-
-                    Integer numeroCompteOperation = compte.getCode();
-                    nouvelleOperation(numeroCompteOperation, "Virement envoyé", montantDebit);
                 }
+                soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
+                compte.setSolde(soldeFinalCompteDebiteur);
+                soldeFinalCompteDebiteur = compte.getSolde();
+
+                Integer numeroCompteOperation = compteDebit;
+                nouvelleOperation(numeroCompteOperation, "Virement envoyé", montantDebit);
             }
         }
 
@@ -286,35 +283,21 @@ public class Operation {
          * Compte créditeur
          */
         TConsole.toprintln("Saisir le numéro de compte à créditer");
+        TConsole.toprint(">");
         Integer compteCredit = Tools.askThing(1);
 
         for(Compte compte : Compte.getListeDesComptes()) {
             if(compteCredit.equals(compte.getCode())){
-                Integer typeDeCompte = compte.getTypeDeCompte();
+                soldeCompteCrediteur = compte.getSolde();
+                compteCredit = compte.getCode();
 
-                if(typeDeCompte == 1) {
-                    CompteCourant compteCourant = (CompteCourant) compte;
-                    Integer decouvert = compteCourant.getDecouvert();
-                    soldeCompteCrediteur = compte.getSolde();
-                    compteCredit = compte.getCode();
-                    soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
-                    compte.setSolde(soldeFinalCompteCrediteur);
-                    soldeFinalCompteCrediteur = compte.getSolde();
+                soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
 
-                    Integer numeroCompteOperation = compte.getCode();
-                    nouvelleOperation(numeroCompteOperation, "Virement reçu", montantDebit);
-                } else if(typeDeCompte == 2) {
-                    CompteEpargne compteEpargne = (CompteEpargne) compte;
-                    Integer tauxInteret = compteEpargne.getTauxInteret();
-                    soldeCompteCrediteur = compte.getSolde();
-                    compteCredit = compte.getCode();
-                    soldeFinalCompteCrediteur = soldeCompteCrediteur + montantDebit;
-                    compte.setSolde(soldeFinalCompteCrediteur);
-                    soldeFinalCompteCrediteur = compte.getSolde();
+                compte.setSolde(soldeFinalCompteCrediteur);
+                soldeFinalCompteCrediteur = compte.getSolde();
 
-                    Integer numeroCompteOperation = compte.getCode();
-                    nouvelleOperation(numeroCompteOperation, "Virement reçu", montantDebit);
-                }
+                Integer numeroCompteOperation = compteCredit;
+                nouvelleOperation(numeroCompteOperation, "Virement reçu", montantDebit);
             }
         }
 
@@ -322,10 +305,6 @@ public class Operation {
                 "\nCompte créditeur : " + compteCredit + " - Solde avant traitement : " + soldeCompteCrediteur + "€" + " - Solde après traitement : " + soldeFinalCompteCrediteur + "€" +
                 "\n*******************************************************************************"
         );
-
-        TConsole.toprintln("*********************************************************" +
-                "\n*         Le virement a bien été effectué !             *" +
-                "\n*********************************************************");
     }
 
     public Integer getNumeroCompteOperation() {

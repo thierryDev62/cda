@@ -15,6 +15,7 @@ public class Traitement {
                 "8 - Total des retraits | " +
                 "9 - Liste de tous les comptes"
         );
+        TConsole.toprint(">");
         int choix = Tools.askThing(1);
 
         switch(choix) {
