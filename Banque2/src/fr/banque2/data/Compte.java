@@ -9,8 +9,6 @@ public class Compte {
     private final Integer code;
     private Integer solde;
     private Integer typeDeCompte; // 1 - Compte courant - 2 - Compte épargne
-    private static ArrayList<CompteCourant> listeCompteCourant = new ArrayList<>();
-    private static ArrayList<CompteEpargne> listeCompteEpargne = new ArrayList<>();
     private static ArrayList<Compte> listeDesComptes = new ArrayList<>();
 
     public Compte(Integer code, Integer solde, Integer typeDeCompte) {
@@ -228,22 +226,6 @@ public class Compte {
 
     public void setSolde(Integer solde) {
         this.solde = solde;
-    }
-
-    public static ArrayList<CompteCourant> getListeCompteCourant() {
-        return listeCompteCourant;
-    }
-
-    public static ArrayList<CompteEpargne> getListeCompteEpargne() {
-        return listeCompteEpargne;
-    }
-
-    public static void setListeCompteEpargne(ArrayList<CompteEpargne> listeCompteEpargne) {
-        Compte.listeCompteEpargne = listeCompteEpargne;
-    }
-
-    public static void setListeCompteCourant(ArrayList<CompteCourant> listeCompteCourant) {
-        Compte.listeCompteCourant = listeCompteCourant;
     }
 
     public static ArrayList<Compte> getListeDesComptes() {

@@ -83,7 +83,7 @@ public class Operation {
         /**
          * Versement sur un compte courant
          */
-//TODO : Voir pour factoriser les versements
+//TODO : Voir pour factoriser les versements - Un seule boucle suffit
         for(Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteCourant;
 
@@ -167,7 +167,7 @@ public class Operation {
                 /**
                  * Retrait sur un compte courant
                  */
-                if(typeDeCompte == 1) {
+                if(compte instanceof  CompteCourant) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
                     System.out.println("*********************************************************" +
                             "\nNuméro de compte : " +
@@ -176,12 +176,13 @@ public class Operation {
                             "\nSolde du compte avant le retrait : " + compte.getSolde() + "€" +
                             "\nDécouvert autorisé : " + decouvert + "€"
                     );
-                    soldeFinalCompteCourant = compte.getSolde() - montantRetrait;
+                    soldeFinalCompteCourant = compte.getSolde();
 
-                    if(soldeFinalCompteCourant < (compte.getCode() + decouvert)) {
-                        TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde + le découvert autorisé soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
+                    if((soldeFinalCompteCourant + decouvert) < montantRetrait) {
+                        TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde(" + compte.getSolde() + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
                         return;
                     } else {
+                        soldeFinalCompteCourant = soldeFinalCompteCourant - montantRetrait;
                         compte.setSolde(soldeFinalCompteCourant);
                         System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
                         );
@@ -196,7 +197,7 @@ public class Operation {
                     /**
                      * Retrait sur un compte épargne
                      */
-                } else if(typeDeCompte == 2) {
+                } else if(compte instanceof CompteEpargne) {
                     Integer soldeFinalCompteEpargne;
                     if (saisiNumeroCompte.equals(compte.getCode())) {
                         System.out.println("*********************************************************" +
@@ -205,12 +206,13 @@ public class Operation {
                                 "\nMontant demandé : " + montantRetrait + "€" +
                                 "\nSolde du compte avant le retrait : " + compte.getSolde() + "€"
                         );
-                        soldeFinalCompteEpargne = compte.getSolde() - montantRetrait;
+                        soldeFinalCompteEpargne = compte.getSolde();
 
-                        if(soldeFinalCompteEpargne < 0) {
+                        if(soldeFinalCompteEpargne < montantRetrait) {
                             TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
                             return;
                         } else {
+                            soldeFinalCompteEpargne = compte.getSolde() - montantRetrait;
                             compte.setSolde(soldeFinalCompteEpargne);
                             System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
                             );
@@ -233,15 +235,12 @@ public class Operation {
      * @return
      */
 
-    //TODO : faire les virements
-
     public static void virement() {
         Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinalCompteDebiteur = null, soldeFinalCompteCrediteur = null, montantDebit;
         TConsole.toprintln("*********************************************************" +
                 "\nVirement de compte à compte" +
                 "\n*********************************************************"
         );
-//TODO : pour le compte débiteur voir si dépasse découvert
         /**
          * Compte débiteur
          */
@@ -258,12 +257,19 @@ public class Operation {
             if(compteDebit.equals(compte.getCode())){
                 soldeCompteDebiteur = compte.getSolde();
                 compteDebit = compte.getCode();
-                Integer typeDeCompte = compte.getTypeDeCompte();
-                if(typeDeCompte == 1) {
+                if(compte instanceof CompteCourant) {
                     CompteCourant compteCourant = (CompteCourant) compte;
                     Integer decouvert = compteCourant.getDecouvert();
-                } else if(typeDeCompte == 2) {
+                    if((soldeCompteDebiteur + decouvert) < montantDebit) {
+                        TConsole.toprintln("Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde(" + soldeCompteDebiteur + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (soldeCompteDebiteur + decouvert + "€"));
+                        return;
+                    }
+                } else if(compte instanceof CompteEpargne) {
                     CompteEpargne compteEpargne = (CompteEpargne) compte;
+                    if(soldeCompteDebiteur < montantDebit) {
+                        TConsole.toprintln("Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
+                        return;
+                    }
                 }
                 soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
                 compte.setSolde(soldeFinalCompteDebiteur);
