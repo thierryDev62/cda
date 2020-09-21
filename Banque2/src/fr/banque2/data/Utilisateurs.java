@@ -39,6 +39,7 @@ public class Utilisateurs {
         String mdp = Tools.askThing();
 
         Utilisateurs nouvelUtilisateur = new Utilisateurs(id, nom, prenom, mdp);
+
         TConsole.toprintln("L'utilisateur a bien été créé !");
         Menus.menuAuthOuCreer();
     }

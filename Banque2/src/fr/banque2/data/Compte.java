@@ -4,6 +4,7 @@ import diplo.tools.TConsole;
 import diplo.tools.Tools;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Compte {
     private final Integer code;
@@ -55,6 +56,10 @@ public class Compte {
             Integer decouvert = Tools.askThing(1);
 
             CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert);
+
+            for(Utilisateurs utilisateur : Utilisateurs.getListeDesUtilisateurs()) {
+                System.out.println(utilisateur.getId());
+            }
 
             TConsole.toprintln("*********************************************************" +
                     "\nRécapitulatif de la création du compte courant :" +
