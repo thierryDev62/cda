@@ -30,7 +30,7 @@ public class Compte {
         );
         TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
         TConsole.toprint(">");
-        int choix = Tools.askThing(1);
+        Integer choix = Tools.askThing(1);
 
         if(choix == 1) {
             Integer id = Connexion.getId();
@@ -156,6 +156,10 @@ public class Compte {
      */
     public static void listeOperations() {
         Integer id = Connexion.getId();
+        TConsole.toprintln("*********************************************************" +
+                "\nListe des opérations sur le compte" +
+                "\n*********************************************************"
+        );
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
@@ -183,6 +187,10 @@ public class Compte {
      */
     public static void totalVersements() {
         Integer id = Connexion.getId();
+        TConsole.toprintln("*********************************************************" +
+                "\nTotal des versements" +
+                "\n*********************************************************"
+        );
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
@@ -202,6 +210,10 @@ public class Compte {
      */
     public static void totalRetraits() {
         Integer id = Connexion.getId();
+        TConsole.toprintln("*********************************************************" +
+                "\nTotal des retraits" +
+                "\n*********************************************************"
+        );
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
@@ -222,7 +234,10 @@ public class Compte {
      */
     public static void listeTousLesComptes() {
         Integer id = Connexion.getId();
-        TConsole.toprintln("Liste de tous les comptes créés :");
+        TConsole.toprintln("*********************************************************" +
+                "\nListe des tous les comptes" +
+                "\n*********************************************************"
+        );
 
         if(Compte.getListeDesComptes().size() > 0) {
             for (Compte compte : Compte.getListeDesComptes()) {
