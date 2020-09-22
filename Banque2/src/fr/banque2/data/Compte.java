@@ -9,12 +9,14 @@ public class Compte {
     private final Integer code;
     private Integer solde;
     private Integer typeDeCompte; // 1 - Compte courant - 2 - Compte épargne
+    private Integer titulaire;
     private static ArrayList<Compte> listeDesComptes = new ArrayList<>();
 
-    public Compte(Integer code, Integer solde, Integer typeDeCompte) {
+    public Compte(Integer code, Integer solde, Integer typeDeCompte, Integer titulaire) {
         this.code = code;
         this.solde = solde;
         this.typeDeCompte = typeDeCompte;
+        this.titulaire = titulaire;
         listeDesComptes.add(this);
     }
 
@@ -31,6 +33,7 @@ public class Compte {
         int choix = Tools.askThing(1);
 
         if(choix == 1) {
+            Integer id = Connexion.getId();
             TConsole.toprintln("*********************************************************" +
                     "\nCréation d'un compte courant" +
                     "\n*********************************************************"
@@ -54,27 +57,10 @@ public class Compte {
             TConsole.toprint(">");
             Integer decouvert = Tools.askThing(1);
 
-            CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert);
-
-            Integer id = Connexion.getId(), idUtil = 0;
-            String nomUtil = "", prenomUtil = "", motDePasseUtil = "";
+            CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert, id);
 
 
-            for(Utilisateurs util : Utilisateurs.getListeDesUtilisateurs()) {
-               if(id.equals(util.getId())) {
-                   //TODO : appeler l'instance et ajouter le compte à l'ArrrayList
-                  idUtil = util.getId();
-                  nomUtil = util.getNom();
-                  prenomUtil = util.getPrenom();
-                  motDePasseUtil = util.getMotDePasse();
-
-               }
-           }
-            Client client = new Client(idUtil, nomUtil, prenomUtil, motDePasseUtil);
-            client.getListeDesComptesCourants().add(nouveauCompte);
-            for(CompteCourant compte : client.getListeDesComptesCourants()) {
-                System.out.println("Numéro de compte : " + compte.getCode());
-            }
+            //TODO : attribuer compte
 
             {
                 TConsole.toprintln("*********************************************************" +
@@ -88,6 +74,7 @@ public class Compte {
                 );
             }
         } else if(choix == 2) {
+            Integer id = Connexion.getId();
             TConsole.toprintln("*********************************************************" +
                     "\nCréation d'un compte épargne" +
                     "\n*********************************************************"
@@ -111,7 +98,7 @@ public class Compte {
             TConsole.toprint(">");
             Integer tauxInteret = Tools.askThing(1);
 
-            CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, 2, tauxInteret);
+            CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, 2, tauxInteret, id);
 
             TConsole.toprintln("*********************************************************" +
                     "\nRécapitulatif de la création du compte épargne :" +
@@ -223,23 +210,24 @@ public class Compte {
      * Liste de tous les comptes
      */
     public static void listeTousLesComptes() {
+        Integer id = Connexion.getId();
         TConsole.toprintln("Liste de tous les comptes créés :");
 
         //TODO : Voir pour appeler l'instance
 
-        /*if(Compte.getListeDesComptes().size() > 0) {
+        if(Compte.getListeDesComptes().size() > 0) {
             for (Compte compte : Compte.getListeDesComptes()) {
-                if (compte instanceof CompteCourant) {
+                if (compte instanceof CompteCourant && compte.getTitulaire().equals(id)) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
-                    System.out.println("Compte courant : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Découvert autorisé : " + decouvert + "€");
-                } else if (compte instanceof CompteEpargne) {
+                    System.out.println("Compte courant : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Découvert autorisé : " + decouvert + "€ - Titulaire : " + compte.getTitulaire());
+                } else if (compte instanceof CompteEpargne && compte.getTitulaire().equals(id)) {
                     Integer tauxInteret = ((CompteEpargne) compte).getTauxInteret();
-                    System.out.println("Compte épargne : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Taux d'interêt : " + tauxInteret + "%");
+                    System.out.println("Compte épargne : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Taux d'interêt : " + tauxInteret + "% - Titulaire : " + compte.getTitulaire());
                 }
             }
         } else {
             TConsole.toprintln("Aucun compte de créé !");
-        }*/
+        }
     }
     public Integer getCode() {
         return code;
@@ -267,5 +255,13 @@ public class Compte {
 
     public void setTypeDeCompte(Integer typeDeCompte) {
         this.typeDeCompte = typeDeCompte;
+    }
+
+    public Integer getTitulaire() {
+        return titulaire;
+    }
+
+    public void setTitulaire(Integer titulaire) {
+        this.titulaire = titulaire;
     }
 }
