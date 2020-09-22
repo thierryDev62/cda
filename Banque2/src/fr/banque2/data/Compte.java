@@ -182,14 +182,17 @@ public class Compte {
      * Total des versements
      */
     public static void totalVersements() {
+        Integer id = Connexion.getId();
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
         Integer totalVersement = 0;
         TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
-        for(Operation versement : Operation.getListeOperations()) {
-            if(saisiNumeroCompte.equals(versement.getNumeroCompteOperation()) && versement.getLibelleOperation().equals("Versement")) {
-                totalVersement += versement.getMontantOperation();
+        for (Compte compte : Compte.getListeDesComptes()) {
+            for (Operation versement : Operation.getListeOperations()) {
+                if (saisiNumeroCompte.equals(compte.getCode()) && saisiNumeroCompte.equals(versement.getNumeroCompteOperation()) && versement.getLibelleOperation().equals("Versement") && compte.getTitulaire().equals(id)) {
+                    totalVersement += versement.getMontantOperation();
+                }
             }
         }
         TConsole.toprintln("Montant total : " + totalVersement + "€");
@@ -198,14 +201,17 @@ public class Compte {
      * Total des retraits
      */
     public static void totalRetraits() {
+        Integer id = Connexion.getId();
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
         Integer totalRetrait = 0;
         TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
-        for(Operation retrait : Operation.getListeOperations()) {
-            if(saisiNumeroCompte.equals(retrait.getNumeroCompteOperation()) && retrait.getLibelleOperation().equals("Retrait")) {
-                totalRetrait += retrait.getMontantOperation();
+        for (Compte compte : Compte.getListeDesComptes()) {
+            for (Operation retrait : Operation.getListeOperations()) {
+                if (saisiNumeroCompte.equals(compte.getCode()) && saisiNumeroCompte.equals(retrait.getNumeroCompteOperation()) && retrait.getLibelleOperation().equals("Retrait") && compte.getTitulaire().equals(id)){
+                    totalRetrait += retrait.getMontantOperation();
+                }
             }
         }
         TConsole.toprintln("Montant total : " + totalRetrait + "€");
