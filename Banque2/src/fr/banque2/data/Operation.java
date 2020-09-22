@@ -13,7 +13,6 @@ public class Operation {
     private String dateOperation;
     private String libelleOperation;
     private Integer montantOperation;
-    private static Integer id = Connexion.getId();
     private static ArrayList<Operation> listeOperations = new ArrayList<>();
 
     public Operation(Integer numeroCompteOperation, Integer numeroOperation, String dateOperation, String libelleOperation, Integer montantOperation) {
@@ -63,7 +62,7 @@ public class Operation {
      * Versement sur un compte
      */
     public static void versementSurUnCompte() {
-        //Integer id = Connexion.getId();
+        Integer id = Connexion.getId();
 
         TConsole.toprintln("*********************************************************" +
                 "\nVersement sur un compte" +
@@ -142,7 +141,7 @@ public class Operation {
      * Retrait sur un compte
      */
     public static void retraitSurUnCompte() {
-        //Integer id = Connexion.getId();
+        Integer id = Connexion.getId();
 
         TConsole.toprintln("*********************************************************" +
                 "\nRetrait sur un compte" +

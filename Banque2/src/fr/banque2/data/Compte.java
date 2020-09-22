@@ -10,7 +10,6 @@ public class Compte {
     private Integer solde;
     private Integer typeDeCompte; // 1 - Compte courant - 2 - Compte épargne
     private Integer titulaire;
-    private static Integer id = Connexion.getId();
     private static ArrayList<Compte> listeDesComptes = new ArrayList<>();
 
     public Compte(Integer code, Integer solde, Integer typeDeCompte, Integer titulaire) {
@@ -34,7 +33,7 @@ public class Compte {
         int choix = Tools.askThing(1);
 
         if(choix == 1) {
-            //Integer id = Connexion.getId();
+            Integer id = Connexion.getId();
 
             TConsole.toprintln("*********************************************************" +
                     "\nCréation d'un compte courant" +
@@ -74,7 +73,7 @@ public class Compte {
             }
         } else if(choix == 2) {
 
-            //Integer id = Connexion.getId();
+            Integer id = Connexion.getId();
             TConsole.toprintln("*********************************************************" +
                     "\nCréation d'un compte épargne" +
                     "\n*********************************************************"
@@ -118,6 +117,7 @@ public class Compte {
      * Consultation du solde d'un compte
      */
     public static void consultationSolde() {
+        Integer id = Connexion.getId();
         TConsole.toprintln("*********************************************************" +
                 "\nConsultation du solde d'un compte" +
                 "\n*********************************************************"
@@ -132,7 +132,7 @@ public class Compte {
         }
 
         for (Compte compte : Compte.getListeDesComptes()) {
-            if (saisiNumeroCompte.equals(compte.getCode())) {
+            if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 Integer typeDeCompte = compte.getTypeDeCompte();
                 String type = "";
                 if(typeDeCompte == 1) {
@@ -155,7 +155,7 @@ public class Compte {
      * Liste des opérations sur un compte
      */
     public static void listeOperations() {
-        //Integer id = Connexion.getId();
+        Integer id = Connexion.getId();
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
@@ -215,7 +215,7 @@ public class Compte {
      * Liste de tous les comptes d'un client connecté
      */
     public static void listeTousLesComptes() {
-        //Integer id = Connexion.getId();
+        Integer id = Connexion.getId();
         TConsole.toprintln("Liste de tous les comptes créés :");
 
         if(Compte.getListeDesComptes().size() > 0) {
