@@ -21,7 +21,7 @@ public class Utilisateurs {
     }
 
     public static void creationUtilisateur() {
-        TConsole.toprintln("Création d'un compte");
+        TConsole.toprintln("Création d'un compte utilisateur");
 
         TConsole.toprintln("Saisir le numéro d'identifiant : ");
         Integer id = Tools.askThing(1);

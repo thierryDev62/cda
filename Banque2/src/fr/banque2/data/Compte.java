@@ -59,9 +59,6 @@ public class Compte {
 
             CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert, id);
 
-
-            //TODO : attribuer compte
-
             {
                 TConsole.toprintln("*********************************************************" +
                         "\nRécapitulatif de la création du compte courant :" +
@@ -155,23 +152,28 @@ public class Compte {
      * Liste des opérations sur un compte
      */
     public static void listeOperations() {
+        Integer id = Connexion.getId();
         TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
         TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         TConsole.toprintln("Liste des opérations sur le compte n°" + saisiNumeroCompte);
         TConsole.toprintln("*************************************************************************************");
-        for (Operation operation : Operation.getListeOperations()) {
-            if (saisiNumeroCompte.equals(operation.getNumeroCompteOperation())) {
-                System.out.println(
-                        " - Numéro d'opération : " + operation.getNumeroOperation() +
-                                " - Date : " + operation.getDateOperation() +
-                                " - Type : " + operation.getLibelleOperation() +
-                                " - Montant : " + operation.getMontantOperation() + "€"
-                );
+        for (Compte compte : Compte.getListeDesComptes()) {
+            if (compte.getTitulaire().equals(id)) {
+                for (Operation operation : Operation.getListeOperations()) {
+                    if (saisiNumeroCompte.equals(operation.getNumeroCompteOperation())) {
+                        System.out.println(
+                                " - Numéro d'opération : " + operation.getNumeroOperation() +
+                                        " - Date : " + operation.getDateOperation() +
+                                        " - Type : " + operation.getLibelleOperation() +
+                                        " - Montant : " + operation.getMontantOperation() + "€"
+                        );
+                    }
+                }
+                TConsole.toprintln("*************************************************************************************");
             }
         }
-        TConsole.toprintln("*************************************************************************************");
     }
     /**
      * Total des versements
@@ -207,22 +209,20 @@ public class Compte {
     }
 
     /**
-     * Liste de tous les comptes
+     * Liste de tous les comptes d'un client connecté
      */
     public static void listeTousLesComptes() {
         Integer id = Connexion.getId();
         TConsole.toprintln("Liste de tous les comptes créés :");
 
-        //TODO : Voir pour appeler l'instance
-
         if(Compte.getListeDesComptes().size() > 0) {
             for (Compte compte : Compte.getListeDesComptes()) {
                 if (compte instanceof CompteCourant && compte.getTitulaire().equals(id)) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
-                    System.out.println("Compte courant : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Découvert autorisé : " + decouvert + "€ - Titulaire : " + compte.getTitulaire());
+                    System.out.println("Compte courant : " + "- Numéro de compte : " + compte.getCode() + " | Solde : " + compte.getSolde() + "€ | Découvert autorisé : " + decouvert + "€");
                 } else if (compte instanceof CompteEpargne && compte.getTitulaire().equals(id)) {
                     Integer tauxInteret = ((CompteEpargne) compte).getTauxInteret();
-                    System.out.println("Compte épargne : " + "- Numéro de compte : " + compte.getCode() + " - Solde : " + compte.getSolde() + "€ - Taux d'interêt : " + tauxInteret + "% - Titulaire : " + compte.getTitulaire());
+                    System.out.println("Compte épargne : " + "- Numéro de compte : " + compte.getCode() + " | Solde : " + compte.getSolde() + "€ | Taux d'interêt : " + tauxInteret + "%");
                 }
             }
         } else {

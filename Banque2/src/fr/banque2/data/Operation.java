@@ -62,6 +62,7 @@ public class Operation {
      * Versement sur un compte
      */
     public static void versementSurUnCompte() {
+        Integer id = Connexion.getId();
 
         TConsole.toprintln("*********************************************************" +
                 "\nVersement sur un compte" +
@@ -83,11 +84,11 @@ public class Operation {
         /**
          * Versement sur un compte courant
          */
-//TODO : Voir pour factoriser les versements - Un seule boucle suffit
+
         for(Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteCourant;
 
-            if (saisiNumeroCompte.equals(compte.getCode())) {
+            if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 System.out.println("*********************************************************" +
                         "\nNuméro de compte : " +
                         compte.getCode() +
@@ -113,7 +114,7 @@ public class Operation {
          */
         for(Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteEpargne;
-            if (saisiNumeroCompte.equals(compte.getCode())) {
+            if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 System.out.println("*********************************************************" +
                         "\nNuméro de compte : " +
                         compte.getCode() +
@@ -140,6 +141,8 @@ public class Operation {
      * Retrait sur un compte
      */
     public static void retraitSurUnCompte() {
+        Integer id = Connexion.getId();
+
         TConsole.toprintln("*********************************************************" +
                 "\nRetrait sur un compte" +
                 "\n*********************************************************"
@@ -161,7 +164,7 @@ public class Operation {
         for (Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinalCompteCourant;
 
-            if (saisiNumeroCompte.equals(compte.getCode())) {
+            if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 Integer typeDeCompte = compte.getTypeDeCompte();
 
                 /**
@@ -199,7 +202,7 @@ public class Operation {
                      */
                 } else if(compte instanceof CompteEpargne) {
                     Integer soldeFinalCompteEpargne;
-                    if (saisiNumeroCompte.equals(compte.getCode())) {
+                    if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                         System.out.println("*********************************************************" +
                                 "\nNuméro de compte : " +
                                 compte.getCode() +

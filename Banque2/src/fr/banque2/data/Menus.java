@@ -101,15 +101,13 @@ public class Menus {
         }
     }
     public static void menuAuthOuCreer() {
-        TConsole.toprintln("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte | 3 - Creation d'un compte bancaire | 4 - Se déconnecter");
+        TConsole.toprintln("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte utilisateur | 3 - Se déconnecter");
         int choix = Tools.askThing(1);
         if(choix == 1) {
             Utilisateurs.login();
         } else if(choix == 2) {
             Utilisateurs.creationUtilisateur();
         } else if(choix == 3) {
-            Compte.creationNouveauCompte();
-        } else if(choix == 4) {
             menuTypeUtilisateur();
         }
     }
