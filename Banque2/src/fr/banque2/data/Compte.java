@@ -4,7 +4,6 @@ import diplo.tools.TConsole;
 import diplo.tools.Tools;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Compte {
     private final Integer code;
@@ -57,19 +56,37 @@ public class Compte {
 
             CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert);
 
-            for(Utilisateurs utilisateur : Utilisateurs.getListeDesUtilisateurs()) {
-                System.out.println(utilisateur.getId());
+            Integer id = Connexion.getId(), idUtil = 0;
+            String nomUtil = "", prenomUtil = "", motDePasseUtil = "";
+
+
+            for(Utilisateurs util : Utilisateurs.getListeDesUtilisateurs()) {
+               if(id.equals(util.getId())) {
+                   //TODO : appeler l'instance et ajouter le compte à l'ArrrayList
+                  idUtil = util.getId();
+                  nomUtil = util.getNom();
+                  prenomUtil = util.getPrenom();
+                  motDePasseUtil = util.getMotDePasse();
+
+               }
+           }
+            Client client = new Client(idUtil, nomUtil, prenomUtil, motDePasseUtil);
+            client.getListeDesComptesCourants().add(nouveauCompte);
+            for(CompteCourant compte : client.getListeDesComptesCourants()) {
+                System.out.println("Numéro de compte : " + compte.getCode());
             }
 
-            TConsole.toprintln("*********************************************************" +
-                    "\nRécapitulatif de la création du compte courant :" +
-                    "\nNuméro de compte : " + nouveauCompte.getCode() +
-                    "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
-                    "\nDécouvert autorisé : " + nouveauCompte.getDecouvert() + "€" +
-                    "\n*********************************************************" +
-                    "\n*       Le nouveau compte courant a bien été créé !     *" +
-                    "\n*********************************************************"
-            );
+            {
+                TConsole.toprintln("*********************************************************" +
+                        "\nRécapitulatif de la création du compte courant :" +
+                        "\nNuméro de compte : " + nouveauCompte.getCode() +
+                        "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
+                        "\nDécouvert autorisé : " + nouveauCompte.getDecouvert() + "€" +
+                        "\n*********************************************************" +
+                        "\n*       Le nouveau compte courant a bien été créé !     *" +
+                        "\n*********************************************************"
+                );
+            }
         } else if(choix == 2) {
             TConsole.toprintln("*********************************************************" +
                     "\nCréation d'un compte épargne" +
@@ -207,7 +224,10 @@ public class Compte {
      */
     public static void listeTousLesComptes() {
         TConsole.toprintln("Liste de tous les comptes créés :");
-        if(Compte.getListeDesComptes().size() > 0) {
+
+        //TODO : Voir pour appeler l'instance
+
+        /*if(Compte.getListeDesComptes().size() > 0) {
             for (Compte compte : Compte.getListeDesComptes()) {
                 if (compte instanceof CompteCourant) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
@@ -219,7 +239,7 @@ public class Compte {
             }
         } else {
             TConsole.toprintln("Aucun compte de créé !");
-        }
+        }*/
     }
     public Integer getCode() {
         return code;

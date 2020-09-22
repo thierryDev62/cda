@@ -40,6 +40,9 @@ public class Utilisateurs {
 
         Utilisateurs nouvelUtilisateur = new Utilisateurs(id, nom, prenom, mdp);
 
+
+
+
         TConsole.toprintln("L'utilisateur a bien été créé !");
         Menus.menuAuthOuCreer();
     }
@@ -49,6 +52,14 @@ public class Utilisateurs {
         Integer identifiant = Tools.askThing(1);
         TConsole.toprintln("Saisir votre mot de passe :");
         String motdepasse = Tools.askThing();
+
+
+        //TODO : ici
+        Connexion login = new Connexion(identifiant, motdepasse );
+        TConsole.toprintln("Vous êtes connecté !");
+
+        Menus.menuClient();
+
     }
     public Integer getId() {
         return id;
