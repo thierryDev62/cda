@@ -239,6 +239,7 @@ public class Operation {
      */
 
     public static void virement() {
+        Integer id = Connexion.getId();
         Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinalCompteDebiteur = null, soldeFinalCompteCrediteur = null, montantDebit;
         TConsole.toprintln("*********************************************************" +
                 "\nVirement de compte à compte" +
@@ -255,9 +256,10 @@ public class Operation {
         TConsole.toprint(">");
         montantDebit = Tools.askThing(1);
 
-        for(Compte compte : Compte.getListeDesComptes()){
+        //TODO : Tester pour ne pas faire un virement sur notre propre compte
 
-            if(compteDebit.equals(compte.getCode())){
+        for(Compte compte : Compte.getListeDesComptes()){
+            if(compteDebit.equals(compte.getCode()) && compte.getTitulaire().equals(id)){
                 soldeCompteDebiteur = compte.getSolde();
                 compteDebit = compte.getCode();
                 if(compte instanceof CompteCourant) {
@@ -280,6 +282,9 @@ public class Operation {
 
                 Integer numeroCompteOperation = compteDebit;
                 nouvelleOperation(numeroCompteOperation, "Virement envoyé", montantDebit);
+            } else {
+                TConsole.toprintln("Pas de compte avec ce numéro");
+                virement();
             }
         }
 
