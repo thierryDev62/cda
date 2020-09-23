@@ -3,9 +3,9 @@ package fr.banque2.data;
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
 
-import java.util.Scanner;
-
 public class Menus {
+    private static Integer choixTypeUtilisateur;
+
     public static void menuClient() {
         TConsole.toprintln("Faites votre choix :" +
                 "\n1 - Créer un compte | " +
@@ -92,23 +92,37 @@ public class Menus {
 
     public static void menuTypeUtilisateur() {
         TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller");
-        int type = Tools.askThing(1);
-        if (type == 1) {
-            menuAuthOuCreer();
-        } else if (type == 2){
-            Utilisateurs.login();
-            menuConseiller();
+        Integer type = Tools.askThing(1);
+        switch(type){
+            case 1:
+                menuAuthOuCreer(1);
+                break;
+            case 2:
+                menuAuthOuCreer(2);
+                break;
+            default:
+                TConsole.toprintln("Vous devez saisir 1 ou 2");
+                menuTypeUtilisateur();
+                break;
         }
     }
-    public static void menuAuthOuCreer() {
+    public static void menuAuthOuCreer(Integer type) {
         TConsole.toprintln("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte utilisateur | 3 - Se déconnecter");
         int choix = Tools.askThing(1);
         if(choix == 1) {
-            Utilisateurs.login();
+            Connexion.login(type);
         } else if(choix == 2) {
-            Utilisateurs.creationUtilisateur();
+            Utilisateurs.creationUtilisateur(type);
         } else if(choix == 3) {
             menuTypeUtilisateur();
         }
+    }
+
+    public static Integer getChoixTypeUtilisateur() {
+        return choixTypeUtilisateur;
+    }
+
+    public static void setChoixTypeUtilisateur(Integer choixTypeUtilisateur) {
+        Menus.choixTypeUtilisateur = choixTypeUtilisateur;
     }
 }

@@ -58,8 +58,9 @@ public class Operation {
                         "\n*******************************************************************************"
         );
     }
+
     /**
-     * Versement sur un compte
+     * Versement sur un compte (courant ou épargne)
      */
     public static void versementSurUnCompte() {
         Integer id = Connexion.getId();
@@ -138,7 +139,7 @@ public class Operation {
         TConsole.toprintln("Le compte n'a pas été trouvé !");
     }
     /**
-     * Retrait sur un compte
+     * Retrait sur un compte (courant ou épargne)
      */
     public static void retraitSurUnCompte() {
         Integer id = Connexion.getId();

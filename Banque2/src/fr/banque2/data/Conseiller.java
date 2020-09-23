@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class Conseiller extends Utilisateurs{
     private static ArrayList<Conseiller> listeDesClients = new ArrayList<>();
 
-    public Conseiller(Integer id, String nom, String prenom, String motDePasse) {
-        super(id, nom, prenom, motDePasse);
+    public Conseiller(Integer id, String nom, String prenom, String motDePasse, Integer typeUtilisateur) {
+        super(id, nom, prenom, motDePasse, typeUtilisateur);
         listeDesClients.add(this);
     }
 
@@ -29,4 +29,5 @@ public class Conseiller extends Utilisateurs{
     public static void setListeDesClients(ArrayList<Conseiller> listeDesClients) {
         Conseiller.listeDesClients = listeDesClients;
     }
+
 }
