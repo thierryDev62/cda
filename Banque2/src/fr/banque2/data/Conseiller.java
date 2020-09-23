@@ -13,11 +13,13 @@ public class Conseiller extends Utilisateurs{
     }
 
     public static void listeDesClients() {
-        for(Utilisateurs client : Client.getListeDesUtilisateurs()) {
-            TConsole.toprintln("Id : " + client.getId() +
-                    " | Nom : " + client.getNom() +
-                    " | Prenom : " + client.getPrenom()
-            );
+        for(Utilisateurs client : Utilisateurs.getListeDesUtilisateurs()) {
+            if(client instanceof Client) {
+                TConsole.toprintln("Id : " + client.getId() +
+                        " | Nom : " + client.getNom() +
+                        " | Prenom : " + client.getPrenom()
+                );
+            }
         }
         Menus.menuConseiller();
     }

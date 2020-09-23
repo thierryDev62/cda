@@ -56,7 +56,7 @@ public class Menus {
                 menuClient();
                 break;
             case 9:
-                Compte.listeTousLesComptes();
+                Compte.listeTousLesComptes(1);
                 menuClient();
                 break;
             case 10:
@@ -70,7 +70,7 @@ public class Menus {
     public static void menuConseiller(){
         TConsole.toprintln("Faites votre choix :" +
                 "\n1 - Valider un compte" +
-                "\n2 - Voir la liste des clients" +
+                "\n2 - Voir la liste des comptes" +
                 "\n3 - Se déconnecter"
         );
         Integer choixMenuConseiller = Tools.askThing(1);
@@ -78,7 +78,7 @@ public class Menus {
             case 1:
                 break;
             case 2:
-                Conseiller.listeDesClients();
+                Compte.listeTousLesComptes(2);
                 break;
             case 3:
                 menuTypeUtilisateur();
