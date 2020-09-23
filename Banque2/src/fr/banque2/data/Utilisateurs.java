@@ -23,7 +23,9 @@ public class Utilisateurs {
     }
 
     public static void creationUtilisateur(Integer typeUtilisateur) {
-        TConsole.toprintln("Création d'un compte utilisateur");
+        TConsole.toprintln("*********************************************************" +
+                "\nCréation d'un compte utilisateur" +
+                "\n*********************************************************");
 
         TConsole.toprintln("Saisir le numéro d'identifiant : ");
         Integer id = Tools.askThing(1);
@@ -40,25 +42,38 @@ public class Utilisateurs {
         TConsole.toprintln("Saisir le mot de passe");
         String mdp = Tools.askThing();
 
-        Utilisateurs nouvelUtilisateur = new Utilisateurs(id, nom, prenom, mdp, typeUtilisateur);
+        //Utilisateurs nouvelUtilisateur = new Utilisateurs(id, nom, prenom, mdp, typeUtilisateur);
         String nomDuTypeUtilisateur = "";
 
         if(typeUtilisateur == 1) {
+            Utilisateurs nouveauClient = new Client(id, nom, prenom, mdp, typeUtilisateur);
             nomDuTypeUtilisateur = "Client";
+            TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
+                    "\nIdentifiant : " + nouveauClient.getId() +
+                    "\nNom : " + nouveauClient.getNom() +
+                    "\nPrénom : " + nouveauClient.getPrenom() +
+                    "\nMot de passe : " + nouveauClient.getMotDePasse().substring(0, 2) + "***" +
+                    "\nType d'utilisateur : " + nomDuTypeUtilisateur
+            );
+            TConsole.toprintln("*********************************************************" +
+                    "\nL'utilisateur a bien été créé !" +
+                    "\n*********************************************************");
+            Menus.menuAuthOuCreer(typeUtilisateur);
         } else if(typeUtilisateur == 2) {
+            Utilisateurs nouveauConseiller = new Conseiller(id, nom, prenom, mdp, typeUtilisateur);
             nomDuTypeUtilisateur = "Conseiller";
+            TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
+                    "\nIdentifiant : " + nouveauConseiller.getId() +
+                    "\nNom : " + nouveauConseiller.getNom() +
+                    "\nPrénom : " + nouveauConseiller.getPrenom() +
+                    "\nMot de passe : " + nouveauConseiller.getMotDePasse().substring(0, 2) + "***" +
+                    "\nType d'utilisateur : " + nomDuTypeUtilisateur
+            );
+            TConsole.toprintln("*********************************************************" +
+                    "\nL'utilisateur a bien été créé !" +
+                    "\n*********************************************************");
+            Menus.menuAuthOuCreer(typeUtilisateur);
         }
-
-        TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
-                "\nIdentifiant : " + nouvelUtilisateur.getId() +
-                "\nNom : " + nouvelUtilisateur.getNom() +
-                "\nPrénom : " + nouvelUtilisateur.getPrenom() +
-                "\nMot de passe : " + nouvelUtilisateur.getMotDePasse().substring(0, 2) + "***" +
-                "\nType d'utilisateur : " + nomDuTypeUtilisateur
-                );
-
-        TConsole.toprintln("L'utilisateur a bien été créé !");
-        Menus.menuAuthOuCreer(typeUtilisateur);
     }
 
     public Integer getId() {
