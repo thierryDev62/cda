@@ -225,7 +225,6 @@ public class Operation {
                              */
                             Integer numeroCompteOperation = compte.getCode();
                             nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
-
                             return;
                         }
                     }

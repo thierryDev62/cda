@@ -203,7 +203,7 @@ public class Compte {
                 }
             }
         }
-        TConsole.toprintln("Montant total : " + totalVersement + "€");
+        TConsole.toprintln("Montant total des versements : " + totalVersement + "€");
     }
     /**
      * Total des retraits
@@ -226,12 +226,11 @@ public class Compte {
                 }
             }
         }
-
-        TConsole.toprintln("Montant total : " + totalRetrait + "€");
+        TConsole.toprintln("Montant total des retraits : " + totalRetrait + "€");
     }
 
     /**
-     * Liste de tous les comptes d'un client connecté
+     * Liste de tous les comptes d'un client connecté ou le conseiller
      */
     public static void listeTousLesComptes(Integer type) {
         Integer id = Connexion.getId();
@@ -249,14 +248,14 @@ public class Compte {
                 }
             }
             for(Compte listeFinale : listeTousLesCompte) {
-                if(listeFinale instanceof CompteCourant){
+                if (listeFinale instanceof CompteCourant) {
                     Integer decouvert = ((CompteCourant) listeFinale).getDecouvert();
-                    System.out.println("Compte courant : " + "- Numéro de compte : " + listeFinale.getCode() + " | Solde : " + listeFinale.getSolde() + "€ | Découvert autorisé : " + decouvert + "€" + " | Titulaire : " + listeFinale.getTitulaire());
-                } else if(listeFinale instanceof CompteEpargne) {
-                    Integer tauxInteret = ((CompteEpargne) listeFinale).getTauxInteret();
-                    System.out.println("Compte épargne : " + "- Numéro de compte : " + listeFinale.getCode() + " | Solde : " + listeFinale.getSolde() + "€ | Taux d'interêt : " + tauxInteret + "%" + " | Titulaire : " + listeFinale.getTitulaire());
-                }
+                    System.out.println("Compte courant : " + "- Numéro de compte : " + listeFinale.getCode() + " | Solde : " + listeFinale.getSolde() + "€ | Découvert autorisé : " + decouvert + "€" + " | N° de compte Titulaire : " + listeFinale.getTitulaire());
 
+                } else if (listeFinale instanceof CompteEpargne) {
+                    Integer tauxInteret = ((CompteEpargne) listeFinale).getTauxInteret();
+                    System.out.println("Compte épargne : " + "- Numéro de compte : " + listeFinale.getCode() + " | Solde : " + listeFinale.getSolde() + "€ | Taux d'interêt : " + tauxInteret + "%" + " | N° de compte Titulaire : " + listeFinale.getTitulaire());
+                }
             }
         } else {
             TConsole.toprintln("Aucun compte de créé !");
