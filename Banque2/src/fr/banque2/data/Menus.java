@@ -69,18 +69,23 @@ public class Menus {
     }
     public static void menuConseiller(){
         TConsole.toprintln("Faites votre choix :" +
-                "\n1 - Valider un compte" +
-                "\n2 - Voir la liste des comptes" +
-                "\n3 - Se déconnecter"
+                " | 1 - Valider un compte" +
+                " | 2 - Voir la liste des comptes" +
+                " | 3 - Voir la liste des clients" +
+                " | 0 - Se déconnecter"
         );
         Integer choixMenuConseiller = Tools.askThing(1);
         switch(choixMenuConseiller) {
             case 1:
+                Conseiller.validationCompte();
                 break;
             case 2:
                 Compte.listeTousLesComptes(2);
                 break;
             case 3:
+                Conseiller.listeDesClients();
+                break;
+            case 0:
                 menuTypeUtilisateur();
                 break;
             default:

@@ -65,7 +65,7 @@ public class Compte {
             }
 
                 TConsole.toprintln("*********************************************************" +
-                        "\nRécapitulatif de la création du compte courant :" +
+                        "\nRécapitulatif de la création du compte :" +
                         "\nNuméro de compte : " + nouveauCompte.getCode() +
                         "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
                         "\n*********************************************************" +
@@ -208,27 +208,28 @@ public class Compte {
                     listeTousLesCompte.add(compte);
                 }
             }
+            String typeCompte = "", afficheDecouvertOuTaux = "";
+            Integer decouvert, tauxInteret;
             for(Compte listeFinale : listeTousLesCompte) {
                 if (listeFinale instanceof CompteCourant) {
-                    Integer decouvert = ((CompteCourant) listeFinale).getDecouvert();
-                    System.out.println("Compte courant : " +
-                            "- Numéro de compte : " + listeFinale.getCode() +
-                            " | Solde : " + listeFinale.getSolde() +
-                            "€ | Découvert autorisé : " + decouvert + "€" +
-                            " | N° de compte Titulaire : " + listeFinale.getTitulaire()
-                    );
+                    decouvert = ((CompteCourant) listeFinale).getDecouvert();
+                    typeCompte = "Compte courant : ";
+                    afficheDecouvertOuTaux = "€ | Découvert autorisé : " + decouvert + "€";
 
                 } else if (listeFinale instanceof CompteEpargne) {
-                    Integer tauxInteret = ((CompteEpargne) listeFinale).getTauxInteret();
-                    System.out.println("Compte épargne : " +
+                    tauxInteret = ((CompteEpargne) listeFinale).getTauxInteret();
+                    typeCompte = "Compte épargne : ";
+                    afficheDecouvertOuTaux = "€ | Taux d'interêt : " + tauxInteret + "%";
+                }
+                    System.out.println(typeCompte +
                             "- Numéro de compte : " + listeFinale.getCode() +
                             " | Solde : " + listeFinale.getSolde() +
-                            "€ | Taux d'interêt : " + tauxInteret + "%" +
-                            " | N° de compte Titulaire : " + listeFinale.getTitulaire()
+                            afficheDecouvertOuTaux +
+                            " | Statut : " + (listeFinale.getCompteValide() ? "Validé" : "En attente de validation")
                     );
                 }
-            }
-        } else {
+            } else {
+            // TODO : bug se répète
             TConsole.toprintln("Aucun compte de créé !");
         }
         if(type == 2) {
