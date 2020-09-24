@@ -188,7 +188,7 @@ public class Operation {
                         TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde(" + compte.getSolde() + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
                         return;
                     } else {
-                        soldeFinalCompteCourant = soldeFinalCompteCourant - montantRetrait;
+                        soldeFinalCompteCourant -= montantRetrait;
                         compte.setSolde(soldeFinalCompteCourant);
                         System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
                         );

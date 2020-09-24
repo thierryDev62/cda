@@ -10,13 +10,15 @@ public class Compte {
     private Integer solde;
     private Integer typeDeCompte; // 1 - Compte courant - 2 - Compte épargne
     private Integer titulaire;
+    private Boolean compteValide;
     private static ArrayList<Compte> listeDesComptes = new ArrayList<>();
 
-    public Compte(Integer code, Integer solde, Integer typeDeCompte, Integer titulaire) {
+    public Compte(Integer code, Integer solde, Integer typeDeCompte, Integer titulaire, Boolean compteValide) {
         this.code = code;
         this.solde = solde;
         this.typeDeCompte = typeDeCompte;
         this.titulaire = titulaire;
+        this.compteValide = compteValide;
         listeDesComptes.add(this);
     }
 
@@ -31,12 +33,11 @@ public class Compte {
         TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
         TConsole.toprint(">");
         Integer choix = Tools.askThing(1);
-
-        if(choix == 1) {
+        
             Integer id = Connexion.getId();
 
             TConsole.toprintln("*********************************************************" +
-                    "\nCréation d'un compte courant" +
+                    "\nCréation d'un compte" +
                     "\n*********************************************************"
             );
             TConsole.toprintln("Saisir le numéro de compte");
@@ -54,64 +55,24 @@ public class Compte {
             TConsole.toprintln("Saisir le solde du compte");
             TConsole.toprint(">");
             Integer soldeDuCompte = Tools.askThing(1);
-            TConsole.toprintln("Saisir le découvert autorisé");
-            TConsole.toprint(">");
-            Integer decouvert = Tools.askThing(1);
 
-            CompteCourant nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, decouvert, id);
+            Compte nouveauCompte = null;
+            
+            if(choix == 1) {
+                nouveauCompte = new CompteCourant(numeroCompte, soldeDuCompte, 1, 0, id, false);
+            } else if(choix == 2) {
+                nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, 2, 0, id, false);
+            }
 
-            {
                 TConsole.toprintln("*********************************************************" +
                         "\nRécapitulatif de la création du compte courant :" +
                         "\nNuméro de compte : " + nouveauCompte.getCode() +
                         "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
-                        "\nDécouvert autorisé : " + nouveauCompte.getDecouvert() + "€" +
                         "\n*********************************************************" +
-                        "\n*       Le nouveau compte courant a bien été créé !     *" +
+                        "\n*       Le nouveau compte a bien été créé !     *" +
                         "\n*********************************************************"
                 );
-            }
-        } else if(choix == 2) {
-
-            Integer id = Connexion.getId();
-            TConsole.toprintln("*********************************************************" +
-                    "\nCréation d'un compte épargne" +
-                    "\n*********************************************************"
-            );
-            TConsole.toprintln("Saisir le numéro de compte");
-            TConsole.toprint(">");
-            Integer numeroCompte = Tools.askThing(1);
-
-            for(Compte liste : Compte.getListeDesComptes()) {
-                if(numeroCompte.equals(liste.getCode())) {
-                    TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
-                    Compte.creationNouveauCompte();
-                    return;
-                }
-            }
-
-            TConsole.toprintln("Saisir le solde du compte");
-            TConsole.toprint(">");
-            Integer soldeDuCompte = Tools.askThing(1);
-            TConsole.toprintln("Saisir le taux d'intérêt");
-            TConsole.toprint(">");
-            Integer tauxInteret = Tools.askThing(1);
-
-            CompteEpargne nouveauCompte = new CompteEpargne(numeroCompte, soldeDuCompte, 2, tauxInteret, id);
-
-            TConsole.toprintln("*********************************************************" +
-                    "\nRécapitulatif de la création du compte épargne :" +
-                    "\nNuméro de compte : " + nouveauCompte.getCode() +
-                    "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
-                    "\nTaux d'interêt : " + nouveauCompte.getTauxInteret() + "%" +
-                    "\n*********************************************************" +
-                    "\n*     Le nouveau compte épargne a bien été créé !       *" +
-                    "\n*********************************************************"
-            );
-        } else {
-            TConsole.toprintln("Vous devez saisir 1 ou 2");
-            Compte.creationNouveauCompte();
-        }
+        
     }
     /**
      * Consultation du solde d'un compte
@@ -250,11 +211,21 @@ public class Compte {
             for(Compte listeFinale : listeTousLesCompte) {
                 if (listeFinale instanceof CompteCourant) {
                     Integer decouvert = ((CompteCourant) listeFinale).getDecouvert();
-                    System.out.println("Compte courant : " + "- Numéro de compte : " + listeFinale.getCode() + " | Solde : " + listeFinale.getSolde() + "€ | Découvert autorisé : " + decouvert + "€" + " | N° de compte Titulaire : " + listeFinale.getTitulaire());
+                    System.out.println("Compte courant : " +
+                            "- Numéro de compte : " + listeFinale.getCode() +
+                            " | Solde : " + listeFinale.getSolde() +
+                            "€ | Découvert autorisé : " + decouvert + "€" +
+                            " | N° de compte Titulaire : " + listeFinale.getTitulaire()
+                    );
 
                 } else if (listeFinale instanceof CompteEpargne) {
                     Integer tauxInteret = ((CompteEpargne) listeFinale).getTauxInteret();
-                    System.out.println("Compte épargne : " + "- Numéro de compte : " + listeFinale.getCode() + " | Solde : " + listeFinale.getSolde() + "€ | Taux d'interêt : " + tauxInteret + "%" + " | N° de compte Titulaire : " + listeFinale.getTitulaire());
+                    System.out.println("Compte épargne : " +
+                            "- Numéro de compte : " + listeFinale.getCode() +
+                            " | Solde : " + listeFinale.getSolde() +
+                            "€ | Taux d'interêt : " + tauxInteret + "%" +
+                            " | N° de compte Titulaire : " + listeFinale.getTitulaire()
+                    );
                 }
             }
         } else {
@@ -298,5 +269,13 @@ public class Compte {
 
     public void setTitulaire(Integer titulaire) {
         this.titulaire = titulaire;
+    }
+
+    public Boolean getCompteValide() {
+        return compteValide;
+    }
+
+    public void setCompteValide(Boolean compteValide) {
+        this.compteValide = compteValide;
     }
 }
