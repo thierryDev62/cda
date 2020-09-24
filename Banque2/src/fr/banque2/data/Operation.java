@@ -29,6 +29,8 @@ public class Operation {
      * @return la date du jour au format jj/mm/AAAA
      */
     public static String dateDuJour(){
+
+
         Date aujourdhui = new Date();
         DateFormat shortDateFormat = DateFormat.getDateInstance(
                 DateFormat.SHORT);
