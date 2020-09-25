@@ -208,16 +208,14 @@ public class OperationGestion {
                 soldeCompteDebiteur = compte.getSolde();
                 compteDebit = compte.getCode();
                 if(compte instanceof CompteCourant) {
-                    CompteCourant compteCourant = (CompteCourant) compte;
-                    Integer decouvert = compteCourant.getDecouvert();
+                    Integer decouvert = ((CompteCourant) compte).getDecouvert();
                     if((soldeCompteDebiteur + decouvert) < montantDebit) {
                         TConsole.toprintln("Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde(" + soldeCompteDebiteur + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (soldeCompteDebiteur + decouvert + "€"));
                         return;
                     }
                 } else if(compte instanceof CompteEpargne) {
-                    CompteEpargne compteEpargne = (CompteEpargne) compte;
                     if(soldeCompteDebiteur < montantDebit) {
-                        TConsole.toprintln("Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
+                        TConsole.toprintln("Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde de votre compte soit : " + soldeCompteDebiteur + "€");
                         return;
                     }
                 }
