@@ -29,8 +29,6 @@ public class Operation {
      * @return la date du jour au format jj/mm/AAAA
      */
     public static String dateDuJour(){
-
-
         Date aujourdhui = new Date();
         DateFormat shortDateFormat = DateFormat.getDateInstance(
                 DateFormat.SHORT);
@@ -84,12 +82,8 @@ public class Operation {
         TConsole.toprint(">");
         Integer montantVersement = Tools.askThing(1);
 
-        /**
-         * Versement sur un compte courant
-         */
-
         for(Compte compte : Compte.getListeDesComptes()) {
-            Integer soldeFinalCompteCourant;
+            Integer soldeFinalCompte;
 
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 System.out.println("*********************************************************" +
@@ -98,8 +92,8 @@ public class Operation {
                         "\nMontant versé : " + montantVersement + "€" +
                         "\nSolde du compte avant versement : " + compte.getSolde() + "€"
                 );
-                soldeFinalCompteCourant = montantVersement + compte.getSolde();
-                compte.setSolde(soldeFinalCompteCourant);
+                soldeFinalCompte = montantVersement + compte.getSolde();
+                compte.setSolde(soldeFinalCompte);
                 System.out.println("Solde de compte après versement : " + compte.getSolde() + "€"
                 );
 
@@ -108,36 +102,10 @@ public class Operation {
                  */
                 Integer numeroCompteOperation = compte.getCode();
                 nouvelleOperation(numeroCompteOperation, "Versement", montantVersement);
-
                 return;
             }
         }
-        /**
-         * Versement sur un compte épargne
-         */
-        for(Compte compte : Compte.getListeDesComptes()) {
-            Integer soldeFinalCompteEpargne;
-            if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
-                System.out.println("*********************************************************" +
-                        "\nNuméro de compte : " +
-                        compte.getCode() +
-                        "\nMontant versé : " + montantVersement + "€" +
-                        "\nSolde du compte avant versement : " + compte.getSolde() + "€"
-                );
-                soldeFinalCompteEpargne = montantVersement + compte.getSolde();
-                compte.setSolde(soldeFinalCompteEpargne);
-                System.out.println("Solde de compte après versement : " + compte.getSolde() + "€" +
-                        "\n*********************************************************"
-                );
 
-                /**
-                 * Résumé de l'opération (appel de la méthode nouvelleOperation())
-                 */
-                Integer numeroCompteOperation = compte.getCode();
-                nouvelleOperation(numeroCompteOperation, "Versement", montantVersement);
-                return;
-            }
-        }
         TConsole.toprintln("Le compte n'a pas été trouvé !");
     }
     /**
@@ -168,8 +136,7 @@ public class Operation {
             Integer soldeFinalCompteCourant;
 
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
-                Integer typeDeCompte = compte.getTypeDeCompte();
-
+//TODO : factoriser
                 /**
                  * Retrait sur un compte courant
                  */

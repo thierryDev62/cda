@@ -1,11 +1,10 @@
 package fr.banque2.data;
 
 public class CompteCourant extends Compte{
-    private Integer decouvert;
+    private Integer decouvert = 500;
 
-    public CompteCourant(Integer code, Integer solde, Integer typeDeCompte, Integer decouvert, Integer titulaire, Boolean compteValide) {
-        super(code, solde, typeDeCompte, titulaire, compteValide);
-        this.decouvert = decouvert;
+    public CompteCourant(Integer code, Integer solde, Integer typeDeCompte, Integer titulaire) {
+        super(code, solde, typeDeCompte, titulaire);
     }
 
     public Integer getDecouvert() {

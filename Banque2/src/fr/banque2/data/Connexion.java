@@ -14,7 +14,7 @@ public class Connexion {
 
     public static void login(Integer type) {
         TConsole.toprintln("*********************************************************" +
-                "\nConnexion à votre compte client (0 pour annuler)" +
+                "\nConnexion à votre compte utilisateur (0 pour annuler)" +
                 "\n*********************************************************");
         TConsole.toprintln("Saisir votre identifiant :");
         Integer identifiant = Tools.askThing(1);

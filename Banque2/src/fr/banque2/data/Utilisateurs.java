@@ -11,14 +11,16 @@ public class Utilisateurs {
     private String prenom;
     private String motDePasse;
     private Integer typeUtilisateur; // 1 - Client | 2 - Conseiller
+    private Boolean compteValide;
     private static ArrayList<Utilisateurs> listeDesUtilisateurs = new ArrayList<>();
 
-    public Utilisateurs(Integer id, String nom, String prenom, String motDePasse, Integer typeUtilisateur) {
+    public Utilisateurs(Integer id, String nom, String prenom, String motDePasse, Integer typeUtilisateur, Boolean compteValide) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.motDePasse = motDePasse;
         this.typeUtilisateur = typeUtilisateur;
+        this.compteValide = compteValide;
         listeDesUtilisateurs.add(this);
     }
 
@@ -42,38 +44,30 @@ public class Utilisateurs {
         TConsole.toprintln("Saisir le mot de passe");
         String mdp = Tools.askThing();
 
-        //Utilisateurs nouvelUtilisateur = new Utilisateurs(id, nom, prenom, mdp, typeUtilisateur);
         String nomDuTypeUtilisateur = "";
+        Utilisateurs nouveauUtilisateur = null;
 
         if(typeUtilisateur == 1) {
-            Utilisateurs nouveauClient = new Client(id, nom, prenom, mdp, typeUtilisateur);
+            nouveauUtilisateur = new Client(id, nom, prenom, mdp, typeUtilisateur, false);
             nomDuTypeUtilisateur = "Client";
-            TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
-                    "\nIdentifiant : " + nouveauClient.getId() +
-                    "\nNom : " + nouveauClient.getNom() +
-                    "\nPrénom : " + nouveauClient.getPrenom() +
-                    "\nMot de passe : " + nouveauClient.getMotDePasse().substring(0, 2) + "***" +
-                    "\nType d'utilisateur : " + nomDuTypeUtilisateur
-            );
-            TConsole.toprintln("*********************************************************" +
-                    "\nL'utilisateur a bien été créé !" +
-                    "\n*********************************************************");
-            Menus.menuAuthOuCreer(typeUtilisateur);
+
         } else if(typeUtilisateur == 2) {
-            Utilisateurs nouveauConseiller = new Conseiller(id, nom, prenom, mdp, typeUtilisateur);
+            nouveauUtilisateur = new Conseiller(id, nom, prenom, mdp, typeUtilisateur, true);
             nomDuTypeUtilisateur = "Conseiller";
-            TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
-                    "\nIdentifiant : " + nouveauConseiller.getId() +
-                    "\nNom : " + nouveauConseiller.getNom() +
-                    "\nPrénom : " + nouveauConseiller.getPrenom() +
-                    "\nMot de passe : " + nouveauConseiller.getMotDePasse().substring(0, 2) + "***" +
-                    "\nType d'utilisateur : " + nomDuTypeUtilisateur
-            );
-            TConsole.toprintln("*********************************************************" +
-                    "\nL'utilisateur a bien été créé !" +
-                    "\n*********************************************************");
-            Menus.menuAuthOuCreer(typeUtilisateur);
+
         }
+        TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
+                "\nIdentifiant : " + nouveauUtilisateur.getId() +
+                "\nNom : " + nouveauUtilisateur.getNom() +
+                "\nPrénom : " + nouveauUtilisateur.getPrenom() +
+                "\nMot de passe : " + nouveauUtilisateur.getMotDePasse().substring(0, 2) + "***" +
+                "\nType d'utilisateur : " + nomDuTypeUtilisateur
+        );
+        TConsole.toprintln("*********************************************************" +
+                "\nL'utilisateur a bien été créé !" +
+                "\n*********************************************************");
+        Menus.menuAuthOuCreer(typeUtilisateur);
+
     }
 
     public Integer getId() {
@@ -122,5 +116,13 @@ public class Utilisateurs {
 
     public static void setListeDesUtilisateurs(ArrayList<Utilisateurs> listeDesUtilisateurs) {
         Utilisateurs.listeDesUtilisateurs = listeDesUtilisateurs;
+    }
+
+    public Boolean getCompteValide() {
+        return compteValide;
+    }
+
+    public void setCompteValide(Boolean compteValide) {
+        this.compteValide = compteValide;
     }
 }

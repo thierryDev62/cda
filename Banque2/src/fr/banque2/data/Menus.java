@@ -17,15 +17,23 @@ public class Menus {
                 "7 - Total des versements | " +
                 "8 - Total des retraits | " +
                 "9 - Liste de tous les comptes | " +
-                "10 - Se déconnecter"
+                "0 - Se déconnecter"
         );
         TConsole.toprint(">");
         int choix = Tools.askThing(1);
 
         switch(choix) {
             case 1:
-                Compte.creationNouveauCompte();
-                menuClient();
+                Integer id = Connexion.getId();
+                for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
+                    if (id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
+                        Compte.creationNouveauCompte();
+                        //menuClient();
+                    } else {
+                        Conseiller.pasMoyen();
+                        menuClient();
+                    }
+                }
                 break;
             case 2:
                 Operation.versementSurUnCompte();
@@ -59,7 +67,7 @@ public class Menus {
                 Compte.listeTousLesComptes(1);
                 menuClient();
                 break;
-            case 10:
+            case 0:
                 menuTypeUtilisateur();
             default:
                 TConsole.toprintln("Veuillez saisir un chiffre de 1 à 10");
@@ -69,15 +77,15 @@ public class Menus {
     }
     public static void menuConseiller(){
         TConsole.toprintln("Faites votre choix :" +
-                " | 1 - Valider un compte" +
+                " | 1 - Valider un compte utilisateur" +
                 " | 2 - Voir la liste des comptes" +
-                " | 3 - Voir la liste des clients" +
+                " | 3 - Voir la liste des comptes utilisateur" +
                 " | 0 - Se déconnecter"
         );
         Integer choixMenuConseiller = Tools.askThing(1);
         switch(choixMenuConseiller) {
             case 1:
-                Conseiller.validationCompte();
+                Conseiller.validationCompteUtilisateur();
                 break;
             case 2:
                 Compte.listeTousLesComptes(2);
