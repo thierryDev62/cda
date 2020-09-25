@@ -26,25 +26,23 @@ public class Connexion {
         TConsole.toprintln("Saisir votre mot de passe :");
         String motdepasse = Tools.askThing();
 
-        if(Utilisateurs.getListeDesUtilisateurs().size() > 0) {
-
+        if(!Utilisateurs.getListeDesUtilisateurs().isEmpty()) {
             for (Utilisateurs verifIdEtMdp : Utilisateurs.getListeDesUtilisateurs()) {
                 if (verifIdEtMdp instanceof Client && identifiant.equals(verifIdEtMdp.getId()) && motdepasse.equals(verifIdEtMdp.getMotDePasse()) && type == 1) {
-                    TConsole.toprintln("Vous êtes connecté !!");
+                    TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + verifIdEtMdp.getPrenom());
                     Connexion login = new Connexion(identifiant, motdepasse);
                     Menus.menuClient();
                 } else if (verifIdEtMdp instanceof Conseiller && identifiant.equals(verifIdEtMdp.getId()) && motdepasse.equals(verifIdEtMdp.getMotDePasse()) && type == 2){
-                    TConsole.toprintln("Vous êtes connecté !!");
+                    TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous conseiller " + verifIdEtMdp.getNom() + " " + verifIdEtMdp.getPrenom());
                     Connexion login = new Connexion(identifiant, motdepasse);
                     Menus.menuConseiller();
                 }
             }
-
-
-        } else {
             TConsole.toprintln("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
-            login(type);
+        } else {
+            TConsole.toprintln("Il n'y a pas encore de compte utilisateur d'enregistré");
         }
+        login(type);
     }
 
     public static Integer getId() {

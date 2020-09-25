@@ -112,14 +112,22 @@ public class Menus {
         }
     }
     public static void menuAuthOuCreer(Integer type) {
-        TConsole.toprintln("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte utilisateur | 3 - Se déconnecter");
-        int choix = Tools.askThing(1);
-        if(choix == 1) {
-            Connexion.login(type);
-        } else if(choix == 2) {
-            Utilisateurs.creationUtilisateur(type);
-        } else if(choix == 3) {
-            menuTypeUtilisateur();
+        TConsole.toprintln("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte utilisateur | 0 - Se déconnecter");
+        Integer choix = Tools.askThing(1);
+        switch (choix) {
+            case 1:
+                Connexion.login(type);
+                break;
+            case 2:
+                Utilisateurs.creationUtilisateur(type);
+                break;
+            case 0:
+                menuTypeUtilisateur();
+                break;
+            default:
+                TConsole.toprintln("Vous devez saisir 1, 2 ou 0");
+                menuAuthOuCreer(type);
+                break;
         }
     }
 

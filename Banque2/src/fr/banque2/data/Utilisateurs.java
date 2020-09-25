@@ -57,6 +57,7 @@ public class Utilisateurs {
 
         }
         TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
+                "\n-----------------------------------------------" +
                 "\nIdentifiant : " + nouveauUtilisateur.getId() +
                 "\nNom : " + nouveauUtilisateur.getNom() +
                 "\nPrénom : " + nouveauUtilisateur.getPrenom() +

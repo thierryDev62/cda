@@ -62,6 +62,7 @@ public class Compte {
                     nouveauCompte = new CompteEpargne(numeroCompte, solde,2, id);
                 }
 
+                assert nouveauCompte != null;
                 TConsole.toprintln("*********************************************************" +
                         "\nRécapitulatif de la création du compte :" +
                         "\nNuméro de compte : " + nouveauCompte.getCode() +
@@ -199,10 +200,12 @@ public class Compte {
     }
 
     /**
-     * Liste de tous les comptes d'un client connecté ou le conseiller
+     * Liste de tous les comptes d'un client connecté ou vu par le conseiller
      */
     public static void listeTousLesComptes(Integer type) {
         Integer id = Connexion.getId();
+        String typeCompte = "", afficheDecouvertOuTaux = "";
+        Integer decouvert, tauxInteret;
         ArrayList<Compte> listeTousLesCompte = new ArrayList<>();
         TConsole.toprintln("*********************************************************" +
                 "\nListe des tous les comptes" +
@@ -216,8 +219,6 @@ public class Compte {
                     listeTousLesCompte.add(compte);
                 }
             }
-            String typeCompte = "", afficheDecouvertOuTaux = "";
-            Integer decouvert, tauxInteret;
             for(Compte listeFinale : listeTousLesCompte) {
                 if (listeFinale instanceof CompteCourant) {
                     decouvert = ((CompteCourant) listeFinale).getDecouvert();
