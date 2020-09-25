@@ -34,6 +34,8 @@ public class Connexion {
                     Menus.menuClient();
                 } else if (verifIdEtMdp instanceof Conseiller && identifiant.equals(verifIdEtMdp.getId()) && motdepasse.equals(verifIdEtMdp.getMotDePasse()) && type == 2){
                     TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous conseiller " + verifIdEtMdp.getNom() + " " + verifIdEtMdp.getPrenom());
+                    verifIdEtMdp.setId(identifiant);
+                    verifIdEtMdp.setMotDePasse(motdepasse);
                     Connexion login = new Connexion(identifiant, motdepasse);
                     Menus.menuConseiller();
                 }
