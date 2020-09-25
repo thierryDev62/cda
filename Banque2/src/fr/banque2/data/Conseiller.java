@@ -37,6 +37,10 @@ public class Conseiller extends Utilisateurs{
      * Liste des clients de la banque
      */
     public static void listeDesClients() {
+        TConsole.toprintln("*********************************************************" +
+                "\nListe des utilisateurs" +
+                "\n*********************************************************"
+        );
         for(Utilisateurs client : Utilisateurs.getListeDesUtilisateurs()) {
             if(client instanceof Client) {
                 TConsole.toprintln("Id : " + client.getId() +

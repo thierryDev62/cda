@@ -24,16 +24,8 @@ public class Menus {
 
         switch(choix) {
             case 1:
-                Integer id = Connexion.getId();
-                for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
-                    if (id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
-                        Compte.creationNouveauCompte();
-                        //menuClient();
-                    } else {
-                        Conseiller.pasMoyen();
-                        menuClient();
-                    }
-                }
+                Compte.creationNouveauCompte();
+                menuClient();
                 break;
             case 2:
                 Operation.versementSurUnCompte();

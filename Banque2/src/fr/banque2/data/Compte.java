@@ -25,8 +25,8 @@ public class Compte {
      */
     public static void creationNouveauCompte(){
         Integer id = Connexion.getId();
-        //for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
-            //if(id.equals(utilisateurCourant.getId())) {
+        for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
+            if(id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
                 TConsole.toprintln("*********************************************************" +
                         "\nCréation d'un nouveau compte" +
                         "\n*********************************************************"
@@ -71,10 +71,10 @@ public class Compte {
                         "\n*********************************************************"
                 );
                 return;
-            /*} else {
+            } else {
                 Conseiller.pasMoyen();
-            }*/
-        //}
+            }
+        }
     }
     /**
      * Consultation du solde d'un compte
@@ -241,6 +241,11 @@ public class Compte {
             }
         } else {
             TConsole.toprintln("Aucun compte de créé !");
+            if(type == 2) {
+                Menus.menuConseiller();
+            } else if(type == 1) {
+                Menus.menuClient();
+            }
         }
 
     }
