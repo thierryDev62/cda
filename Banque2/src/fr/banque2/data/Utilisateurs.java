@@ -48,7 +48,7 @@ public class Utilisateurs {
         Utilisateurs nouveauUtilisateur = null;
 
         if(typeUtilisateur == 1) {
-            nouveauUtilisateur = new Client(id, nom, prenom, mdp, typeUtilisateur, false);
+            nouveauUtilisateur = new Client(id, nom, prenom, mdp, typeUtilisateur, true); // TODO : mettre à true pour les tests
             nomDuTypeUtilisateur = "Client";
 
         } else if(typeUtilisateur == 2) {

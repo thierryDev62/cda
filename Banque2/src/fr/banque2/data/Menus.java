@@ -24,35 +24,35 @@ public class Menus {
 
         switch(choix) {
             case 1:
-                Compte.creationNouveauCompte();
+                CompteGestion.creationNouveauCompte();
                 menuClient();
                 break;
             case 2:
-                Operation.versementSurUnCompte();
+                OperationGestion.versementSurUnCompte();
                 menuClient();
                 break;
             case 3:
-                Operation.retraitSurUnCompte();
+                OperationGestion.retraitSurUnCompte();
                 menuClient();
                 break;
             case 4:
-                Operation.virement();
+                OperationGestion.virement();
                 menuClient();
                 break;
             case 5:
-                Compte.consultationSolde();
+                CompteGestion.consultationSolde();
                 menuClient();
                 break;
             case 6:
-                Compte.listeOperations();
+                OperationGestion.listeOperations();
                 menuClient();
                 break;
             case 7:
-                Compte.totalVersements();
+                CompteGestion.totalVersements();
                 menuClient();
                 break;
             case 8:
-                Compte.totalRetraits();
+                CompteGestion.totalRetraits();
                 menuClient();
                 break;
             case 9:
