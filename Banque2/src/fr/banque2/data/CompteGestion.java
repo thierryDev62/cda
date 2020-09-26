@@ -7,7 +7,7 @@ public class CompteGestion {
     /**
      * Creation compte
      */
-    public static void creationNouveauCompte(){
+     static void creationNouveauCompte(){
         Integer id = Connexion.getId();
         for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
             if(id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
@@ -64,7 +64,7 @@ public class CompteGestion {
     /**
      * Consultation du solde d'un compte
      */
-    public static void consultationSolde() {
+     static void consultationSolde() {
         Integer id = Connexion.getId();
         TConsole.toprintln("*********************************************************" +
                 "\nConsultation du solde d'un compte" +
@@ -83,7 +83,7 @@ public class CompteGestion {
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 if(!Compte.getListeDesComptes().isEmpty()) {
                     System.out.println("Numéro de compte : " +
-                            compte.getCode() + 
+                            compte.getCode() +
                             "\n*********************************************************" +
                             "\nSolde du compte : " + compte.getSolde() + "€" +
                             "\n*********************************************************"
@@ -100,7 +100,7 @@ public class CompteGestion {
     /**
      * Total des versements
      */
-    public static void totalVersements() {
+     static void totalVersements() {
         Integer id = Connexion.getId();
         TConsole.toprintln("*********************************************************" +
                 "\nTotal des versements" +
@@ -123,7 +123,7 @@ public class CompteGestion {
     /**
      * Total des retraits
      */
-    public static void totalRetraits() {
+     static void totalRetraits() {
         Integer id = Connexion.getId();
         TConsole.toprintln("*********************************************************" +
                 "\nTotal des retraits" +
