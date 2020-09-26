@@ -1,7 +1,6 @@
 package fr.banque2.data;
 
 import diplo.tools.TConsole;
-import diplo.tools.Tools;
 
 import java.util.ArrayList;
 
@@ -86,24 +85,12 @@ public class Compte {
         return listeDesComptes;
     }
 
-    public static void setListeDesComptes(ArrayList<Compte> listeDesComptes) {
-        Compte.listeDesComptes = listeDesComptes;
-    }
-
     public Integer getTypeDeCompte() {
         return typeDeCompte;
     }
 
-    public void setTypeDeCompte(Integer typeDeCompte) {
-        this.typeDeCompte = typeDeCompte;
-    }
-
     public Integer getTitulaire() {
         return titulaire;
-    }
-
-    public void setTitulaire(Integer titulaire) {
-        this.titulaire = titulaire;
     }
 
 }

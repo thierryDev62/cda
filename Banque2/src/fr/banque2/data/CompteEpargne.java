@@ -10,8 +10,4 @@ public class CompteEpargne extends Compte {
     public Integer getTauxInteret() {
         return tauxInteret;
     }
-
-    public void setTauxInteret(Integer tauxInteret) {
-        this.tauxInteret = tauxInteret;
-    }
 }

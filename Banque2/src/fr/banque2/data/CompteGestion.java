@@ -17,7 +17,7 @@ public class CompteGestion {
                 );
                 TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
                 TConsole.toprint(">");
-                Integer choix = Tools.askThing(1);
+                int choix = Tools.askThing(1);
 
                 TConsole.toprintln("*********************************************************" +
                         "\nCréation d'un compte" +

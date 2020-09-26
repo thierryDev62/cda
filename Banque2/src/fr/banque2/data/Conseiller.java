@@ -65,12 +65,4 @@ public class Conseiller extends Utilisateurs{
         );
     }
 
-    public static ArrayList<Conseiller> getListeDesClients() {
-        return listeDesClients;
-    }
-
-    public static void setListeDesClients(ArrayList<Conseiller> listeDesClients) {
-        Conseiller.listeDesClients = listeDesClients;
-    }
-
 }

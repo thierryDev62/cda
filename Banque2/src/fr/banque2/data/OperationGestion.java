@@ -59,7 +59,7 @@ public class OperationGestion {
         Integer montantVersement = Tools.askThing(1);
 
         for(Compte compte : Compte.getListeDesComptes()) {
-            Integer soldeFinalCompte;
+            int soldeFinalCompte;
 
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 System.out.println("*********************************************************" +
@@ -73,9 +73,8 @@ public class OperationGestion {
                 System.out.println("Solde de compte après versement : " + compte.getSolde() + "€"
                 );
 
-                /**
-                 * Résumé de l'opération (appel de la méthode nouvelleOperation())
-                 */
+
+                 // Résumé de l'opération (appel de la méthode nouvelleOperation())
                 Integer numeroCompteOperation = compte.getCode();
                 Operation.nouvelleOperation(numeroCompteOperation, "Versement", montantVersement);
                 return;
@@ -113,9 +112,8 @@ public class OperationGestion {
 
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
 //TODO : factoriser
-                /**
-                 * Retrait sur un compte courant
-                 */
+
+                // Retrait sur un compte courant
                 if(compte instanceof  CompteCourant) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
                     System.out.println("*********************************************************" +
@@ -129,23 +127,18 @@ public class OperationGestion {
 
                     if((soldeFinalCompteCourant + decouvert) < montantRetrait) {
                         TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde(" + compte.getSolde() + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
-                        return;
                     } else {
                         soldeFinalCompteCourant -= montantRetrait;
                         compte.setSolde(soldeFinalCompteCourant);
                         System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
                         );
 
-                        /**
-                         * Résumé de l'opération
-                         */
                         Integer numeroCompteOperation = compte.getCode();
                         Operation.nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
-                        return;
                     }
-                    /**
-                     * Retrait sur un compte épargne
-                     */
+                    return;
+
+                    // Retrait sur un compte épargne
                 } else if(compte instanceof CompteEpargne) {
                     Integer soldeFinalCompteEpargne;
                     if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
@@ -159,30 +152,23 @@ public class OperationGestion {
 
                         if(soldeFinalCompteEpargne < montantRetrait) {
                             TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
-                            return;
                         } else {
                             soldeFinalCompteEpargne = compte.getSolde() - montantRetrait;
                             compte.setSolde(soldeFinalCompteEpargne);
                             System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
                             );
-                            /**
-                             * Résumé de l'opération
-                             */
+
                             Integer numeroCompteOperation = compte.getCode();
                             Operation.nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
-                            return;
                         }
+                        return;
                     }
                 }
             }
         }
         TConsole.toprintln("Le compte n'a pas été trouvé !");
     }
-    /**
-     * Virement de compte à compte
-     * @return
-     */
-
+    // Virement de compte à compte
     public static void virement() {
         Integer id = Connexion.getId();
         Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinalCompteDebiteur = null, soldeFinalCompteCrediteur = null, montantDebit;
@@ -190,9 +176,8 @@ public class OperationGestion {
                 "\nVirement de compte à compte" +
                 "\n*********************************************************"
         );
-        /**
-         * Compte débiteur
-         */
+
+        // Compte débiteur
         TConsole.toprintln("Saisir le numéro de compte à débiter");
         TConsole.toprint(">");
         Integer compteDebit = Tools.askThing(1);
@@ -231,9 +216,7 @@ public class OperationGestion {
                 "\n*******************************************************************************"
         );
 
-        /**
-         * Compte créditeur
-         */
+        // Compte créditeur
         TConsole.toprintln("Saisir le numéro de compte à créditer");
         TConsole.toprint(">");
         Integer compteCredit = Tools.askThing(1);

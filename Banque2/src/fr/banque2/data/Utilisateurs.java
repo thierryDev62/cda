@@ -10,7 +10,7 @@ public class Utilisateurs {
     private String nom;
     private String prenom;
     private String motDePasse;
-    private Integer typeUtilisateur; // 1 - Client | 2 - Conseiller
+    private Integer typeUtilisateur;
     private Boolean compteValide;
     private static ArrayList<Utilisateurs> listeDesUtilisateurs = new ArrayList<>();
 
@@ -83,16 +83,8 @@ public class Utilisateurs {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public String getPrenom() {
         return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public String getMotDePasse() {
@@ -103,20 +95,8 @@ public class Utilisateurs {
         this.motDePasse = motDePasse;
     }
 
-    public Integer getTypeUtilisateur() {
-        return typeUtilisateur;
-    }
-
-    public void setTypeUtilisateur(Integer typeUtilisateur) {
-        this.typeUtilisateur = typeUtilisateur;
-    }
-
     public static ArrayList<Utilisateurs> getListeDesUtilisateurs() {
         return listeDesUtilisateurs;
-    }
-
-    public static void setListeDesUtilisateurs(ArrayList<Utilisateurs> listeDesUtilisateurs) {
-        Utilisateurs.listeDesUtilisateurs = listeDesUtilisateurs;
     }
 
     public Boolean getCompteValide() {

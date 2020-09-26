@@ -11,8 +11,4 @@ public class CompteCourant extends Compte{
         return decouvert;
     }
 
-    public void setDecouvert(Integer decouvert) {
-        this.decouvert = decouvert;
-    }
-
 }

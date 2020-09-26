@@ -4,7 +4,6 @@ import diplo.tools.TConsole;
 import diplo.tools.Tools;
 
 public class Menus {
-    private static Integer choixTypeUtilisateur;
 
     public static void menuClient() {
         TConsole.toprintln("Faites votre choix :" +
@@ -74,7 +73,7 @@ public class Menus {
                 " | 3 - Voir la liste des comptes utilisateur" +
                 " | 0 - Se déconnecter"
         );
-        Integer choixMenuConseiller = Tools.askThing(1);
+        int choixMenuConseiller = Tools.askThing(1);
         switch(choixMenuConseiller) {
             case 1:
                 Conseiller.validationCompteUtilisateur();
@@ -97,7 +96,7 @@ public class Menus {
 
     public static void menuTypeUtilisateur() {
         TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller");
-        Integer type = Tools.askThing(1);
+        int type = Tools.askThing(1);
         switch(type){
             case 1:
                 menuAuthOuCreer(1);
@@ -113,7 +112,7 @@ public class Menus {
     }
     public static void menuAuthOuCreer(Integer type) {
         TConsole.toprintln("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte utilisateur | 0 - Se déconnecter");
-        Integer choix = Tools.askThing(1);
+        int choix = Tools.askThing(1);
         switch (choix) {
             case 1:
                 Connexion.login(type);
@@ -131,11 +130,4 @@ public class Menus {
         }
     }
 
-    public static Integer getChoixTypeUtilisateur() {
-        return choixTypeUtilisateur;
-    }
-
-    public static void setChoixTypeUtilisateur(Integer choixTypeUtilisateur) {
-        Menus.choixTypeUtilisateur = choixTypeUtilisateur;
-    }
 }
