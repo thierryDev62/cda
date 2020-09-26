@@ -36,6 +36,7 @@ public class Operation {
         Operation operation = new Operation(numeroCompteOperation, resultRandom, Banque.dateDuJour(), typeOperation, montant);
         System.out.println("*******************************************************************************" +
                 "\nRécapitulatif de l'opération :" +
+                "\nNuméro de compte : " + operation.numeroCompteOperation +
                 "\nDate d'opération : " + operation.dateOperation +
                 "\nNuméro d'opération : " + operation.numeroOperation +
                 "\nLibellé de l'opération : " + operation.libelleOperation +

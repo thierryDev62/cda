@@ -73,7 +73,6 @@ public class OperationGestion {
                 System.out.println("Solde de compte après versement : " + compte.getSolde() + "€"
                 );
 
-
                  // Résumé de l'opération (appel de la méthode nouvelleOperation())
                 Integer numeroCompteOperation = compte.getCode();
                 Operation.nouvelleOperation(numeroCompteOperation, "Versement", montantVersement);
@@ -108,62 +107,39 @@ public class OperationGestion {
         Integer montantRetrait = Tools.askThing(1);
 
         for (Compte compte : Compte.getListeDesComptes()) {
-            Integer soldeFinalCompteCourant;
+            Integer soldeFinal;
 
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
-//TODO : factoriser
+                soldeFinal = compte.getSolde();
 
                 // Retrait sur un compte courant
                 if(compte instanceof  CompteCourant) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
-                    System.out.println("*********************************************************" +
-                            "\nNuméro de compte : " +
-                            compte.getCode() +
-                            "\nMontant demandé : " + montantRetrait + "€" +
-                            "\nSolde du compte avant le retrait : " + compte.getSolde() + "€" +
-                            "\nDécouvert autorisé : " + decouvert + "€"
-                    );
-                    soldeFinalCompteCourant = compte.getSolde();
 
-                    if((soldeFinalCompteCourant + decouvert) < montantRetrait) {
+                    if((soldeFinal + decouvert) < montantRetrait) {
                         TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde(" + compte.getSolde() + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
-                    } else {
-                        soldeFinalCompteCourant -= montantRetrait;
-                        compte.setSolde(soldeFinalCompteCourant);
-                        System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
-                        );
-
-                        Integer numeroCompteOperation = compte.getCode();
-                        Operation.nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
                     }
-                    return;
 
                     // Retrait sur un compte épargne
                 } else if(compte instanceof CompteEpargne) {
-                    Integer soldeFinalCompteEpargne;
                     if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
-                        System.out.println("*********************************************************" +
-                                "\nNuméro de compte : " +
-                                compte.getCode() +
-                                "\nMontant demandé : " + montantRetrait + "€" +
-                                "\nSolde du compte avant le retrait : " + compte.getSolde() + "€"
-                        );
-                        soldeFinalCompteEpargne = compte.getSolde();
+                        soldeFinal = compte.getSolde();
 
-                        if(soldeFinalCompteEpargne < montantRetrait) {
+                        if(soldeFinal < montantRetrait) {
                             TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
-                        } else {
-                            soldeFinalCompteEpargne = compte.getSolde() - montantRetrait;
-                            compte.setSolde(soldeFinalCompteEpargne);
-                            System.out.println("Solde de compte après retrait : " + compte.getSolde() + "€"
-                            );
-
-                            Integer numeroCompteOperation = compte.getCode();
-                            Operation.nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
                         }
-                        return;
                     }
                 }
+                soldeFinal -= montantRetrait;
+                compte.setSolde(soldeFinal);
+                System.out.println("*********************************************************" +
+                        "\nSolde de compte après retrait : " + compte.getSolde() + "€" +
+                        "\n*********************************************************"
+                );
+
+                Integer numeroCompteOperation = compte.getCode();
+                Operation.nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
+                return;
             }
         }
         TConsole.toprintln("Le compte n'a pas été trouvé !");

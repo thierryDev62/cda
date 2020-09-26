@@ -82,15 +82,8 @@ public class CompteGestion {
         for (Compte compte : Compte.getListeDesComptes()) {
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 if(!Compte.getListeDesComptes().isEmpty()) {
-                    Integer typeDeCompte = compte.getTypeDeCompte();
-                    String type = "";
-                    if (typeDeCompte == 1) {
-                        type = "Compte courant";
-                    } else if (typeDeCompte == 2) {
-                        type = "Compte épargne";
-                    }
                     System.out.println("Numéro de compte : " +
-                            compte.getCode() + " | Type de compte : " + type +
+                            compte.getCode() + 
                             "\n*********************************************************" +
                             "\nSolde du compte : " + compte.getSolde() + "€" +
                             "\n*********************************************************"
