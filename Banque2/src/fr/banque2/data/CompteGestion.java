@@ -4,67 +4,11 @@ import diplo.tools.TConsole;
 import diplo.tools.Tools;
 
 public class CompteGestion {
-    /**
-     * Creation compte
-     */
-     static void creationNouveauCompte(){
-        Integer id = Connexion.getId();
-        for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
-            if(id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
-                TConsole.toprintln("*********************************************************" +
-                        "\nCréation d'un nouveau compte" +
-                        "\n*********************************************************"
-                );
-                TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
-                TConsole.toprint(">");
-                int choix = Tools.askThing(1);
 
-                TConsole.toprintln("*********************************************************" +
-                        "\nCréation d'un compte" +
-                        "\n*********************************************************"
-                );
-                TConsole.toprintln("Saisir le numéro de compte");
-                TConsole.toprint(">");
-                Integer numeroCompte = Tools.askThing(1);
-
-                for (Compte liste : Compte.getListeDesComptes()) {
-                    if (numeroCompte.equals(liste.getCode())) {
-                        TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
-                        CompteGestion.creationNouveauCompte();
-                        return;
-                    }
-                }
-                TConsole.toprintln("Saisir le solde du compte");
-                TConsole.toprint(">");
-                Integer solde = Tools.askThing(1);
-
-                Compte nouveauCompte = null;
-
-                if (choix == 1) {
-                    nouveauCompte = new CompteCourant(numeroCompte, solde,1, id);
-                } else if (choix == 2) {
-                    nouveauCompte = new CompteEpargne(numeroCompte, solde,2, id);
-                }
-
-                assert nouveauCompte != null;
-                TConsole.toprintln("*********************************************************" +
-                        "\nRécapitulatif de la création du compte :" +
-                        "\nNuméro de compte : " + nouveauCompte.getCode() +
-                        "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
-                        "\n*********************************************************" +
-                        "\n*       Le nouveau compte a bien été créé !     *" +
-                        "\n*********************************************************"
-                );
-                return;
-            } else {
-                Conseiller.pasMoyen();
-            }
-        }
-    }
     /**
      * Consultation du solde d'un compte
      */
-     static void consultationSolde() {
+     public static void consultationSolde() {
         Integer id = Connexion.getId();
         TConsole.toprintln("*********************************************************" +
                 "\nConsultation du solde d'un compte" +
@@ -100,7 +44,7 @@ public class CompteGestion {
     /**
      * Total des versements
      */
-     static void totalVersements() {
+     public static void totalVersements() {
         Integer id = Connexion.getId();
         TConsole.toprintln("*********************************************************" +
                 "\nTotal des versements" +
@@ -123,7 +67,7 @@ public class CompteGestion {
     /**
      * Total des retraits
      */
-     static void totalRetraits() {
+     public static void totalRetraits() {
         Integer id = Connexion.getId();
         TConsole.toprintln("*********************************************************" +
                 "\nTotal des retraits" +

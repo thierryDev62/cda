@@ -23,7 +23,7 @@ public class Menus {
 
         switch(choix) {
             case 1:
-                CompteGestion.creationNouveauCompte();
+                Compte.nouveauCompte();
                 menuClient();
                 break;
             case 2:

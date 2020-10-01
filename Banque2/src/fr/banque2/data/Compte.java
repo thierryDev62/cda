@@ -1,6 +1,7 @@
 package fr.banque2.data;
 
 import diplo.tools.TConsole;
+import diplo.tools.Tools;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,66 @@ public class Compte {
         this.titulaire = titulaire;
         listeDesComptes.add(this);
     }
+
+    /**
+     * Creation compte
+     */
+    public static void nouveauCompte(){
+        Integer id = Connexion.getId();
+        for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
+            if(id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
+                TConsole.toprintln("*********************************************************" +
+                        "\nCréation d'un nouveau compte" +
+                        "\n*********************************************************"
+                );
+                TConsole.toprintln("Quel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne");
+                TConsole.toprint(">");
+                int choix = Tools.askThing(1);
+
+                TConsole.toprintln("*********************************************************" +
+                        "\nCréation d'un compte" +
+                        "\n*********************************************************"
+                );
+                TConsole.toprintln("Saisir le numéro de compte");
+                TConsole.toprint(">");
+                Integer numeroCompte = Tools.askThing(1);
+
+                for (Compte liste : Compte.getListeDesComptes()) {
+                    if (numeroCompte.equals(liste.getCode())) {
+                        TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
+                        Compte.nouveauCompte();
+                        return;
+                    }
+                }
+                TConsole.toprintln("Saisir le solde du compte");
+                TConsole.toprint(">");
+                Integer solde = Tools.askThing(1);
+
+                Compte nouveauCompte = null;
+
+                if (choix == 1) {
+                    nouveauCompte = new CompteCourant(numeroCompte, solde,1, id);
+                } else if (choix == 2) {
+                    nouveauCompte = new CompteEpargne(numeroCompte, solde,2, id);
+                }
+
+                assert nouveauCompte != null;
+                TConsole.toprintln("*********************************************************" +
+                        "\nRécapitulatif de la création du compte :" +
+                        "\nNuméro de compte : " + nouveauCompte.getCode() +
+                        "\nSolde du compte : " + nouveauCompte.getSolde() + "€" +
+                        "\n*********************************************************" +
+                        "\n*       Le nouveau compte a bien été créé !     *" +
+                        "\n*********************************************************"
+                );
+                return;
+            } else {
+                Conseiller.pasMoyen();
+            }
+        }
+    }
+
+
     /**
      * Liste de tous les comptes d'un client connecté ou vu par le conseiller
      */
