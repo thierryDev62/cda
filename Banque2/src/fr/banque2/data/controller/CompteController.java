@@ -56,7 +56,9 @@ public class CompteController {
         Integer id = Connexion.getId();
         String typeCompte = "", afficheDecouvertOuTaux = "";
         Integer decouvert, tauxInteret;
+
         ArrayList<Compte> listeTousLesCompte = new ArrayList<>();
+
         System.out.println("*********************************************************" +
                 "\nListe des tous les comptes" +
                 "\n*********************************************************"

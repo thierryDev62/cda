@@ -3,6 +3,7 @@ package fr.banque2.data.controller;
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Menus;
+import fr.banque2.data.entity.Sauvegarde;
 import fr.banque2.data.entity.Utilisateurs;
 import fr.banque2.data.entity.Client;
 import fr.banque2.data.entity.Conseiller;
@@ -30,6 +31,17 @@ public class UtilisateursController {
 
         if(typeUtilisateur == 1) {
             Utilisateurs nouveauUtilisateur = new Client(id, nom, prenom, mdp, typeUtilisateur, true); // TODO : mettre à true pour les tests
+
+            Sauvegarde donneesUtilisateur = new Sauvegarde("utilisateurs");
+
+            donneesUtilisateur.sauvegardeDonnees(nouveauUtilisateur.getId() +
+                    nouveauUtilisateur.getNom() +
+                    nouveauUtilisateur.getPrenom() +
+                    nouveauUtilisateur.getMotDePasse() +
+                    typeUtilisateur +
+                    nouveauUtilisateur.getCompteValide()
+                    );
+
             nouveauUtilisateur.afficheRecapCreationUtilisateur();
 
         } else if(typeUtilisateur == 2) {

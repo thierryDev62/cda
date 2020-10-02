@@ -6,27 +6,24 @@ import java.util.ArrayList;
 public class Sauvegarde {
     private String extension = ".txt";
     private String nomDeFichier;
-    private static ArrayList<Sauvegarde> toutesLesDonneesUtilisateurs = new ArrayList<>();
+    private static ArrayList<String> toutesLesDonneesUtilisateurs = new ArrayList<String>();
 
     public Sauvegarde(String nomDeFichier) {
         this.nomDeFichier = nomDeFichier;
-        toutesLesDonneesUtilisateurs.add(this);
     }
 
-    public void sauvegardeDonnees() {
-        ArrayList<String> al = new ArrayList<String>();
-        al.add("Hello madmax");
+    public void sauvegardeDonnees(String util) {
+            toutesLesDonneesUtilisateurs.add(util);
 
         try {
             FileOutputStream fileOut = new FileOutputStream(this.nomDeFichier + extension);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(al);
+            out.writeObject(toutesLesDonneesUtilisateurs);
             out.close();
             System.out.println("Les données ont bien été sauvegardées !");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void lectureDonnees() {
@@ -52,5 +49,13 @@ public class Sauvegarde {
 
     public void setNomDeFichier(String nomDeFichier) {
         this.nomDeFichier = nomDeFichier;
+    }
+
+    public static ArrayList<String> getToutesLesDonneesUtilisateurs() {
+        return toutesLesDonneesUtilisateurs;
+    }
+
+    public static void setToutesLesDonneesUtilisateurs(ArrayList<String> toutesLesDonneesUtilisateurs) {
+        Sauvegarde.toutesLesDonneesUtilisateurs = toutesLesDonneesUtilisateurs;
     }
 }
