@@ -21,7 +21,7 @@ public class Compte {
                 "\nNuméro de compte : " + this.getCode() +
                 "\nSolde du compte : " + this.getSolde() + "€" +
                 "\n*********************************************************" +
-                "\n*       Le nouveau compte a bien été créé !     *" +
+                "\n*       Le nouveau compte a bien été créé !             *" +
                 "\n*********************************************************"
         );
     }

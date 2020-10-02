@@ -7,6 +7,7 @@ import fr.banque2.data.controller.ConseillerController;
 import fr.banque2.data.controller.OperationController;
 import fr.banque2.data.controller.UtilisateursController;
 import fr.banque2.data.entity.Connexion;
+import fr.banque2.data.entity.Sauvegarde;
 
 public class Menus {
 
@@ -100,7 +101,7 @@ public class Menus {
     }
 
     public static void menuTypeUtilisateur() {
-        TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller");
+        TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller | 3 - Test écriture | 4 - Test lecture");
         int type = Tools.askThing(1);
         switch(type){
             case 1:
@@ -109,6 +110,12 @@ public class Menus {
             case 2:
                 menuAuthOuCreer(2);
                 break;
+            case 3:
+                Sauvegarde sauveDonnees = new Sauvegarde("test");
+                sauveDonnees.sauvegardeDonnees();
+            case 4:
+                Sauvegarde lectureDonnees = new Sauvegarde("test");
+                lectureDonnees.lectureDonnees();
             default:
                 TConsole.toprintln("Vous devez saisir 1 ou 2");
                 menuTypeUtilisateur();

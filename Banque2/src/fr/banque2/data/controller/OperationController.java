@@ -12,29 +12,37 @@ public class OperationController {
      */
     public static void listeOperations() {
         Integer id = Connexion.getId();
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nListe des opérations sur le compte" +
-                "\n*********************************************************"
+                "\n*********************************************************" +
+                "\nSaisir le numéro de compte concerné (0 pour annuler)"
         );
-        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
-        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
-        TConsole.toprintln("Liste des opérations sur le compte n°" + saisiNumeroCompte);
-        TConsole.toprintln("*************************************************************************************");
+        System.out.println("Liste des opérations sur le compte n°" + saisiNumeroCompte +
+                "\n*************************************************************************************"
+        );
+
         for (Compte compte : Compte.getListeDesComptes()) {
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
-                for (Operation operation : Operation.getListeOperations()) {
-                    if (saisiNumeroCompte.equals(operation.getNumeroCompteOperation())) {
-                        System.out.println(
-                                " - Numéro d'opération : " + operation.getNumeroOperation() +
-                                        " - Date : " + operation.getDateOperation() +
-                                        " - Type : " + operation.getLibelleOperation() +
-                                        " - Montant : " + operation.getMontantOperation() + "€"
-                        );
+                if(!Operation.getListeOperations().isEmpty()) {
+                    for (Operation operation : Operation.getListeOperations()) {
+                        if (saisiNumeroCompte.equals(operation.getNumeroCompteOperation())) {
+                            System.out.println(
+                                    " - Numéro d'opération : " + operation.getNumeroOperation() +
+                                            " - Date : " + operation.getDateOperation() +
+                                            " - Type : " + operation.getLibelleOperation() +
+                                            " - Montant : " + operation.getMontantOperation() + "€"
+                            );
+                        }
                     }
+                    System.out.println("*************************************************************************************");
+                } else {
+                    System.out.println("Aucune opération à afficher" +
+                            "\n*************************************************************************************"
+                    );
+                    return;
                 }
-                TConsole.toprintln("*************************************************************************************");
             }
         }
     }
@@ -45,26 +53,23 @@ public class OperationController {
     public static void versementSurUnCompte() {
         Integer id = Connexion.getId();
 
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nVersement sur un compte" +
-                "\n*********************************************************"
+                "\n*********************************************************" +
+                "\nSaisir le numéro de compte concerné (0 pour annuler)"
         );
-        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
-        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         if(saisiNumeroCompte == 0) {
-            TConsole.toprintln(".:: Annulation de l'opération ::.");
+            System.out.println(".:: Annulation de l'opération ::.");
             return;
         }
 
-        TConsole.toprintln("Saisir le montant que vous voulez verser sur le compte");
-        TConsole.toprint(">");
+        System.out.println("Saisir le montant que vous voulez verser sur le compte");
         Integer montantVersement = Tools.askThing(1);
 
         for(Compte compte : Compte.getListeDesComptes()) {
             int soldeFinalCompte;
-
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 System.out.println("*********************************************************" +
                         "\nNuméro de compte : " +
@@ -83,7 +88,7 @@ public class OperationController {
                 return;
             }
         }
-        TConsole.toprintln("Le compte n'a pas été trouvé !");
+        System.out.println("Le compte n'a pas été trouvé !");
     }
     /**
      * Retrait sur un compte (courant ou épargne)
@@ -91,27 +96,24 @@ public class OperationController {
     public static void retraitSurUnCompte() {
         Integer id = Connexion.getId();
 
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nRetrait sur un compte" +
-                "\n*********************************************************"
+                "\n*********************************************************" +
+                "\nSaisir le numéro de compte concerné (0 pour annuler)"
         );
 
-        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
-        TConsole.toprint(">");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         if(saisiNumeroCompte == 0) {
-            TConsole.toprintln(".:: Annulation de l'opération ::.");
+            System.out.println(".:: Annulation de l'opération ::.");
             return;
         }
 
-        TConsole.toprintln("Saisir le montant que vous voulez retirer du compte");
-        TConsole.toprint(">");
+        System.out.println("Saisir le montant que vous voulez retirer du compte");
         Integer montantRetrait = Tools.askThing(1);
 
         for (Compte compte : Compte.getListeDesComptes()) {
             Integer soldeFinal;
-
             if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
                 soldeFinal = compte.getSolde();
 
@@ -120,7 +122,10 @@ public class OperationController {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
 
                     if((soldeFinal + decouvert) < montantRetrait) {
-                        TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde(" + compte.getSolde() + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
+                        System.out.println("Retrait impossible car la somme demandée de " + montantRetrait +
+                                "€ dépasse le solde(" + compte.getSolde() + "€) + le découvert autorisé("+ decouvert +
+                                "€) soit : " + (compte.getSolde() + ((CompteCourant) compte).getDecouvert()) + "€");
+                        return;
                     }
 
                     // Retrait sur un compte épargne
@@ -129,7 +134,8 @@ public class OperationController {
                         soldeFinal = compte.getSolde();
 
                         if(soldeFinal < montantRetrait) {
-                            TConsole.toprintln("Retrait impossible car la somme demandée de " + montantRetrait + "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
+                            System.out.println("Retrait impossible car la somme demandée de " + montantRetrait +
+                                    "€ dépasse le solde de votre compte soit : " + compte.getSolde() + "€");
                         }
                     }
                 }
@@ -146,7 +152,7 @@ public class OperationController {
                 return;
             }
         }
-        TConsole.toprintln("Le compte n'a pas été trouvé !");
+        System.out.println("Le compte n'a pas été trouvé !");
     }
 
     /**
@@ -155,18 +161,17 @@ public class OperationController {
     public static void virement() {
         Integer id = Connexion.getId();
         Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinalCompteDebiteur = null, soldeFinalCompteCrediteur = null, montantDebit;
-        TConsole.toprintln("*********************************************************" +
+
+        System.out.println("*********************************************************" +
                 "\nVirement de compte à compte" +
-                "\n*********************************************************"
+                "\n*********************************************************" +
+                "\nSaisir le numéro de compte à débiter"
         );
 
         // Compte débiteur
-        TConsole.toprintln("Saisir le numéro de compte à débiter");
-        TConsole.toprint(">");
         Integer compteDebit = Tools.askThing(1);
 
-        TConsole.toprintln("Saisir le montant à débiter");
-        TConsole.toprint(">");
+        System.out.println("Saisir le montant à débiter");
         montantDebit = Tools.askThing(1);
 
         //TODO : Tester pour ne pas faire un virement sur notre propre compte
@@ -197,8 +202,8 @@ public class OperationController {
 
         System.out.println(
                 "*******************************************************************************" +
-                "\nCompte débiteur : " + compteDebit + " - Solde avant traitement : " + soldeCompteDebiteur + "€" + " - Solde après traitement : " + soldeFinalCompteDebiteur + "€" +
-                "\n*******************************************************************************"
+                        "\nCompte débiteur : " + compteDebit + " - Solde avant traitement : " + soldeCompteDebiteur + "€" + " - Solde après traitement : " + soldeFinalCompteDebiteur + "€" +
+                        "\n*******************************************************************************"
         );
 
         // Compte créditeur
@@ -225,8 +230,8 @@ public class OperationController {
 
         System.out.println(
                 "*******************************************************************************" +
-                "\nCompte créditeur : " + compteCredit + " - Solde avant traitement : " + soldeCompteCrediteur + "€" + " - Solde après traitement : " + soldeFinalCompteCrediteur + "€" +
-                "\n*******************************************************************************"
+                        "\nCompte créditeur : " + compteCredit + " - Solde avant traitement : " + soldeCompteCrediteur + "€" + " - Solde après traitement : " + soldeFinalCompteCrediteur + "€" +
+                        "\n*******************************************************************************"
         );
     }
 }

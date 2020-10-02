@@ -29,7 +29,7 @@ public class UtilisateursController {
         String mdp = Tools.askThing();
 
         if(typeUtilisateur == 1) {
-            Utilisateurs nouveauUtilisateur = new Client(id, nom, prenom, mdp, typeUtilisateur, false); // TODO : mettre à true pour les tests
+            Utilisateurs nouveauUtilisateur = new Client(id, nom, prenom, mdp, typeUtilisateur, true); // TODO : mettre à true pour les tests
             nouveauUtilisateur.afficheRecapCreationUtilisateur();
 
         } else if(typeUtilisateur == 2) {
@@ -38,17 +38,6 @@ public class UtilisateursController {
 
         }
 
-        /*TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
-                "\n-----------------------------------------------" +
-                "\nIdentifiant : " + nouveauUtilisateur.getId() +
-                "\nNom : " + nouveauUtilisateur.getNom() +
-                "\nPrénom : " + nouveauUtilisateur.getPrenom() +
-                "\nMot de passe : " + nouveauUtilisateur.getMotDePasse().substring(0, 2) + "***" +
-                "\nType d'utilisateur : " + nomDuTypeUtilisateur
-        );
-        TConsole.toprintln("*********************************************************" +
-                "\nL'utilisateur a bien été créé !" +
-                "\n*********************************************************");*/
         Menus.menuAuthOuCreer(typeUtilisateur);
 
     }

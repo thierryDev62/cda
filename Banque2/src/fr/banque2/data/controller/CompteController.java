@@ -16,16 +16,14 @@ public class CompteController {
                 System.out.println("*********************************************************" +
                         "\nMenu de création d'un nouveau compte bancaire" +
                         "\n*********************************************************" +
-                        "\nQuel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne" +
-                        "\n>"
+                        "\nQuel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne"
                 );
                 Scanner scanChoix = new Scanner(System.in);
                 int choix = scanChoix.nextInt();
                 System.out.println("*********************************************************" +
                         "\nCréation d'un compte bancaire" +
                         "\n*********************************************************" +
-                        "\nSaisir le numéro de compte" +
-                        "\n>"
+                        "\nSaisir le numéro de compte"
                 );
                 Scanner scanNumeroCompte = new Scanner(System.in);
                 int numeroCompte = scanNumeroCompte.nextInt();
@@ -40,9 +38,11 @@ public class CompteController {
                 if (choix == 1) {
                    Compte nouveauCompte = new CompteCourant(numeroCompte, 1, id);
                     nouveauCompte.afficheCreationCompte();
+                    return;
                 } else if (choix == 2) {
                     Compte nouveauCompte = new CompteEpargne(numeroCompte, 2, id);
                     nouveauCompte.afficheCreationCompte();
+                    return;
                 }
             } else {
                 ConseillerController.pasMoyen();
@@ -107,8 +107,7 @@ public class CompteController {
         System.out.println("*********************************************************" +
                 "\nConsultation du solde d'un compte" +
                 "\n*********************************************************" +
-                "\nSaisir le numéro de compte concerné (0 pour annuler)" +
-                "\n>"
+                "\nSaisir le numéro de compte concerné (0 pour annuler)"
         );
         Scanner scanSaisiNumeroCompte = new Scanner(System.in);
         int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
@@ -143,8 +142,7 @@ public class CompteController {
         System.out.println("*********************************************************" +
                 "\nTotal des versements" +
                 "\n*********************************************************" +
-                "\nSaisir le numéro de compte concerné (0 pour annuler)" +
-                "\n>"
+                "\nSaisir le numéro de compte concerné (0 pour annuler)"
         );
         Scanner scanSaisiNumeroCompte = new Scanner(System.in);
         int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
@@ -167,8 +165,7 @@ public class CompteController {
         System.out.println("*********************************************************" +
                 "\nTotal des retraits" +
                 "\n*********************************************************" +
-                "\nSaisir le numéro de compte concerné (0 pour annuler)" +
-                "\n>"
+                "\nSaisir le numéro de compte concerné (0 pour annuler)"
         );
         Scanner scanSaisiNumeroCompte = new Scanner(System.in);
         int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
