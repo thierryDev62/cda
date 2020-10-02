@@ -1,7 +1,5 @@
 package fr.banque2.data.controller;
 
-import diplo.tools.TConsole;
-import diplo.tools.Tools;
 import fr.banque2.data.*;
 import fr.banque2.data.entity.*;
 import java.util.ArrayList;
@@ -21,19 +19,20 @@ public class CompteController {
                         "\nQuel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne" +
                         "\n>"
                 );
-                Scanner sc = new Scanner(System.in);
-                int choix = sc.nextInt();
+                Scanner scanChoix = new Scanner(System.in);
+                int choix = scanChoix.nextInt();
                 System.out.println("*********************************************************" +
                         "\nCréation d'un compte bancaire" +
                         "\n*********************************************************" +
                         "\nSaisir le numéro de compte" +
                         "\n>"
                 );
-                Integer numeroCompte = Tools.askThing(1);
+                Scanner scanNumeroCompte = new Scanner(System.in);
+                int numeroCompte = scanNumeroCompte.nextInt();
 
                 for (Compte liste : Compte.getListeDesComptes()) {
-                    if (numeroCompte.equals(liste.getCode())) {
-                        TConsole.toprintln("Ce numéro de compte existe déjà, veuillez en saisir un autre");
+                    if (numeroCompte == liste.getCode()) {
+                        System.out.println("Ce numéro de compte existe déjà, veuillez en saisir un autre");
                         nouveauCompte();
                         return;
                     }
@@ -58,7 +57,7 @@ public class CompteController {
         String typeCompte = "", afficheDecouvertOuTaux = "";
         Integer decouvert, tauxInteret;
         ArrayList<Compte> listeTousLesCompte = new ArrayList<>();
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nListe des tous les comptes" +
                 "\n*********************************************************"
         );
@@ -92,7 +91,7 @@ public class CompteController {
                 Menus.menuConseiller();
             }
         } else {
-            TConsole.toprintln("Aucun compte de créé !");
+            System.out.println("Aucun compte de créé !");
             if(type == 2) {
                 Menus.menuConseiller();
             } else if(type == 1) {
@@ -105,21 +104,21 @@ public class CompteController {
      */
     public static void consultationSolde() {
         Integer id = Connexion.getId();
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nConsultation du solde d'un compte" +
-                "\n*********************************************************"
+                "\n*********************************************************" +
+                "\nSaisir le numéro de compte concerné (0 pour annuler)" +
+                "\n>"
         );
-
-        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
-        TConsole.toprint(">");
-        Integer saisiNumeroCompte = Tools.askThing(1);
+        Scanner scanSaisiNumeroCompte = new Scanner(System.in);
+        int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
 
         if(saisiNumeroCompte == 0) {
-            TConsole.toprintln(".:: Annulation de l'opération ::.");
+            System.out.println(".:: Annulation de l'opération ::.");
         }
 
         for (Compte compte : Compte.getListeDesComptes()) {
-            if (saisiNumeroCompte.equals(compte.getCode()) && compte.getTitulaire().equals(id)) {
+            if (saisiNumeroCompte == (compte.getCode()) && compte.getTitulaire().equals(id)) {
                 if(!Compte.getListeDesComptes().isEmpty()) {
                     System.out.println("Numéro de compte : " +
                             compte.getCode() +
@@ -129,10 +128,10 @@ public class CompteController {
                     );
                     return;
                 } else {
-                    TConsole.toprintln("Aucun compte a afficher");
+                    System.out.println("Aucun compte a afficher");
                 }
             } else {
-                TConsole.toprintln("Aucun compte avec ce numéro");
+                System.out.println("Aucun compte avec ce numéro");
             }
         }
     }
@@ -141,45 +140,48 @@ public class CompteController {
      */
     public static void totalVersements() {
         Integer id = Connexion.getId();
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nTotal des versements" +
-                "\n*********************************************************"
+                "\n*********************************************************" +
+                "\nSaisir le numéro de compte concerné (0 pour annuler)" +
+                "\n>"
         );
-        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
-        TConsole.toprint(">");
-        Integer saisiNumeroCompte = Tools.askThing(1);
+        Scanner scanSaisiNumeroCompte = new Scanner(System.in);
+        int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
         Integer totalVersement = 0;
-        TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
+        System.out.println("Total des versements pour le compte n°" + saisiNumeroCompte);
         for (Compte compte : Compte.getListeDesComptes()) {
             for (Operation versement : Operation.getListeOperations()) {
-                if (saisiNumeroCompte.equals(compte.getCode()) && saisiNumeroCompte.equals(versement.getNumeroCompteOperation()) && versement.getLibelleOperation().equals("Versement") && compte.getTitulaire().equals(id)) {
+                if (saisiNumeroCompte == (compte.getCode()) && saisiNumeroCompte == (versement.getNumeroCompteOperation()) && versement.getLibelleOperation().equals("Versement") && compte.getTitulaire().equals(id)) {
                     totalVersement += versement.getMontantOperation();
                 }
             }
         }
-        TConsole.toprintln("Montant total des versements : " + totalVersement + "€");
+        System.out.println("Montant total des versements : " + totalVersement + "€");
     }
     /**
      * Total des retraits
      */
     public static void totalRetraits() {
         Integer id = Connexion.getId();
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nTotal des retraits" +
-                "\n*********************************************************"
+                "\n*********************************************************" +
+                "\nSaisir le numéro de compte concerné (0 pour annuler)" +
+                "\n>"
         );
-        TConsole.toprintln("Saisir le numéro de compte concerné (0 pour annuler)");
-        TConsole.toprint(">");
-        Integer saisiNumeroCompte = Tools.askThing(1);
+        Scanner scanSaisiNumeroCompte = new Scanner(System.in);
+        int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
         Integer totalRetrait = 0;
-        TConsole.toprintln("Total des versements pour le compte n°" + saisiNumeroCompte);
+        System.out.println();
+        System.out.println("Total des retraits sur le compte n°" + saisiNumeroCompte);
         for (Compte compte : Compte.getListeDesComptes()) {
             for (Operation retrait : Operation.getListeOperations()) {
-                if (saisiNumeroCompte.equals(compte.getCode()) && saisiNumeroCompte.equals(retrait.getNumeroCompteOperation()) && retrait.getLibelleOperation().equals("Retrait") && compte.getTitulaire().equals(id)){
+                if (saisiNumeroCompte == (compte.getCode()) && saisiNumeroCompte == (retrait.getNumeroCompteOperation()) && retrait.getLibelleOperation().equals("Retrait") && compte.getTitulaire().equals(id)){
                     totalRetrait += retrait.getMontantOperation();
                 }
             }
         }
-        TConsole.toprintln("Montant total des retraits : " + totalRetrait + "€");
+        System.out.println("Total des retraits sur le compte n°" + saisiNumeroCompte);
     }
 }

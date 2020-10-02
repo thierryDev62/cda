@@ -10,7 +10,6 @@ public class Compte {
 
     public Compte(Integer code, Integer typeDeCompte, Integer titulaire) {
         this.code = code;
-        //this.solde = solde;
         this.typeDeCompte = typeDeCompte;
         this.titulaire = titulaire;
         listeDesComptes.add(this);
@@ -47,4 +46,19 @@ public class Compte {
         return titulaire;
     }
 
+    public Integer getTypeDeCompte() {
+        return typeDeCompte;
+    }
+
+    public void setTypeDeCompte(Integer typeDeCompte) {
+        this.typeDeCompte = typeDeCompte;
+    }
+
+    public void setTitulaire(Integer titulaire) {
+        this.titulaire = titulaire;
+    }
+
+    public static void setListeDesComptes(ArrayList<Compte> listeDesComptes) {
+        Compte.listeDesComptes = listeDesComptes;
+    }
 }

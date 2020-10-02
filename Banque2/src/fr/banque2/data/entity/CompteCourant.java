@@ -1,7 +1,5 @@
 package fr.banque2.data.entity;
 
-import fr.banque2.data.entity.Compte;
-
 public class CompteCourant extends Compte {
     private Integer decouvert = 500;
 

@@ -3,6 +3,7 @@ package fr.banque2.data.controller;
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Banque;
+import fr.banque2.data.Menus;
 import fr.banque2.data.entity.*;
 
 public class OperationController {
@@ -147,7 +148,10 @@ public class OperationController {
         }
         TConsole.toprintln("Le compte n'a pas été trouvé !");
     }
-    // Virement de compte à compte
+
+    /**
+     * Virement de compte à compte
+     */
     public static void virement() {
         Integer id = Connexion.getId();
         Integer soldeCompteDebiteur = null, soldeCompteCrediteur = null, soldeFinalCompteDebiteur = null, soldeFinalCompteCrediteur = null, montantDebit;
@@ -191,7 +195,8 @@ public class OperationController {
             }
         }
 
-        System.out.println("*******************************************************************************" +
+        System.out.println(
+                "*******************************************************************************" +
                 "\nCompte débiteur : " + compteDebit + " - Solde avant traitement : " + soldeCompteDebiteur + "€" + " - Solde après traitement : " + soldeFinalCompteDebiteur + "€" +
                 "\n*******************************************************************************"
         );
@@ -202,7 +207,7 @@ public class OperationController {
         Integer compteCredit = Tools.askThing(1);
 
         for(Compte compte : Compte.getListeDesComptes()) {
-            if(compteCredit.equals(compte.getCode())){
+            if(compteCredit.equals(compte.getCode()) && !compteCredit.equals(compteDebit)){
                 soldeCompteCrediteur = compte.getSolde();
                 compteCredit = compte.getCode();
 
@@ -212,10 +217,14 @@ public class OperationController {
 
                 Operation operation = new Operation(compteCredit, Banque.dateDuJour(), "Versement", montantDebit);
                 operation.affichageOperation();
+            } else {
+                System.out.println("Vous ne pouvez virer de l'argent sur votre propre compte ! L'opération a été annulé.");
+                Menus.menuClient();
             }
         }
 
-        System.out.println("*******************************************************************************" +
+        System.out.println(
+                "*******************************************************************************" +
                 "\nCompte créditeur : " + compteCredit + " - Solde avant traitement : " + soldeCompteCrediteur + "€" + " - Solde après traitement : " + soldeFinalCompteCrediteur + "€" +
                 "\n*******************************************************************************"
         );
