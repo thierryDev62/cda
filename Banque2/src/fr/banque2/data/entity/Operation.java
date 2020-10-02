@@ -1,11 +1,8 @@
-package fr.banque2.data;
+package fr.banque2.data.entity;
 
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
-
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Operation {
     private Integer numeroCompteOperation;
@@ -15,9 +12,9 @@ public class Operation {
     private Integer montantOperation;
     private static ArrayList<Operation> listeOperations = new ArrayList<>();
 
-    public Operation(Integer numeroCompteOperation, Integer numeroOperation, String dateOperation, String libelleOperation, Integer montantOperation) {
+    public Operation(Integer numeroCompteOperation, String dateOperation, String libelleOperation, Integer montantOperation) {
         this.numeroCompteOperation = numeroCompteOperation;
-        this.numeroOperation = numeroOperation;
+        this.numeroOperation = Tools.intRandom();;
         this.dateOperation = dateOperation;
         this.libelleOperation = libelleOperation;
         this.montantOperation = montantOperation;
@@ -25,26 +22,20 @@ public class Operation {
     }
 
     /**
-     * Ajout d'une nouvelle opération
-     * @param numeroCompteOperation Numéro de compte
-     * @param typeOperation Type d'opération
-     * @param montant Montant du versement
+     * Affichage du résultat de l'ajout d'une nouvelle opération
      */
-    public static void nouvelleOperation(Integer numeroCompteOperation, String typeOperation, Integer montant){
-        Integer resultRandom = Tools.intRandom(); // Numéro d'opération au hasard
-
-        Operation operation = new Operation(numeroCompteOperation, resultRandom, Banque.dateDuJour(), typeOperation, montant);
+    public void affichageOperation(){
         System.out.println("*******************************************************************************" +
                 "\nRécapitulatif de l'opération :" +
-                "\nNuméro de compte : " + operation.numeroCompteOperation +
-                "\nDate d'opération : " + operation.dateOperation +
-                "\nNuméro d'opération : " + operation.numeroOperation +
-                "\nLibellé de l'opération : " + operation.libelleOperation +
-                "\nMontant : " + montant + "€" +
+                "\nNuméro de compte : " + this.numeroCompteOperation +
+                "\nDate d'opération : " + this.dateOperation +
+                "\nNuméro d'opération : " + this.numeroOperation +
+                "\nLibellé de l'opération : " + this.libelleOperation +
+                "\nMontant : " + this.montantOperation + "€" +
                 "\n*******************************************************************************"
         );
         TConsole.toprintln(
-                "Le "+ typeOperation + " de " + montant + "€ à bien été effectué !" +
+                "Le "+ this.libelleOperation + " de " + this.montantOperation + "€ à bien été effectué !" +
                         "\n*******************************************************************************"
         );
     }

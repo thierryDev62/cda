@@ -1,21 +1,16 @@
-package fr.banque2.data;
+package fr.banque2.data.controller;
 
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
+import fr.banque2.data.entity.Client;
+import fr.banque2.data.Menus;
+import fr.banque2.data.entity.Utilisateurs;
 
-import java.util.ArrayList;
-
-public class Conseiller extends Utilisateurs{
-    private static ArrayList<Conseiller> listeDesClients = new ArrayList<>();
-
-    public Conseiller(Integer id, String nom, String prenom, String motDePasse, Integer typeUtilisateur, Boolean compteValide) {
-        super(id, nom, prenom, motDePasse, typeUtilisateur, compteValide);
-        listeDesClients.add(this);
-    }
-
+public class ConseillerController {
     /**
      * Validation d'un compte utilisateur pas un conseiller
      */
+
     public static void validationCompteUtilisateur() {
         TConsole.toprintln("*********************************************************" +
                 "\nValidation d'un compte" +
@@ -64,5 +59,4 @@ public class Conseiller extends Utilisateurs{
                         "\n**********************************************************************"
         );
     }
-
 }

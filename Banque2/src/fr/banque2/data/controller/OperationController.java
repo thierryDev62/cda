@@ -1,9 +1,11 @@
-package fr.banque2.data;
+package fr.banque2.data.controller;
 
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
+import fr.banque2.data.Banque;
+import fr.banque2.data.entity.*;
 
-public class OperationGestion {
+public class OperationController {
     /**
      * Liste des opérations sur un compte
      */
@@ -35,6 +37,7 @@ public class OperationGestion {
             }
         }
     }
+    // TODO : faire un premier versement car le solde est à 0
     /**
      * Versement sur un compte (courant ou épargne)
      */
@@ -73,13 +76,12 @@ public class OperationGestion {
                 System.out.println("Solde de compte après versement : " + compte.getSolde() + "€"
                 );
 
-                 // Résumé de l'opération (appel de la méthode nouvelleOperation())
                 Integer numeroCompteOperation = compte.getCode();
-                Operation.nouvelleOperation(numeroCompteOperation, "Versement", montantVersement);
+                Operation operation = new Operation(numeroCompteOperation, Banque.dateDuJour(), "Versement", montantVersement);
+                operation.affichageOperation();
                 return;
             }
         }
-
         TConsole.toprintln("Le compte n'a pas été trouvé !");
     }
     /**
@@ -113,7 +115,7 @@ public class OperationGestion {
                 soldeFinal = compte.getSolde();
 
                 // Retrait sur un compte courant
-                if(compte instanceof  CompteCourant) {
+                if(compte instanceof CompteCourant) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
 
                     if((soldeFinal + decouvert) < montantRetrait) {
@@ -138,7 +140,8 @@ public class OperationGestion {
                 );
 
                 Integer numeroCompteOperation = compte.getCode();
-                Operation.nouvelleOperation(numeroCompteOperation, "Retrait", montantRetrait);
+                Operation operation = new Operation(numeroCompteOperation, Banque.dateDuJour(), "Retrait", montantRetrait);
+                operation.affichageOperation();
                 return;
             }
         }
@@ -183,7 +186,8 @@ public class OperationGestion {
                 soldeFinalCompteDebiteur = soldeCompteDebiteur - montantDebit;
                 compte.setSolde(soldeFinalCompteDebiteur);
 
-                Operation.nouvelleOperation(compteDebit, "Virement envoyé", montantDebit);
+                Operation operation = new Operation(compteDebit, Banque.dateDuJour(), "Virement sur un compte", montantDebit);
+                operation.affichageOperation();
             }
         }
 
@@ -206,7 +210,8 @@ public class OperationGestion {
 
                 compte.setSolde(soldeFinalCompteCrediteur);
 
-                Operation.nouvelleOperation(compteCredit, "Virement reçu", montantDebit);
+                Operation operation = new Operation(compteCredit, Banque.dateDuJour(), "Versement", montantDebit);
+                operation.affichageOperation();
             }
         }
 

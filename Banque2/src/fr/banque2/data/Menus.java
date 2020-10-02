@@ -2,6 +2,11 @@ package fr.banque2.data;
 
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
+import fr.banque2.data.controller.CompteController;
+import fr.banque2.data.controller.ConseillerController;
+import fr.banque2.data.controller.OperationController;
+import fr.banque2.data.controller.UtilisateursController;
+import fr.banque2.data.entity.Connexion;
 
 public class Menus {
 
@@ -23,45 +28,45 @@ public class Menus {
 
         switch(choix) {
             case 1:
-                Compte.nouveauCompte();
+                CompteController.nouveauCompte();
                 menuClient();
                 break;
             case 2:
-                OperationGestion.versementSurUnCompte();
+                OperationController.versementSurUnCompte();
                 menuClient();
                 break;
             case 3:
-                OperationGestion.retraitSurUnCompte();
+                OperationController.retraitSurUnCompte();
                 menuClient();
                 break;
             case 4:
-                OperationGestion.virement();
+                OperationController.virement();
                 menuClient();
                 break;
             case 5:
-                CompteGestion.consultationSolde();
+                CompteController.consultationSolde();
                 menuClient();
                 break;
             case 6:
-                OperationGestion.listeOperations();
+                OperationController.listeOperations();
                 menuClient();
                 break;
             case 7:
-                CompteGestion.totalVersements();
+                CompteController.totalVersements();
                 menuClient();
                 break;
             case 8:
-                CompteGestion.totalRetraits();
+                CompteController.totalRetraits();
                 menuClient();
                 break;
             case 9:
-                Compte.listeTousLesComptes(1);
+                CompteController.listeTousLesComptes(1);
                 menuClient();
                 break;
             case 0:
                 menuTypeUtilisateur();
             default:
-                TConsole.toprintln("Veuillez saisir un chiffre de 1 à 10");
+                TConsole.toprintln("Veuillez saisir un chiffre de 1 à 9 ou 0");
                 menuClient();
                 break;
         }
@@ -76,13 +81,13 @@ public class Menus {
         int choixMenuConseiller = Tools.askThing(1);
         switch(choixMenuConseiller) {
             case 1:
-                Conseiller.validationCompteUtilisateur();
+                ConseillerController.validationCompteUtilisateur();
                 break;
             case 2:
-                Compte.listeTousLesComptes(2);
+                CompteController.listeTousLesComptes(2);
                 break;
             case 3:
-                Conseiller.listeDesClients();
+                ConseillerController.listeDesClients();
                 break;
             case 0:
                 menuTypeUtilisateur();
@@ -118,7 +123,7 @@ public class Menus {
                 Connexion.login(type);
                 break;
             case 2:
-                Utilisateurs.creationUtilisateur(type);
+                UtilisateursController.creationUtilisateur(type);
                 break;
             case 0:
                 menuTypeUtilisateur();
@@ -129,5 +134,4 @@ public class Menus {
                 break;
         }
     }
-
 }

@@ -1,7 +1,8 @@
-package fr.banque2.data;
+package fr.banque2.data.entity;
 
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
+import fr.banque2.data.Menus;
 
 public class Connexion {
     private static Integer id;
@@ -49,5 +50,17 @@ public class Connexion {
 
     public static Integer getId() {
         return id;
+    }
+
+    public static void setId(Integer id) {
+        Connexion.id = id;
+    }
+
+    public static String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public static void setMotDePasse(String motDePasse) {
+        Connexion.motDePasse = motDePasse;
     }
 }
