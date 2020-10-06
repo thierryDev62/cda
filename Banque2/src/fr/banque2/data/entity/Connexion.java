@@ -4,6 +4,11 @@ import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Menus;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
 public class Connexion {
     private static Integer id;
     private static String motDePasse;
@@ -27,24 +32,50 @@ public class Connexion {
         TConsole.toprintln("Saisir votre mot de passe :");
         String motdepasse = Tools.askThing();
 
-        if(!Utilisateurs.getListeDesUtilisateurs().isEmpty()) {
-            for (Utilisateurs verifIdEtMdp : Utilisateurs.getListeDesUtilisateurs()) {
-                if (verifIdEtMdp instanceof Client && identifiant.equals(verifIdEtMdp.getId()) && motdepasse.equals(verifIdEtMdp.getMotDePasse()) && type == 1) {
-                    TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + verifIdEtMdp.getPrenom());
-                    Connexion login = new Connexion(identifiant, motdepasse);
-                    Menus.menuClient();
-                } else if (verifIdEtMdp instanceof Conseiller && identifiant.equals(verifIdEtMdp.getId()) && motdepasse.equals(verifIdEtMdp.getMotDePasse()) && type == 2){
-                    TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous conseiller " + verifIdEtMdp.getNom() + " " + verifIdEtMdp.getPrenom());
-                    verifIdEtMdp.setId(identifiant);
-                    verifIdEtMdp.setMotDePasse(motdepasse);
-                    Connexion login = new Connexion(identifiant, motdepasse);
-                    Menus.menuConseiller();
+        if(type == 1) {
+            try {
+                FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+
+                ArrayList<Client> listeClients = (ArrayList<Client>) ois.readObject();
+                ois.close();
+
+                for (Client client : listeClients) {
+                    if (identifiant.equals(client.getId()) && motdepasse.equals(client.getMotDePasse())) {
+                        TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + client.getPrenom());
+                        Connexion login = new Connexion(identifiant, motdepasse);
+                        Menus.menuClient();
+                    } else {
+                        System.out.println("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
+                        login(type);
+                    }
                 }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
             }
-            TConsole.toprintln("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
-        } else {
-            TConsole.toprintln("Il n'y a pas encore de compte utilisateur d'enregistré");
+        } else if(type == 2) {
+            try {
+                FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/conseillers.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+
+                ArrayList<Conseiller> listeClients = (ArrayList<Conseiller>) ois.readObject();
+                ois.close();
+
+                for (Conseiller conseiller : listeClients) {
+                    if (identifiant.equals(conseiller.getId()) && motdepasse.equals(conseiller.getMotDePasse())) {
+                        TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + conseiller.getPrenom());
+                        Connexion login = new Connexion(identifiant, motdepasse);
+                        Menus.menuConseiller();
+                    } else {
+                        System.out.println("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
+                        login(type);
+                    }
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
+
         login(type);
     }
 

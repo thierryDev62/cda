@@ -6,6 +6,11 @@ import fr.banque2.data.entity.Client;
 import fr.banque2.data.Menus;
 import fr.banque2.data.entity.Utilisateurs;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
 public class ConseillerController {
     /**
      * Validation d'un compte utilisateur pas un conseiller
@@ -33,18 +38,30 @@ public class ConseillerController {
      */
     public static void listeDesClients() {
         TConsole.toprintln("*********************************************************" +
-                "\nListe des utilisateurs" +
+                "\nListe des clients de la banque" +
                 "\n*********************************************************"
         );
-        for(Utilisateurs client : Utilisateurs.getListeDesUtilisateurs()) {
-            if(client instanceof Client) {
-                TConsole.toprintln("Id : " + client.getId() +
-                        " | Nom : " + client.getNom() +
-                        " | Prenom : " + client.getPrenom() +
-                        " | Status du compte : " + (client.getCompteValide() ? "Validé" : "En attente de validation")
+        try
+        {
+            FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            ArrayList<Client> listeClients = (ArrayList<Client>) ois.readObject();
+            ois.close();
+
+            for (Client client : listeClients) {
+                System.out.println(
+                        "ID : " + client.getId() +
+                                " - Nom : " + client.getNom() +
+                                " - Prenom : " + client.getPrenom() +
+                                " - Mot de passe : " + client.getMotDePasse() +
+                                " - Compte valide : " + client.getCompteValide()
                 );
             }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        System.out.println("*********************************************************");
         Menus.menuConseiller();
     }
 

@@ -3,7 +3,6 @@ package fr.banque2.data.controller;
 import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Menus;
-import fr.banque2.data.entity.Sauvegarde;
 import fr.banque2.data.entity.Utilisateurs;
 import fr.banque2.data.entity.Client;
 import fr.banque2.data.entity.Conseiller;
@@ -36,7 +35,7 @@ public class UtilisateursController {
 
             ArrayList<Client> nouveauClient = Client.getListeDesClients();
 
-            nouveauClient.add(new Client(id, nom, prenom, mdp, typeUtilisateur, true));
+            nouveauClient.add(new Client(id, nom, prenom, mdp, typeUtilisateur, true)); // TODO : mettre à true pour les tests
 
             try {
                 FileOutputStream fos = new FileOutputStream("src/fr/banque2/data/donnees/clients.txt");
@@ -52,31 +51,24 @@ public class UtilisateursController {
 
 
         } else if(typeUtilisateur == 2) {
-            Utilisateurs nouveauUtilisateur = new Conseiller(id, nom, prenom, mdp, typeUtilisateur, true);
-            nouveauUtilisateur.afficheRecapCreationUtilisateur();
+            ArrayList<Conseiller> nouveauConseiller = Conseiller.getListeDesConseillers();
+
+            nouveauConseiller.add(new Conseiller(id, nom, prenom, mdp, typeUtilisateur, true));
+
+            try {
+                FileOutputStream fos = new FileOutputStream("src/fr/banque2/data/donnees/conseillers.txt");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                oos.writeObject(nouveauConseiller);
+                oos.close();
+                System.out.println("Les données utilisateur ont bien été sauvegardé !");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
         }
         Menus.menuAuthOuCreer(typeUtilisateur);
-    }
-    public static void lire() {
-        try {
-            FileInputStream fis = new FileInputStream("utilisateurs.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-
-            ArrayList<Utilisateurs> listeUtil = (ArrayList<Utilisateurs>) ois.readObject();
-            ois.close();
-
-            for (Utilisateurs s : listeUtil) {
-                System.out.println(
-                        "ID : " + s.getId() +
-                                "Nom : " + s.getNom() +
-                                "Prenom : " + s.getPrenom() +
-                                "Mot de passe : " + s.getMotDePasse() +
-                                "Compte valide : " + s.getCompteValide()
-                );
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -6,15 +6,7 @@ import fr.banque2.data.controller.CompteController;
 import fr.banque2.data.controller.ConseillerController;
 import fr.banque2.data.controller.OperationController;
 import fr.banque2.data.controller.UtilisateursController;
-import fr.banque2.data.entity.Client;
 import fr.banque2.data.entity.Connexion;
-import fr.banque2.data.entity.Sauvegarde;
-import fr.banque2.data.entity.Utilisateurs;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
 
 public class Menus {
 
@@ -83,7 +75,7 @@ public class Menus {
         TConsole.toprintln("Faites votre choix :" +
                 " | 1 - Valider un compte utilisateur" +
                 " | 2 - Voir la liste des comptes" +
-                " | 3 - Voir la liste des comptes utilisateur" +
+                " | 3 - Voir la liste des clients" +
                 " | 0 - Se déconnecter"
         );
         int choixMenuConseiller = Tools.askThing(1);
@@ -108,7 +100,7 @@ public class Menus {
     }
 
     public static void menuTypeUtilisateur() {
-        TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller | 3 - Test écriture | 4 - Test lecture");
+        TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller");
         int type = Tools.askThing(1);
         switch(type){
             case 1:
@@ -117,35 +109,6 @@ public class Menus {
             case 2:
                 menuAuthOuCreer(2);
                 break;
-            case 3:
-                //Sauvegarde sauveDonnees = new Sauvegarde("test");
-                //sauveDonnees.sauvegardeDonnees();
-            case 4:
-                //Sauvegarde lectureDonnees = new Sauvegarde("utilisateurs");
-                //lectureDonnees.lectureDonnees();
-                try
-                {
-                    FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
-                    ObjectInputStream ois = new ObjectInputStream(fis);
-
-                    ArrayList<Client> listeClients = (ArrayList<Client>) ois.readObject();
-                    ois.close();
-
-                    for (Client client : listeClients) {
-                        System.out.println(
-                                "ID : " + client.getId() +
-                                        " - Nom : " + client.getNom() +
-                                        " - Prenom : " + client.getPrenom() +
-                                        " - Mot de passe : " + client.getMotDePasse() +
-                                        " - Compte valide : " + client.getCompteValide()
-                        );
-                    }
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                menuTypeUtilisateur();
-                break;
-
             default:
                 TConsole.toprintln("Vous devez saisir 1 ou 2");
                 menuTypeUtilisateur();

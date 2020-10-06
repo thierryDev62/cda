@@ -22,7 +22,7 @@ public class Utilisateurs implements Serializable {
         this.motDePasse = motDePasse;
         this.typeUtilisateur = typeUtilisateur;
         this.compteValide = compteValide;
-        //listeDesUtilisateurs.add(this);
+        listeDesUtilisateurs.add(this);
     }
 
     public void afficheRecapCreationUtilisateur() {
