@@ -6,9 +6,7 @@ import fr.banque2.data.entity.Client;
 import fr.banque2.data.Menus;
 import fr.banque2.data.entity.Utilisateurs;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ConseillerController {
@@ -22,7 +20,42 @@ public class ConseillerController {
                 "\n*********************************************************");
         TConsole.toprintln("Numéro d'utilisateur à valider : ");
         Integer numeroUtilisateur = Tools.askThing(1);
-        for(Utilisateurs compteUtilisateur : Client.getListeDesUtilisateurs()) {
+
+        try
+        {
+            FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            ArrayList<Client> listeClients = (ArrayList<Client>) ois.readObject();
+            ois.close();
+
+            for(Client client : listeClients) {
+                if(numeroUtilisateur.equals(client.getId()) && !client.getCompteValide()){
+                    client.setCompteValide(true);
+
+                    TConsole.toprintln("Le compte utilisateur n°" + client.getId() + " a bien été validé !");
+                } else {
+                    TConsole.toprintln("Aucun compte à valider ou inexistant");
+                }
+                //Menus.menuConseiller();
+            }
+            try {
+                FileOutputStream fos = new FileOutputStream("src/fr/banque2/data/donnees/clients.txt");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                oos.writeObject(listeClients);
+                oos.close();
+                Menus.menuConseiller();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        /*for(Utilisateurs compteUtilisateur : Client.getListeDesUtilisateurs()) {
             if(numeroUtilisateur.equals(compteUtilisateur.getId()) && !compteUtilisateur.getCompteValide()){
                 compteUtilisateur.setCompteValide(true);
                 TConsole.toprintln("Le compte utilisateur n°" + compteUtilisateur.getId() + " a bien été validé !");
@@ -30,7 +63,7 @@ public class ConseillerController {
                 TConsole.toprintln("Aucun compte à valider ou inexistant");
             }
             Menus.menuConseiller();
-        }
+        }*/
     }
 
     /**

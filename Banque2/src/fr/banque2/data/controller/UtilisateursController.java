@@ -33,22 +33,32 @@ public class UtilisateursController {
 
         if(typeUtilisateur == 1) {
 
-            ArrayList<Client> nouveauClient = Client.getListeDesClients();
-
-            nouveauClient.add(new Client(id, nom, prenom, mdp, typeUtilisateur, true)); // TODO : mettre à true pour les tests
+            //ArrayList<Client> listeDesClients = Client.getListeDesClients();
 
             try {
-                FileOutputStream fos = new FileOutputStream("src/fr/banque2/data/donnees/clients.txt");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
 
-                oos.writeObject(nouveauClient);
-                oos.close();
-                System.out.println("Les données utilisateur ont bien été sauvegardé !");
+                ArrayList<Client> listeDesClients = (ArrayList<Client>) ois.readObject();
+                ois.close();
 
-            } catch (IOException e) {
+                listeDesClients.add(new Client(id, nom, prenom, mdp, typeUtilisateur, false)); // TODO : mettre à true pour les tests
+
+                try {
+                    FileOutputStream fos = new FileOutputStream("src/fr/banque2/data/donnees/clients.txt");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                    oos.writeObject(listeDesClients);
+                    oos.close();
+                    System.out.println("Les données utilisateur ont bien été sauvegardé !");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
 
         } else if(typeUtilisateur == 2) {
             ArrayList<Conseiller> nouveauConseiller = Conseiller.getListeDesConseillers();
