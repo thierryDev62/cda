@@ -3,9 +3,10 @@ package fr.banque2.data.entity;
 import diplo.tools.TConsole;
 import fr.banque2.data.Menus;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Utilisateurs {
+public class Utilisateurs implements Serializable {
     private Integer id;
     private String nom;
     private String prenom;
@@ -21,7 +22,7 @@ public class Utilisateurs {
         this.motDePasse = motDePasse;
         this.typeUtilisateur = typeUtilisateur;
         this.compteValide = compteValide;
-        listeDesUtilisateurs.add(this);
+        //listeDesUtilisateurs.add(this);
     }
 
     public void afficheRecapCreationUtilisateur() {

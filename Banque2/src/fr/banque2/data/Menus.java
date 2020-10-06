@@ -6,8 +6,15 @@ import fr.banque2.data.controller.CompteController;
 import fr.banque2.data.controller.ConseillerController;
 import fr.banque2.data.controller.OperationController;
 import fr.banque2.data.controller.UtilisateursController;
+import fr.banque2.data.entity.Client;
 import fr.banque2.data.entity.Connexion;
 import fr.banque2.data.entity.Sauvegarde;
+import fr.banque2.data.entity.Utilisateurs;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 public class Menus {
 
@@ -114,8 +121,31 @@ public class Menus {
                 //Sauvegarde sauveDonnees = new Sauvegarde("test");
                 //sauveDonnees.sauvegardeDonnees();
             case 4:
-                Sauvegarde lectureDonnees = new Sauvegarde("utilisateurs");
-                lectureDonnees.lectureDonnees();
+                //Sauvegarde lectureDonnees = new Sauvegarde("utilisateurs");
+                //lectureDonnees.lectureDonnees();
+                try
+                {
+                    FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+
+                    ArrayList<Client> listeClients = (ArrayList<Client>) ois.readObject();
+                    ois.close();
+
+                    for (Client client : listeClients) {
+                        System.out.println(
+                                "ID : " + client.getId() +
+                                        " - Nom : " + client.getNom() +
+                                        " - Prenom : " + client.getPrenom() +
+                                        " - Mot de passe : " + client.getMotDePasse() +
+                                        " - Compte valide : " + client.getCompteValide()
+                        );
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                menuTypeUtilisateur();
+                break;
+
             default:
                 TConsole.toprintln("Vous devez saisir 1 ou 2");
                 menuTypeUtilisateur();
