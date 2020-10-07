@@ -33,8 +33,6 @@ public class UtilisateursController {
 
         if(typeUtilisateur == 1) {
 
-            //ArrayList<Client> listeDesClients = Client.getListeDesClients();
-
             try {
                 FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);

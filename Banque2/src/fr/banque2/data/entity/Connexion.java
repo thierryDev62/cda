@@ -45,11 +45,11 @@ public class Connexion {
                         TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + client.getPrenom());
                         Connexion login = new Connexion(identifiant, motdepasse);
                         Menus.menuClient();
-                    } else {
-                        System.out.println("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
-                        login(type);
                     }
                 }
+                System.out.println("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
+                login(type);
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -66,17 +66,14 @@ public class Connexion {
                         TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + conseiller.getPrenom());
                         Connexion login = new Connexion(identifiant, motdepasse);
                         Menus.menuConseiller();
-                    } else {
-                        System.out.println("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
-                        login(type);
                     }
                 }
+                System.out.println("Le mot de passe et/ou l'identifiant ne sont pas bon, veuillez recommencer !");
+                login(type);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-
-        login(type);
     }
 
     public static Integer getId() {
