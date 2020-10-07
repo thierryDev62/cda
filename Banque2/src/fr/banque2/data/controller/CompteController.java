@@ -2,6 +2,10 @@ package fr.banque2.data.controller;
 
 import fr.banque2.data.*;
 import fr.banque2.data.entity.*;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,42 +15,54 @@ public class CompteController {
      */
     public static void nouveauCompte(){
         Integer id = Connexion.getId();
-        for(Utilisateurs utilisateurCourant : Client.getListeDesUtilisateurs()) {
-            if(id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
-                System.out.println("*********************************************************" +
-                        "\nMenu de création d'un nouveau compte bancaire" +
-                        "\n*********************************************************" +
-                        "\nQuel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne"
-                );
-                Scanner scanChoix = new Scanner(System.in);
-                int choix = scanChoix.nextInt();
-                System.out.println("*********************************************************" +
-                        "\nCréation d'un compte bancaire" +
-                        "\n*********************************************************" +
-                        "\nSaisir le numéro de compte"
-                );
-                Scanner scanNumeroCompte = new Scanner(System.in);
-                int numeroCompte = scanNumeroCompte.nextInt();
 
-                for (Compte liste : Compte.getListeDesComptes()) {
-                    if (numeroCompte == liste.getCode()) {
-                        System.out.println("Ce numéro de compte existe déjà, veuillez en saisir un autre");
-                        nouveauCompte();
+        try
+        {
+            FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            ArrayList<Client> listeClients = (ArrayList<Client>) ois.readObject();
+            ois.close();
+
+            for(Client utilisateurCourant : listeClients) {
+                if(id.equals(utilisateurCourant.getId()) && utilisateurCourant.getCompteValide()) {
+                    System.out.println("*********************************************************" +
+                            "\nMenu de création d'un nouveau compte bancaire" +
+                            "\n*********************************************************" +
+                            "\nQuel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne"
+                    );
+                    Scanner scanChoix = new Scanner(System.in);
+                    int choix = scanChoix.nextInt();
+                    System.out.println("*********************************************************" +
+                            "\nCréation d'un compte bancaire" +
+                            "\n*********************************************************" +
+                            "\nSaisir le numéro de compte"
+                    );
+                    Scanner scanNumeroCompte = new Scanner(System.in);
+                    int numeroCompte = scanNumeroCompte.nextInt();
+
+                    for (Compte liste : Compte.getListeDesComptes()) {
+                        if (numeroCompte == liste.getCode()) {
+                            System.out.println("Ce numéro de compte existe déjà, veuillez en saisir un autre");
+                            nouveauCompte();
+                            return;
+                        }
+                    }
+                    if (choix == 1) {
+                        Compte nouveauCompte = new CompteCourant(numeroCompte, 1, id);
+                        nouveauCompte.afficheCreationCompte();
+                        return;
+                    } else if (choix == 2) {
+                        Compte nouveauCompte = new CompteEpargne(numeroCompte, 2, id);
+                        nouveauCompte.afficheCreationCompte();
                         return;
                     }
                 }
-                if (choix == 1) {
-                   Compte nouveauCompte = new CompteCourant(numeroCompte, 1, id);
-                    nouveauCompte.afficheCreationCompte();
-                    return;
-                } else if (choix == 2) {
-                    Compte nouveauCompte = new CompteEpargne(numeroCompte, 2, id);
-                    nouveauCompte.afficheCreationCompte();
-                    return;
-                }
-            } else {
-                ConseillerController.pasMoyen();
             }
+            ConseillerController.pasMoyen();
+            Menus.menuClient();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
     /**

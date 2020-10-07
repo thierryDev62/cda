@@ -11,6 +11,9 @@ import fr.banque2.data.entity.Connexion;
 public class Menus {
 
     public static void menuClient() {
+        System.out.println("*********************************************************" +
+                "\nMenu client" +
+                "\n*********************************************************");
         TConsole.toprintln("Faites votre choix :" +
                 "\n1 - Créer un compte | " +
                 "2 - Versement | " +
@@ -72,6 +75,9 @@ public class Menus {
         }
     }
     public static void menuConseiller(){
+        System.out.println("*********************************************************" +
+                "\nMenu conseiller" +
+                "\n*********************************************************");
         TConsole.toprintln("Faites votre choix :" +
                 " | 1 - Valider un compte utilisateur" +
                 " | 2 - Voir la liste des comptes" +
@@ -100,6 +106,9 @@ public class Menus {
     }
 
     public static void menuTypeUtilisateur() {
+        System.out.println("*********************************************************" +
+                "\nMenu utilisateur" +
+                "\n*********************************************************");
         TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller");
         int type = Tools.askThing(1);
         switch(type){
