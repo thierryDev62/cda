@@ -1,11 +1,9 @@
 package fr.banque2.data.controller;
 
-import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Banque;
 import fr.banque2.data.entity.Client;
 import fr.banque2.data.Menus;
-import fr.banque2.data.entity.Utilisateurs;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,12 +14,9 @@ public class ConseillerController {
      */
 
     public static void validationCompteUtilisateur() {
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nValidation d'un compte" +
                 "\n*********************************************************");
-        /*TConsole.toprintln("Numéro d'utilisateur à valider : ");
-        Integer numeroUtilisateur = Tools.askThing(1);*/
-
         try
         {
             FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
@@ -41,14 +36,13 @@ public class ConseillerController {
                     );
                 }
             }
-
-            TConsole.toprintln("Numéro d'utilisateur à valider : ");
+            System.out.println("Numéro d'utilisateur à valider : ");
             Integer numeroUtilisateur = Tools.askThing(1);
 
             for(Client client : listeClients) {
                 if(numeroUtilisateur.equals(client.getId()) && !client.getCompteValide()){ // !client.getCompteValide() pour de vrai
                     client.setCompteValide(true); // true pour de vrai
-                    TConsole.toprintln("Le compte utilisateur n°" + client.getId() + " de " + client.getNom() + " " + client.getPrenom() + " a bien été validé !");
+                    System.out.println("Le compte utilisateur n°" + client.getId() + " de " + client.getNom() + " " + client.getPrenom() + " a bien été validé !");
                     Banque.sauvegardeClient(listeClients);
                     Menus.menuConseiller();
                 }
@@ -64,7 +58,7 @@ public class ConseillerController {
      * Liste des clients de la banque
      */
     public static void listeDesClients() {
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nListe des clients de la banque" +
                 "\n*********************************************************"
         );
@@ -96,7 +90,7 @@ public class ConseillerController {
      * Opération impossible tant que le client n'a pas son compte de validé
      */
     public static void pasMoyen() {
-        TConsole.toprintln(
+        System.out.println(
                 "**********************************************************************" +
                         "\nVous n'êtes pas autorisé à créer un compte (ou faire une opération) " +
                         "\ncar celui-ci n'a pas été validé par un conseiller !" +

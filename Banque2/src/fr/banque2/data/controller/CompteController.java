@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class CompteController {
     /**
-     * Creation compte
+     * Creation d'un compte (courant ou épargne)
      */
     public static void nouveauCompte(){
         Integer id = Connexion.getId();
@@ -29,14 +29,20 @@ public class CompteController {
                     System.out.println("*********************************************************" +
                             "\nMenu de création d'un nouveau compte bancaire" +
                             "\n*********************************************************" +
-                            "\nQuel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne"
+                            "\nQuel type de compte voulez-vous créer ? \n1 - Compte courant | 2 - Compte épargne | 0 - Annuler"
                     );
                     Scanner scanChoix = new Scanner(System.in);
                     int choix = scanChoix.nextInt();
+
+                    if(choix == 0) {
+                        System.out.println(".:: Annulation de l'opération ::.");
+                        return;
+                    }
+
                     System.out.println("*********************************************************" +
                             "\nCréation d'un compte bancaire" +
                             "\n*********************************************************" +
-                            "\nSaisir le numéro de compte"
+                            "\nSaisir le numéro de compte (0 pour annuler)"
                     );
                     Scanner scanNumeroCompte = new Scanner(System.in);
                     int numeroCompte = scanNumeroCompte.nextInt();
@@ -164,15 +170,27 @@ public class CompteController {
         );
         Scanner scanSaisiNumeroCompte = new Scanner(System.in);
         int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
+
+        if(saisiNumeroCompte == 0) {
+            System.out.println(".:: Annulation de l'opération ::.");
+            return;
+        }
+
         Integer totalVersement = 0;
-        System.out.println("Total des versements pour le compte n°" + saisiNumeroCompte);
+
         for (Compte compte : Compte.getListeDesComptes()) {
-            for (Operation versement : Operation.getListeOperations()) {
-                if (saisiNumeroCompte == (compte.getCode()) && saisiNumeroCompte == (versement.getNumeroCompteOperation()) && versement.getLibelleOperation().equals("Versement") && compte.getTitulaire().equals(id)) {
-                    totalVersement += versement.getMontantOperation();
+            if(!Operation.getListeOperations().isEmpty()) {
+                for (Operation versement : Operation.getListeOperations()) {
+                    if (saisiNumeroCompte == (compte.getCode()) && saisiNumeroCompte == (versement.getNumeroCompteOperation()) && versement.getLibelleOperation().equals("Versement") && compte.getTitulaire().equals(id)) {
+                        totalVersement += versement.getMontantOperation();
+                    }
                 }
+            } else {
+                System.out.println("Aucun versement pour ce compte");
+                return;
             }
         }
+        System.out.println("Total des versements pour le compte n°" + saisiNumeroCompte);
         System.out.println("Montant total des versements : " + totalVersement + "€");
     }
     /**
@@ -187,16 +205,27 @@ public class CompteController {
         );
         Scanner scanSaisiNumeroCompte = new Scanner(System.in);
         int saisiNumeroCompte = scanSaisiNumeroCompte.nextInt();
+
+        if(saisiNumeroCompte == 0) {
+            System.out.println(".:: Annulation de l'opération ::.");
+            return;
+        }
+
         Integer totalRetrait = 0;
-        System.out.println();
-        System.out.println("Total des retraits sur le compte n°" + saisiNumeroCompte);
+
         for (Compte compte : Compte.getListeDesComptes()) {
-            for (Operation retrait : Operation.getListeOperations()) {
-                if (saisiNumeroCompte == (compte.getCode()) && saisiNumeroCompte == (retrait.getNumeroCompteOperation()) && retrait.getLibelleOperation().equals("Retrait") && compte.getTitulaire().equals(id)){
-                    totalRetrait += retrait.getMontantOperation();
+            if(!Operation.getListeOperations().isEmpty()) {
+                for (Operation retrait : Operation.getListeOperations()) {
+                    if (saisiNumeroCompte == (compte.getCode()) && saisiNumeroCompte == (retrait.getNumeroCompteOperation()) && retrait.getLibelleOperation().equals("Retrait") && compte.getTitulaire().equals(id)) {
+                        totalRetrait += retrait.getMontantOperation();
+                    }
                 }
+            } else {
+                System.out.println("Aucun retrait pour ce compte");
+                return;
             }
         }
         System.out.println("Total des retraits sur le compte n°" + saisiNumeroCompte);
+        System.out.println("Montant total des retraits : " + totalRetrait + "€");
     }
 }

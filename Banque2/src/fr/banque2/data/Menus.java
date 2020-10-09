@@ -1,12 +1,12 @@
 package fr.banque2.data;
 
-import diplo.tools.TConsole;
-import diplo.tools.Tools;
 import fr.banque2.data.controller.CompteController;
 import fr.banque2.data.controller.ConseillerController;
 import fr.banque2.data.controller.OperationController;
 import fr.banque2.data.controller.UtilisateursController;
 import fr.banque2.data.entity.Connexion;
+
+import java.util.Scanner;
 
 public class Menus {
 
@@ -14,7 +14,7 @@ public class Menus {
         System.out.println("*********************************************************" +
                 "\nMenu client" +
                 "\n*********************************************************");
-        TConsole.toprintln("Faites votre choix :" +
+        System.out.println("Faites votre choix :" +
                 "\n1 - Créer un compte | " +
                 "2 - Versement | " +
                 "3 - Retrait | " +
@@ -26,8 +26,8 @@ public class Menus {
                 "9 - Liste de tous les comptes | " +
                 "0 - Se déconnecter"
         );
-        TConsole.toprint(">");
-        int choix = Tools.askThing(1);
+        Scanner sc = new Scanner(System.in);
+        int choix = sc.nextInt();
 
         switch(choix) {
             case 1:
@@ -69,7 +69,7 @@ public class Menus {
             case 0:
                 menuTypeUtilisateur();
             default:
-                TConsole.toprintln("Veuillez saisir un chiffre de 1 à 9 ou 0");
+                System.out.println("Veuillez saisir un chiffre de 1 à 9 ou 0");
                 menuClient();
                 break;
         }
@@ -78,13 +78,15 @@ public class Menus {
         System.out.println("*********************************************************" +
                 "\nMenu conseiller" +
                 "\n*********************************************************");
-        TConsole.toprintln("Faites votre choix :" +
+        System.out.println(
+                "Faites votre choix :" +
                 " | 1 - Valider un compte utilisateur" +
                 " | 2 - Voir la liste des comptes" +
                 " | 3 - Voir la liste des clients" +
                 " | 0 - Se déconnecter"
         );
-        int choixMenuConseiller = Tools.askThing(1);
+        Scanner sc = new Scanner(System.in);
+        int choixMenuConseiller = sc.nextInt();
         switch(choixMenuConseiller) {
             case 1:
                 ConseillerController.validationCompteUtilisateur();
@@ -99,7 +101,7 @@ public class Menus {
                 menuTypeUtilisateur();
                 break;
             default:
-                TConsole.toprintln("Vous n'avez pas saisi le bon numéro !");
+                System.out.println("Vous n'avez pas saisi le bon numéro !");
                 menuConseiller();
                 break;
         }
@@ -109,8 +111,9 @@ public class Menus {
         System.out.println("*********************************************************" +
                 "\nMenu utilisateur" +
                 "\n*********************************************************");
-        TConsole.toprintln("Êtes-vous : 1 - Client | 2 - Conseiller");
-        int type = Tools.askThing(1);
+        System.out.println("Êtes-vous : 1 - Client | 2 - Conseiller");
+        Scanner sc = new Scanner(System.in);
+        int type = sc.nextInt();
         switch(type){
             case 1:
                 menuAuthOuCreer(1);
@@ -119,14 +122,15 @@ public class Menus {
                 menuAuthOuCreer(2);
                 break;
             default:
-                TConsole.toprintln("Vous devez saisir 1 ou 2");
+                System.out.println("Vous devez saisir 1 ou 2");
                 menuTypeUtilisateur();
                 break;
         }
     }
     public static void menuAuthOuCreer(Integer type) {
-        TConsole.toprintln("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte utilisateur | 0 - Se déconnecter");
-        int choix = Tools.askThing(1);
+        System.out.println("Voulez-vous : 1 - Vous authentifier | 2 - Créer un compte utilisateur | 0 - Se déconnecter");
+        Scanner sc = new Scanner(System.in);
+        int choix = sc.nextInt();
         switch (choix) {
             case 1:
                 Connexion.login(type);
@@ -138,7 +142,7 @@ public class Menus {
                 menuTypeUtilisateur();
                 break;
             default:
-                TConsole.toprintln("Vous devez saisir 1, 2 ou 0");
+                System.out.println("Vous devez saisir 1, 2 ou 0");
                 menuAuthOuCreer(type);
                 break;
         }

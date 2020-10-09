@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c68abd8a-9ccf-4098-b42a-8ed136b31cfa" name="Default Changelist" comment="" />
+    <list default="true" id="c68abd8a-9ccf-4098-b42a-8ed136b31cfa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Banque2/out/production/Banque2/fr/banque2/data/controller/CompteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/out/production/Banque2/fr/banque2/data/controller/CompteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/Menus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/CompteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/ConseillerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/ConseillerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/OperationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/OperationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/UtilisateursController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/controller/UtilisateursController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/donnees/clients.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/donnees/clients.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/entity/Connexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/entity/Connexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/entity/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/entity/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/entity/Utilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Banque2/src/fr/banque2/data/entity/Utilisateurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +32,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

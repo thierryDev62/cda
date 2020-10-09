@@ -1,6 +1,5 @@
 package fr.banque2.data.entity;
 
-import diplo.tools.TConsole;
 import fr.banque2.data.Menus;
 
 import java.io.Serializable;
@@ -26,7 +25,8 @@ public class Utilisateurs implements Serializable {
     }
 
     public void afficheRecapCreationUtilisateur() {
-        TConsole.toprintln("Récapitulatif de la création de l'utilisateur :" +
+        System.out.println(
+        "Récapitulatif de la création de l'utilisateur :" +
                 "\n-----------------------------------------------" +
                 "\nIdentifiant : " + this.getId() +
                 "\nNom : " + this.getNom() +
@@ -34,7 +34,8 @@ public class Utilisateurs implements Serializable {
                 "\nMot de passe : " + this.getMotDePasse().substring(0, 2) + "***" +
                 "\nType d'utilisateur : " + (this.typeUtilisateur == 1 ? "Client" : "Conseiller")
         );
-        TConsole.toprintln("*********************************************************" +
+        System.out.println(
+        "*********************************************************" +
                 "\nL'utilisateur a bien été créé !" +
                 "\n*********************************************************");
         Menus.menuAuthOuCreer(typeUtilisateur);

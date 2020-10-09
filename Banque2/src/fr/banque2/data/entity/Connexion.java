@@ -1,6 +1,5 @@
 package fr.banque2.data.entity;
 
-import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Menus;
 
@@ -19,17 +18,16 @@ public class Connexion {
     }
 
     public static void login(Integer type) {
-        TConsole.toprintln("*********************************************************" +
+        System.out.println("*********************************************************" +
                 "\nConnexion à votre compte utilisateur (0 pour annuler)" +
                 "\n*********************************************************");
-        TConsole.toprintln("Saisir votre identifiant :");
+        System.out.println("Saisir votre identifiant :");
         Integer identifiant = Tools.askThing(1);
         if(identifiant == 0) {
-            TConsole.toprintln("Annulation");
+            System.out.println("Annulation");
             Menus.menuAuthOuCreer(type);
         }
-
-        TConsole.toprintln("Saisir votre mot de passe :");
+        System.out.println("Saisir votre mot de passe :");
         String motdepasse = Tools.askThing();
 
         if(type == 1) {
@@ -42,7 +40,7 @@ public class Connexion {
 
                 for (Client client : listeClients) {
                     if (identifiant.equals(client.getId()) && motdepasse.equals(client.getMotDePasse())) {
-                        TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + client.getPrenom());
+                        System.out.println("Vous êtes connecté ! \nBienvenue à vous " + client.getPrenom());
                         Connexion login = new Connexion(identifiant, motdepasse);
                         Menus.menuClient();
                     }
@@ -63,7 +61,7 @@ public class Connexion {
 
                 for (Conseiller conseiller : listeClients) {
                     if (identifiant.equals(conseiller.getId()) && motdepasse.equals(conseiller.getMotDePasse())) {
-                        TConsole.toprintln("Vous êtes connecté ! \nBienvenue à vous " + conseiller.getPrenom());
+                        System.out.println("Vous êtes connecté ! \nBienvenue à vous " + conseiller.getPrenom());
                         Connexion login = new Connexion(identifiant, motdepasse);
                         Menus.menuConseiller();
                     }

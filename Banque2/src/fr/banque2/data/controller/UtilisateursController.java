@@ -1,6 +1,5 @@
 package fr.banque2.data.controller;
 
-import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Menus;
 import fr.banque2.data.entity.Utilisateurs;
@@ -12,27 +11,27 @@ import java.util.ArrayList;
 
 public class UtilisateursController {
     public static void creationUtilisateur(Integer typeUtilisateur) {
-        TConsole.toprintln("*********************************************************" +
+        System.out.println(
+        "*********************************************************" +
                 "\nCréation d'un compte utilisateur" +
                 "\n*********************************************************");
 
-        TConsole.toprintln("Saisir le numéro d'identifiant : ");
+        System.out.println("Saisir le numéro d'identifiant : ");
         Integer id = Tools.askThing(1);
         for(Utilisateurs chercherId : Utilisateurs.getListeDesUtilisateurs()) {
             if(id.equals(chercherId.getId())){
-                TConsole.toprintln("Ce numéro d'identifiant existe déjà, veuillez en saisir un autre !!!");
+                System.out.println("Ce numéro d'identifiant existe déjà, veuillez en saisir un autre !!!");
                 creationUtilisateur(typeUtilisateur);
             }
         }
-        TConsole.toprintln("Saisir le nom");
+        System.out.println("Saisir le nom");
         String nom = Tools.askThing();
-        TConsole.toprintln("Saisir le prénom");
+        System.out.println("Saisir le prénom");
         String prenom = Tools.askThing();
-        TConsole.toprintln("Saisir le mot de passe");
+        System.out.println("Saisir le mot de passe");
         String mdp = Tools.askThing();
 
         if(typeUtilisateur == 1) {
-
             try {
                 FileInputStream fis = new FileInputStream("src/fr/banque2/data/donnees/clients.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);

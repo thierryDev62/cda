@@ -1,6 +1,5 @@
 package fr.banque2.data.controller;
 
-import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import fr.banque2.data.Banque;
 import fr.banque2.data.Menus;
@@ -18,6 +17,11 @@ public class OperationController {
                 "\nSaisir le numéro de compte concerné (0 pour annuler)"
         );
         Integer saisiNumeroCompte = Tools.askThing(1);
+
+        if(saisiNumeroCompte == 0) {
+            System.out.println(".:: Annulation de l'opération ::.");
+            return;
+        }
 
         System.out.println("Liste des opérations sur le compte n°" + saisiNumeroCompte +
                 "\n*************************************************************************************"
@@ -55,9 +59,10 @@ public class OperationController {
 
         System.out.println("*********************************************************" +
                 "\nVersement sur un compte" +
-                "\n*********************************************************" +
-                "\nSaisir le numéro de compte concerné (0 pour annuler)"
+                "\n*********************************************************"
         );
+
+        System.out.println("Saisir le numéro de compte concerné (0 pour annuler)");
         Integer saisiNumeroCompte = Tools.askThing(1);
 
         if(saisiNumeroCompte == 0) {
@@ -165,11 +170,16 @@ public class OperationController {
         System.out.println("*********************************************************" +
                 "\nVirement de compte à compte" +
                 "\n*********************************************************" +
-                "\nSaisir le numéro de compte à débiter"
+                "\nSaisir le numéro de compte à débiter (0 pour annuler)"
         );
 
         // Compte débiteur
         Integer compteDebit = Tools.askThing(1);
+
+        if(compteDebit == 0) {
+            System.out.println(".:: Annulation de l'opération ::.");
+            return;
+        }
 
         System.out.println("Saisir le montant à débiter");
         montantDebit = Tools.askThing(1);
@@ -183,12 +193,14 @@ public class OperationController {
                 if(compte instanceof CompteCourant) {
                     Integer decouvert = ((CompteCourant) compte).getDecouvert();
                     if((soldeCompteDebiteur + decouvert) < montantDebit) {
-                        TConsole.toprintln("Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde(" + soldeCompteDebiteur + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (soldeCompteDebiteur + decouvert + "€"));
+                        System.out.println(
+                        "Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde(" + soldeCompteDebiteur + "€) + le découvert autorisé("+ decouvert +"€) soit : " + (soldeCompteDebiteur + decouvert + "€"));
                         return;
                     }
                 } else if(compte instanceof CompteEpargne) {
                     if(soldeCompteDebiteur < montantDebit) {
-                        TConsole.toprintln("Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde de votre compte soit : " + soldeCompteDebiteur + "€");
+                        System.out.println(
+                        "Virement impossible car la somme demandée de " + montantDebit + "€ dépasse le solde de votre compte soit : " + soldeCompteDebiteur + "€");
                         return;
                     }
                 }
@@ -207,8 +219,7 @@ public class OperationController {
         );
 
         // Compte créditeur
-        TConsole.toprintln("Saisir le numéro de compte à créditer");
-        TConsole.toprint(">");
+        System.out.println("Saisir le numéro de compte à créditer");
         Integer compteCredit = Tools.askThing(1);
 
         for(Compte compte : Compte.getListeDesComptes()) {

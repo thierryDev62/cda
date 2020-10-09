@@ -1,6 +1,5 @@
 package fr.banque2.data.entity;
 
-import diplo.tools.TConsole;
 import diplo.tools.Tools;
 import java.util.ArrayList;
 
@@ -34,7 +33,7 @@ public class Operation {
                 "\nMontant : " + this.montantOperation + "€" +
                 "\n*******************************************************************************"
         );
-        TConsole.toprintln(
+        System.out.println(
                 "Le "+ this.libelleOperation + " de " + this.montantOperation + "€ à bien été effectué !" +
                         "\n*******************************************************************************"
         );
