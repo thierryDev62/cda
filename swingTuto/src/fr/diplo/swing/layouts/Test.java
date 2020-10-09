@@ -1,4 +1,4 @@
-package fr.diplo.swing.test;
+package fr.diplo.swing.layouts;
 
 import javax.swing.*;
 

@@ -1,12 +1,12 @@
-package fr.diplo.swing.test;
+package fr.diplo.swing.layouts;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 
-public class MyWindowFlowLayout extends JFrame {
+public class MyWindowBorderLayout extends JFrame {
 
-    public MyWindowFlowLayout() {
+    public MyWindowBorderLayout() {
         super("My first application");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,400);
@@ -14,22 +14,22 @@ public class MyWindowFlowLayout extends JFrame {
 
         JPanel contentPane = (JPanel) this.getContentPane();
         /**
-         * FlowLayout place les éléments en ligne
-         * Par défaut ils sont centrés mais on peut les contrôller pour les positionner à droite, gauche, ..
-         * On peut aussi controler les marges hgap et vgap (elles se feront de tous les côtés)
+         * BorderLayout divise la zone en 5 espaces :
+         * - 4 espaces latéraux (nord, sud, est, ouest) et 1 espace central (centre)
+         * Le fait de lui indiquer son positionnement s'appelle une contrainte
          */
-        contentPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 20,20));
+        //contentPane.setLayout(new BorderLayout());
         JButton btnPushme = new JButton("Push me");
-        contentPane.add(btnPushme);
+        contentPane.add(btnPushme, BorderLayout.NORTH);
 
         JButton btnClickMe = new JButton("Click me!!!!!!");
-        contentPane.add(btnClickMe);
+        btnClickMe.setPreferredSize(new Dimension(200, 0));
+        contentPane.add(btnClickMe, BorderLayout.WEST);
 
         JCheckBox chkCheckMe = new JCheckBox("Check me!");
-        contentPane.add(chkCheckMe);
+        contentPane.add(chkCheckMe, BorderLayout.SOUTH);
 
-        JTextField txtEdit = new JTextField("Edit me!");
-        txtEdit.setPreferredSize(new Dimension(120,30));
+        JTextArea txtEdit = new JTextArea("Edit me!");
         contentPane.add(txtEdit);
     }
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
@@ -37,7 +37,7 @@ public class MyWindowFlowLayout extends JFrame {
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
 
         // Start my window
-        MyWindowFlowLayout myWindow = new MyWindowFlowLayout();
+        MyWindowBorderLayout myWindow = new MyWindowBorderLayout();
         myWindow.setVisible(true);
     }
 
