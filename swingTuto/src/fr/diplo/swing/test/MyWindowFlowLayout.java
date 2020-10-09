@@ -4,31 +4,32 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 
-public class MyWindow extends JFrame {
+public class MyWindowFlowLayout extends JFrame {
 
-    public MyWindow() {
+    public MyWindowFlowLayout() {
         super("My first application");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,400);
         this.setLocationRelativeTo(null);
 
-        // Mauvaise façon de faire car positionnement en dur
         JPanel contentPane = (JPanel) this.getContentPane();
-        contentPane.setLayout(null);
+        /**
+         * FlowLayout place les éléments en ligne
+         * Par défaut ils sont centrés mais on peut les contrôller pour les positionner à droite, gauche, ..
+         * On peut aussi controler les marges hgap et vgap (elles se feront de tous les côtés)
+         */
+        contentPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 20,20));
         JButton btnPushme = new JButton("Push me");
-        btnPushme.setBounds(200, 20, 160, 30);
         contentPane.add(btnPushme);
 
         JButton btnClickMe = new JButton("Click me!!!!!!");
-        btnClickMe.setBounds(200, 70,160,30);
         contentPane.add(btnClickMe);
 
         JCheckBox chkCheckMe = new JCheckBox("Check me!");
-        chkCheckMe.setBounds(200, 120, 160,30);
         contentPane.add(chkCheckMe);
 
         JTextField txtEdit = new JTextField("Edit me!");
-        txtEdit.setBounds(200, 170, 160,30);
+        txtEdit.setPreferredSize(new Dimension(120,30));
         contentPane.add(txtEdit);
     }
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
@@ -36,7 +37,7 @@ public class MyWindow extends JFrame {
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
 
         // Start my window
-        MyWindow myWindow = new MyWindow();
+        MyWindowFlowLayout myWindow = new MyWindowFlowLayout();
         myWindow.setVisible(true);
     }
 

@@ -4,31 +4,32 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 
-public class MyWindow extends JFrame {
+public class MyWindowBorderLayout extends JFrame {
 
-    public MyWindow() {
+    public MyWindowBorderLayout() {
         super("My first application");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,400);
         this.setLocationRelativeTo(null);
 
-        // Mauvaise façon de faire car positionnement en dur
         JPanel contentPane = (JPanel) this.getContentPane();
-        contentPane.setLayout(null);
+        /**
+         * BorderLayout divise la zone en 5 espaces :
+         * - 4 espaces latéraux (nord, sud, est, ouest) et 1 espace central (centre)
+         * Le fait de lui indiquer son positionnement s'appelle une contrainte
+         */
+        //contentPane.setLayout(new BorderLayout());
         JButton btnPushme = new JButton("Push me");
-        btnPushme.setBounds(200, 20, 160, 30);
-        contentPane.add(btnPushme);
+        contentPane.add(btnPushme, BorderLayout.NORTH);
 
         JButton btnClickMe = new JButton("Click me!!!!!!");
-        btnClickMe.setBounds(200, 70,160,30);
-        contentPane.add(btnClickMe);
+        btnClickMe.setPreferredSize(new Dimension(200, 0));
+        contentPane.add(btnClickMe, BorderLayout.WEST);
 
         JCheckBox chkCheckMe = new JCheckBox("Check me!");
-        chkCheckMe.setBounds(200, 120, 160,30);
-        contentPane.add(chkCheckMe);
+        contentPane.add(chkCheckMe, BorderLayout.SOUTH);
 
-        JTextField txtEdit = new JTextField("Edit me!");
-        txtEdit.setBounds(200, 170, 160,30);
+        JTextArea txtEdit = new JTextArea("Edit me!");
         contentPane.add(txtEdit);
     }
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
@@ -36,7 +37,7 @@ public class MyWindow extends JFrame {
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
 
         // Start my window
-        MyWindow myWindow = new MyWindow();
+        MyWindowBorderLayout myWindow = new MyWindowBorderLayout();
         myWindow.setVisible(true);
     }
 
