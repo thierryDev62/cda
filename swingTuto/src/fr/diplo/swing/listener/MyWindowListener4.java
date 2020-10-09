@@ -3,7 +3,7 @@ package fr.diplo.swing.listener;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class MyWindowListener4 extends JFrame {
 
@@ -12,7 +12,7 @@ public class MyWindowListener4 extends JFrame {
 
     public MyWindowListener4() {
         super("My first application");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setSize(600,400);
         this.setLocationRelativeTo(null);
 
@@ -24,6 +24,17 @@ public class MyWindowListener4 extends JFrame {
         contentPane.add(btnPushme);
 
         btnClickMe.addActionListener((e) -> System.out.println("btnClickMe clicked"));
+        btnClickMe.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btnClickMe.setForeground(Color.RED);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btnClickMe.setForeground(Color.BLACK);
+            }
+        });
         contentPane.add(btnClickMe);
 
         JCheckBox chkCheckMe = new JCheckBox("Check me!");
@@ -32,6 +43,18 @@ public class MyWindowListener4 extends JFrame {
         JTextField txtEdit = new JTextField("Edit me!");
         txtEdit.setPreferredSize(new Dimension(120,30));
         contentPane.add(txtEdit);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int clickedButton = JOptionPane.showConfirmDialog(MyWindowListener4.this,
+                        "Etes-vous sûr de vouloir quitter ?", "Title", JOptionPane.YES_NO_OPTION);
+                if(clickedButton == JOptionPane.YES_OPTION) {
+                    //MyWindowListener4.this.dispose(); ou ->
+                    dispose();
+                }
+            }
+        });
     }
 
     private void btnPushListener(ActionEvent e) {
