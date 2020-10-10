@@ -14,7 +14,7 @@ public class MenuBarSample extends JFrame {
      * Constructeur de l'interface graphique
      */
     public MenuBarSample() {
-        super("JMenuBar sample");
+        super("JMenuBar sample Test");
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
