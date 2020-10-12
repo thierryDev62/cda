@@ -13,6 +13,7 @@ public class MyItellij extends JFrame {
         this.setLocationRelativeTo(null);
 
         JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.setBackground(Color.ORANGE);
         //contentPane.setLayout(new BorderLayout());
 
         /**
@@ -30,9 +31,9 @@ public class MyItellij extends JFrame {
         /**
          * TextArea au centre
          */
-        JTextArea txtContent = new JTextArea("The content of this editor");
-        JScrollPane scrContent = new JScrollPane(txtContent);
-        contentPane.add(scrContent);
+        /*JTextArea txtContent = new JTextArea("The content of this editor");
+        JScrollPane scrContent = new JScrollPane(txtContent);*/
+        contentPane.add(createText());
 
         /**
          * Panneau de 4 boutons à l'est
@@ -43,6 +44,17 @@ public class MyItellij extends JFrame {
          * Barre de status au sud
          */
         contentPane.add(createStatusBar(), BorderLayout.SOUTH);
+    }
+
+    private JPanel createText() {
+        JPanel panneauCentral = new JPanel();
+        String[] datas = {"Chat", "Chien", "Thierry"};
+        for (String data : datas) {
+            JLabel text = new JLabel();
+            text.setText(data);
+            panneauCentral.add(text);
+        }
+        return panneauCentral;
     }
 
     /**
