@@ -2,15 +2,14 @@ import templates.CardBleu;
 import templates.CardRouge;
 import templates.MenuPanel;
 import templates.PanelPrincipal;
-
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class App extends JFrame{
-    CardLayout cl = new CardLayout();
-    JPanel content = new JPanel();
+    private final CardLayout cl = new CardLayout();
+    private final JPanel content = new JPanel();
 
     // Liste des noms de nos conteneurs pour la pile de cartes
     String[] listContent = { "MENU_PANEL", "CARD_1", "CARD_2" };
@@ -27,7 +26,6 @@ public class App extends JFrame{
         MenuPanel menu = new MenuPanel();
         menu.getBleu().addActionListener(this::switchPanelBlue);
         menu.getRouge().addActionListener(this::switchPanelRed);
-
 
         // Card bleue
         CardBleu card1 = new CardBleu();
@@ -66,7 +64,6 @@ public class App extends JFrame{
         cl.show(content, listContent[2]);
     }
 
-
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         // Apply a look'n feel
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
@@ -75,5 +72,4 @@ public class App extends JFrame{
         App myWindow = new App();
         myWindow.setVisible(true);
     }
-
 }

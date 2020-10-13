@@ -3,8 +3,8 @@ package templates;
 import javax.swing.*;
 
 public class PanelPrincipal extends JPanel {
-    private JLabel titre = new JLabel("Switch entre deux panels");
-    private JButton retourMenu = new JButton("Retour au menu principal");
+    private final JLabel titre = new JLabel("Switch entre deux panels");
+    private final JButton retourMenu = new JButton("Retour au menu principal");
 
     public PanelPrincipal() {
         this.add(titre);

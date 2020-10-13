@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CardBleu extends JPanel {
-    private JLabel titreCard1 = new JLabel("Panel bleu", SwingConstants.CENTER);
-    private JButton goToRed = new JButton("GO Panel rouge");
+    private final JLabel titreCard1 = new JLabel("Panel bleu", SwingConstants.CENTER);
+    private final JButton goToRed = new JButton("GO Panel rouge");
 
     public CardBleu() {
         this.setBackground(Color.BLUE);
