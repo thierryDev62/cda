@@ -4,6 +4,7 @@ import fr.diplo.swing.listener.MyWindowListener4;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -18,6 +19,18 @@ public class MenuBarSample extends JFrame {
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        /**
+         * JPanel principal
+         */
+        JPanel contentPane = (JPanel) this.getContentPane();
+        contentPane.setBackground(Color.ORANGE);
+
+        JLabel titre = new JLabel("Barre de menu", SwingConstants.CENTER);
+        Font font = new Font("Verdana", Font.BOLD, 15);
+        titre.setFont(font);
+
+        contentPane.add(titre);
 
         /**
          * Construction de la barre de menu et injection
