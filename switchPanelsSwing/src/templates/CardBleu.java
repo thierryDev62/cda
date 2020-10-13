@@ -1,5 +1,7 @@
 package templates;
 
+import Controller.Datas;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,9 +11,16 @@ public class CardBleu extends JPanel {
 
     public CardBleu() {
         this.setBackground(Color.BLUE);
-        this.setLayout(new GridLayout(2,1));
+        this.setLayout(new GridLayout(3,1));
         this.add(titreCard1);
         this.add(goToRed);
+
+        Font font = new Font("Verdana", Font.BOLD, 15);
+        Datas datas = new Datas();
+        JLabel text = new JLabel();
+        text.setFont(font);
+        text.setText("-->" + datas.getDatas());
+        this.add(text);
     }
 
     public JLabel getTitreCard1() {
