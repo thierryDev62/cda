@@ -17,7 +17,7 @@ public class App extends JFrame{
     public App() {
         super("Exemple de switch entre différents panels");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(600,400);
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
 
         // On crée trois conteneurs différents
