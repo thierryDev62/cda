@@ -1,4 +1,4 @@
-package templates;
+package templates.principal;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class Auth extends JPanel {
 
     private final JButton BOUTON_CONNEXION = new JButton("Connexion");
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
-    private BufferedImage iconeConnexion = ImageIO.read(new File("icones/bull.png"));
+    private final BufferedImage ICONE_CONNEXION = ImageIO.read(new File("icones/bull.png"));
 
     public Auth() throws IOException {
         this.setLayout(new BorderLayout(5,5));
@@ -27,7 +27,7 @@ public class Auth extends JPanel {
 
         // Conteneur de l'icone
         JPanel conteneurIcone = new JPanel();
-        JLabel affichageIcone = new JLabel(new ImageIcon(iconeConnexion));
+        JLabel affichageIcone = new JLabel(new ImageIcon(ICONE_CONNEXION));
         conteneurIcone.add(affichageIcone);
 
         // Conteneur du titre

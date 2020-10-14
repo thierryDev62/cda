@@ -1,4 +1,4 @@
-package templates;
+package templates.principal;
 
 import javax.swing.*;
 import java.awt.*;

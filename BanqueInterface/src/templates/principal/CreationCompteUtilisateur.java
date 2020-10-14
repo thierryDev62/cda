@@ -1,4 +1,4 @@
-package templates;
+package templates.principal;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -74,9 +74,21 @@ public class CreationCompteUtilisateur extends JPanel {
         conteneurMdp.add(motDePasse);
         conteneurMdp.add(champsMotDePasse);
 
+        // Bouton valider
+        JPanel conteneurBoutonValider = new JPanel();
+        BOUTON_VALIDER.setFont(new Init().getDefaultFont());
+        conteneurBoutonValider.add(BOUTON_VALIDER);
+
+        // Bouton retour au menu
+        JPanel conteneurRetourAuMenu = new JPanel();
+        BOUTON_RETOUR_MENU.setFont(new Init().getDefaultFont());
+        conteneurRetourAuMenu.add(BOUTON_RETOUR_MENU);
+
         panelCreation.add(conteneurNom);
         panelCreation.add(conteneurPrenom);
         panelCreation.add(conteneurMdp);
+        panelCreation.add(conteneurBoutonValider);
+        panelCreation.add(conteneurRetourAuMenu);
 
         return panelCreation;
     }

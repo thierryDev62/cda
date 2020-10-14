@@ -1,17 +1,15 @@
-import templates.Auth;
-import templates.CreationCompteUtilisateur;
-import templates.EnTete;
-import templates.PagePrincipale;
+import templates.clients.ClientPrincipal;
+import templates.clients.CreationCompteBancaire;
+import templates.principal.Auth;
+import templates.principal.CreationCompteUtilisateur;
+import templates.principal.EnTete;
+import templates.principal.PagePrincipale;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class App extends JFrame {
     private final CardLayout cl = new CardLayout();
@@ -21,7 +19,9 @@ public class App extends JFrame {
     String[] listContent = {
             "PAGE_PRINCIPALE",
             "AUTH",
-            "CREATION_COMPTE_UTIL"
+            "CREATION_COMPTE_UTIL",
+            "ESPACE_CLIENT",
+            "CREATION_COMPTE_BANCAIRE"
     };
 
     public App() throws IOException {
@@ -30,6 +30,9 @@ public class App extends JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
 
+        /*******************************************************
+         * Principal
+         ******************************************************/
         // En-tête
         EnTete entete = new EnTete();
 
@@ -41,10 +44,22 @@ public class App extends JFrame {
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
+        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceClient);
 
         // Création d'un compte utilisateur
         CreationCompteUtilisateur creationCompteUtilisateur = new CreationCompteUtilisateur();
         creationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
+
+        /*******************************************************
+         * Espace Clients
+         ******************************************************/
+        // Page principale espace client
+        ClientPrincipal espaceClient = new ClientPrincipal();
+        espaceClient.getCreerUnCompte().addActionListener(this::goCreationCompteBancaire);
+
+        // Création compte bancaire
+        CreationCompteBancaire creationCompteBancaire = new CreationCompteBancaire();
+
 
         // On définit le layout
         getContent().setLayout(cl);
@@ -53,6 +68,8 @@ public class App extends JFrame {
         getContent().add(pagePrincipale, listContent[0]);
         getContent().add(auth, listContent[1]);
         getContent().add(creationCompteUtilisateur, listContent[2]);
+        getContent().add(espaceClient, listContent[3]);
+        getContent().add(creationCompteBancaire, listContent[4]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
@@ -71,6 +88,16 @@ public class App extends JFrame {
     // Renvoi au menu principal
     private void goMenuPrincipal(ActionEvent e) {
         cl.show(getContent(), listContent[0]);
+    }
+
+    // Espace client
+    private void goEspaceClient(ActionEvent e) {
+        cl.show(getContent(), listContent[3]);
+    }
+
+    // Créer un compte
+    private void goCreationCompteBancaire(ActionEvent e) {
+        cl.show(getContent(), listContent[4]);
     }
 
     private JPanel getContent() {
