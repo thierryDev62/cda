@@ -4,9 +4,12 @@ import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ClientPrincipal extends JPanel {
     private JMenuItem creerUnCompte = new JMenuItem("Création d'un compte bancaire");
+    private JMenuItem deconnexion = new JMenuItem("Déconnexion");
 
     public ClientPrincipal() {
         this.add(afficheTitreEtMenuBar());
@@ -33,6 +36,17 @@ public class ClientPrincipal extends JPanel {
 
         creerUnCompte.setIcon(new ImageIcon("icones/bank.png"));
         monCompte.add(creerUnCompte);
+        monCompte.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        monCompte.addSeparator();
+
+        deconnexion.setIcon(new ImageIcon("icones/exit.png"));
+        monCompte.add(deconnexion);
 
         // Ajoute "Mon compte" à la barre de menu
         menuBar.add(monCompte);
@@ -42,5 +56,9 @@ public class ClientPrincipal extends JPanel {
 
     public JMenuItem getCreerUnCompte() {
         return creerUnCompte;
+    }
+
+    public JMenuItem getDeconnexion() {
+        return deconnexion;
     }
 }

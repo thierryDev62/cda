@@ -21,7 +21,8 @@ public class App extends JFrame {
             "AUTH",
             "CREATION_COMPTE_UTIL",
             "ESPACE_CLIENT",
-            "CREATION_COMPTE_BANCAIRE"
+            "CREATION_COMPTE_BANCAIRE",
+            "DECONNEXION"
     };
 
     public App() throws IOException {
@@ -56,6 +57,7 @@ public class App extends JFrame {
         // Page principale espace client
         ClientPrincipal espaceClient = new ClientPrincipal();
         espaceClient.getCreerUnCompte().addActionListener(this::goCreationCompteBancaire);
+        espaceClient.getDeconnexion().addActionListener(this::goMenuPrincipal);
 
         // Création compte bancaire
         CreationCompteBancaire creationCompteBancaire = new CreationCompteBancaire();
