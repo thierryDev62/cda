@@ -6,6 +6,7 @@ import java.awt.*;
 public class PagePrincipale extends JPanel {
 
     private final JButton AUTHENTIFICATION = new JButton("S'authentifier");
+    private final JButton BOUTON_CREER_COMPTE_UTIL = new JButton("Créer un compte utilisateur");
 
     public PagePrincipale() {
         this.setLayout(new GridLayout(2,1));
@@ -31,16 +32,19 @@ public class PagePrincipale extends JPanel {
         choix.addItem("Conseiller");
 
         // Bouton Créer un compte utilisateur
-        JButton boutonCreerCompteUtil = new JButton("Créer un compte utilisateur");
-        boutonCreerCompteUtil.setFont(new Init().getDefaultFont());
         AUTHENTIFICATION.setFont(new Init().getDefaultFont());
+        BOUTON_CREER_COMPTE_UTIL.setFont(new Init().getDefaultFont());
         contenuChoix.add(choix);
         contenuChoix.add(AUTHENTIFICATION);
-        contenuChoix.add(boutonCreerCompteUtil);
+        contenuChoix.add(BOUTON_CREER_COMPTE_UTIL);
         return contenuChoix;
     }
 
     public JButton getAUTHENTIFICATION() {
         return AUTHENTIFICATION;
+    }
+
+    public JButton getBOUTON_CREER_COMPTE_UTIL() {
+        return BOUTON_CREER_COMPTE_UTIL;
     }
 }

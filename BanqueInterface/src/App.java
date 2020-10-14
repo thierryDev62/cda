@@ -1,4 +1,5 @@
 import templates.Auth;
+import templates.CreationCompteUtilisateur;
 import templates.EnTete;
 import templates.PagePrincipale;
 
@@ -32,13 +33,18 @@ public class App extends JFrame {
         // En-tête
         EnTete entete = new EnTete();
 
+        // Page principale
+        PagePrincipale pagePrincipale = new PagePrincipale();
+        pagePrincipale.getAUTHENTIFICATION().addActionListener(this::goAuthentification);
+        pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(this::goCreationUtilisateur);
+
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
-        // Page principale
-        PagePrincipale pagePrincipale = new PagePrincipale();
-        pagePrincipale.getAUTHENTIFICATION().addActionListener(this::goAuthentification);
+        // Création d'un compte utilisateur
+        CreationCompteUtilisateur creationCompteUtilisateur = new CreationCompteUtilisateur();
+        creationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
         // On définit le layout
         getContent().setLayout(cl);
@@ -46,6 +52,7 @@ public class App extends JFrame {
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         getContent().add(pagePrincipale, listContent[0]);
         getContent().add(auth, listContent[1]);
+        getContent().add(creationCompteUtilisateur, listContent[2]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
@@ -54,6 +61,11 @@ public class App extends JFrame {
     // Envoi sur le panel de l'authentification
     private void goAuthentification(ActionEvent e) {
         cl.show(getContent(), listContent[1]);
+    }
+
+    // Envoi sur le panel de création d'un utilisateur
+    private void goCreationUtilisateur(ActionEvent e) {
+        cl.show(getContent(), listContent[2]);
     }
 
     // Renvoi au menu principal
