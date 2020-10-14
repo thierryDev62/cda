@@ -50,6 +50,7 @@ public class App extends JFrame {
         // Création d'un compte utilisateur
         CreationCompteUtilisateur creationCompteUtilisateur = new CreationCompteUtilisateur();
         creationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
+        creationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okUtilisateurCree);
 
         /*******************************************************
          * Espace Clients
@@ -61,6 +62,8 @@ public class App extends JFrame {
 
         // Création compte bancaire
         CreationCompteBancaire creationCompteBancaire = new CreationCompteBancaire();
+        creationCompteBancaire.getBOUTON_VALIDER().addActionListener(this::okCompteBancaireCree);
+        creationCompteBancaire.getBOUTON_ANNULER().addActionListener(this::goEspaceClient);
 
 
         // On définit le layout
@@ -87,6 +90,12 @@ public class App extends JFrame {
         cl.show(getContent(), listContent[2]);
     }
 
+    // Réponse après validation de création d'un compte utilisateur
+    private void okUtilisateurCree(ActionEvent e) {
+        JOptionPane.showMessageDialog(this, "Compte utilisateur créé !");
+        cl.show(getContent(), listContent[0]);
+    }
+
     // Renvoi au menu principal
     private void goMenuPrincipal(ActionEvent e) {
         cl.show(getContent(), listContent[0]);
@@ -97,9 +106,15 @@ public class App extends JFrame {
         cl.show(getContent(), listContent[3]);
     }
 
-    // Créer un compte
+    // Créer un compte bancaire
     private void goCreationCompteBancaire(ActionEvent e) {
         cl.show(getContent(), listContent[4]);
+    }
+
+    // Réponse après création d'un compte bancaire
+    private void okCompteBancaireCree(ActionEvent e) {
+        JOptionPane.showMessageDialog(this, "Le compte bancaire a bien été créé !");
+        cl.show(getContent(), listContent[3]);
     }
 
     private JPanel getContent() {
