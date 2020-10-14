@@ -4,20 +4,27 @@ import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class ClientPrincipal extends JPanel {
-    //private JMenuBar menuBar = new JMenuBar();
     private JMenuItem creerUnCompte = new JMenuItem("Création d'un compte bancaire");
 
     public ClientPrincipal() {
-        this.add(panelEspaceClient());
-        this.add(afficheMenuBar());
+        this.add(afficheTitreEtMenuBar());
     }
-    private JPanel panelEspaceClient() {
+    private JPanel afficheTitreEtMenuBar() {
         JPanel espaceClient = new JPanel();
-
+        espaceClient.setLayout(new BorderLayout());
+        espaceClient.add(titreEspaceClient(), BorderLayout.NORTH);
+        espaceClient.add(afficheMenuBar(), BorderLayout.CENTER);
         return espaceClient;
+    }
+
+    private JPanel titreEspaceClient() {
+        JPanel conteneurTitre = new JPanel();
+        JLabel titre = new JLabel("Espace client");
+        titre.setFont(new Init().getTitreFont());
+        conteneurTitre.add(titre);
+        return conteneurTitre;
     }
     public JMenuBar afficheMenuBar() {
         JMenuBar menuBar = new JMenuBar();
@@ -29,6 +36,7 @@ public class ClientPrincipal extends JPanel {
 
         // Ajoute "Mon compte" à la barre de menu
         menuBar.add(monCompte);
+
         return menuBar;
     }
 
