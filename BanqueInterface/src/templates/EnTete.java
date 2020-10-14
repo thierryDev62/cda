@@ -18,8 +18,8 @@ public class EnTete extends JPanel {
         // Conteneur logo et titre
         JPanel contenuAffichage =  new JPanel();
 
-        // Un peut d'espace avec le haut
-        contenuAffichage.setBorder(BorderFactory.createEmptyBorder(50,0,0,0));
+        // Un peu d'espace avec le haut
+        contenuAffichage.setBorder(BorderFactory.createEmptyBorder(50,0,50,0));
 
         JLabel afficheLogo = new JLabel(new ImageIcon(logo));
         contenuAffichage.add(afficheLogo);
