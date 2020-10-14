@@ -47,6 +47,37 @@ public class CreationCompteUtilisateur extends JPanel {
         panelCreation.setLayout(new GridLayout(5,1));
         panelCreation.setBorder( new EmptyBorder(100, 0, 0, 0) );
 
+        // Demande du nom
+        JPanel conteneurNom = new JPanel();
+        JLabel nom = new JLabel("Nom : ");
+        nom.setFont(new Init().getDefaultFont());
+        JTextField champsNom = new JTextField();
+        champsNom.setPreferredSize(new Dimension(200, 30));
+        conteneurNom.add(nom);
+        conteneurNom.add(champsNom);
+
+        // Demande du prénom
+        JPanel conteneurPrenom = new JPanel();
+        JLabel prenom = new JLabel("Prénom : ");
+        prenom.setFont(new Init().getDefaultFont());
+        JTextField champsPrenom = new JTextField();
+        champsPrenom.setPreferredSize(new Dimension(200, 30));
+        conteneurPrenom.add(prenom);
+        conteneurPrenom.add(champsPrenom);
+
+        // Demande du mot de passe
+        JPanel conteneurMdp = new JPanel();
+        JLabel motDePasse = new JLabel("Mot de passe : ");
+        motDePasse.setFont(new Init().getDefaultFont());
+        JPasswordField champsMotDePasse = new JPasswordField();
+        champsMotDePasse.setPreferredSize(new Dimension(200, 30));
+        conteneurMdp.add(motDePasse);
+        conteneurMdp.add(champsMotDePasse);
+
+        panelCreation.add(conteneurNom);
+        panelCreation.add(conteneurPrenom);
+        panelCreation.add(conteneurMdp);
+
         return panelCreation;
     }
 
