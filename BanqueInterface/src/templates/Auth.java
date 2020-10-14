@@ -59,4 +59,11 @@ public class Auth extends JPanel {
         return panelConnexion;
     }
 
+    public JButton getBOUTON_CONNEXION() {
+        return BOUTON_CONNEXION;
+    }
+
+    public JButton getBOUTON_RETOUR_MENU() {
+        return BOUTON_RETOUR_MENU;
+    }
 }

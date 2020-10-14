@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class App extends JFrame {
     private final CardLayout cl = new CardLayout();
@@ -29,25 +30,35 @@ public class App extends JFrame {
 
         // Authentification
         Auth auth = new Auth();
+        auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
         // Page principale
         PagePrincipale pagePrincipale = new PagePrincipale();
         pagePrincipale.getAUTHENTIFICATION().addActionListener(this::goAuthentification);
 
         // On définit le layout
-        content.setLayout(cl);
+        getContent().setLayout(cl);
 
         // On ajoute les cartes à la pile avec un nom pour les retrouver
-        content.add(pagePrincipale, listContent[0]);
-        content.add(auth, listContent[1]);
+        getContent().add(pagePrincipale, listContent[0]);
+        getContent().add(auth, listContent[1]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
-        this.getContentPane().add(content, BorderLayout.CENTER);
+        this.getContentPane().add(getContent(), BorderLayout.CENTER);
     }
 
     // Envoi sur le panel de l'authentification
     private void goAuthentification(ActionEvent e) {
-        cl.show(content, listContent[1]);
+        cl.show(getContent(), listContent[1]);
+    }
+
+    // Renvoi au menu principal
+    private void goMenuPrincipal(ActionEvent e) {
+        cl.show(getContent(), listContent[0]);
+    }
+
+    private JPanel getContent() {
+        return content;
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException {

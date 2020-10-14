@@ -22,6 +22,8 @@
     <list default="true" id="62388fd1-86f4-4be8-9147-0658cdcc6b8e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/Auth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/EnTete.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/EnTete.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/Auth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -90,7 +92,7 @@
       <workItem from="1602566380921" duration="6247000" />
       <workItem from="1602573749618" duration="8307000" />
       <workItem from="1602582612616" duration="3072000" />
-      <workItem from="1602655894064" duration="2721000" />
+      <workItem from="1602655894064" duration="2767000" />
     </task>
     <servers />
   </component>
