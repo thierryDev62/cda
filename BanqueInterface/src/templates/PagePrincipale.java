@@ -9,15 +9,15 @@ import java.io.IOException;
 
 public class PagePrincipale extends JPanel {
 
-    private BufferedImage logo = ImageIO.read(new File("images/logo-bank.png"));
+    //private BufferedImage logo = ImageIO.read(new File("images/logo-bank.png"));
 
     public PagePrincipale() throws IOException {
         this.setLayout(new GridLayout(2,1));
-        this.add(affichageLogoEtTitre());
+        //this.add(affichageLogoEtTitre());
         this.add(choix());
     }
 
-    private JPanel affichageLogoEtTitre(){
+    /*private JPanel affichageLogoEtTitre(){
         // Conteneur logo et titre
         JPanel contenuAffichage =  new JPanel();
         // Un peut d'espace avec le haut
@@ -29,7 +29,7 @@ public class PagePrincipale extends JPanel {
         titre.setFont(fontTitre);
         contenuAffichage.add(titre);
         return contenuAffichage;
-    }
+    }*/
 
     private JPanel choix() {
         // En dessous

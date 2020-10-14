@@ -1,9 +1,13 @@
+import templates.EnTete;
 import templates.PagePrincipale;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class App extends JFrame {
@@ -19,6 +23,9 @@ public class App extends JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
 
+        // En-tête
+        EnTete entete = new EnTete();
+
         // Page principale
         PagePrincipale pagePrincipale = new PagePrincipale();
 
@@ -28,6 +35,7 @@ public class App extends JFrame {
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         content.add(pagePrincipale, listContent[0]);
 
+        this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(content, BorderLayout.CENTER);
     }
 
