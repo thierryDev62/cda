@@ -1,28 +1,51 @@
 package templates;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Auth extends JPanel {
 
     private final JButton BOUTON_CONNEXION = new JButton("Connexion");
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
+    private BufferedImage iconeConnexion = ImageIO.read(new File("icones/bull.png"));
 
-    public Auth() {
-        this.setLayout(new GridLayout(2,1));
-        this.add(titre());
-        this.add(connexion());
+    public Auth() throws IOException {
+        this.setLayout(new BorderLayout(5,5));
+        this.add(iconeConnexionEtTitre(), BorderLayout.NORTH);
+        this.add(connexion(), BorderLayout.CENTER);
+
     }
-    private JPanel titre() {
+    private JPanel iconeConnexionEtTitre() {
+        // Conteneur de l'icone et du titre
+        JPanel conteneurIconeEtTitre = new JPanel();
+        conteneurIconeEtTitre.setLayout(new BorderLayout());
+
+        // Conteneur de l'icone
+        JPanel conteneurIcone = new JPanel();
+        JLabel affichageIcone = new JLabel(new ImageIcon(iconeConnexion));
+        conteneurIcone.add(affichageIcone);
+
+        // Conteneur du titre
         JPanel titrePanel = new JPanel();
-        JLabel titre = new JLabel("Authentification");
+        JLabel titre = new JLabel("<html><u style=\"color:orange\">Authentification</u></html>");
         titre.setFont(new Init().getTitreFont());
         titrePanel.add(titre);
-        return titrePanel;
+
+        conteneurIconeEtTitre.add(titrePanel, BorderLayout.NORTH);
+        conteneurIconeEtTitre.add(conteneurIcone, BorderLayout.CENTER);
+
+        return conteneurIconeEtTitre;
     }
+
     private JPanel connexion() {
         JPanel panelConnexion = new JPanel();
         panelConnexion.setLayout(new GridLayout(4,1));
+        panelConnexion.setBorder( new EmptyBorder(100, 0, 0, 0) );
 
         // Demande de saisi de l'identifiant
         JPanel conteneurIdentifiant = new JPanel();
@@ -56,6 +79,7 @@ public class Auth extends JPanel {
         panelConnexion.add(conteneurMotDePasse);
         panelConnexion.add(conteneurBoutonConnexion);
         panelConnexion.add(conteneurRetourAuMenu);
+
         return panelConnexion;
     }
 

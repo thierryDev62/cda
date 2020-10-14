@@ -14,7 +14,7 @@ public class PagePrincipale extends JPanel {
     }
     private JPanel titre() {
         JPanel titrePanel = new JPanel();
-        JLabel titre = new JLabel("Page principale");
+        JLabel titre = new JLabel("<html><u style=\"color:orange\">Page principale</u></html>");
         titre.setFont(new Init().getTitreFont());
         titrePanel.add(titre);
         return titrePanel;

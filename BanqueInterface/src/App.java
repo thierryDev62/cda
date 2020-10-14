@@ -17,7 +17,11 @@ public class App extends JFrame {
     private final JPanel content = new JPanel();
 
     // Liste des noms de nos conteneurs pour la pile de cartes
-    String[] listContent = { "PAGE_PRINCIPALE", "AUTH" };
+    String[] listContent = {
+            "PAGE_PRINCIPALE",
+            "AUTH",
+            "CREATION_COMPTE_UTIL"
+    };
 
     public App() throws IOException {
         super("Banque Diplo");

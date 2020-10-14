@@ -20,9 +20,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62388fd1-86f4-4be8-9147-0658cdcc6b8e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/about.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/amex-card.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/arrow-percentage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/atm-machine.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/atm-machine.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/bank.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/bank.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/barcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/chart-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/chart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/cloud.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/copy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/coupon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/credit-card.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/credit-card.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/cut.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/diamond.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/diamond.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/dollar-bills.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/dollar-bills.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/euro-suitecase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/exit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/gear-dollar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/graphs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/hammer.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/hammer.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/hand-euro-coin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/hand-money.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/hands-dollar-bill.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/help.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/lightbulb.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/magnifier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/master-card.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/mobile-atm-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/mobile-atm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/money-pig.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/money-pig.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/money-safe.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/money-safe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/new.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/open.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/paper-graph.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/paste.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/receipt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/redo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/save.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/save_as.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/scale.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/scale.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/shield.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/shield.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/smartphone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/tablet-charts-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/tablet-charts.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/undo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/visa-card.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/visa-card.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/icones/wallet.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/icones/wallet.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/Auth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/EnTete.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/EnTete.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/Auth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -92,7 +139,7 @@
       <workItem from="1602566380921" duration="6247000" />
       <workItem from="1602573749618" duration="8307000" />
       <workItem from="1602582612616" duration="3072000" />
-      <workItem from="1602655894064" duration="2767000" />
+      <workItem from="1602655894064" duration="3331000" />
     </task>
     <servers />
   </component>
