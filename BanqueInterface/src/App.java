@@ -1,3 +1,4 @@
+import templates.Auth;
 import templates.EnTete;
 import templates.PagePrincipale;
 
@@ -15,7 +16,7 @@ public class App extends JFrame {
     private final JPanel content = new JPanel();
 
     // Liste des noms de nos conteneurs pour la pile de cartes
-    String[] listContent = { "PAGE_PRINCIPALE" };
+    String[] listContent = { "PAGE_PRINCIPALE", "AUTH" };
 
     public App() throws IOException {
         super("Banque Diplo");
@@ -26,17 +27,27 @@ public class App extends JFrame {
         // En-tête
         EnTete entete = new EnTete();
 
+        // Authentification
+        Auth auth = new Auth();
+
         // Page principale
         PagePrincipale pagePrincipale = new PagePrincipale();
+        pagePrincipale.getAUTHENTIFICATION().addActionListener(this::goAuthentification);
 
         // On définit le layout
         content.setLayout(cl);
 
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         content.add(pagePrincipale, listContent[0]);
+        content.add(auth, listContent[1]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(content, BorderLayout.CENTER);
+    }
+
+    // Envoi sur le panel de l'authentification
+    private void goAuthentification(ActionEvent e) {
+        cl.show(content, listContent[1]);
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException {

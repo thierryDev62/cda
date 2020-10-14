@@ -17,13 +17,14 @@ public class EnTete extends JPanel {
     private JPanel affichageLogoEtTitre(){
         // Conteneur logo et titre
         JPanel contenuAffichage =  new JPanel();
+
         // Un peut d'espace avec le haut
         contenuAffichage.setBorder(BorderFactory.createEmptyBorder(50,0,0,0));
+
         JLabel afficheLogo = new JLabel(new ImageIcon(logo));
         contenuAffichage.add(afficheLogo);
-        Font fontTitre = new Font("Verdana", Font.BOLD, 30);
         JLabel titre = new JLabel("Banque de Diplo");
-        titre.setFont(fontTitre);
+        titre.setFont(new Init().getTitreFont());
         contenuAffichage.add(titre);
         return contenuAffichage;
     }
