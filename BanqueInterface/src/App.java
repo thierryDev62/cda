@@ -23,7 +23,6 @@ public class App extends JFrame {
             "CREATION_COMPTE_UTIL",
             "ESPACE_CLIENT",
             "CREATION_COMPTE_BANCAIRE",
-            "DECONNEXION",
             "ESPACE_CONSEILLER"
     };
 
