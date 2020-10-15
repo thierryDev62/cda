@@ -1,18 +1,32 @@
 package templates.principal;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class PagePrincipale extends JPanel {
-
+    private BufferedImage fond = ImageIO.read(new File("images/fond-page-principale.png"));
     private final JButton AUTHENTIFICATION = new JButton("S'authentifier");
     private final JButton BOUTON_CREER_COMPTE_UTIL = new JButton("Créer un compte utilisateur");
 
-    public PagePrincipale() {
-        this.setLayout(new GridLayout(2,1));
-        this.add(titre());
-        this.add(choix());
+    public PagePrincipale() throws IOException {
+        this.setLayout(new BorderLayout());
+        this.add(titre(), BorderLayout.NORTH);
+        this.add(choix(), BorderLayout.CENTER);
+        this.add(imageDeFond(), BorderLayout.SOUTH);
     }
+
+    private JPanel imageDeFond() {
+        JPanel imageDeFond = new JPanel();
+        imageDeFond.setBorder(BorderFactory.createEmptyBorder(0,0,100,0));
+        JLabel imageFond = new JLabel(new ImageIcon(fond));
+        imageDeFond.add(imageFond);
+        return imageDeFond;
+    }
+
     private JPanel titre() {
         JPanel titrePanel = new JPanel();
         JLabel titre = new JLabel("<html><u style=\"color:orange\">Page principale</u></html>");
@@ -24,7 +38,7 @@ public class PagePrincipale extends JPanel {
     private JPanel choix() {
         // En dessous
         JPanel contenuChoix = new JPanel();
-
+        contenuChoix.setBorder(BorderFactory.createEmptyBorder(50,0,0,0));
         // Combobox de choix de client ou conseiller
         JComboBox choix = new JComboBox();
         choix.setFont(new Init().getDefaultFont());

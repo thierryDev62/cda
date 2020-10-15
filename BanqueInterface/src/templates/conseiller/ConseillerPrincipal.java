@@ -11,6 +11,10 @@ import java.io.IOException;
 
 public class ConseillerPrincipal extends JPanel {
     private BufferedImage fond = ImageIO.read(new File("images/espaceConseiller.jpg"));
+    private JMenuItem deconnexion = new JMenuItem("Déconnexion");
+    private JMenuItem validationCompteUtil = new JMenuItem("Valider un compte utilisateur");
+    private JMenuItem listeDesComptes = new JMenuItem("Voir la liste des comptes");
+    private JMenuItem listeDesClients = new JMenuItem("Voir la liste des clients");
 
     public ConseillerPrincipal() throws IOException {
         this.add(afficheTitreEtMenuBar());
@@ -45,8 +49,47 @@ public class ConseillerPrincipal extends JPanel {
 
         JMenuBar menuBar = new JMenuBar();
 
+        /********** Menu "Action" **********/
+        JMenu action = new JMenu("Action");
+        action.setFont(new Init().getDefaultFont());
+
+        validationCompteUtil.setIcon(new ImageIcon("icones/hammer-mini.png"));
+        action.add(validationCompteUtil);
+
+        action.addSeparator();
+
+        deconnexion.setIcon(new ImageIcon("icones/exit.png"));
+        action.add(deconnexion);
+
+        /********** Menu "Consultation" **********/
+        JMenu consultation = new JMenu("Consultation");
+        consultation.setFont(new Init().getDefaultFont());
+
+        listeDesComptes.setIcon(new ImageIcon("icones/document-paper-mini.png"));
+        consultation.add(listeDesComptes);
+
+        listeDesClients.setIcon(new ImageIcon("icones/man-coin-mini.png"));
+        consultation.add(listeDesClients);
+
+        menuBar.add(action);
+        menuBar.add(consultation);
+
         return menuBar;
     }
 
+    public JMenuItem getDeconnexion() {
+        return deconnexion;
+    }
 
+    public JMenuItem getValidationCompteUtil() {
+        return validationCompteUtil;
+    }
+
+    public JMenuItem getListeDesComptes() {
+        return listeDesComptes;
+    }
+
+    public JMenuItem getListeDesClients() {
+        return listeDesClients;
+    }
 }

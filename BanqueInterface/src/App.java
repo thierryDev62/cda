@@ -71,6 +71,7 @@ public class App extends JFrame {
          * Espace Conseiller
          ******************************************************/
         ConseillerPrincipal espaceConseiller = new ConseillerPrincipal();
+        espaceConseiller.getDeconnexion().addActionListener(this::confirmDeconnexion);
 
         // On définit le layout
         getContent().setLayout(cl);
