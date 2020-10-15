@@ -1,5 +1,6 @@
 import templates.clients.ClientPrincipal;
 import templates.clients.CreationCompteBancaire;
+import templates.conseiller.ConseillerPrincipal;
 import templates.principal.Auth;
 import templates.principal.CreationCompteUtilisateur;
 import templates.principal.EnTete;
@@ -22,7 +23,8 @@ public class App extends JFrame {
             "CREATION_COMPTE_UTIL",
             "ESPACE_CLIENT",
             "CREATION_COMPTE_BANCAIRE",
-            "DECONNEXION"
+            "DECONNEXION",
+            "ESPACE_CONSEILLER"
     };
 
     public App() throws IOException {
@@ -45,7 +47,8 @@ public class App extends JFrame {
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceClient); // TODO: rediriger en fonction du type d'utilisateur
+        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceConseiller);
+        // TODO: rediriger en fonction du type d'utilisateur : 1 - Client goEspaceClient | 2 -  Conseiller goEspaceConseiller
 
         // Création d'un compte utilisateur
         CreationCompteUtilisateur creationCompteUtilisateur = new CreationCompteUtilisateur();
@@ -65,6 +68,10 @@ public class App extends JFrame {
         creationCompteBancaire.getBOUTON_VALIDER().addActionListener(this::okCompteBancaireCree);
         creationCompteBancaire.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationCompteBancaire);
 
+        /*******************************************************
+         * Espace Conseiller
+         ******************************************************/
+        ConseillerPrincipal espaceConseiller = new ConseillerPrincipal();
 
         // On définit le layout
         getContent().setLayout(cl);
@@ -75,6 +82,7 @@ public class App extends JFrame {
         getContent().add(creationCompteUtilisateur, listContent[2]);
         getContent().add(espaceClient, listContent[3]);
         getContent().add(creationCompteBancaire, listContent[4]);
+        getContent().add(espaceConseiller, listContent[5]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
@@ -99,6 +107,11 @@ public class App extends JFrame {
     // Renvoi au menu principal
     private void goMenuPrincipal(ActionEvent e) {
         cl.show(getContent(), listContent[0]);
+    }
+
+    // Espace conseiller
+    private void goEspaceConseiller(ActionEvent e) {
+        cl.show(getContent(), listContent[5]);
     }
 
     // Espace client
