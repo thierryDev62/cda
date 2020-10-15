@@ -2,6 +2,8 @@ package templates.principal;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +13,12 @@ public class EnTete extends JPanel {
 
     public EnTete() throws IOException {
         this.add(affichageLogoEtTitre());
+    }
+    public void paint(Graphics g) {
+        super.paint(g);
+        Graphics2D g2 = (Graphics2D) g;
+        Line2D lin = new Line2D.Float(1920, 250, 0, 250);
+        g2.draw(lin);
     }
 
     private JPanel affichageLogoEtTitre(){

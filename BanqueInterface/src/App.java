@@ -45,7 +45,7 @@ public class App extends JFrame {
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceClient);
+        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceClient); // TODO: rediriger en fonction du type d'utilisateur
 
         // Création d'un compte utilisateur
         CreationCompteUtilisateur creationCompteUtilisateur = new CreationCompteUtilisateur();
@@ -58,12 +58,12 @@ public class App extends JFrame {
         // Page principale espace client
         ClientPrincipal espaceClient = new ClientPrincipal();
         espaceClient.getCreerUnCompte().addActionListener(this::goCreationCompteBancaire);
-        espaceClient.getDeconnexion().addActionListener(this::goMenuPrincipal);
+        espaceClient.getDeconnexion().addActionListener(this::confirmDeconnexion);
 
         // Création compte bancaire
         CreationCompteBancaire creationCompteBancaire = new CreationCompteBancaire();
         creationCompteBancaire.getBOUTON_VALIDER().addActionListener(this::okCompteBancaireCree);
-        creationCompteBancaire.getBOUTON_ANNULER().addActionListener(this::goEspaceClient);
+        creationCompteBancaire.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationCompteBancaire);
 
 
         // On définit le layout
@@ -106,6 +106,15 @@ public class App extends JFrame {
         cl.show(getContent(), listContent[3]);
     }
 
+    // Confirmation de déconnexion de l'espace client
+    private void  confirmDeconnexion (ActionEvent e) {
+        int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
+        if(clicAnnuler == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
+            cl.show(getContent(), listContent[0]);
+        }
+    }
+
     // Créer un compte bancaire
     private void goCreationCompteBancaire(ActionEvent e) {
         cl.show(getContent(), listContent[4]);
@@ -115,6 +124,14 @@ public class App extends JFrame {
     private void okCompteBancaireCree(ActionEvent e) {
         JOptionPane.showMessageDialog(this, "Le compte bancaire a bien été créé !");
         cl.show(getContent(), listContent[3]);
+    }
+
+    // Demande d'annulation de la création d'un compte bancaire
+    private void confirmAnnulationCompteBancaire (ActionEvent e) {
+        int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair annuler la création d'un compte bancaire ?", "Confirmation d'annulation", JOptionPane.YES_NO_OPTION);
+        if(clicAnnuler == JOptionPane.YES_OPTION) {
+            cl.show(getContent(), listContent[3]);
+        }
     }
 
     private JPanel getContent() {
