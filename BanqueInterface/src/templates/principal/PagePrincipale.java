@@ -38,7 +38,7 @@ public class PagePrincipale extends JPanel {
     private JPanel choix() {
         // En dessous
         JPanel contenuChoix = new JPanel();
-        contenuChoix.setBorder(BorderFactory.createEmptyBorder(50,0,0,0));
+        contenuChoix.setBorder(BorderFactory.createEmptyBorder(50,0,10,0));
         // Combobox de choix de client ou conseiller
         JComboBox choix = new JComboBox();
         choix.setFont(new Init().getDefaultFont());
