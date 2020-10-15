@@ -3,14 +3,20 @@ package templates.principal;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class PagePrincipale extends JPanel {
     private BufferedImage fond = ImageIO.read(new File("images/fond-page-principale.png"));
     private final JButton AUTHENTIFICATION = new JButton("S'authentifier");
     private final JButton BOUTON_CREER_COMPTE_UTIL = new JButton("Créer un compte utilisateur");
+    private JComboBox choix = new JComboBox();
 
     public PagePrincipale() throws IOException {
         this.setLayout(new BorderLayout());
@@ -39,11 +45,12 @@ public class PagePrincipale extends JPanel {
         // En dessous
         JPanel contenuChoix = new JPanel();
         contenuChoix.setBorder(BorderFactory.createEmptyBorder(50,0,10,0));
+
         // Combobox de choix de client ou conseiller
-        JComboBox choix = new JComboBox();
+        String[] clientOuConseiller = { "Client", "Conseiller" };
+        choix = new JComboBox<>(clientOuConseiller);
         choix.setFont(new Init().getDefaultFont());
-        choix.addItem("Client");
-        choix.addItem("Conseiller");
+        choix.addActionListener(this::typeChoisi);
 
         // Bouton Créer un compte utilisateur
         AUTHENTIFICATION.setFont(new Init().getDefaultFont());
@@ -52,6 +59,20 @@ public class PagePrincipale extends JPanel {
         contenuChoix.add(AUTHENTIFICATION);
         contenuChoix.add(BOUTON_CREER_COMPTE_UTIL);
         return contenuChoix;
+    }
+
+    // Méthode de catch du type d'utilisateur
+    private void typeChoisi(ActionEvent e) {
+        int type = 0;
+        
+        if(Objects.equals(choix.getSelectedItem(), "Client")) {
+            type = 1;
+            System.out.println("Vous avez choisi le type " + type + " : Client");
+        } else if (Objects.equals(choix.getSelectedItem(), "Conseiller")) {
+            type = 2;
+            System.out.println("Vous avez choisi le type " + type + " : Conseiller");
+        }
+
     }
 
     public JButton getAUTHENTIFICATION() {

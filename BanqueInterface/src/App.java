@@ -1,6 +1,7 @@
 import templates.clients.ClientPrincipal;
 import templates.clients.CreationCompteBancaire;
 import templates.conseiller.ConseillerPrincipal;
+import templates.conseiller.ValiderCompteUtilisateur;
 import templates.principal.Auth;
 import templates.principal.CreationCompteUtilisateur;
 import templates.principal.EnTete;
@@ -23,7 +24,8 @@ public class App extends JFrame {
             "CREATION_COMPTE_UTIL",
             "ESPACE_CLIENT",
             "CREATION_COMPTE_BANCAIRE",
-            "ESPACE_CONSEILLER"
+            "ESPACE_CONSEILLER",
+            "VALIDATION_COMPTE"
     };
 
     public App() throws IOException {
@@ -70,8 +72,15 @@ public class App extends JFrame {
         /*******************************************************
          * Espace Conseiller
          ******************************************************/
+        // Page principale espace conseiller
         ConseillerPrincipal espaceConseiller = new ConseillerPrincipal();
         espaceConseiller.getDeconnexion().addActionListener(this::confirmDeconnexion);
+        espaceConseiller.getValidationCompteUtil().addActionListener(this::goValidationCompteUtilisateur);
+
+        // Validation d'un compte utilisateur
+        ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
+        validerCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okCompteUtilisateurValide);
+        validerCompteUtilisateur.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationValidationCompteUtil);
 
         // On définit le layout
         getContent().setLayout(cl);
@@ -83,6 +92,7 @@ public class App extends JFrame {
         getContent().add(espaceClient, listContent[3]);
         getContent().add(creationCompteBancaire, listContent[4]);
         getContent().add(espaceConseiller, listContent[5]);
+        getContent().add(validerCompteUtilisateur, listContent[6]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
@@ -112,6 +122,25 @@ public class App extends JFrame {
     // Espace conseiller
     private void goEspaceConseiller(ActionEvent e) {
         cl.show(getContent(), listContent[5]);
+    }
+
+    // Validation d'un compte utilisateur par le conseiller
+    private void goValidationCompteUtilisateur(ActionEvent e) {
+        cl.show(getContent(), listContent[6]);
+    }
+
+    // Réponse après validation d'un compte utilisateur
+    private void okCompteUtilisateurValide(ActionEvent e) {
+        JOptionPane.showMessageDialog(this, "Compte utilisateur validé !");
+        cl.show(getContent(), listContent[5]);
+    }
+
+    // Demande d'annulation de la validation d'un compte utilisateur
+    private void confirmAnnulationValidationCompteUtil (ActionEvent e) {
+        int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair annuler la validation de ce compte utilisateur ?", "Confirmation d'annulation", JOptionPane.YES_NO_OPTION);
+        if(clicAnnuler == JOptionPane.YES_OPTION) {
+            cl.show(getContent(), listContent[5]);
+        }
     }
 
     // Espace client
