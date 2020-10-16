@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class PagePrincipale extends JPanel {
-    private BufferedImage fond = ImageIO.read(new File("images/fond-page-principale.png"));
+    private final BufferedImage FOND = ImageIO.read(new File("images/fond-page-principale.png"));
     private final JButton AUTHENTIFICATION = new JButton("S'authentifier");
     private final JButton BOUTON_CREER_COMPTE_UTIL = new JButton("Créer un compte utilisateur");
-    private JComboBox choix = new JComboBox();
+    private JComboBox choix = new JComboBox<>();
 
     public PagePrincipale() throws IOException {
         this.setLayout(new BorderLayout());
@@ -28,7 +28,7 @@ public class PagePrincipale extends JPanel {
     private JPanel imageDeFond() {
         JPanel imageDeFond = new JPanel();
         imageDeFond.setBorder(BorderFactory.createEmptyBorder(0,0,100,0));
-        JLabel imageFond = new JLabel(new ImageIcon(fond));
+        JLabel imageFond = new JLabel(new ImageIcon(FOND));
         imageDeFond.add(imageFond);
         return imageDeFond;
     }
@@ -73,7 +73,6 @@ public class PagePrincipale extends JPanel {
             type = 2;
             System.out.println("Vous avez choisi le type " + type + " : Conseiller");
         }
-
     }
 
     public JButton getAUTHENTIFICATION() {
