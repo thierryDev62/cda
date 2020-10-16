@@ -63,6 +63,7 @@ public class PagePrincipale extends JPanel {
 
     // Méthode de catch du type d'utilisateur
     private void typeChoisi(ActionEvent e) {
+        //TODO : test de catch d'une valeur choisi dans un combobox
         int type = 0;
         
         if(Objects.equals(choix.getSelectedItem(), "Client")) {
