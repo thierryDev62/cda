@@ -1,5 +1,6 @@
 import templates.clients.ClientPrincipal;
 import templates.clients.CreationCompteBancaire;
+import templates.clients.Informations;
 import templates.conseiller.ConseillerPrincipal;
 import templates.conseiller.ValiderCompteUtilisateur;
 import templates.principal.Auth;
@@ -25,7 +26,8 @@ public class App extends JFrame {
             "ESPACE_CLIENT",
             "CREATION_COMPTE_BANCAIRE",
             "ESPACE_CONSEILLER",
-            "VALIDATION_COMPTE"
+            "VALIDATION_COMPTE",
+            "INFORMATIONS"
     };
 
     public App() throws IOException {
@@ -48,7 +50,7 @@ public class App extends JFrame {
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceConseiller);
+        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceClient);
         // TODO: rediriger en fonction du type d'utilisateur : 1 - Client goEspaceClient | 2 -  Conseiller goEspaceConseiller
 
         // Création d'un compte utilisateur
@@ -63,11 +65,16 @@ public class App extends JFrame {
         ClientPrincipal espaceClient = new ClientPrincipal();
         espaceClient.getCreerUnCompte().addActionListener(this::goCreationCompteBancaire);
         espaceClient.getDeconnexion().addActionListener(this::confirmDeconnexion);
+        espaceClient.getMesInformations().addActionListener(this::goInformations);
 
         // Création compte bancaire
         CreationCompteBancaire creationCompteBancaire = new CreationCompteBancaire();
         creationCompteBancaire.getBOUTON_VALIDER().addActionListener(this::okCompteBancaireCree);
         creationCompteBancaire.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationCompteBancaire);
+
+        // Affichage des informations
+        Informations informations = new Informations();
+        informations.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
 
         /*******************************************************
          * Espace Conseiller
@@ -93,6 +100,7 @@ public class App extends JFrame {
         getContent().add(creationCompteBancaire, listContent[4]);
         getContent().add(espaceConseiller, listContent[5]);
         getContent().add(validerCompteUtilisateur, listContent[6]);
+        getContent().add(informations, listContent[7]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
@@ -174,6 +182,11 @@ public class App extends JFrame {
         if(clicAnnuler == JOptionPane.YES_OPTION) {
             cl.show(getContent(), listContent[3]);
         }
+    }
+
+    // Affichage des informations
+    private void goInformations(ActionEvent e) {
+        cl.show(getContent(), listContent[7]);
     }
 
     private JPanel getContent() {

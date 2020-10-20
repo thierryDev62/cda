@@ -4,9 +4,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -64,7 +61,7 @@ public class PagePrincipale extends JPanel {
     // Méthode de catch du type d'utilisateur
     private void typeChoisi(ActionEvent e) {
         //TODO : test de catch d'une valeur choisi dans un combobox
-        int type = 0;
+        int type;
         
         if(Objects.equals(choix.getSelectedItem(), "Client")) {
             type = 1;
