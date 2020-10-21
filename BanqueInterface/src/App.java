@@ -1,7 +1,6 @@
-import templates.clients.ClientPrincipal;
-import templates.clients.CreationCompteBancaire;
-import templates.clients.Informations;
+import templates.clients.*;
 import templates.conseiller.ConseillerPrincipal;
+import templates.conseiller.ListeClients;
 import templates.conseiller.ValiderCompteUtilisateur;
 import templates.principal.Auth;
 import templates.principal.CreationCompteUtilisateur;
@@ -27,7 +26,16 @@ public class App extends JFrame {
             "CREATION_COMPTE_BANCAIRE",
             "ESPACE_CONSEILLER",
             "VALIDATION_COMPTE",
-            "INFORMATIONS"
+            "INFORMATIONS",
+            "LISTE_DES_COMPTES",
+            "CONSULTATION_SOLDE",
+            "VERSEMENTS",
+            "RETRAITS",
+            "VIREMENTS",
+            "LISTE_OPERATIONS",
+            "TOTAL_VERSEMENTS",
+            "TOTAL_RETRAITS",
+            "LISTE_CLIENTS"
     };
 
     public App() throws IOException {
@@ -50,7 +58,7 @@ public class App extends JFrame {
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceClient);
+        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceConseiller);
         // TODO: rediriger en fonction du type d'utilisateur : 1 - Client goEspaceClient | 2 -  Conseiller goEspaceConseiller
 
         // Création d'un compte utilisateur
@@ -66,6 +74,14 @@ public class App extends JFrame {
         espaceClient.getCreerUnCompte().addActionListener(this::goCreationCompteBancaire);
         espaceClient.getDeconnexion().addActionListener(this::confirmDeconnexion);
         espaceClient.getMesInformations().addActionListener(this::goInformations);
+        espaceClient.getListeDesComptes().addActionListener(this::goListeDesComptes);
+        espaceClient.getConsultationSolde().addActionListener(this::goConsultationSolde);
+        espaceClient.getVersement().addActionListener(this::goVersements);
+        espaceClient.getRetrait().addActionListener(this::goRetraits);
+        espaceClient.getVirement().addActionListener(this::goVirements);
+        espaceClient.getListeOperations().addActionListener(this::goListeOperations);
+        espaceClient.getTotalVersement().addActionListener(this::goTotalVersements);
+        espaceClient.getTotalRetrait().addActionListener(this::goTotalRetraits);
 
         // Création compte bancaire
         CreationCompteBancaire creationCompteBancaire = new CreationCompteBancaire();
@@ -76,6 +92,38 @@ public class App extends JFrame {
         Informations informations = new Informations();
         informations.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
 
+        // Affichage de la liste des comptes
+        ListeDesComptes listeDesComptes = new ListeDesComptes();
+        listeDesComptes.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
+        // Consultation du solde d'un compte
+        ConsultationSolde consultationSolde = new ConsultationSolde();
+        consultationSolde.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
+        // Effectuer un versement sur un comtpe
+        Versements versements = new Versements();
+        versements.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
+        // Effectuer un retrait sur un compte
+        Retraits retraits = new Retraits();
+        retraits.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
+        // Effectuer un virement de compte à comtpe
+        Virements virements = new Virements();
+        virements.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
+        // Liste de toutes les opérations effectuées sur les comptes
+        ListeOperations listeOperations = new ListeOperations();
+        listeOperations.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
+        // Total des versements
+        TotalVersements totalVersements = new TotalVersements();
+        totalVersements.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
+        // Total des retraits
+        TotalRetraits totalRetraits = new TotalRetraits();
+        totalRetraits.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceClient);
+
         /*******************************************************
          * Espace Conseiller
          ******************************************************/
@@ -83,11 +131,17 @@ public class App extends JFrame {
         ConseillerPrincipal espaceConseiller = new ConseillerPrincipal();
         espaceConseiller.getDeconnexion().addActionListener(this::confirmDeconnexion);
         espaceConseiller.getValidationCompteUtil().addActionListener(this::goValidationCompteUtilisateur);
+        espaceConseiller.getListeDesComptes().addActionListener(this::goListeDesComptes); // TODO : Voir pour le retour au menu en fonction du type d'utilisateur
+        espaceConseiller.getListeDesClients().addActionListener((this::goListeClients));
 
         // Validation d'un compte utilisateur
         ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
         validerCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okCompteUtilisateurValide);
         validerCompteUtilisateur.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationValidationCompteUtil);
+
+        // Affiche la liste des clients de la banque
+        ListeClients listeClients = new ListeClients();
+        listeClients.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceConseiller);
 
         // On définit le layout
         getContent().setLayout(cl);
@@ -101,6 +155,15 @@ public class App extends JFrame {
         getContent().add(espaceConseiller, listContent[5]);
         getContent().add(validerCompteUtilisateur, listContent[6]);
         getContent().add(informations, listContent[7]);
+        getContent().add(listeDesComptes, listContent[8]);
+        getContent().add(consultationSolde, listContent[9]);
+        getContent().add(versements, listContent[10]);
+        getContent().add(retraits, listContent[11]);
+        getContent().add(virements, listContent[12]);
+        getContent().add(listeOperations, listContent[13]);
+        getContent().add(totalVersements, listContent[14]);
+        getContent().add(totalRetraits, listContent[15]);
+        getContent().add(listeClients, listContent[16]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
@@ -151,6 +214,15 @@ public class App extends JFrame {
         }
     }
 
+    // Liste des clients de la banque
+    private void goListeClients(ActionEvent e) {
+        cl.show(getContent(), listContent[16]);
+    }
+
+    /***************
+    *  METHODES
+    ***************/
+
     // Espace client
     private void goEspaceClient(ActionEvent e) {
         cl.show(getContent(), listContent[3]);
@@ -189,16 +261,66 @@ public class App extends JFrame {
         cl.show(getContent(), listContent[7]);
     }
 
+    // Affichage de la liste des comptes
+    private void goListeDesComptes(ActionEvent e) {
+        cl.show(getContent(), listContent[8]);
+    }
+
+    // Consultation solde
+    private void goConsultationSolde(ActionEvent e) {
+        cl.show(getContent(), listContent[9]);
+    }
+
+    // Versements
+    private void goVersements(ActionEvent e) {
+        cl.show(getContent(), listContent[10]);
+    }
+
+    // Retraits
+    private void goRetraits(ActionEvent e) {
+        cl.show(getContent(), listContent[11]);
+    }
+
+    // Virements
+    private void goVirements(ActionEvent e) {
+        cl.show(getContent(), listContent[12]);
+    }
+
+    // Liste des opérations
+    private void goListeOperations(ActionEvent e) {
+        cl.show(getContent(), listContent[13]);
+    }
+
+    // Total des versements
+    private void goTotalVersements(ActionEvent e) {
+        cl.show(getContent(), listContent[14]);
+    }
+
+    // Total des retraits
+    private void goTotalRetraits(ActionEvent e) {
+        cl.show(getContent(), listContent[15]);
+    }
+
     private JPanel getContent() {
         return content;
     }
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, IOException {
-        // Apply a look'n feel
-        UIManager.setLookAndFeel(new NimbusLookAndFeel());
+    // Main
+    public static void main(String[] args) {
+        // Applique un thème sympa
+        try {
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
 
-        // Start my window
-        App myWindow = new App();
-        myWindow.setVisible(true);
+        // Démarre l'application en ouvrant une nouvelle fenêtre
+        App maFenetre = null;
+        try {
+            maFenetre = new App();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        maFenetre.setVisible(true);
     }
 }

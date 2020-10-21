@@ -1,35 +1,36 @@
-package templates.clients;
+package templates.conseiller;
 
 import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ListeDesComptes extends JPanel {
+public class ListeClients extends JPanel {
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu");
 
-    public ListeDesComptes() {
+    public ListeClients() {
         this.setLayout(new BorderLayout(5,5));
         this.add(afficheTitre());
-        this.add(afficheListeDesComptes());
+        this.add(afficheListeClients());
     }
+
     private JPanel afficheTitre() {
         JPanel conteneurTitre = new JPanel();
-        JLabel titre = new JLabel("Liste des comptes");
+        JLabel titre = new JLabel("Liste des clients de la banque");
         titre.setFont(new Init().getTitreFont());
         conteneurTitre.add(titre);
         return conteneurTitre;
     }
 
-    private JPanel afficheListeDesComptes() {
-        JPanel conteneurListe = new JPanel();
+    private JPanel afficheListeClients() {
+        JPanel conteneurListeClients = new JPanel();
 
-        JLabel texte = new JLabel("Ici s'affichera la liste des comptes");
+        JLabel texte = new JLabel("Ici s'affichera la liste de tous les clients de la banque");
 
-        conteneurListe.add(texte);
-        conteneurListe.add(BOUTON_RETOUR_MENU);
+        conteneurListeClients.add(texte);
+        conteneurListeClients.add(BOUTON_RETOUR_MENU);
 
-        return conteneurListe;
+        return conteneurListeClients;
     }
 
     public JButton getBOUTON_RETOUR_MENU() {

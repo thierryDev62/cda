@@ -5,31 +5,32 @@ import templates.principal.Init;
 import javax.swing.*;
 import java.awt.*;
 
-public class ListeDesComptes extends JPanel {
+public class TotalRetraits extends JPanel {
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu");
 
-    public ListeDesComptes() {
+    public TotalRetraits() {
         this.setLayout(new BorderLayout(5,5));
         this.add(afficheTitre());
-        this.add(afficheListeDesComptes());
+        this.add(afficheTotalRetraits());
     }
+
     private JPanel afficheTitre() {
         JPanel conteneurTitre = new JPanel();
-        JLabel titre = new JLabel("Liste des comptes");
+        JLabel titre = new JLabel("Total des retraits");
         titre.setFont(new Init().getTitreFont());
         conteneurTitre.add(titre);
         return conteneurTitre;
     }
 
-    private JPanel afficheListeDesComptes() {
-        JPanel conteneurListe = new JPanel();
+    private JPanel afficheTotalRetraits() {
+        JPanel conteneurTotalRetrait = new JPanel();
 
-        JLabel texte = new JLabel("Ici s'affichera la liste des comptes");
+        JLabel texte = new JLabel("Ici s'affichera le total des retraits");
 
-        conteneurListe.add(texte);
-        conteneurListe.add(BOUTON_RETOUR_MENU);
+        conteneurTotalRetrait.add(texte);
+        conteneurTotalRetrait.add(BOUTON_RETOUR_MENU);
 
-        return conteneurListe;
+        return conteneurTotalRetrait;
     }
 
     public JButton getBOUTON_RETOUR_MENU() {
