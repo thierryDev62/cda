@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62388fd1-86f4-4be8-9147-0658cdcc6b8e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ClientPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ClientPrincipal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/principal/PagePrincipale.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/principal/PagePrincipale.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ClientPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ClientPrincipal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/principal/PagePrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/principal/PagePrincipale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../swing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../swing/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +63,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Banque2" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -90,6 +96,7 @@
       <workItem from="1602582612616" duration="3072000" />
       <workItem from="1602655894064" duration="3331000" />
       <workItem from="1602827898489" duration="713000" />
+      <workItem from="1603375286080" duration="1262000" />
     </task>
     <servers />
   </component>
@@ -122,12 +129,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602575549676" />
-    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1602658491460">
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1603376665915">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="617" y="227" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1602650005907" />
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582114353" />
-    <state x="2660" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1602658491460" />
+    <state x="2660" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603376665915" />
     <state width="1557" height="217" key="GridCell.Tab.0.bottom" timestamp="1602651744436">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

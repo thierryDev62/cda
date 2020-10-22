@@ -1,6 +1,7 @@
 package templates.clients;
 
 import templates.principal.Init;
+import templates.principal.PagePrincipale;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class ClientPrincipal extends JPanel {
     public ClientPrincipal() throws IOException {
         this.add(afficheTitreEtMenuBar());
     }
-    private JPanel afficheTitreEtMenuBar() {
+    private JPanel afficheTitreEtMenuBar() throws IOException {
         JPanel espaceClient = new JPanel();
         espaceClient.setLayout(new BorderLayout());
         espaceClient.add(titreEspaceClient(), BorderLayout.NORTH);
@@ -37,10 +38,12 @@ public class ClientPrincipal extends JPanel {
     }
 
     private JPanel titreEspaceClient() {
+
         JPanel conteneurTitre = new JPanel();
         conteneurTitre.setBorder(BorderFactory.createEmptyBorder(0,0,50,0));
         JLabel titre = new JLabel("Espace client");
         titre.setFont(new Init().getTitreFont());
+
         conteneurTitre.add(titre);
         return conteneurTitre;
     }

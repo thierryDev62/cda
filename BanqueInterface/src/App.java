@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class App extends JFrame {
@@ -58,7 +59,14 @@ public class App extends JFrame {
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        auth.getBOUTON_CONNEXION().addActionListener(this::goEspaceConseiller);
+        int typeChoisi = pagePrincipale.getType();
+        auth.getBOUTON_CONNEXION().addActionListener(e -> {
+            if(typeChoisi == 1) {
+                cl.show(getContent(), listContent[3]);
+            } else if(typeChoisi == 2) {
+                cl.show(getContent(), listContent[5]);
+            }
+        });
         // TODO: rediriger en fonction du type d'utilisateur : 1 - Client goEspaceClient | 2 -  Conseiller goEspaceConseiller
 
         // Création d'un compte utilisateur
