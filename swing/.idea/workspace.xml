@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c68abd8a-9ccf-4098-b42a-8ed136b31cfa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ClientPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ClientPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/principal/PagePrincipale.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/principal/PagePrincipale.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ClientPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ClientPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/principal/PagePrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/principal/PagePrincipale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../switchPanelsSwing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../switchPanelsSwing/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c68abd8a-9ccf-4098-b42a-8ed136b31cfa" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -4,6 +4,7 @@ import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class CreationCompteBancaire extends JPanel {
 
@@ -18,7 +19,9 @@ public class CreationCompteBancaire extends JPanel {
 
     private JPanel afficheTitre() {
         JPanel conteneurTitre = new JPanel();
-        JLabel titre = new JLabel("Création d'un compte bancaire");
+        conteneurTitre.setBackground(Color.LIGHT_GRAY);
+        JLabel titre = new JLabel("<html>Création d'un compte bancaire<br><div style=\"font-size: 0.9em;margin-top: 10px;\">Choisissez le type de compte que vous voulez créer</div></html>");
+
         titre.setFont(new Init().getTitreFont());
         conteneurTitre.add(titre);
         return conteneurTitre;
@@ -32,9 +35,10 @@ public class CreationCompteBancaire extends JPanel {
 
         JRadioButton compteCourant = new JRadioButton("Compte courant");
         compteCourant.setFont(new Init().getDefaultFont());
-        compteCourant.setSelected(true);
+        compteCourant.addActionListener(this::typeDeCompteChoisi);
         JRadioButton compteEpargne = new JRadioButton("Compte épargne");
         compteEpargne.setFont(new Init().getDefaultFont());
+        compteEpargne.addActionListener(this::typeDeCompteChoisi);
 
 
         ButtonGroup groupe = new ButtonGroup();
@@ -59,7 +63,14 @@ public class CreationCompteBancaire extends JPanel {
         panelCreation.add(conteneurBoutonAnnuler);
 
         return panelCreation;
+    }
 
+    // Méthode de prise en compte du choix du type de compte
+    public void typeDeCompteChoisi(ActionEvent e) {
+        String typeDeCompte = ((JRadioButton) e.getSource()).getText();
+        boolean testOk = ((JRadioButton) e.getSource()).isSelected();
+
+        System.out.println("Source : " + typeDeCompte + " - état : " + testOk);
     }
 
     public JButton getBOUTON_VALIDER() {

@@ -19,16 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62388fd1-86f4-4be8-9147-0658cdcc6b8e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ClientPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ClientPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/principal/PagePrincipale.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/principal/PagePrincipale.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ClientPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ClientPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/principal/PagePrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/principal/PagePrincipale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../swing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../swing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="62388fd1-86f4-4be8-9147-0658cdcc6b8e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
