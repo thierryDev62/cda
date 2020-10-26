@@ -11,9 +11,10 @@ public class Compte {
 
     public Compte(String typeDeCompte) {
         this.typeDeCompte = typeDeCompte;
+        listeDesComptes.add(this);
     }
 
-    public static int getNumeroCompte() {
+    public int getNumeroCompte() {
         return numeroCompte;
     }
 

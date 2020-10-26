@@ -4,9 +4,10 @@ import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ListeDesComptes extends JPanel {
-    private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu");
+    private final JButton BOUTON_RETOUR_MENU = new JButton("<html><div style=\"padding: 20px; color: blue;\">Retour au menu</div></html>");
 
     public ListeDesComptes() {
         this.setLayout(new BorderLayout(5,5));
@@ -23,11 +24,24 @@ public class ListeDesComptes extends JPanel {
 
     private JPanel afficheListeDesComptes() {
         JPanel conteneurListe = new JPanel();
+        conteneurListe.setLayout(new BorderLayout());
+        Object[][] data = {
+                {123, "Compte courant", 500},
+                {456, "Compte épargne", 5}
+        };
 
-        JLabel texte = new JLabel("Ici s'affichera la liste des comptes");
+        String[] titresColonnes = {"Numéro de compte", "Type de compte", "Découvert / taux"};
 
-        conteneurListe.add(texte);
-        conteneurListe.add(BOUTON_RETOUR_MENU);
+        JTable liste = new JTable(data, titresColonnes);
+
+        liste.setFont(new Init().getDefaultFont());
+
+        conteneurListe.add(liste.getTableHeader(), BorderLayout.NORTH);
+        conteneurListe.add(liste, BorderLayout.CENTER);
+
+        BOUTON_RETOUR_MENU.setFont(new Init().getDefaultFont());
+
+        conteneurListe.add(BOUTON_RETOUR_MENU, BorderLayout.SOUTH);
 
         return conteneurListe;
     }

@@ -1,5 +1,6 @@
 import entity.Compte;
 import entity.CompteCourant;
+import entity.CompteEpargne;
 import templates.clients.*;
 import templates.conseiller.ConseillerPrincipal;
 import templates.conseiller.ListeClients;
@@ -247,7 +248,7 @@ public class App extends JFrame {
         }
     }
 
-    // Créer un compte bancaire
+    // Page de création d'un compte bancaire
     private void goCreationCompteBancaire(ActionEvent e) {
         cl.show(getContent(), listContent[4]);
     }
@@ -257,11 +258,20 @@ public class App extends JFrame {
         String typeDeCompte = CreationCompteBancaire.getTypeDeCompteChoisi();
 
         if(typeDeCompte.equals("Compte courant")) {
+
             Compte nouveauCompte = new CompteCourant(typeDeCompte);
+
             nouveauCompte.setNumeroCompte(123);
-            JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + Compte.getNumeroCompte());
+
+            JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
         } else if(typeDeCompte.equals("Compte épargne")) {
-            System.out.println("Un compte épargne a été choisi !");
+
+            Compte nouveauCompte = new CompteEpargne(typeDeCompte);
+
+            nouveauCompte.setNumeroCompte(456);
+
+            JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
+
         }
 
         cl.show(getContent(), listContent[3]);
