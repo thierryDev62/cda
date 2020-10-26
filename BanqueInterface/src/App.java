@@ -231,8 +231,8 @@ public class App extends JFrame {
     }
 
     /***************
-    *  METHODES
-    ***************/
+     *  METHODES
+     ***************/
 
     // Espace client
     private void goEspaceClient(ActionEvent e) {
@@ -264,6 +264,7 @@ public class App extends JFrame {
             nouveauCompte.setNumeroCompte(123);
 
             JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
+            return;
         } else if(typeDeCompte.equals("Compte épargne")) {
 
             Compte nouveauCompte = new CompteEpargne(typeDeCompte);
@@ -271,9 +272,11 @@ public class App extends JFrame {
             nouveauCompte.setNumeroCompte(456);
 
             JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
-
+            return;
         }
-
+        /*for(Compte liste: Compte.getListeDesComptes()) {
+            System.out.println(liste.getNumeroCompte() + " " + liste.getTypeDeCompte());
+        }*/
         cl.show(getContent(), listContent[3]);
     }
 

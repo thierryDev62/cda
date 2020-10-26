@@ -1,5 +1,7 @@
 package templates.clients;
 
+import entity.Compte;
+import entity.CompteCourant;
 import templates.principal.Init;
 
 import javax.swing.*;
@@ -24,26 +26,36 @@ public class ListeDesComptes extends JPanel {
 
     private JPanel afficheListeDesComptes() {
         JPanel conteneurListe = new JPanel();
-        conteneurListe.setLayout(new BorderLayout());
-        Object[][] data = {
-                {123, "Compte courant", 500},
-                {456, "Compte épargne", 5}
-        };
 
-        String[] titresColonnes = {"Numéro de compte", "Type de compte", "Découvert / taux"};
+        if(!Compte.getListeDesComptes().isEmpty()) {
+            conteneurListe.setLayout(new BorderLayout());
+            Object[][] data = {
+                    {123, "Compte courant", 500},
+                    {456, "Compte épargne", 5}
+            };
 
-        JTable liste = new JTable(data, titresColonnes);
+            String[] titresColonnes = {"Numéro de compte", "Type de compte", "Découvert / taux"};
 
-        liste.setFont(new Init().getDefaultFont());
+            JTable liste = new JTable(data, titresColonnes);
 
-        conteneurListe.add(liste.getTableHeader(), BorderLayout.NORTH);
-        conteneurListe.add(liste, BorderLayout.CENTER);
+            liste.setFont(new Init().getDefaultFont());
 
-        BOUTON_RETOUR_MENU.setFont(new Init().getDefaultFont());
+            conteneurListe.add(liste.getTableHeader(), BorderLayout.NORTH);
+            conteneurListe.add(liste, BorderLayout.CENTER);
 
-        conteneurListe.add(BOUTON_RETOUR_MENU, BorderLayout.SOUTH);
+            BOUTON_RETOUR_MENU.setFont(new Init().getDefaultFont());
 
+            conteneurListe.add(BOUTON_RETOUR_MENU, BorderLayout.SOUTH);
+
+        } else {
+            JLabel texteAucunCompte = new JLabel("Aucun compte de créé !");
+            texteAucunCompte.setFont(new Init().getDefaultFont());
+            conteneurListe.add(texteAucunCompte);
+            conteneurListe.add(BOUTON_RETOUR_MENU);
+        }
         return conteneurListe;
+
+
     }
 
     public JButton getBOUTON_RETOUR_MENU() {
