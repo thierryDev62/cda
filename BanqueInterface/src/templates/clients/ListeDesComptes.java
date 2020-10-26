@@ -24,7 +24,7 @@ public class ListeDesComptes extends JPanel {
         return conteneurTitre;
     }
 
-    private JPanel afficheListeDesComptes() {
+    public JPanel afficheListeDesComptes() {
         JPanel conteneurListe = new JPanel();
 
         if(!Compte.getListeDesComptes().isEmpty()) {

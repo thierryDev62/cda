@@ -16,10 +16,11 @@ public class CardBleu extends JPanel {
         this.add(goToRed);
 
         Font font = new Font("Verdana", Font.BOLD, 15);
-        Datas datas = new Datas();
         JLabel text = new JLabel();
         text.setFont(font);
-        text.setText("-->" + datas.getDatas());
+
+        text.setText("-->" + Datas.getDatas());
+
         this.add(text);
     }
 

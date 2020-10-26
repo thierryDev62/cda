@@ -1,9 +1,17 @@
 package Controller;
 
-public class Datas {
-    private String datas = "Test d'affichage d'une donnée";
+import java.util.ArrayList;
 
-    public String getDatas() {
+public class Datas {
+
+    private static ArrayList<String> datas = new ArrayList<>();
+
+    public Datas() {
+        datas.add("Chien");
+        datas.add("Chat");
+    }
+
+    public static ArrayList<String> getDatas() {
         return datas;
     }
 }

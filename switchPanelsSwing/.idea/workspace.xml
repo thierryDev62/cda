@@ -19,7 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62388fd1-86f4-4be8-9147-0658cdcc6b8e" name="Default Changelist" comment="" />
+    <list default="true" id="62388fd1-86f4-4be8-9147-0658cdcc6b8e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/CreationCompteBancaire.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/CreationCompteBancaire.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ListeDesComptes.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/out/production/BanqueInterface/templates/clients/ListeDesComptes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/CreationCompteBancaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/CreationCompteBancaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ListeDesComptes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BanqueInterface/src/templates/clients/ListeDesComptes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Datas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Datas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/CardBleu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/CardBleu.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +64,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Banque2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -64,6 +74,17 @@
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App" />
       <module name="switchPanelsSwing" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -88,6 +109,7 @@
       <workItem from="1602655894064" duration="3331000" />
       <workItem from="1602827898489" duration="713000" />
       <workItem from="1603375286080" duration="1262000" />
+      <workItem from="1603717858843" duration="1971000" />
     </task>
     <servers />
   </component>
@@ -111,11 +133,12 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="560" y="4" key="#Project_Structure/0.0.1600.860@0.0.1600.860" timestamp="1602559776141" />
-    <state x="726" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1602581228841">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2646" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1603718399078">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="605" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1602561776848" />
     <state x="726" y="161" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602581228841" />
+    <state x="2646" y="161" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603718399078" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602575549676">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -126,29 +149,29 @@
     <state x="617" y="227" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1602650005907" />
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582114353" />
     <state x="2660" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603376665915" />
-    <state width="1557" height="217" key="GridCell.Tab.0.bottom" timestamp="1602651744436">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1603719843750">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1557" height="217" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1602651744436" />
     <state width="1877" height="275" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582115586" />
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1602602424528" />
-    <state width="1557" height="217" key="GridCell.Tab.0.center" timestamp="1602651744436">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603719843750" />
+    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1603719843750">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1557" height="217" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1602651744436" />
     <state width="1877" height="275" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582115585" />
-    <state width="1877" height="275" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1602602424527" />
-    <state width="1557" height="217" key="GridCell.Tab.0.left" timestamp="1602651744436">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="275" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603719843750" />
+    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1603719843750">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1557" height="217" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1602651744436" />
     <state width="1877" height="275" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582115585" />
-    <state width="1877" height="275" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1602602424527" />
-    <state width="1557" height="217" key="GridCell.Tab.0.right" timestamp="1602651744436">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="275" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603719843750" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1603719843750">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1557" height="217" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1602651744436" />
     <state width="1877" height="275" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582115586" />
-    <state width="1877" height="275" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1602602424527" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603719843750" />
   </component>
 </project>

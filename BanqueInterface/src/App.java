@@ -62,11 +62,14 @@ public class App extends JFrame {
         // Authentification
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        int typeChoisi = pagePrincipale.getType();
+        String typeChoisi = PagePrincipale.getType();
+
+        //System.out.println(typeChoisi);
+
         auth.getBOUTON_CONNEXION().addActionListener(e -> {
-            if(typeChoisi == 1) {
+            if(typeChoisi.equals("Client")) {
                 cl.show(getContent(), listContent[3]);
-            } else if(typeChoisi == 2) {
+            } else if(typeChoisi.equals("Conseiller")) {
                 cl.show(getContent(), listContent[5]);
             }
         });
@@ -254,7 +257,7 @@ public class App extends JFrame {
     }
 
     // Création du compte bancaire
-    private void okCompteBancaireCree(ActionEvent e) {
+    public void okCompteBancaireCree(ActionEvent e) {
         String typeDeCompte = CreationCompteBancaire.getTypeDeCompteChoisi();
 
         if(typeDeCompte.equals("Compte courant")) {
@@ -264,7 +267,7 @@ public class App extends JFrame {
             nouveauCompte.setNumeroCompte(123);
 
             JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
-            return;
+
         } else if(typeDeCompte.equals("Compte épargne")) {
 
             Compte nouveauCompte = new CompteEpargne(typeDeCompte);
@@ -272,11 +275,10 @@ public class App extends JFrame {
             nouveauCompte.setNumeroCompte(456);
 
             JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
-            return;
         }
-        /*for(Compte liste: Compte.getListeDesComptes()) {
+        for(Compte liste: Compte.getListeDesComptes()) {
             System.out.println(liste.getNumeroCompte() + " " + liste.getTypeDeCompte());
-        }*/
+        }
         cl.show(getContent(), listContent[3]);
     }
 

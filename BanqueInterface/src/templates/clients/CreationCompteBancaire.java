@@ -42,6 +42,7 @@ public class CreationCompteBancaire extends JPanel {
         compteEpargne.addActionListener(this::typeDeCompteChoisi);
 
 
+
         ButtonGroup groupe = new ButtonGroup();
         groupe.add(compteCourant);
         groupe.add(compteEpargne);
