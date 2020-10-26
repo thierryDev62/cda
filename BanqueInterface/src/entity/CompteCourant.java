@@ -3,9 +3,8 @@ package entity;
 public class CompteCourant extends Compte {
     private int decouvert = 500;
 
-    public CompteCourant(int numeroCompte, int solde, int typeDeCompte, int titulaire, int decouvert) {
-        super(numeroCompte, solde, typeDeCompte, titulaire);
-        this.decouvert = decouvert;
+    public CompteCourant(String typeDeCompte) {
+        super(typeDeCompte);
     }
 
     public int getDecouvert() {

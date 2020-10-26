@@ -3,25 +3,22 @@ package entity;
 import java.util.ArrayList;
 
 public class Compte {
-    private int numeroCompte = 123;
+    private static int numeroCompte;
     private int solde = 0;
-    private int typeDeCompte;
+    private String typeDeCompte;
     private int titulaire;
     private static ArrayList<Compte> listeDesComptes = new ArrayList<>();
 
-    public Compte(int numeroCompte, int solde, int typeDeCompte, int titulaire) {
-        this.numeroCompte = numeroCompte;
-        this.solde = solde;
+    public Compte(String typeDeCompte) {
         this.typeDeCompte = typeDeCompte;
-        this.titulaire = titulaire;
     }
 
-    public int getNumeroCompte() {
+    public static int getNumeroCompte() {
         return numeroCompte;
     }
 
     public void setNumeroCompte(int numeroCompte) {
-        this.numeroCompte = numeroCompte;
+        Compte.numeroCompte = numeroCompte;
     }
 
     public int getSolde() {
@@ -32,11 +29,11 @@ public class Compte {
         this.solde = solde;
     }
 
-    public int getTypeDeCompte() {
+    public String getTypeDeCompte() {
         return typeDeCompte;
     }
 
-    public void setTypeDeCompte(int typeDeCompte) {
+    public void setTypeDeCompte(String typeDeCompte) {
         this.typeDeCompte = typeDeCompte;
     }
 
