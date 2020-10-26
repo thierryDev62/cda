@@ -252,7 +252,7 @@ public class App extends JFrame {
 
     // Réponse après création d'un compte bancaire
     private void okCompteBancaireCree(ActionEvent e) {
-        JOptionPane.showMessageDialog(this, "Le compte bancaire a bien été créé !");
+        JOptionPane.showMessageDialog(this, "Le " + CreationCompteBancaire.getTypeDeCompteChoisi() + " a bien été créé !");
         cl.show(getContent(), listContent[3]);
     }
 

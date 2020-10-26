@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 
 public class CreationCompteBancaire extends JPanel {
 
+    private static String typeDeCompteChoisi;
     private final JButton BOUTON_VALIDER = new JButton("Valider");
     private final JButton BOUTON_ANNULER = new JButton("Annuler");
 
@@ -68,9 +69,7 @@ public class CreationCompteBancaire extends JPanel {
     // Méthode de prise en compte du choix du type de compte
     public void typeDeCompteChoisi(ActionEvent e) {
         String typeDeCompte = ((JRadioButton) e.getSource()).getText();
-        boolean testOk = ((JRadioButton) e.getSource()).isSelected();
-
-        System.out.println("Source : " + typeDeCompte + " - état : " + testOk);
+        this.setTypeDeCompteChoisi(typeDeCompte);
     }
 
     public JButton getBOUTON_VALIDER() {
@@ -79,5 +78,13 @@ public class CreationCompteBancaire extends JPanel {
 
     public JButton getBOUTON_ANNULER() {
         return BOUTON_ANNULER;
+    }
+
+    public static String getTypeDeCompteChoisi() {
+        return typeDeCompteChoisi;
+    }
+
+    public void setTypeDeCompteChoisi(String typeDeCompteChoisi) {
+        CreationCompteBancaire.typeDeCompteChoisi = typeDeCompteChoisi;
     }
 }
