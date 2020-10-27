@@ -30,8 +30,10 @@ public class EnTete extends JPanel {
 
         JLabel afficheLogo = new JLabel(new ImageIcon(logo));
         contenuAffichage.add(afficheLogo);
+
         JLabel titre = new JLabel("Banque de Diplo");
         titre.setFont(new Init().getTitreFont());
+
         contenuAffichage.add(titre);
         return contenuAffichage;
     }
