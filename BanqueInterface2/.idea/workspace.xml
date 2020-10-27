@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="BanqueInterface:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="072c4b79-cdbb-4559-a763-38133a5ffbd2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/BanqueInterface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BanqueInterface.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BanqueInterface/templates/principal/PagePrincipale.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BanqueInterface/templates/principal/PagePrincipale.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/principal/PagePrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/principal/PagePrincipale.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1iomtsymkWbpVauFSwePanntNFC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/postgresql-42.2.18.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="templates.conseiller" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="BanqueInterface" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="072c4b79-cdbb-4559-a763-38133a5ffbd2" name="Default Changelist" comment="" />
+      <created>1602582541423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602582541423</updated>
+      <workItem from="1602582542456" duration="7189000" />
+      <workItem from="1602655028394" duration="3396000" />
+      <workItem from="1602658495710" duration="10901000" />
+      <workItem from="1602673455313" duration="17263000" />
+      <workItem from="1602741053947" duration="18133000" />
+      <workItem from="1602827426655" duration="1649000" />
+      <workItem from="1602830601078" duration="596000" />
+      <workItem from="1603102350114" duration="41000" />
+      <workItem from="1603173872106" duration="72000" />
+      <workItem from="1603173961818" duration="3193000" />
+      <workItem from="1603259196904" duration="7977000" />
+      <workItem from="1603283760541" duration="4175000" />
+      <workItem from="1603366996602" duration="5318000" />
+      <workItem from="1603694670898" duration="43000" />
+      <workItem from="1603694725052" duration="4941000" />
+      <workItem from="1603702451078" duration="16124000" />
+      <workItem from="1603782515318" duration="5443000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603265012266">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603265012266" />
+    <state x="765" y="217" key="#com.intellij.ide.util.MemberChooser" timestamp="1603722172584">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="217" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603722172584" />
+    <state x="690" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603264561241">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603264561241" />
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1603783875901">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603717854654" />
+    <state x="2660" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603783875901" />
+    <state width="1877" height="176" key="GridCell.Tab.0.bottom" timestamp="1603794396417">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="176" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603794396417" />
+    <state width="1877" height="176" key="GridCell.Tab.0.center" timestamp="1603794396417">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="176" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603794396417" />
+    <state width="1877" height="176" key="GridCell.Tab.0.left" timestamp="1603794396416">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="176" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603794396416" />
+    <state width="1877" height="176" key="GridCell.Tab.0.right" timestamp="1603794396417">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="176" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603794396417" />
+    <state x="775" y="454" key="ReplaceDuplicatesPrompt" timestamp="1602662742999">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="775" y="454" key="ReplaceDuplicatesPrompt/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602662742999" />
+    <state x="2360" y="94" key="SettingsEditor" timestamp="1603783885815">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603694983073" />
+    <state x="2360" y="94" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1603783885815" />
+    <state x="690" y="270" key="extract.method.dialog" timestamp="1602674426676">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="270" key="extract.method.dialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602674426676" />
+    <state x="551" y="95" key="new project wizard" timestamp="1603726483039">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="551" y="95" key="new project wizard/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603726483039" />
+    <state x="785" y="271" key="refactoring.ChangeSignatureDialog" timestamp="1603705533097">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="785" y="271" key="refactoring.ChangeSignatureDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603705533097" />
+  </component>
+</project>
