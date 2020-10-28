@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class Auth extends JPanel {
 
-    private final JButton BOUTON_CONNEXION = new JButton("Connexion");
+    private final static JButton BOUTON_CONNEXION = new JButton("Connexion");
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
     private final BufferedImage ICONE_CONNEXION = ImageIO.read(new File("icones/bull.png"));
 
@@ -20,7 +20,6 @@ public class Auth extends JPanel {
         this.setLayout(new BorderLayout(5,5));
         this.add(iconeConnexionEtTitre(), BorderLayout.NORTH);
         this.add(connexion(), BorderLayout.CENTER);
-
     }
     private JPanel iconeConnexionEtTitre() {
 
@@ -88,7 +87,7 @@ public class Auth extends JPanel {
         return panelConnexion;
     }
 
-    public JButton getBOUTON_CONNEXION() {
+    public static JButton getBOUTON_CONNEXION() {
         return BOUTON_CONNEXION;
     }
 

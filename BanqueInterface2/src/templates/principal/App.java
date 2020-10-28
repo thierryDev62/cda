@@ -73,11 +73,8 @@ public class App extends JFrame {
         });
         pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(this::goCreationUtilisateur);
 
-        // Authentification
-
-        Auth auth = new Auth();
-
-        auth.getBOUTON_CONNEXION().addActionListener(e -> {
+        // Va dans l'espace dédié en fonction du type d'utilisateur
+        Auth.getBOUTON_CONNEXION().addActionListener(e -> {
             if(Utilisateur.getTypeUtilisateur().equals("Client")) {
                 ClientPrincipal espaceClient = null;
                 try {
@@ -99,7 +96,6 @@ public class App extends JFrame {
                 cl.show(getContent(), listContent[5]);
             }
         });
-        // TODO: rediriger en fonction du type d'utilisateur : 1 - Client goEspaceClient | 2 -  Conseiller goEspaceConseiller
 
         // Création d'un compte utilisateur
         CreationCompteUtilisateur creationCompteUtilisateur = new CreationCompteUtilisateur();
