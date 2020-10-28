@@ -11,10 +11,10 @@ import java.io.IOException;
 
 public class ConseillerPrincipal extends JPanel {
     private BufferedImage fond = ImageIO.read(new File("images/espaceConseiller.jpg"));
-    private JMenuItem deconnexion = new JMenuItem("Déconnexion");
-    private JMenuItem validationCompteUtil = new JMenuItem("Valider un compte utilisateur");
-    private JMenuItem listeDesComptes = new JMenuItem("Voir la liste des comptes");
-    private JMenuItem listeDesClients = new JMenuItem("Voir la liste des clients");
+    private static JMenuItem deconnexion = new JMenuItem("Déconnexion");
+    private static JMenuItem validationCompteUtil = new JMenuItem("Valider un compte utilisateur");
+    private static JMenuItem listeDesComptes = new JMenuItem("Voir la liste des comptes");
+    private static JMenuItem listeDesClients = new JMenuItem("Voir la liste des clients");
 
     public ConseillerPrincipal() throws IOException {
         this.add(afficheTitreEtMenuBar());
@@ -77,19 +77,19 @@ public class ConseillerPrincipal extends JPanel {
         return menuBar;
     }
 
-    public JMenuItem getDeconnexion() {
+    public static JMenuItem getDeconnexion() {
         return deconnexion;
     }
 
-    public JMenuItem getValidationCompteUtil() {
+    public static JMenuItem getValidationCompteUtil() {
         return validationCompteUtil;
     }
 
-    public JMenuItem getListeDesComptes() {
+    public static JMenuItem getListeDesComptes() {
         return listeDesComptes;
     }
 
-    public JMenuItem getListeDesClients() {
+    public static JMenuItem getListeDesClients() {
         return listeDesClients;
     }
 }

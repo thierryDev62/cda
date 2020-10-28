@@ -1,8 +1,6 @@
 package templates.principal;
 
 import entity.Compte;
-import entity.CompteCourant;
-import entity.CompteEpargne;
 import entity.Utilisateur;
 import templates.clients.*;
 import templates.conseiller.ConseillerPrincipal;
@@ -10,10 +8,8 @@ import templates.conseiller.ListeClients;
 import templates.conseiller.ValiderCompteUtilisateur;
 
 import javax.swing.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class App extends JFrame {
@@ -108,7 +104,18 @@ public class App extends JFrame {
         // Page principale espace client
         ClientPrincipal espaceClient = new ClientPrincipal();
         espaceClient.getCreerUnCompte().addActionListener(this::goCreationCompteBancaire);
-        espaceClient.getDeconnexion().addActionListener(this::confirmDeconnexion);
+
+        // Déconnexion
+        ClientPrincipal.getDeconnexion().addActionListener(e -> {
+            int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
+            if(clicAnnuler == JOptionPane.YES_OPTION) {
+
+                JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
+                getContent().add(pagePrincipale, listContent[0]);
+                cl.show(getContent(), listContent[0]);
+            }
+        });
+
         espaceClient.getMesInformations().addActionListener(this::goInformations);
         espaceClient.getListeDesComptes().addActionListener(this::goListeDesComptes);
         espaceClient.getConsultationSolde().addActionListener(this::goConsultationSolde);
@@ -164,11 +171,18 @@ public class App extends JFrame {
          * Espace Conseiller
          ******************************************************/
         // Page principale espace conseiller
-        ConseillerPrincipal espaceConseiller = new ConseillerPrincipal();
-        espaceConseiller.getDeconnexion().addActionListener(this::confirmDeconnexion);
-        espaceConseiller.getValidationCompteUtil().addActionListener(this::goValidationCompteUtilisateur);
-        espaceConseiller.getListeDesComptes().addActionListener(this::goListeDesComptes); // TODO : Voir pour le retour au menu en fonction du type d'utilisateur
-        espaceConseiller.getListeDesClients().addActionListener((this::goListeClients));
+        ConseillerPrincipal.getDeconnexion().addActionListener(e -> {
+            int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
+            if(clicAnnuler == JOptionPane.YES_OPTION) {
+
+                JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
+                getContent().add(pagePrincipale, listContent[0]);
+                cl.show(getContent(), listContent[0]);
+            }
+        });
+        ConseillerPrincipal.getValidationCompteUtil().addActionListener(this::goValidationCompteUtilisateur);
+        ConseillerPrincipal.getListeDesComptes().addActionListener(this::goListeDesComptes); // TODO : Voir pour le retour au menu en fonction du type d'utilisateur
+        ConseillerPrincipal.getListeDesClients().addActionListener((this::goListeClients));
 
         // Validation d'un compte utilisateur
         ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
@@ -184,11 +198,8 @@ public class App extends JFrame {
 
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         getContent().add(pagePrincipale, listContent[0]);
-        //getContent().add(auth, listContent[1]);
         getContent().add(creationCompteUtilisateur, listContent[2]);
-        //getContent().add(espaceClient, listContent[3]);
         getContent().add(creationCompteBancaire, listContent[4]);
-        //getContent().add(espaceConseiller, listContent[5]);
         getContent().add(validerCompteUtilisateur, listContent[6]);
         getContent().add(informations, listContent[7]);
         getContent().add(listeDesComptes, listContent[8]);
@@ -260,10 +271,13 @@ public class App extends JFrame {
     }
 
     // Confirmation de déconnexion de l'espace client
-    private void  confirmDeconnexion (ActionEvent e) {
+    private void confirmDeconnexion (ActionEvent e) throws IOException {
         int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
         if(clicAnnuler == JOptionPane.YES_OPTION) {
+            PagePrincipale pagePrincipale = new PagePrincipale();
+
             JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
+            getContent().add(pagePrincipale, listContent[0]);
             cl.show(getContent(), listContent[0]);
         }
     }

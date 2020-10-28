@@ -16,7 +16,7 @@ public class ClientPrincipal extends JPanel {
     private JMenuItem creerUnCompte = new JMenuItem("Créer un compte bancaire");
     private JMenuItem listeDesComptes = new JMenuItem("Liste des comptes");
     private JMenuItem consultationSolde = new JMenuItem("Consultation solde");
-    private JMenuItem deconnexion = new JMenuItem("Déconnexion");
+    private static JMenuItem deconnexion = new JMenuItem("Déconnexion");
     private JMenuItem versement = new JMenuItem("Versement");
     private JMenuItem retrait = new JMenuItem("Retrait");
     private JMenuItem virement = new JMenuItem("Virement");
@@ -128,7 +128,7 @@ public class ClientPrincipal extends JPanel {
         return listeDesComptes;
     }
 
-    public JMenuItem getDeconnexion() {
+    public static JMenuItem getDeconnexion() {
         return deconnexion;
     }
 

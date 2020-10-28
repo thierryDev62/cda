@@ -2,6 +2,7 @@ import templates.principal.App;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import java.awt.*;
 import java.io.IOException;
 
 public class MainApp {

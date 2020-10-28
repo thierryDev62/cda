@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +16,6 @@ public class PagePrincipale extends JPanel {
     private final JButton AUTHENTIFICATION = new JButton("S'authentifier");
     private final JButton BOUTON_CREER_COMPTE_UTIL = new JButton("Créer un compte utilisateur");
     private JComboBox choix = new JComboBox<>();
-    private static String type = "Client"; //TODO : voir pour transmettre le type
     private static boolean choixClientOuConseiller = false;
 
     public PagePrincipale() throws IOException {
@@ -84,14 +82,6 @@ public class PagePrincipale extends JPanel {
 
     public JButton getBOUTON_CREER_COMPTE_UTIL() {
         return BOUTON_CREER_COMPTE_UTIL;
-    }
-
-    public static String getType() {
-        return type;
-    }
-
-    public static void setType(String type) {
-        PagePrincipale.type = type;
     }
 
     public static boolean isChoixClientOuConseiller() {
