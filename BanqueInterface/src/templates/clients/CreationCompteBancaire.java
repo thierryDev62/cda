@@ -1,10 +1,14 @@
 package templates.clients;
 
+import entity.Compte;
+import entity.CompteCourant;
+import entity.CompteEpargne;
 import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CreationCompteBancaire extends JPanel {
 
@@ -41,9 +45,8 @@ public class CreationCompteBancaire extends JPanel {
         compteEpargne.setFont(new Init().getDefaultFont());
         compteEpargne.addActionListener(this::typeDeCompteChoisi);
 
-
-
         ButtonGroup groupe = new ButtonGroup();
+        groupe.clearSelection();
         groupe.add(compteCourant);
         groupe.add(compteEpargne);
 
@@ -70,7 +73,30 @@ public class CreationCompteBancaire extends JPanel {
     // Méthode de prise en compte du choix du type de compte
     public void typeDeCompteChoisi(ActionEvent e) {
         String typeDeCompte = ((JRadioButton) e.getSource()).getText();
-        this.setTypeDeCompteChoisi(typeDeCompte);
+        setTypeDeCompteChoisi(typeDeCompte);
+    }
+
+    // Méthode de création du compte bancaire
+    public static void creationCompteBancaire() {
+        if(getTypeDeCompteChoisi().equals("Compte courant")) {
+
+            Compte nouveauCompte = new CompteCourant(getTypeDeCompteChoisi());
+
+            nouveauCompte.setNumeroCompte(123);
+
+            JOptionPane.showMessageDialog(null, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
+
+            setTypeDeCompteChoisi(null);
+        } else if(getTypeDeCompteChoisi().equals("Compte épargne")) {
+
+            Compte nouveauCompte = new CompteEpargne(getTypeDeCompteChoisi());
+
+            nouveauCompte.setNumeroCompte(456);
+
+            JOptionPane.showMessageDialog(null, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
+
+            setTypeDeCompteChoisi(null);
+        }
     }
 
     public JButton getBOUTON_VALIDER() {
@@ -85,7 +111,7 @@ public class CreationCompteBancaire extends JPanel {
         return typeDeCompteChoisi;
     }
 
-    public void setTypeDeCompteChoisi(String typeDeCompteChoisi) {
+    public static void setTypeDeCompteChoisi(String typeDeCompteChoisi) {
         CreationCompteBancaire.typeDeCompteChoisi = typeDeCompteChoisi;
     }
 }

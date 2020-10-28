@@ -1,3 +1,5 @@
+package templates.principal;
+
 import entity.Compte;
 import entity.CompteCourant;
 import entity.CompteEpargne;
@@ -5,16 +7,11 @@ import templates.clients.*;
 import templates.conseiller.ConseillerPrincipal;
 import templates.conseiller.ListeClients;
 import templates.conseiller.ValiderCompteUtilisateur;
-import templates.principal.Auth;
-import templates.principal.CreationCompteUtilisateur;
-import templates.principal.EnTete;
-import templates.principal.PagePrincipale;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class App extends JFrame {
@@ -185,7 +182,11 @@ public class App extends JFrame {
 
     // Envoi sur le panel de l'authentification
     private void goAuthentification(ActionEvent e) {
-        cl.show(getContent(), listContent[1]);
+        if(PagePrincipale.isChoixClientOuConseiller()) {
+            cl.show(getContent(), listContent[1]);
+        } else {
+            JOptionPane.showMessageDialog(null, "Vous devez faire un choix entre client ou conseiller !");
+        }
     }
 
     // Envoi sur le panel de création d'un utilisateur
@@ -258,26 +259,11 @@ public class App extends JFrame {
 
     // Création du compte bancaire
     public void okCompteBancaireCree(ActionEvent e) {
-        String typeDeCompte = CreationCompteBancaire.getTypeDeCompteChoisi();
 
-        if(typeDeCompte.equals("Compte courant")) {
+        CreationCompteBancaire.creationCompteBancaire();
 
-            Compte nouveauCompte = new CompteCourant(typeDeCompte);
-
-            nouveauCompte.setNumeroCompte(123);
-
-            JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
-
-        } else if(typeDeCompte.equals("Compte épargne")) {
-
-            Compte nouveauCompte = new CompteEpargne(typeDeCompte);
-
-            nouveauCompte.setNumeroCompte(456);
-
-            JOptionPane.showMessageDialog(this, "Le " + nouveauCompte.getTypeDeCompte() + " a bien été créé ! Il porte le numéro : " + nouveauCompte.getNumeroCompte());
-        }
         for(Compte liste: Compte.getListeDesComptes()) {
-            System.out.println(liste.getNumeroCompte() + " " + liste.getTypeDeCompte());
+            System.out.println("Compte : " + liste.getNumeroCompte() + " " + liste.getTypeDeCompte());
         }
         cl.show(getContent(), listContent[3]);
     }

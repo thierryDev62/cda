@@ -16,6 +16,7 @@ public class PagePrincipale extends JPanel {
     private final JButton BOUTON_CREER_COMPTE_UTIL = new JButton("Créer un compte utilisateur");
     private JComboBox choix = new JComboBox<>();
     private static String type = "Client"; //TODO : voir pour transmettre le type
+    private static boolean choixClientOuConseiller = false;
 
     public PagePrincipale() throws IOException {
         this.setLayout(new BorderLayout());
@@ -72,7 +73,7 @@ public class PagePrincipale extends JPanel {
             setType("Conseiller");
             System.out.println("Vous avez choisi le type " + type );
         }
-
+        setChoixClientOuConseiller(true);
     }
 
     public JButton getAUTHENTIFICATION() {
@@ -89,5 +90,13 @@ public class PagePrincipale extends JPanel {
 
     public static void setType(String type) {
         PagePrincipale.type = type;
+    }
+
+    public static boolean isChoixClientOuConseiller() {
+        return choixClientOuConseiller;
+    }
+
+    public static void setChoixClientOuConseiller(boolean choixClientOuConseiller) {
+        PagePrincipale.choixClientOuConseiller = choixClientOuConseiller;
     }
 }
