@@ -167,6 +167,8 @@ public class App extends JFrame {
 
         contentPanel.setLayout(cardLayout);
 
+        // contentPanel.add(new pagePrincipale(), "pagePrincipale");
+
         contentPanel.add(pagePrincipale, "pagePrincipale");
         contentPanel.add(pageAuthentification, "pageAuthentification");
 
