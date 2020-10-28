@@ -68,10 +68,10 @@ public class PagePrincipale extends JPanel {
 
         if(Objects.equals(choix.getSelectedItem(), "Client")) {
             setType("Client");
-            System.out.println("Vous avez choisi le type " + type);
+            //System.out.println("Vous avez choisi le type " + type);
         } else if (Objects.equals(choix.getSelectedItem(), "Conseiller")) {
             setType("Conseiller");
-            System.out.println("Vous avez choisi le type " + type );
+            //System.out.println("Vous avez choisi le type " + type );
         }
         setChoixClientOuConseiller(true);
     }

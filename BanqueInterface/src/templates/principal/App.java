@@ -57,11 +57,12 @@ public class App extends JFrame {
         pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(this::goCreationUtilisateur);
 
         // Authentification
+
         Auth auth = new Auth();
         auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
         String typeChoisi = PagePrincipale.getType();
 
-        //System.out.println(typeChoisi);
+        System.out.println("Type d'utilisateur : " + typeChoisi);
 
         auth.getBOUTON_CONNEXION().addActionListener(e -> {
             if(typeChoisi.equals("Client")) {
@@ -182,6 +183,9 @@ public class App extends JFrame {
 
     // Envoi sur le panel de l'authentification
     private void goAuthentification(ActionEvent e) {
+
+        System.out.println(PagePrincipale.getType());
+
         if(PagePrincipale.isChoixClientOuConseiller()) {
             cl.show(getContent(), listContent[1]);
         } else {
@@ -325,22 +329,4 @@ public class App extends JFrame {
         return content;
     }
 
-    // Main
-    public static void main(String[] args) {
-        // Applique un thème sympa
-        try {
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-
-        // Démarre l'application en ouvrant une nouvelle fenêtre
-        App maFenetre = null;
-        try {
-            maFenetre = new App();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        maFenetre.setVisible(true);
-    }
 }
