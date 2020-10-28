@@ -1,5 +1,7 @@
 package templates.principal;
 
+import entity.Utilisateur;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -21,6 +23,9 @@ public class Auth extends JPanel {
 
     }
     private JPanel iconeConnexionEtTitre() {
+
+        System.out.println("Le fameux type est : " + Utilisateur.getTypeUtilisateur());
+
         // Conteneur de l'icone et du titre
         JPanel conteneurIconeEtTitre = new JPanel();
         conteneurIconeEtTitre.setLayout(new BorderLayout());

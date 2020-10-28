@@ -1,5 +1,7 @@
 package templates.principal;
 
+import entity.Utilisateur;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -67,11 +69,11 @@ public class PagePrincipale extends JPanel {
         //TODO : test de catch d'une valeur choisi dans un combobox
 
         if(Objects.equals(choix.getSelectedItem(), "Client")) {
-            setType("Client");
-            //System.out.println("Vous avez choisi le type " + type);
+            Utilisateur.setTypeUtilisateur("Client");
+            System.out.println("Vous avez choisi le type " + Utilisateur.getTypeUtilisateur());
         } else if (Objects.equals(choix.getSelectedItem(), "Conseiller")) {
-            setType("Conseiller");
-            //System.out.println("Vous avez choisi le type " + type );
+            Utilisateur.setTypeUtilisateur("Conseiller");
+            System.out.println("Vous avez choisi le type " + Utilisateur.getTypeUtilisateur());
         }
         setChoixClientOuConseiller(true);
     }

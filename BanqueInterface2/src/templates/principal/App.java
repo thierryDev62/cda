@@ -3,6 +3,7 @@ package templates.principal;
 import entity.Compte;
 import entity.CompteCourant;
 import entity.CompteEpargne;
+import entity.Utilisateur;
 import templates.clients.*;
 import templates.conseiller.ConseillerPrincipal;
 import templates.conseiller.ListeClients;
@@ -12,6 +13,7 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class App extends JFrame {
@@ -53,21 +55,47 @@ public class App extends JFrame {
 
         // Page principale
         PagePrincipale pagePrincipale = new PagePrincipale();
-        pagePrincipale.getAUTHENTIFICATION().addActionListener(this::goAuthentification);
+        pagePrincipale.getAUTHENTIFICATION().addActionListener(e -> {
+            if(PagePrincipale.isChoixClientOuConseiller()) {
+                Auth auth = null;
+                try {
+                    auth = new Auth();
+                    auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                getContent().add(auth, listContent[1]);
+                cl.show(getContent(), listContent[1]);
+            } else {
+                JOptionPane.showMessageDialog(null, "Vous devez faire un choix entre client ou conseiller !");
+            }
+        });
         pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(this::goCreationUtilisateur);
 
         // Authentification
 
         Auth auth = new Auth();
-        auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        String typeChoisi = PagePrincipale.getType();
-
-        System.out.println("Type d'utilisateur : " + typeChoisi);
 
         auth.getBOUTON_CONNEXION().addActionListener(e -> {
-            if(typeChoisi.equals("Client")) {
+            if(Utilisateur.getTypeUtilisateur().equals("Client")) {
+                ClientPrincipal espaceClient = null;
+                try {
+                    espaceClient = new ClientPrincipal();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                getContent().add(espaceClient, listContent[3]);
                 cl.show(getContent(), listContent[3]);
-            } else if(typeChoisi.equals("Conseiller")) {
+            } else if(Utilisateur.getTypeUtilisateur().equals("Conseiller")) {
+                ConseillerPrincipal espaceConseiller = null;
+                try {
+                    espaceConseiller = new ConseillerPrincipal();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                getContent().add(espaceConseiller, listContent[5]);
                 cl.show(getContent(), listContent[5]);
             }
         });
@@ -160,11 +188,11 @@ public class App extends JFrame {
 
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         getContent().add(pagePrincipale, listContent[0]);
-        getContent().add(auth, listContent[1]);
+        //getContent().add(auth, listContent[1]);
         getContent().add(creationCompteUtilisateur, listContent[2]);
-        getContent().add(espaceClient, listContent[3]);
+        //getContent().add(espaceClient, listContent[3]);
         getContent().add(creationCompteBancaire, listContent[4]);
-        getContent().add(espaceConseiller, listContent[5]);
+        //getContent().add(espaceConseiller, listContent[5]);
         getContent().add(validerCompteUtilisateur, listContent[6]);
         getContent().add(informations, listContent[7]);
         getContent().add(listeDesComptes, listContent[8]);
@@ -179,18 +207,6 @@ public class App extends JFrame {
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
-    }
-
-    // Envoi sur le panel de l'authentification
-    private void goAuthentification(ActionEvent e) {
-
-        System.out.println(PagePrincipale.getType());
-
-        if(PagePrincipale.isChoixClientOuConseiller()) {
-            cl.show(getContent(), listContent[1]);
-        } else {
-            JOptionPane.showMessageDialog(null, "Vous devez faire un choix entre client ou conseiller !");
-        }
     }
 
     // Envoi sur le panel de création d'un utilisateur
