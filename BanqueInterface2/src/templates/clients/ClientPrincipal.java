@@ -13,8 +13,8 @@ import java.io.IOException;
 public class ClientPrincipal extends JPanel {
     private BufferedImage fond = ImageIO.read(new File("images/espaceClientFond.jpg"));
     private JMenuItem mesInformations = new JMenuItem("Mes informations");
-    private JMenuItem creerUnCompte = new JMenuItem("Créer un compte bancaire");
-    private JMenuItem listeDesComptes = new JMenuItem("Liste des comptes");
+    private static JMenuItem creerUnCompte = new JMenuItem("Créer un compte bancaire");
+    private static JMenuItem listeDesComptes = new JMenuItem("Liste des comptes");
     private JMenuItem consultationSolde = new JMenuItem("Consultation solde");
     private static JMenuItem deconnexion = new JMenuItem("Déconnexion");
     private JMenuItem versement = new JMenuItem("Versement");
@@ -120,11 +120,11 @@ public class ClientPrincipal extends JPanel {
         return mesInformations;
     }
 
-    public JMenuItem getCreerUnCompte() {
+    public static JMenuItem getCreerUnCompte() {
         return creerUnCompte;
     }
 
-    public JMenuItem getListeDesComptes() {
+    public static JMenuItem getListeDesComptes() {
         return listeDesComptes;
     }
 

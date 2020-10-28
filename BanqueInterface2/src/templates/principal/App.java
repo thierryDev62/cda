@@ -1,6 +1,9 @@
 package templates.principal;
 
+import controller.CompteController;
 import entity.Compte;
+import entity.CompteCourant;
+import entity.CompteEpargne;
 import entity.Utilisateur;
 import templates.clients.*;
 import templates.conseiller.ConseillerPrincipal;
@@ -103,13 +106,11 @@ public class App extends JFrame {
          ******************************************************/
         // Page principale espace client
         ClientPrincipal espaceClient = new ClientPrincipal();
-        espaceClient.getCreerUnCompte().addActionListener(this::goCreationCompteBancaire);
 
         // Déconnexion
         ClientPrincipal.getDeconnexion().addActionListener(e -> {
-            int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
-            if(clicAnnuler == JOptionPane.YES_OPTION) {
-
+            int clicDeconnexion = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
+            if(clicDeconnexion == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
                 getContent().add(pagePrincipale, listContent[0]);
                 cl.show(getContent(), listContent[0]);
@@ -117,7 +118,7 @@ public class App extends JFrame {
         });
 
         espaceClient.getMesInformations().addActionListener(this::goInformations);
-        espaceClient.getListeDesComptes().addActionListener(this::goListeDesComptes);
+
         espaceClient.getConsultationSolde().addActionListener(this::goConsultationSolde);
         espaceClient.getVersement().addActionListener(this::goVersements);
         espaceClient.getRetrait().addActionListener(this::goRetraits);
@@ -126,10 +127,32 @@ public class App extends JFrame {
         espaceClient.getTotalVersement().addActionListener(this::goTotalVersements);
         espaceClient.getTotalRetrait().addActionListener(this::goTotalRetraits);
 
+        // Client va à la page de création compte bancaire
+        ClientPrincipal.getCreerUnCompte().addActionListener(e -> {
+            getContent().add(new CreationCompteBancaire(), listContent[4]);
+            cl.show(getContent(), listContent[4]);
+        });
+
         // Création compte bancaire
         CreationCompteBancaire creationCompteBancaire = new CreationCompteBancaire();
-        creationCompteBancaire.getBOUTON_VALIDER().addActionListener(this::okCompteBancaireCree);
+
+        CreationCompteBancaire.getBOUTON_VALIDER().addActionListener(e ->{
+            CompteController.nouveauCompteBancaire();
+            try {
+                getContent().add(new ClientPrincipal(), listContent[3]);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            cl.show(getContent(), listContent[3]);
+        });
+
         creationCompteBancaire.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationCompteBancaire);
+
+        // Va à la page liste des comptes
+        ClientPrincipal.getListeDesComptes().addActionListener(e -> {
+            getContent().add(new ListeDesComptes(), listContent[8]);
+            cl.show(getContent(), listContent[8]);
+        });
 
         // Affichage des informations
         Informations informations = new Informations();
@@ -199,7 +222,6 @@ public class App extends JFrame {
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         getContent().add(pagePrincipale, listContent[0]);
         getContent().add(creationCompteUtilisateur, listContent[2]);
-        getContent().add(creationCompteBancaire, listContent[4]);
         getContent().add(validerCompteUtilisateur, listContent[6]);
         getContent().add(informations, listContent[7]);
         getContent().add(listeDesComptes, listContent[8]);
@@ -267,34 +289,6 @@ public class App extends JFrame {
 
     // Espace client
     private void goEspaceClient(ActionEvent e) {
-        cl.show(getContent(), listContent[3]);
-    }
-
-    // Confirmation de déconnexion de l'espace client
-    private void confirmDeconnexion (ActionEvent e) throws IOException {
-        int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
-        if(clicAnnuler == JOptionPane.YES_OPTION) {
-            PagePrincipale pagePrincipale = new PagePrincipale();
-
-            JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
-            getContent().add(pagePrincipale, listContent[0]);
-            cl.show(getContent(), listContent[0]);
-        }
-    }
-
-    // Page de création d'un compte bancaire
-    private void goCreationCompteBancaire(ActionEvent e) {
-        cl.show(getContent(), listContent[4]);
-    }
-
-    // Création du compte bancaire
-    public void okCompteBancaireCree(ActionEvent e) {
-
-        CreationCompteBancaire.creationCompteBancaire();
-
-        for(Compte liste: Compte.getListeDesComptes()) {
-            System.out.println("Compte : " + liste.getNumeroCompte() + " " + liste.getTypeDeCompte());
-        }
         cl.show(getContent(), listContent[3]);
     }
 
