@@ -31,14 +31,14 @@ public class ListeDesComptes extends JPanel {
         if(!Compte.getListeDesComptes().isEmpty()) {
             conteneurListe.setLayout(new BorderLayout());
 
-            /*Object[][] data = {
+            Object[][] data = {
                     {123, "Compte courant", 500},
                     {456, "Compte épargne", 5}
-            };*/
+            };
 
             String[] titresColonnes = {"Numéro de compte", "Type de compte"};
-            DefaultTableModel model = new DefaultTableModel(titresColonnes, 0);
-            ArrayList<String> titresCol = new ArrayList<>();
+            /*DefaultTableModel model = new DefaultTableModel(titresColonnes, 0);
+            ArrayList<String> titresCol = new ArrayList<>();*/
 
             JTable liste = new JTable(data, titresColonnes);
 
