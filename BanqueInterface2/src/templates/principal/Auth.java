@@ -1,5 +1,6 @@
 package templates.principal;
 
+import config.ConfigDb;
 import entity.Utilisateur;
 
 import javax.imageio.ImageIO;
@@ -9,6 +10,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Auth extends JPanel {
 
@@ -16,14 +19,14 @@ public class Auth extends JPanel {
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
     private final BufferedImage ICONE_CONNEXION = ImageIO.read(new File("icones/bull.png"));
 
-    public Auth() throws IOException {
+    public Auth() throws IOException, SQLException {
         this.setLayout(new BorderLayout(5,5));
         this.add(iconeConnexionEtTitre(), BorderLayout.NORTH);
         this.add(connexion(), BorderLayout.CENTER);
     }
     private JPanel iconeConnexionEtTitre() {
 
-        System.out.println("Le fameux type est : " + Utilisateur.getTypeUtilisateur());
+        System.out.println("L'utilisateur actuel est : " + Utilisateur.getTypeUtilisateur());
 
         // Conteneur de l'icone et du titre
         JPanel conteneurIconeEtTitre = new JPanel();

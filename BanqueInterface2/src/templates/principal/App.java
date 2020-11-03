@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class App extends JFrame {
     private final CardLayout cl = new CardLayout();
@@ -61,7 +62,7 @@ public class App extends JFrame {
                     auth = new Auth();
                     auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
-                } catch (IOException ioException) {
+                } catch (IOException | SQLException ioException) {
                     ioException.printStackTrace();
                 }
                 getContent().add(auth, listContent[1]);

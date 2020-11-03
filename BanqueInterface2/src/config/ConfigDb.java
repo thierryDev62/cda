@@ -35,4 +35,5 @@ public class ConfigDb {
     public static ConfigDb getINSTANCE() {
         return INSTANCE;
     }
+
 }
