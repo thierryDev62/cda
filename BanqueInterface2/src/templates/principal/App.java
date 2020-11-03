@@ -92,7 +92,19 @@ public class App extends JFrame {
                 JOptionPane.showMessageDialog(null, "Vous devez faire un choix entre client ou conseiller !");
             }
         });
-        pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(this::goCreationUtilisateur);
+        //pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(this::goCreationUtilisateur);
+        pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(e -> {
+            CreationCompteUtilisateur creationCompteUtilisateur = null;
+            try {
+                creationCompteUtilisateur = new CreationCompteUtilisateur();
+
+
+            } catch (IOException | SQLException ioException) {
+                ioException.printStackTrace();
+            }
+            getContent().add(creationCompteUtilisateur, listContent[2]);
+            cl.show(getContent(), listContent[2]);
+        });
 
         // Va dans l'espace dédié en fonction du type d'utilisateur
         Auth.getBOUTON_CONNEXION().addActionListener(e -> {
@@ -127,7 +139,16 @@ public class App extends JFrame {
             throwables.printStackTrace();
         }
         creationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        creationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okUtilisateurCree);
+        //creationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okUtilisateurCree);
+
+        //TODO : Corriger le bug
+        CreationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
+            System.out.println("Dans app : " + CreationCompteUtilisateur.isIsOkCreation());
+            if(!CreationCompteUtilisateur.isIsOkCreation()) {
+                System.out.println("okokokkokkook");
+                cl.show(getContent(), listContent[0]);
+            }
+        });
 
         /*******************************************************
          * Espace Clients
@@ -249,7 +270,6 @@ public class App extends JFrame {
 
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         getContent().add(pagePrincipale, listContent[0]);
-        getContent().add(creationCompteUtilisateur, listContent[2]);
         getContent().add(validerCompteUtilisateur, listContent[6]);
         getContent().add(informations, listContent[7]);
         getContent().add(listeDesComptes, listContent[8]);

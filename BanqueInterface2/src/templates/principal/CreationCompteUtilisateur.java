@@ -16,9 +16,11 @@ import java.util.Arrays;
 
 public class CreationCompteUtilisateur extends JPanel {
 
-    private final JButton BOUTON_VALIDER = new JButton("Valider");
+    private final static JButton BOUTON_VALIDER = new JButton("Valider");
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
     private BufferedImage iconeCreationCompteUtil = ImageIO.read(new File("icones/man-coin.png"));
+
+    private static boolean isOkCreation = false;
 
     public CreationCompteUtilisateur() throws IOException, SQLException {
         this.setLayout(new BorderLayout(5,5));
@@ -93,23 +95,25 @@ public class CreationCompteUtilisateur extends JPanel {
 
             int typeUtilisateur = Utilisateur.getTypeUtilisateur();
 
-            /**
-             * Test si c'est un conseiller ou un client :
-             * true : Conseiller
-             * false : Client
-             */
+            if(!nomUtilisateur.equals("") || !prenomUtilisateur.equals("") || !mdpUtilisateur.equals("")) {
+                System.out.println("C'est rempli !");
+                /**
+                 * Test si c'est un conseiller ou un client :
+                 * true : Conseiller
+                 * false : Client
+                 */
 
-            Utilisateur.setCompteActif(typeUtilisateur == 2);
-            boolean compteActif = Utilisateur.getCompteActif();
+                Utilisateur.setCompteActif(typeUtilisateur == 2);
+                boolean compteActif = Utilisateur.getCompteActif();
 
-            System.out.println(nomUtilisateur +
-                    " - " + prenomUtilisateur +
-                    " - " + mdpUtilisateur +
-                    " - " + compteActif +
-                    " - " + typeUtilisateur
-            );
+                System.out.println(nomUtilisateur +
+                        " - " + prenomUtilisateur +
+                        " - " + mdpUtilisateur +
+                        " - " + compteActif +
+                        " - " + typeUtilisateur
+                );
 
-            // Enregistrement du compte utilisateur dans la base de données
+                // Enregistrement du compte utilisateur dans la base de données
             /*String querySaveUser = "INSERT INTO public.t_utilisateur_utl(" +
                     "utl_nom, utl_prenom, utl_mot_de_passe, utl_compte_actif, tut_id)" +
                     "VALUES (?, ?, ?, ?, ?)";
@@ -126,7 +130,12 @@ public class CreationCompteUtilisateur extends JPanel {
             } catch(SQLException event) {
                 event.printStackTrace();
             }*/
-
+                //TODO : Corriger le bug
+                setIsOkCreation(true);
+                JOptionPane.showMessageDialog(this, "Compte utilisateur créé !");
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs, veuillez recommencer");
         });
 
         // Bouton retour au menu
@@ -143,11 +152,19 @@ public class CreationCompteUtilisateur extends JPanel {
         return panelCreation;
     }
 
-    public JButton getBOUTON_VALIDER() {
+    public static JButton getBOUTON_VALIDER() {
         return BOUTON_VALIDER;
     }
 
     public JButton getBOUTON_RETOUR_MENU() {
         return BOUTON_RETOUR_MENU;
+    }
+
+    public static boolean isIsOkCreation() {
+        return isOkCreation;
+    }
+
+    public static void setIsOkCreation(boolean isOkCreation) {
+        CreationCompteUtilisateur.isOkCreation = isOkCreation;
     }
 }
