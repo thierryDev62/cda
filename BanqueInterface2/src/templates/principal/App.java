@@ -69,7 +69,7 @@ public class App extends JFrame {
                     /**
                      * Test de lecture dans la base de données
                      */
-                    Statement state = ConfigDatabase.getInstance().createStatement();
+                    /*Statement state = ConfigDatabase.getInstance().createStatement();
 
                     ResultSet result = state.executeQuery("SELECT * FROM public.t_utilisateur_utl AS utl INNER JOIN t_type_utilisateur_tut AS tut ON tut.tut_id = utl.tut_id");
 
@@ -79,7 +79,7 @@ public class App extends JFrame {
                         for(int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
                             System.out.print(result.getObject(i).toString() + " ");
                         }
-                    }
+                    }*/
 
                     auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
@@ -96,7 +96,7 @@ public class App extends JFrame {
 
         // Va dans l'espace dédié en fonction du type d'utilisateur
         Auth.getBOUTON_CONNEXION().addActionListener(e -> {
-            if(Utilisateur.getTypeUtilisateur() == 1) {
+            if(Utilisateur.getTypeUtilisateur() == 1 && Auth.isOkAuth() ) {
                 ClientPrincipal espaceClient = null;
                 try {
                     espaceClient = new ClientPrincipal();
@@ -105,7 +105,7 @@ public class App extends JFrame {
                 }
                 getContent().add(espaceClient, listContent[3]);
                 cl.show(getContent(), listContent[3]);
-            } else if(Utilisateur.getTypeUtilisateur() == 2) {
+            } else if(Utilisateur.getTypeUtilisateur() == 2 && Auth.isOkAuth()) {
                 ConseillerPrincipal espaceConseiller = null;
                 try {
                     espaceConseiller = new ConseillerPrincipal();

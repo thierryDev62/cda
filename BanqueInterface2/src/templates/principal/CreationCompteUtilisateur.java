@@ -2,6 +2,7 @@ package templates.principal;
 
 import config.ConfigDatabase;
 import config.ConfigDb;
+import entity.Utilisateur;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Arrays;
 
 public class CreationCompteUtilisateur extends JPanel {
 
@@ -57,6 +59,7 @@ public class CreationCompteUtilisateur extends JPanel {
         nom.setFont(new Init().getDefaultFont());
         JTextField champsNom = new JTextField();
         champsNom.setPreferredSize(new Dimension(200, 30));
+        champsNom.setText("");
         conteneurNom.add(nom);
         conteneurNom.add(champsNom);
 
@@ -82,6 +85,49 @@ public class CreationCompteUtilisateur extends JPanel {
         JPanel conteneurBoutonValider = new JPanel();
         BOUTON_VALIDER.setFont(new Init().getDefaultFont());
         conteneurBoutonValider.add(BOUTON_VALIDER);
+        BOUTON_VALIDER.addActionListener(e ->{
+
+            String nomUtilisateur = Utilisateur.setUtilisateurNom(champsNom.getText());
+            String prenomUtilisateur = Utilisateur.setUtilisateurPrenom(champsPrenom.getText());
+            String mdpUtilisateur = Utilisateur.setUtilisateurMdp(new String(champsMotDePasse.getPassword()));
+
+            int typeUtilisateur = Utilisateur.getTypeUtilisateur();
+
+            /**
+             * Test si c'est un conseiller ou un client :
+             * true : Conseiller
+             * false : Client
+             */
+
+            Utilisateur.setCompteActif(typeUtilisateur == 2);
+            boolean compteActif = Utilisateur.getCompteActif();
+
+            System.out.println(nomUtilisateur +
+                    " - " + prenomUtilisateur +
+                    " - " + mdpUtilisateur +
+                    " - " + compteActif +
+                    " - " + typeUtilisateur
+            );
+
+            // Enregistrement du compte utilisateur dans la base de données
+            /*String querySaveUser = "INSERT INTO public.t_utilisateur_utl(" +
+                    "utl_nom, utl_prenom, utl_mot_de_passe, utl_compte_actif, tut_id)" +
+                    "VALUES (?, ?, ?, ?, ?)";
+            try{
+                PreparedStatement preparedStatement = ConfigDatabase.getInstance().prepareStatement(querySaveUser);
+                preparedStatement.setString(1, nomUtilisateur);
+                preparedStatement.setString(2, prenomUtilisateur);
+                preparedStatement.setString(3, mdpUtilisateur);
+                preparedStatement.setBoolean(4, compteActif);
+                preparedStatement.setInt(5, typeUtilisateur);
+
+                preparedStatement.executeUpdate();
+
+            } catch(SQLException event) {
+                event.printStackTrace();
+            }*/
+
+        });
 
         // Bouton retour au menu
         JPanel conteneurRetourAuMenu = new JPanel();

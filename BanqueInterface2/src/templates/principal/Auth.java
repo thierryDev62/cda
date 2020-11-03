@@ -1,5 +1,6 @@
 package templates.principal;
 
+import config.ConfigDatabase;
 import config.ConfigDb;
 import entity.Utilisateur;
 
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -18,6 +20,7 @@ public class Auth extends JPanel {
     private final static JButton BOUTON_CONNEXION = new JButton("Connexion");
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
     private final BufferedImage ICONE_CONNEXION = ImageIO.read(new File("icones/bull.png"));
+    private static boolean okAuth = false;
 
     public Auth() throws IOException, SQLException {
         this.setLayout(new BorderLayout(5,5));
@@ -76,6 +79,36 @@ public class Auth extends JPanel {
         JPanel conteneurBoutonConnexion = new JPanel();
         BOUTON_CONNEXION.setFont(new Init().getDefaultFont());
         conteneurBoutonConnexion.add(BOUTON_CONNEXION);
+        BOUTON_CONNEXION.addActionListener(e -> {
+            /**
+             * Test de lecture dans la base de données
+             */
+            String queryUserIdPassword = "SELECT utl_id, utl_mot_de_passe FROM public.t_utilisateur_utl";
+            try {
+                Statement state = ConfigDatabase.getInstance().createStatement();
+
+                ResultSet result = state.executeQuery(queryUserIdPassword);
+
+                while (result.next()) {
+                    int id = result.getInt("utl_id");
+                    String mdp = result.getString("utl_mot_de_passe");
+
+                    String identifiantText = champsIdentifiant.getText();
+                    int identifiantParse = 0;
+                    identifiantParse = Integer.parseInt(identifiantText);
+
+                   if(id == identifiantParse && mdp.equals(champsMotDePasse.getText())) {
+                       System.out.println("Trouvé : " + identifiantParse);
+                       setOkAuth(true);
+                       return;
+                   }
+                }
+                JOptionPane.showMessageDialog(null, "L'identifiant et/ou le mot de passe sont incorrects, veuillez recommencer");
+                result.close();
+            } catch (SQLException event) {
+                event.printStackTrace();
+            }
+        });
 
         // Bouton Retour au menu
         JPanel conteneurRetourAuMenu = new JPanel();
@@ -96,5 +129,13 @@ public class Auth extends JPanel {
 
     public JButton getBOUTON_RETOUR_MENU() {
         return BOUTON_RETOUR_MENU;
+    }
+
+    public static boolean isOkAuth() {
+        return okAuth;
+    }
+
+    public static void setOkAuth(boolean okAuth) {
+        Auth.okAuth = okAuth;
     }
 }
