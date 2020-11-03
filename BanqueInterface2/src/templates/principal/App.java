@@ -1,9 +1,7 @@
 package templates.principal;
 
+import config.ConfigDatabase;
 import controller.CompteController;
-import entity.Compte;
-import entity.CompteCourant;
-import entity.CompteEpargne;
 import entity.Utilisateur;
 import templates.clients.*;
 import templates.conseiller.ConseillerPrincipal;
@@ -14,7 +12,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class App extends JFrame {
     private final CardLayout cl = new CardLayout();
@@ -42,10 +43,14 @@ public class App extends JFrame {
     };
 
     public App() throws IOException {
+
         super("Banque Diplo");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
+
+        // On se connecte à la base de données
+        ConfigDatabase.getInstance();
 
         /*******************************************************
          * Principal
@@ -60,6 +65,22 @@ public class App extends JFrame {
                 Auth auth = null;
                 try {
                     auth = new Auth();
+
+                    /**
+                     * Test de lecture dans la base de données
+                     */
+                    Statement state = ConfigDatabase.getInstance().createStatement();
+
+                    ResultSet result = state.executeQuery("SELECT * FROM public.t_utilisateur_utl AS utl INNER JOIN t_type_utilisateur_tut AS tut ON tut.tut_id = utl.tut_id");
+
+                    ResultSetMetaData resultSetMetaData = result.getMetaData();
+
+                    while(result.next()) {
+                        for(int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
+                            System.out.print(result.getObject(i).toString() + " ");
+                        }
+                    }
+
                     auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
                 } catch (IOException | SQLException ioException) {
@@ -75,7 +96,7 @@ public class App extends JFrame {
 
         // Va dans l'espace dédié en fonction du type d'utilisateur
         Auth.getBOUTON_CONNEXION().addActionListener(e -> {
-            if(Utilisateur.getTypeUtilisateur().equals("Client")) {
+            if(Utilisateur.getTypeUtilisateur() == 1) {
                 ClientPrincipal espaceClient = null;
                 try {
                     espaceClient = new ClientPrincipal();
@@ -84,7 +105,7 @@ public class App extends JFrame {
                 }
                 getContent().add(espaceClient, listContent[3]);
                 cl.show(getContent(), listContent[3]);
-            } else if(Utilisateur.getTypeUtilisateur().equals("Conseiller")) {
+            } else if(Utilisateur.getTypeUtilisateur() == 2) {
                 ConseillerPrincipal espaceConseiller = null;
                 try {
                     espaceConseiller = new ConseillerPrincipal();
@@ -98,7 +119,13 @@ public class App extends JFrame {
         });
 
         // Création d'un compte utilisateur
-        CreationCompteUtilisateur creationCompteUtilisateur = new CreationCompteUtilisateur();
+        CreationCompteUtilisateur creationCompteUtilisateur = null;
+        try {
+            creationCompteUtilisateur = new CreationCompteUtilisateur();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         creationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
         creationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okUtilisateurCree);
 

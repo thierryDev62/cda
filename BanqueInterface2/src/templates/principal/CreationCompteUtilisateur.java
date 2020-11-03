@@ -1,5 +1,8 @@
 package templates.principal;
 
+import config.ConfigDatabase;
+import config.ConfigDb;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -7,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.*;
 
 public class CreationCompteUtilisateur extends JPanel {
 
@@ -14,11 +18,10 @@ public class CreationCompteUtilisateur extends JPanel {
     private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
     private BufferedImage iconeCreationCompteUtil = ImageIO.read(new File("icones/man-coin.png"));
 
-    public CreationCompteUtilisateur() throws IOException {
+    public CreationCompteUtilisateur() throws IOException, SQLException {
         this.setLayout(new BorderLayout(5,5));
         this.add(iconeCreationEtTitre(), BorderLayout.NORTH);
         this.add(creation(), BorderLayout.CENTER);
-
     }
     private JPanel iconeCreationEtTitre() {
         // Conteneur de l'icone et du titre
@@ -34,6 +37,7 @@ public class CreationCompteUtilisateur extends JPanel {
         JPanel titrePanel = new JPanel();
         JLabel titre = new JLabel("<html><u style=\"color:orange\">Création d'un compte utilisateur</u></html>");
         titre.setFont(new Init().getTitreFont());
+
         titrePanel.add(titre);
 
         conteneurIconeEtTitre.add(titrePanel, BorderLayout.NORTH);

@@ -1,13 +1,13 @@
 package entity;
 
 public class Utilisateur {
-    private static String typeUtilisateur;
+    private static int typeUtilisateur;
 
-    public static String getTypeUtilisateur() {
+    public static int getTypeUtilisateur() {
         return typeUtilisateur;
     }
 
-    public static void setTypeUtilisateur(String typeUtilisateur) {
+    public static void setTypeUtilisateur(int typeUtilisateur) {
         Utilisateur.typeUtilisateur = typeUtilisateur;
     }
 }

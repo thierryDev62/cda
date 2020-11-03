@@ -67,11 +67,11 @@ public class PagePrincipale extends JPanel {
         //TODO : test de catch d'une valeur choisi dans un combobox
 
         if(Objects.equals(choix.getSelectedItem(), "Client")) {
-            Utilisateur.setTypeUtilisateur("Client");
-            System.out.println("Vous avez choisi le type " + Utilisateur.getTypeUtilisateur());
+            Utilisateur.setTypeUtilisateur(1);
+            System.out.println("Vous avez choisi le type Client");
         } else if (Objects.equals(choix.getSelectedItem(), "Conseiller")) {
-            Utilisateur.setTypeUtilisateur("Conseiller");
-            System.out.println("Vous avez choisi le type " + Utilisateur.getTypeUtilisateur());
+            Utilisateur.setTypeUtilisateur(2);
+            System.out.println("Vous avez choisi le type Conseiller");
         }
         setChoixClientOuConseiller(true);
     }

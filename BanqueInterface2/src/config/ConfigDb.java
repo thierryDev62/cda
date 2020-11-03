@@ -9,7 +9,7 @@ public class ConfigDb {
     /**
      * La seule instance de cette classe pendant toute la durée de vie de l'application
      */
-    private static ConfigDb INSTANCE = new ConfigDb();
+    private static final ConfigDb INSTANCE = new ConfigDb();
 
     /**
      * Constructeur privé
