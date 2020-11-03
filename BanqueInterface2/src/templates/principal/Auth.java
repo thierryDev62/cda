@@ -90,18 +90,20 @@ public class Auth extends JPanel {
                 ResultSet result = state.executeQuery(queryUserIdPassword);
 
                 while (result.next()) {
-                    int id = result.getInt("utl_id");
-                    String mdp = result.getString("utl_mot_de_passe");
+                    if(!champsIdentifiant.getText().equals("") || !champsMotDePasse.getText().equals("")) {
+                        int id = result.getInt("utl_id");
+                        String mdp = result.getString("utl_mot_de_passe");
 
-                    String identifiantText = champsIdentifiant.getText();
-                    int identifiantParse = 0;
-                    identifiantParse = Integer.parseInt(identifiantText);
+                        String identifiantText = champsIdentifiant.getText();
+                        int identifiantParse = 0;
+                        identifiantParse = Integer.parseInt(identifiantText);
 
-                   if(id == identifiantParse && mdp.equals(champsMotDePasse.getText())) {
-                       System.out.println("Trouvé : " + identifiantParse);
-                       setOkAuth(true);
-                       return;
-                   }
+                        if (id == identifiantParse && mdp.equals(champsMotDePasse.getText())) {
+                            System.out.println("Trouvé : " + identifiantParse);
+                            setOkAuth(true);
+                            return;
+                        }
+                    }
                 }
                 JOptionPane.showMessageDialog(null, "L'identifiant et/ou le mot de passe sont incorrects, veuillez recommencer");
                 result.close();
