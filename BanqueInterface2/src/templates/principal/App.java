@@ -12,10 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class App extends JFrame {
     private final CardLayout cl = new CardLayout();
@@ -135,10 +132,8 @@ public class App extends JFrame {
         /*******************************************************
          * Espace Clients
          ******************************************************/
-        // Page principale espace client
-        //ClientPrincipal espaceClient = new ClientPrincipal();
 
-        // Déconnexion
+        // Le client quitte l'application
         ClientPrincipal.getDeconnexion().addActionListener(e -> {
             int clicDeconnexion = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair quitter ?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if(clicDeconnexion == JOptionPane.YES_OPTION) {

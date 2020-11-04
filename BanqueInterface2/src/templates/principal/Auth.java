@@ -1,9 +1,7 @@
 package templates.principal;
 
 import config.ConfigDatabase;
-import config.ConfigDb;
 import entity.Utilisateur;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,7 +1,6 @@
 package templates.conseiller;
 
 import config.ConfigDatabase;
-import entity.Utilisateur;
 import templates.principal.Init;
 
 import javax.swing.*;

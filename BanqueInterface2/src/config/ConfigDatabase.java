@@ -14,6 +14,7 @@ public class ConfigDatabase {
         if(connect == null) {
             try {
                 connect = DriverManager.getConnection(URL, USER, PASSWD);
+                connect.setAutoCommit(false);
                 System.out.println("La connextion à la base de données à bien été effectuée !!");
             } catch (SQLException e) {
                 e.printStackTrace();

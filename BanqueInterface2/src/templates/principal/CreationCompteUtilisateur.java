@@ -1,7 +1,6 @@
 package templates.principal;
 
 import config.ConfigDatabase;
-import config.ConfigDb;
 import entity.Utilisateur;
 
 import javax.imageio.ImageIO;
@@ -12,7 +11,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Arrays;
 
 public class CreationCompteUtilisateur extends JPanel {
 
@@ -96,7 +94,6 @@ public class CreationCompteUtilisateur extends JPanel {
             int typeUtilisateur = Utilisateur.getTypeUtilisateur();
             try{
                 if(!nomUtilisateur.equals("") || !prenomUtilisateur.equals("") || !mdpUtilisateur.equals("")) {
-                    System.out.println("C'est rempli !");
                     /**
                      * Test si c'est un conseiller ou un client :
                      * true : Conseiller
@@ -130,7 +127,6 @@ public class CreationCompteUtilisateur extends JPanel {
 
                     setIsOkCreation(true);
                     preparedStatement.close();
-                    return;
                 } else {
                     JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs, veuillez recommencer");
                 }

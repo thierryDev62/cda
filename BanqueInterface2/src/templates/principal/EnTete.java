@@ -41,7 +41,6 @@ public class EnTete extends JPanel {
         JLabel afficheMoney = new JLabel(new ImageIcon(money));
         contenuAffichage.add(afficheMoney, BorderLayout.EAST);
 
-
         return contenuAffichage;
     }
 }
