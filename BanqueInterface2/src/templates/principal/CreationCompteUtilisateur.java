@@ -88,13 +88,12 @@ public class CreationCompteUtilisateur extends JPanel {
         BOUTON_VALIDER.setFont(new Init().getDefaultFont());
         conteneurBoutonValider.add(BOUTON_VALIDER);
         BOUTON_VALIDER.addActionListener(e ->{
-            String nomUtilisateur = Utilisateur.setUtilisateurNom(champsNom.getText());
-            String prenomUtilisateur = Utilisateur.setUtilisateurPrenom(champsPrenom.getText());
-            String mdpUtilisateur = Utilisateur.setUtilisateurMdp(new String(champsMotDePasse.getPassword()));
 
+            Utilisateur nouvelUtilisateur = new Utilisateur(champsNom.getText(), champsPrenom.getText(), new String(champsMotDePasse.getPassword()));
             int typeUtilisateur = Utilisateur.getTypeUtilisateur();
             try{
-                if(!nomUtilisateur.equals("") || !prenomUtilisateur.equals("") || !mdpUtilisateur.equals("")) {
+                if(!nouvelUtilisateur.getUtilisateurNom().equals("") || !nouvelUtilisateur.getUtilisateurPrenom().equals("") || !nouvelUtilisateur.getUtilisateurMdp().equals("")) {
+                //if(!nomUtilisateur.equals("") || !prenomUtilisateur.equals("") || !mdpUtilisateur.equals("")) {
                     /**
                      * Test si c'est un conseiller ou un client :
                      * true : Conseiller
@@ -104,9 +103,9 @@ public class CreationCompteUtilisateur extends JPanel {
                     Utilisateur.setCompteActif(typeUtilisateur == 2);
                     boolean compteActif = Utilisateur.getCompteActif();
 
-                    System.out.println(nomUtilisateur +
-                            " - " + prenomUtilisateur +
-                            " - " + mdpUtilisateur +
+                    System.out.println(nouvelUtilisateur.getUtilisateurNom() +
+                            " - " + nouvelUtilisateur.getUtilisateurPrenom() +
+                            " - " + nouvelUtilisateur.getUtilisateurMdp() +
                             " - " + compteActif +
                             " - " + typeUtilisateur
                     );
@@ -117,9 +116,9 @@ public class CreationCompteUtilisateur extends JPanel {
                             "VALUES (?, ?, ?, ?, ?)";
 
                     PreparedStatement preparedStatement = ConfigDatabase.getInstance().prepareStatement(querySaveUser);
-                    preparedStatement.setString(1, nomUtilisateur);
-                    preparedStatement.setString(2, prenomUtilisateur);
-                    preparedStatement.setString(3, mdpUtilisateur);
+                    preparedStatement.setString(1, nouvelUtilisateur.getUtilisateurNom());
+                    preparedStatement.setString(2, nouvelUtilisateur.getUtilisateurPrenom());
+                    preparedStatement.setString(3, nouvelUtilisateur.getUtilisateurMdp());
                     preparedStatement.setBoolean(4, compteActif);
                     preparedStatement.setInt(5, typeUtilisateur);
 

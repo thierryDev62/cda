@@ -121,9 +121,6 @@ public class App extends JFrame {
 
             if(CreationCompteUtilisateur.isIsOkCreation()) {
                 JOptionPane.showMessageDialog(this, "<html><h3>Compte utilisateur créé !</h3></html>\n" +
-                        "Récapitulatif de la création de votre compte utilisateur :\n" +
-                        "Nom : " + Utilisateur.getUtilisateurNom() + "\n" +
-                        "Prénom : " + Utilisateur.getUtilisateurPrenom() + "\n\n" +
                         "<html><h4>La Banque de Diplo vous remercie !!!</h4></html>"
                         );
                 CreationCompteUtilisateur.setIsOkCreation(false);

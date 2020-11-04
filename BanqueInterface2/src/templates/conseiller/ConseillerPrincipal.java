@@ -37,7 +37,7 @@ public class ConseillerPrincipal extends JPanel {
         JLabel titre = new JLabel("Espace conseiller - ");
         titre.setFont(new Init().getTitreFont());
 
-        JLabel bienvenue = new JLabel("Bienvenue " + Utilisateur.getUtilisateurPrenom() + " " + Utilisateur.getUtilisateurNom() + " !");
+        JLabel bienvenue = new JLabel("Bienvenue !");
         bienvenue.setFont(new Init().getTitreFont());
 
         conteneurTitre.add(titre);

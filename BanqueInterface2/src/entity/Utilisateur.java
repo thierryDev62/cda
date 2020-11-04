@@ -2,11 +2,17 @@ package entity;
 
 public class Utilisateur {
     private static int utilisateurId;
-    private static String utilisateurNom;
-    private static String utilisateurPrenom;
-    private static String utilisateurMdp;
+    private String utilisateurNom;
+    private String utilisateurPrenom;
+    private String utilisateurMdp;
     private static Boolean compteActif;
     private static int typeUtilisateur;
+
+    public Utilisateur(String utilisateurNom, String utilisateurPrenom, String utilisateurMdp) {
+        this.utilisateurNom = utilisateurNom;
+        this.utilisateurPrenom = utilisateurPrenom;
+        this.utilisateurMdp = utilisateurMdp;
+    }
 
     public static int getUtilisateurId() {
         return utilisateurId;
@@ -16,31 +22,28 @@ public class Utilisateur {
         Utilisateur.utilisateurId = utilisateurId;
     }
 
-    public static String getUtilisateurNom() {
+    public String getUtilisateurNom() {
         return utilisateurNom;
     }
 
-    public static String setUtilisateurNom(String utilisateurNom) {
-        Utilisateur.utilisateurNom = utilisateurNom;
-        return utilisateurNom;
+    public void setUtilisateurNom(String utilisateurNom) {
+        this.utilisateurNom = utilisateurNom;
     }
 
-    public static String getUtilisateurPrenom() {
+    public String getUtilisateurPrenom() {
         return utilisateurPrenom;
     }
 
-    public static String setUtilisateurPrenom(String utilisateurPrenom) {
-        Utilisateur.utilisateurPrenom = utilisateurPrenom;
-        return utilisateurPrenom;
+    public void setUtilisateurPrenom(String utilisateurPrenom) {
+        this.utilisateurPrenom = utilisateurPrenom;
     }
 
-    public static String getUtilisateurMdp() {
+    public String getUtilisateurMdp() {
         return utilisateurMdp;
     }
 
-    public static String setUtilisateurMdp(String utilisateurMdp) {
-        Utilisateur.utilisateurMdp = utilisateurMdp;
-        return utilisateurMdp;
+    public void setUtilisateurMdp(String utilisateurMdp) {
+        this.utilisateurMdp = utilisateurMdp;
     }
 
     public static Boolean getCompteActif() {

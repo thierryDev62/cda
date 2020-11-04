@@ -100,8 +100,6 @@ public class Auth extends JPanel {
                         identifiantParse = Integer.parseInt(identifiantText);
 
                         if (id == identifiantParse && mdp.equals(champsMotDePasse.getText())) {
-                            Utilisateur.setUtilisateurNom(nom);
-                            Utilisateur.setUtilisateurPrenom(prenom);
                             System.out.println("Trouvé : " + identifiantParse);
                             setOkAuth(true);
                             return;
