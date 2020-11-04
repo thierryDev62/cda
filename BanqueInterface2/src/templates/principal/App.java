@@ -66,21 +66,6 @@ public class App extends JFrame {
                 try {
                     auth = new Auth();
 
-                    /**
-                     * Test de lecture dans la base de données
-                     */
-                    /*Statement state = ConfigDatabase.getInstance().createStatement();
-
-                    ResultSet result = state.executeQuery("SELECT * FROM public.t_utilisateur_utl AS utl INNER JOIN t_type_utilisateur_tut AS tut ON tut.tut_id = utl.tut_id");
-
-                    ResultSetMetaData resultSetMetaData = result.getMetaData();
-
-                    while(result.next()) {
-                        for(int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
-                            System.out.print(result.getObject(i).toString() + " ");
-                        }
-                    }*/
-
                     auth.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
                 } catch (IOException | SQLException ioException) {
@@ -92,7 +77,6 @@ public class App extends JFrame {
                 JOptionPane.showMessageDialog(null, "Vous devez faire un choix entre client ou conseiller !");
             }
         });
-        //pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(this::goCreationUtilisateur);
         pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(e -> {
             CreationCompteUtilisateur creationCompteUtilisateur = null;
             try {
@@ -106,7 +90,7 @@ public class App extends JFrame {
             cl.show(getContent(), listContent[2]);
         });
 
-        // Va dans l'espace dédié en fonction du type d'utilisateur
+        // Va dans l'espace dédié en fonction du type d'utilisateur au moment de la connexion
         Auth.getBOUTON_CONNEXION().addActionListener(e -> {
             if(Utilisateur.getTypeUtilisateur() == 1 && Auth.isOkAuth() ) {
                 ClientPrincipal espaceClient = null;
@@ -131,21 +115,19 @@ public class App extends JFrame {
         });
 
         // Création d'un compte utilisateur
-        CreationCompteUtilisateur creationCompteUtilisateur = null;
-        try {
-            creationCompteUtilisateur = new CreationCompteUtilisateur();
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        creationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
-        //creationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okUtilisateurCree);
+        CreationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
-        //TODO : Corriger le bug
         CreationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
-            System.out.println("Dans app : " + CreationCompteUtilisateur.isIsOkCreation());
-            if(!CreationCompteUtilisateur.isIsOkCreation()) {
-                System.out.println("okokokkokkook");
+            if(CreationCompteUtilisateur.isIsOkCreation()) {
+                PagePrincipale pagePrincipale1 = null;
+                try {
+                    pagePrincipale1 = new PagePrincipale();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                JOptionPane.showMessageDialog(this, "Compte utilisateur créé !");
+                getContent().add(pagePrincipale1, listContent[0]);
                 cl.show(getContent(), listContent[0]);
             }
         });
@@ -154,7 +136,7 @@ public class App extends JFrame {
          * Espace Clients
          ******************************************************/
         // Page principale espace client
-        ClientPrincipal espaceClient = new ClientPrincipal();
+        //ClientPrincipal espaceClient = new ClientPrincipal();
 
         // Déconnexion
         ClientPrincipal.getDeconnexion().addActionListener(e -> {
@@ -166,15 +148,14 @@ public class App extends JFrame {
             }
         });
 
-        espaceClient.getMesInformations().addActionListener(this::goInformations);
-
+        /*espaceClient.getMesInformations().addActionListener(this::goInformations);
         espaceClient.getConsultationSolde().addActionListener(this::goConsultationSolde);
         espaceClient.getVersement().addActionListener(this::goVersements);
         espaceClient.getRetrait().addActionListener(this::goRetraits);
         espaceClient.getVirement().addActionListener(this::goVirements);
         espaceClient.getListeOperations().addActionListener(this::goListeOperations);
         espaceClient.getTotalVersement().addActionListener(this::goTotalVersements);
-        espaceClient.getTotalRetrait().addActionListener(this::goTotalRetraits);
+        espaceClient.getTotalRetrait().addActionListener(this::goTotalRetraits);*/
 
         // Client va à la page de création compte bancaire
         ClientPrincipal.getCreerUnCompte().addActionListener(e -> {

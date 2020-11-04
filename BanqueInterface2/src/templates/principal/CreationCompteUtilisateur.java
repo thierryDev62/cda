@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class CreationCompteUtilisateur extends JPanel {
 
     private final static JButton BOUTON_VALIDER = new JButton("Valider");
-    private final JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
+    private final static JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
     private BufferedImage iconeCreationCompteUtil = ImageIO.read(new File("icones/man-coin.png"));
 
     private static boolean isOkCreation = false;
@@ -94,48 +94,50 @@ public class CreationCompteUtilisateur extends JPanel {
             String mdpUtilisateur = Utilisateur.setUtilisateurMdp(new String(champsMotDePasse.getPassword()));
 
             int typeUtilisateur = Utilisateur.getTypeUtilisateur();
-
-            if(!nomUtilisateur.equals("") || !prenomUtilisateur.equals("") || !mdpUtilisateur.equals("")) {
-                System.out.println("C'est rempli !");
-                /**
-                 * Test si c'est un conseiller ou un client :
-                 * true : Conseiller
-                 * false : Client
-                 */
-
-                Utilisateur.setCompteActif(typeUtilisateur == 2);
-                boolean compteActif = Utilisateur.getCompteActif();
-
-                System.out.println(nomUtilisateur +
-                        " - " + prenomUtilisateur +
-                        " - " + mdpUtilisateur +
-                        " - " + compteActif +
-                        " - " + typeUtilisateur
-                );
-
-                // Enregistrement du compte utilisateur dans la base de données
-            /*String querySaveUser = "INSERT INTO public.t_utilisateur_utl(" +
-                    "utl_nom, utl_prenom, utl_mot_de_passe, utl_compte_actif, tut_id)" +
-                    "VALUES (?, ?, ?, ?, ?)";
             try{
-                PreparedStatement preparedStatement = ConfigDatabase.getInstance().prepareStatement(querySaveUser);
-                preparedStatement.setString(1, nomUtilisateur);
-                preparedStatement.setString(2, prenomUtilisateur);
-                preparedStatement.setString(3, mdpUtilisateur);
-                preparedStatement.setBoolean(4, compteActif);
-                preparedStatement.setInt(5, typeUtilisateur);
+                if(!nomUtilisateur.equals("") || !prenomUtilisateur.equals("") || !mdpUtilisateur.equals("")) {
+                    System.out.println("C'est rempli !");
+                    /**
+                     * Test si c'est un conseiller ou un client :
+                     * true : Conseiller
+                     * false : Client
+                     */
 
-                preparedStatement.executeUpdate();
+                    Utilisateur.setCompteActif(typeUtilisateur == 2);
+                    boolean compteActif = Utilisateur.getCompteActif();
 
+                    System.out.println(nomUtilisateur +
+                            " - " + prenomUtilisateur +
+                            " - " + mdpUtilisateur +
+                            " - " + compteActif +
+                            " - " + typeUtilisateur
+                    );
+
+                    // Enregistrement du compte utilisateur dans la base de données
+                    String querySaveUser = "INSERT INTO public.t_utilisateur_utl(" +
+                            "utl_nom, utl_prenom, utl_mot_de_passe, utl_compte_actif, tut_id)" +
+                            "VALUES (?, ?, ?, ?, ?)";
+
+                    PreparedStatement preparedStatement = ConfigDatabase.getInstance().prepareStatement(querySaveUser);
+                    preparedStatement.setString(1, nomUtilisateur);
+                    preparedStatement.setString(2, prenomUtilisateur);
+                    preparedStatement.setString(3, mdpUtilisateur);
+                    preparedStatement.setBoolean(4, compteActif);
+                    preparedStatement.setInt(5, typeUtilisateur);
+
+                    // TODO : décommenter pour enregistrer dans la base de données
+                    //preparedStatement.executeUpdate();
+
+                    setIsOkCreation(true);
+                    preparedStatement.close();
+                    return;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs, veuillez recommencer");
+                }
             } catch(SQLException event) {
                 event.printStackTrace();
-            }*/
-                //TODO : Corriger le bug
-                setIsOkCreation(true);
-                JOptionPane.showMessageDialog(this, "Compte utilisateur créé !");
-                return;
             }
-            JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs, veuillez recommencer");
+
         });
 
         // Bouton retour au menu
@@ -156,7 +158,7 @@ public class CreationCompteUtilisateur extends JPanel {
         return BOUTON_VALIDER;
     }
 
-    public JButton getBOUTON_RETOUR_MENU() {
+    public static JButton getBOUTON_RETOUR_MENU() {
         return BOUTON_RETOUR_MENU;
     }
 
