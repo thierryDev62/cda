@@ -108,7 +108,7 @@ public class Auth extends JPanel {
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(null, "L'identifiant et/ou le mot de passe sont incorrects, veuillez recommencer");
+                JOptionPane.showMessageDialog(null, "<html><div style=\"color:red;font-weight:bold;\">L'identifiant et/ou le mot de passe sont incorrects, veuillez recommencer...</div></html>");
                 result.close();
             } catch (SQLException event) {
                 event.printStackTrace();

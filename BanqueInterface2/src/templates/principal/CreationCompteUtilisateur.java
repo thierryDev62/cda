@@ -69,6 +69,7 @@ public class CreationCompteUtilisateur extends JPanel {
         prenom.setFont(new Init().getDefaultFont());
         JTextField champsPrenom = new JTextField();
         champsPrenom.setPreferredSize(new Dimension(200, 30));
+        champsPrenom.setText("");
         conteneurPrenom.add(prenom);
         conteneurPrenom.add(champsPrenom);
 
@@ -78,6 +79,7 @@ public class CreationCompteUtilisateur extends JPanel {
         motDePasse.setFont(new Init().getDefaultFont());
         JPasswordField champsMotDePasse = new JPasswordField();
         champsMotDePasse.setPreferredSize(new Dimension(200, 30));
+        champsMotDePasse.setText("");
         conteneurMdp.add(motDePasse);
         conteneurMdp.add(champsMotDePasse);
 
@@ -86,7 +88,6 @@ public class CreationCompteUtilisateur extends JPanel {
         BOUTON_VALIDER.setFont(new Init().getDefaultFont());
         conteneurBoutonValider.add(BOUTON_VALIDER);
         BOUTON_VALIDER.addActionListener(e ->{
-
             String nomUtilisateur = Utilisateur.setUtilisateurNom(champsNom.getText());
             String prenomUtilisateur = Utilisateur.setUtilisateurPrenom(champsPrenom.getText());
             String mdpUtilisateur = Utilisateur.setUtilisateurMdp(new String(champsMotDePasse.getPassword()));
@@ -127,13 +128,13 @@ public class CreationCompteUtilisateur extends JPanel {
 
                     setIsOkCreation(true);
                     preparedStatement.close();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs, veuillez recommencer");
+                    return;
                 }
+
             } catch(SQLException event) {
                 event.printStackTrace();
             }
-
+            JOptionPane.showMessageDialog(this, "<html><div style=\"color:red;font-weight:bold;\">Vous devez remplir tous les champs, veuillez recommencer</div></html>");
         });
 
         // Bouton retour au menu

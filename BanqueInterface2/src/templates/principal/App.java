@@ -71,7 +71,7 @@ public class App extends JFrame {
                 getContent().add(auth, listContent[1]);
                 cl.show(getContent(), listContent[1]);
             } else {
-                JOptionPane.showMessageDialog(null, "Vous devez faire un choix entre client ou conseiller !");
+                JOptionPane.showMessageDialog(null, "<html><div style=\"color:red;font-weight:bold;\">Vous devez faire un choix entre client ou conseiller avant de continuer !</div></html>");
             }
         });
         pagePrincipale.getBOUTON_CREER_COMPTE_UTIL().addActionListener(e -> {
@@ -120,14 +120,15 @@ public class App extends JFrame {
             //TODO: Voir le bug de retour au menu
 
             if(CreationCompteUtilisateur.isIsOkCreation()) {
-                PagePrincipale pagePrincipale1 = null;
-                try {
-                    pagePrincipale1 = new PagePrincipale();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-                JOptionPane.showMessageDialog(this, "Compte utilisateur créé !");
-                getContent().add(pagePrincipale1, listContent[0]);
+                JOptionPane.showMessageDialog(this, "<html><h3>Compte utilisateur créé !</h3></html>\n" +
+                        "Récapitulatif de la création de votre compte utilisateur :\n" +
+                        "Nom : " + Utilisateur.getUtilisateurNom() + "\n" +
+                        "Prénom : " + Utilisateur.getUtilisateurPrenom() + "\n\n" +
+                        "<html><h4>La Banque de Diplo vous remercie !!!</h4></html>"
+                        );
+                CreationCompteUtilisateur.setIsOkCreation(false);
+                Utilisateur.setUtilisateurNom(null);
+                getContent().add(pagePrincipale, listContent[0]);
                 cl.show(getContent(), listContent[0]);
             }
         });
