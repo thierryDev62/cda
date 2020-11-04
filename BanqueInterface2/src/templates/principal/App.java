@@ -127,7 +127,12 @@ public class App extends JFrame {
                         "<html><h4>La Banque de Diplo vous remercie !!!</h4></html>"
                         );
                 CreationCompteUtilisateur.setIsOkCreation(false);
-                Utilisateur.setUtilisateurNom(null);
+                /*CreationCompteUtilisateur creationCompteUtilisateur = null;
+                try {
+                    creationCompteUtilisateur = new CreationCompteUtilisateur();
+                } catch (IOException | SQLException ioException) {
+                    ioException.printStackTrace();
+                }*/
                 getContent().add(pagePrincipale, listContent[0]);
                 cl.show(getContent(), listContent[0]);
             }
