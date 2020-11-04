@@ -83,7 +83,8 @@ public class Auth extends JPanel {
             /**
              * Test de lecture dans la base de données
              */
-            String queryUserIdPassword = "SELECT utl_id, utl_mot_de_passe FROM public.t_utilisateur_utl";
+            int typeUtilisateur = Utilisateur.getTypeUtilisateur();
+            String queryUserIdPassword = "SELECT utl_id, utl_nom, utl_prenom, utl_mot_de_passe FROM public.t_utilisateur_utl WHERE tut_id = " + typeUtilisateur;
             try {
                 Statement state = ConfigDatabase.getInstance().createStatement();
 
@@ -92,6 +93,8 @@ public class Auth extends JPanel {
                 while (result.next()) {
                     if(!champsIdentifiant.getText().equals("") || !champsMotDePasse.getText().equals("")) {
                         int id = result.getInt("utl_id");
+                        String nom = result.getString("utl_nom");
+                        String prenom = result.getString("utl_prenom");
                         String mdp = result.getString("utl_mot_de_passe");
 
                         String identifiantText = champsIdentifiant.getText();
@@ -99,6 +102,8 @@ public class Auth extends JPanel {
                         identifiantParse = Integer.parseInt(identifiantText);
 
                         if (id == identifiantParse && mdp.equals(champsMotDePasse.getText())) {
+                            Utilisateur.setUtilisateurNom(nom);
+                            Utilisateur.setUtilisateurPrenom(prenom);
                             System.out.println("Trouvé : " + identifiantParse);
                             setOkAuth(true);
                             return;

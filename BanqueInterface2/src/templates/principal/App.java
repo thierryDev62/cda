@@ -140,11 +140,10 @@ public class App extends JFrame {
 
         // Déconnexion
         ClientPrincipal.getDeconnexion().addActionListener(e -> {
-            int clicDeconnexion = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
+            int clicDeconnexion = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair quitter ?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if(clicDeconnexion == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
-                getContent().add(pagePrincipale, listContent[0]);
-                cl.show(getContent(), listContent[0]);
+                JOptionPane.showMessageDialog(this, "Merci de votre visite !");
+                dispose();
             }
         });
 
@@ -225,26 +224,28 @@ public class App extends JFrame {
          ******************************************************/
         // Page principale espace conseiller
         ConseillerPrincipal.getDeconnexion().addActionListener(e -> {
-            int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair vous déconnecter ?", "Confirmation de déconnexion", JOptionPane.YES_NO_OPTION);
+            int clicAnnuler = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de voulair quitter ?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if(clicAnnuler == JOptionPane.YES_OPTION) {
 
-                JOptionPane.showMessageDialog(this, "Vous êtes déconnecté !");
-                getContent().add(pagePrincipale, listContent[0]);
-                cl.show(getContent(), listContent[0]);
+                JOptionPane.showMessageDialog(this, "Merci de votre visite !");
+                dispose();
             }
         });
         ConseillerPrincipal.getValidationCompteUtil().addActionListener(this::goValidationCompteUtilisateur);
-        ConseillerPrincipal.getListeDesComptes().addActionListener(this::goListeDesComptes); // TODO : Voir pour le retour au menu en fonction du type d'utilisateur
-        ConseillerPrincipal.getListeDesClients().addActionListener((this::goListeClients));
+        ConseillerPrincipal.getListeDesComptes().addActionListener(this::goListeDesComptes);
+
+        // Affiche la liste des clients de la banque
+        ConseillerPrincipal.getListeDesClients().addActionListener(e -> {
+            ListeClients listeClients = new ListeClients();
+            getContent().add(listeClients, listContent[16]);
+            cl.show(getContent(), listContent[16]);
+            listeClients.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceConseiller);
+        });
 
         // Validation d'un compte utilisateur
         ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
         validerCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okCompteUtilisateurValide);
         validerCompteUtilisateur.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationValidationCompteUtil);
-
-        // Affiche la liste des clients de la banque
-        ListeClients listeClients = new ListeClients();
-        listeClients.getBOUTON_RETOUR_MENU().addActionListener(this::goEspaceConseiller);
 
         // On définit le layout
         getContent().setLayout(cl);
@@ -261,21 +262,9 @@ public class App extends JFrame {
         getContent().add(listeOperations, listContent[13]);
         getContent().add(totalVersements, listContent[14]);
         getContent().add(totalRetraits, listContent[15]);
-        getContent().add(listeClients, listContent[16]);
 
         this.getContentPane().add(entete, BorderLayout.NORTH);
         this.getContentPane().add(getContent(), BorderLayout.CENTER);
-    }
-
-    // Envoi sur le panel de création d'un utilisateur
-    private void goCreationUtilisateur(ActionEvent e) {
-        cl.show(getContent(), listContent[2]);
-    }
-
-    // Réponse après validation de création d'un compte utilisateur
-    private void okUtilisateurCree(ActionEvent e) {
-        JOptionPane.showMessageDialog(this, "Compte utilisateur créé !");
-        cl.show(getContent(), listContent[0]);
     }
 
     // Renvoi au menu principal

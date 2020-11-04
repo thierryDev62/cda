@@ -1,5 +1,6 @@
 package templates.conseiller;
 
+import entity.Utilisateur;
 import templates.principal.Init;
 
 import javax.imageio.ImageIO;
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class ConseillerPrincipal extends JPanel {
     private BufferedImage fond = ImageIO.read(new File("images/espaceConseiller.jpg"));
-    private static JMenuItem deconnexion = new JMenuItem("Déconnexion");
+    private static JMenuItem deconnexion = new JMenuItem("Quitter");
     private static JMenuItem validationCompteUtil = new JMenuItem("Valider un compte utilisateur");
     private static JMenuItem listeDesComptes = new JMenuItem("Voir la liste des comptes");
     private static JMenuItem listeDesClients = new JMenuItem("Voir la liste des clients");
@@ -32,9 +33,15 @@ public class ConseillerPrincipal extends JPanel {
     private JPanel titreEspaceConseiller() {
         JPanel conteneurTitre = new JPanel();
         conteneurTitre.setBorder(BorderFactory.createEmptyBorder(0,0,50,0));
-        JLabel titre = new JLabel("Espace conseiller");
+
+        JLabel titre = new JLabel("Espace conseiller - ");
         titre.setFont(new Init().getTitreFont());
+
+        JLabel bienvenue = new JLabel("Bienvenue " + Utilisateur.getUtilisateurPrenom() + " " + Utilisateur.getUtilisateurNom() + " !");
+        bienvenue.setFont(new Init().getTitreFont());
+
         conteneurTitre.add(titre);
+        conteneurTitre.add(bienvenue);
         return conteneurTitre;
     }
 

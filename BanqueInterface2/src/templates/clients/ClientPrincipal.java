@@ -1,5 +1,6 @@
 package templates.clients;
 
+import entity.Utilisateur;
 import templates.principal.Init;
 import templates.principal.PagePrincipale;
 
@@ -16,7 +17,7 @@ public class ClientPrincipal extends JPanel {
     private static JMenuItem creerUnCompte = new JMenuItem("Créer un compte bancaire");
     private static JMenuItem listeDesComptes = new JMenuItem("Liste des comptes");
     private JMenuItem consultationSolde = new JMenuItem("Consultation solde");
-    private static JMenuItem deconnexion = new JMenuItem("Déconnexion");
+    private static JMenuItem deconnexion = new JMenuItem("Quitter");
     private JMenuItem versement = new JMenuItem("Versement");
     private JMenuItem retrait = new JMenuItem("Retrait");
     private JMenuItem virement = new JMenuItem("Virement");
@@ -41,10 +42,15 @@ public class ClientPrincipal extends JPanel {
 
         JPanel conteneurTitre = new JPanel();
         conteneurTitre.setBorder(BorderFactory.createEmptyBorder(0,0,50,0));
-        JLabel titre = new JLabel("Espace client");
+
+        JLabel titre = new JLabel("Espace client - ");
         titre.setFont(new Init().getTitreFont());
 
+        JLabel bienvenue = new JLabel("Bienvenue " + Utilisateur.getUtilisateurPrenom() + " " + Utilisateur.getUtilisateurNom() + " !");
+        bienvenue.setFont(new Init().getTitreFont());
+
         conteneurTitre.add(titre);
+        conteneurTitre.add(bienvenue);
         return conteneurTitre;
     }
 
