@@ -116,6 +116,9 @@ public class App extends JFrame {
         CreationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
         CreationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
+
+            //TODO: Voir le bug de retour au menu
+
             if(CreationCompteUtilisateur.isIsOkCreation()) {
                 PagePrincipale pagePrincipale1 = null;
                 try {
