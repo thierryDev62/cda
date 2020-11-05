@@ -88,12 +88,11 @@ public class CreationCompteUtilisateur extends JPanel {
         BOUTON_VALIDER.setFont(new Init().getDefaultFont());
         conteneurBoutonValider.add(BOUTON_VALIDER);
         BOUTON_VALIDER.addActionListener(e ->{
-
+            System.out.println("cliqué dans creation");
             Utilisateur nouvelUtilisateur = new Utilisateur(champsNom.getText(), champsPrenom.getText(), new String(champsMotDePasse.getPassword()));
             int typeUtilisateur = Utilisateur.getTypeUtilisateur();
             try{
                 if(!nouvelUtilisateur.getUtilisateurNom().equals("") || !nouvelUtilisateur.getUtilisateurPrenom().equals("") || !nouvelUtilisateur.getUtilisateurMdp().equals("")) {
-                //if(!nomUtilisateur.equals("") || !prenomUtilisateur.equals("") || !mdpUtilisateur.equals("")) {
                     /**
                      * Test si c'est un conseiller ou un client :
                      * true : Conseiller

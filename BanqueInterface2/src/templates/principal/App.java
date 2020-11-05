@@ -116,22 +116,20 @@ public class App extends JFrame {
         CreationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
         CreationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
-
+            System.out.println("cliqué dans app");
             //TODO: Voir le bug de retour au menu
 
             if(CreationCompteUtilisateur.isIsOkCreation()) {
                 JOptionPane.showMessageDialog(this, "<html><h3>Compte utilisateur créé !</h3></html>\n" +
-                        "<html><h4>La Banque de Diplo vous remercie !!!</h4></html>"
+                                "Vous ne pouvez faire aucune opération tant qu'un conseiller\n" +
+                                "n'a pas validé votre compte\n" +
+                                "<html><h4>La Banque de Diplo vous remercie !!!</h4></html>"
                         );
                 CreationCompteUtilisateur.setIsOkCreation(false);
-                /*CreationCompteUtilisateur creationCompteUtilisateur = null;
-                try {
-                    creationCompteUtilisateur = new CreationCompteUtilisateur();
-                } catch (IOException | SQLException ioException) {
-                    ioException.printStackTrace();
-                }*/
+
                 getContent().add(pagePrincipale, listContent[0]);
                 cl.show(getContent(), listContent[0]);
+
             }
         });
 
