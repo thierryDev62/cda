@@ -1,10 +1,12 @@
 package templates.conseiller;
 
 import config.ConfigDatabase;
+import templates.principal.App;
 import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -58,21 +60,17 @@ public class ValiderCompteUtilisateur extends JPanel {
 
                     if(idUtilisateur == champsValidationParse) {
                         System.out.println("ok trouvé le numéro d'identifiant !!!");
-                        //champsValidation.setText("");
-                        state.close();
-                        result.close();
+                        //state.close();
+                        //result.close();
                         return;
                     }
                 }
                 System.out.println("pas trouvé");
-                //champsValidation.setText("");
                 state.close();
                 result.close();
             } catch (SQLException event) {
                 event.printStackTrace();
             }
-
-
         });
 
         // Bouton annuler

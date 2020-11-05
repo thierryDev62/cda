@@ -12,15 +12,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class App extends JFrame {
-    private final CardLayout cl = new CardLayout();
-    private final JPanel content = new JPanel();
+    private static final CardLayout cl = new CardLayout();
+    private static final JPanel content = new JPanel();
 
     // Liste des noms de nos conteneurs pour la pile de cartes
-    String[] listContent = {
+    static String[] listContent = {
             "PAGE_PRINCIPALE",
             "AUTH",
             "CREATION_COMPTE_UTIL",
@@ -69,6 +68,7 @@ public class App extends JFrame {
                 } catch (IOException | SQLException ioException) {
                     ioException.printStackTrace();
                 }
+                
                 getContent().add(auth, listContent[1]);
                 cl.show(getContent(), listContent[1]);
             } else {
@@ -230,7 +230,7 @@ public class App extends JFrame {
                 dispose();
             }
         });
-        ConseillerPrincipal.getValidationCompteUtil().addActionListener(e -> {
+            ConseillerPrincipal.getValidationCompteUtil().addActionListener(e -> {
             ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
             getContent().add(validerCompteUtilisateur, listContent[6]);
             cl.show(getContent(), listContent[6]);
@@ -245,12 +245,12 @@ public class App extends JFrame {
             cl.show(getContent(), listContent[5]);
         });
 
-        /*ValiderCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
+        ValiderCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
             ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
             JOptionPane.showMessageDialog(this, "Compte utilisateur validé !");
             getContent().add(validerCompteUtilisateur, listContent[5]);
             cl.show(getContent(), listContent[5]);
-        });*/
+        });
 
         ConseillerPrincipal.getListeDesComptes().addActionListener(this::goListeDesComptes);
 
@@ -382,7 +382,7 @@ public class App extends JFrame {
         cl.show(getContent(), listContent[15]);
     }
 
-    private JPanel getContent() {
+    private static JPanel getContent() {
         return content;
     }
 
