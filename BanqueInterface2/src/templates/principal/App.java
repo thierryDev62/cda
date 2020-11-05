@@ -234,11 +234,21 @@ public class App extends JFrame {
             ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
             getContent().add(validerCompteUtilisateur, listContent[6]);
             cl.show(getContent(), listContent[6]);
-            ValiderCompteUtilisateur.getBoutonAnnuler().addActionListener(this::goEspaceConseiller);
+
+        });
+        ValiderCompteUtilisateur.getBoutonAnnuler().addActionListener(e -> {
+            try {
+                getContent().add(new ConseillerPrincipal(), listContent[5]);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            cl.show(getContent(), listContent[5]);
         });
 
         /*ValiderCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
+            ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
             JOptionPane.showMessageDialog(this, "Compte utilisateur validé !");
+            getContent().add(validerCompteUtilisateur, listContent[5]);
             cl.show(getContent(), listContent[5]);
         });*/
 

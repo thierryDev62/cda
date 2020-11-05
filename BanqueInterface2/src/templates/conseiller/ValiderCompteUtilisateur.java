@@ -58,12 +58,14 @@ public class ValiderCompteUtilisateur extends JPanel {
 
                     if(idUtilisateur == champsValidationParse) {
                         System.out.println("ok trouvé le numéro d'identifiant !!!");
-                        champsValidation.setText("");
+                        //champsValidation.setText("");
+                        state.close();
+                        result.close();
                         return;
                     }
                 }
                 System.out.println("pas trouvé");
-                champsValidation.setText("");
+                //champsValidation.setText("");
                 state.close();
                 result.close();
             } catch (SQLException event) {
