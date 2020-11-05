@@ -92,8 +92,6 @@ public class CreationCompteUtilisateur extends JPanel {
         BOUTON_VALIDER.setFont(new Init().getDefaultFont());
         conteneurBoutonValider.add(BOUTON_VALIDER);
         BOUTON_VALIDER.addActionListener(e ->{
-
-
             Utilisateur nouvelUtilisateur = new Utilisateur(champsNom.getText(), champsPrenom.getText(), new String(champsMotDePasse.getPassword()));
             int typeUtilisateur = Utilisateur.getTypeUtilisateur();
             try{

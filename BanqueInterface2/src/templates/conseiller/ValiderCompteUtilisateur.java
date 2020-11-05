@@ -1,13 +1,17 @@
 package templates.conseiller;
 
+import config.ConfigDatabase;
 import templates.principal.Init;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ValiderCompteUtilisateur extends JPanel {
-    private final JButton BOUTON_VALIDER = new JButton("Valider");
-    private final JButton BOUTON_ANNULER = new JButton("Annuler");
+    private static final JButton BOUTON_VALIDER = new JButton("Valider");
+    private static final JButton BOUTON_ANNULER = new JButton("Annuler");
 
     public ValiderCompteUtilisateur() {
         this.setLayout(new BorderLayout(5,5));
@@ -38,6 +42,36 @@ public class ValiderCompteUtilisateur extends JPanel {
         JPanel conteneurBoutonValider = new JPanel();
         BOUTON_VALIDER.setFont(new Init().getDefaultFont());
         conteneurBoutonValider.add(BOUTON_VALIDER);
+        BOUTON_VALIDER.addActionListener(e -> {
+            String champsValidationText = champsValidation.getText();
+            int champsValidationParse = 0;
+            champsValidationParse = Integer.parseInt(champsValidationText);
+            String queryNumeroCompteUtilisateur = "SELECT utl_id FROM public.t_utilisateur_utl WHERE utl_id = " + champsValidationParse;
+
+            try {
+                Statement state = ConfigDatabase.getInstance().createStatement();
+
+                ResultSet result = state.executeQuery(queryNumeroCompteUtilisateur);
+
+                while(result.next()) {
+                    int idUtilisateur = result.getInt("utl_id");
+
+                    if(idUtilisateur == champsValidationParse) {
+                        System.out.println("ok trouvé le numéro d'identifiant !!!");
+                        champsValidation.setText("");
+                        return;
+                    }
+                }
+                System.out.println("pas trouvé");
+                champsValidation.setText("");
+                state.close();
+                result.close();
+            } catch (SQLException event) {
+                event.printStackTrace();
+            }
+
+
+        });
 
         // Bouton annuler
         JPanel conteneurBoutonAnnuler = new JPanel();
@@ -52,11 +86,11 @@ public class ValiderCompteUtilisateur extends JPanel {
         return panelCreation;
     }
 
-    public JButton getBOUTON_VALIDER() {
+    public static JButton getBOUTON_VALIDER() {
         return BOUTON_VALIDER;
     }
 
-    public JButton getBOUTON_ANNULER() {
+    public static JButton getBoutonAnnuler() {
         return BOUTON_ANNULER;
     }
 }

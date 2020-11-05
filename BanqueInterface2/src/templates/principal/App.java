@@ -119,10 +119,7 @@ public class App extends JFrame {
         CreationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
             //TODO: Voir le bug de retour au menu
 
-
-
             if(CreationCompteUtilisateur.isIsOkCreation()) {
-                System.out.println("isokapp");
                 JOptionPane.showMessageDialog(this, "<html><h3>Compte utilisateur créé !</h3></html>\n" +
                                 "Vous ne pouvez faire aucune opération tant qu'un conseiller\n" +
                                 "n'a pas validé votre compte\n" +
@@ -233,7 +230,18 @@ public class App extends JFrame {
                 dispose();
             }
         });
-        ConseillerPrincipal.getValidationCompteUtil().addActionListener(this::goValidationCompteUtilisateur);
+        ConseillerPrincipal.getValidationCompteUtil().addActionListener(e -> {
+            ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
+            getContent().add(validerCompteUtilisateur, listContent[6]);
+            cl.show(getContent(), listContent[6]);
+            ValiderCompteUtilisateur.getBoutonAnnuler().addActionListener(this::goEspaceConseiller);
+        });
+
+        /*ValiderCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Compte utilisateur validé !");
+            cl.show(getContent(), listContent[5]);
+        });*/
+
         ConseillerPrincipal.getListeDesComptes().addActionListener(this::goListeDesComptes);
 
         // Affiche la liste des clients de la banque
@@ -245,16 +253,15 @@ public class App extends JFrame {
         });
 
         // Validation d'un compte utilisateur
-        ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
+        /*ValiderCompteUtilisateur validerCompteUtilisateur = new ValiderCompteUtilisateur();
         validerCompteUtilisateur.getBOUTON_VALIDER().addActionListener(this::okCompteUtilisateurValide);
-        validerCompteUtilisateur.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationValidationCompteUtil);
+        validerCompteUtilisateur.getBOUTON_ANNULER().addActionListener(this::confirmAnnulationValidationCompteUtil);*/
 
         // On définit le layout
         getContent().setLayout(cl);
 
         // On ajoute les cartes à la pile avec un nom pour les retrouver
         getContent().add(pagePrincipale, listContent[0]);
-        getContent().add(validerCompteUtilisateur, listContent[6]);
         getContent().add(informations, listContent[7]);
         getContent().add(listeDesComptes, listContent[8]);
         getContent().add(consultationSolde, listContent[9]);
