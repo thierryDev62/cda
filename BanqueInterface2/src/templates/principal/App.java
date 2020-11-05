@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class App extends JFrame {
@@ -116,10 +117,12 @@ public class App extends JFrame {
         CreationCompteUtilisateur.getBOUTON_RETOUR_MENU().addActionListener(this::goMenuPrincipal);
 
         CreationCompteUtilisateur.getBOUTON_VALIDER().addActionListener(e -> {
-            System.out.println("cliqué dans app");
             //TODO: Voir le bug de retour au menu
 
+
+
             if(CreationCompteUtilisateur.isIsOkCreation()) {
+                System.out.println("isokapp");
                 JOptionPane.showMessageDialog(this, "<html><h3>Compte utilisateur créé !</h3></html>\n" +
                                 "Vous ne pouvez faire aucune opération tant qu'un conseiller\n" +
                                 "n'a pas validé votre compte\n" +
@@ -130,7 +133,7 @@ public class App extends JFrame {
                 getContent().add(pagePrincipale, listContent[0]);
                 cl.show(getContent(), listContent[0]);
 
-            }
+           }
         });
 
         /*******************************************************

@@ -18,6 +18,10 @@ public class CreationCompteUtilisateur extends JPanel {
     private final static JButton BOUTON_RETOUR_MENU = new JButton("Retour au menu principal");
     private BufferedImage iconeCreationCompteUtil = ImageIO.read(new File("icones/man-coin.png"));
 
+    private static String champsNom;
+    private static String champsPrenom;
+    private static String champsMotDePasse;
+
     private static boolean isOkCreation = false;
 
     public CreationCompteUtilisateur() throws IOException, SQLException {
@@ -88,7 +92,8 @@ public class CreationCompteUtilisateur extends JPanel {
         BOUTON_VALIDER.setFont(new Init().getDefaultFont());
         conteneurBoutonValider.add(BOUTON_VALIDER);
         BOUTON_VALIDER.addActionListener(e ->{
-            System.out.println("cliqué dans creation");
+
+
             Utilisateur nouvelUtilisateur = new Utilisateur(champsNom.getText(), champsPrenom.getText(), new String(champsMotDePasse.getPassword()));
             int typeUtilisateur = Utilisateur.getTypeUtilisateur();
             try{
@@ -163,5 +168,29 @@ public class CreationCompteUtilisateur extends JPanel {
 
     public static void setIsOkCreation(boolean isOkCreation) {
         CreationCompteUtilisateur.isOkCreation = isOkCreation;
+    }
+
+    public static String getChampsNom() {
+        return champsNom;
+    }
+
+    public static void setChampsNom(String champsNom) {
+        CreationCompteUtilisateur.champsNom = champsNom;
+    }
+
+    public static String getChampsPrenom() {
+        return champsPrenom;
+    }
+
+    public static void setChampsPrenom(String champsPrenom) {
+        CreationCompteUtilisateur.champsPrenom = champsPrenom;
+    }
+
+    public static String getChampsMotDePasse() {
+        return champsMotDePasse;
+    }
+
+    public static void setChampsMotDePasse(String champsMotDePasse) {
+        CreationCompteUtilisateur.champsMotDePasse = champsMotDePasse;
     }
 }
