@@ -125,7 +125,7 @@ public class CreationCompteUtilisateur extends JPanel {
                     preparedStatement.setInt(5, typeUtilisateur);
 
                     // TODO : décommenter pour enregistrer dans la base de données
-                    //preparedStatement.executeUpdate();
+                    preparedStatement.executeUpdate();
 
                     setIsOkCreation(true);
                     preparedStatement.close();

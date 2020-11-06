@@ -1,15 +1,17 @@
 package templates.clients;
 
+import config.ConfigDatabase;
 import entity.Utilisateur;
 import templates.principal.Init;
-import templates.principal.PagePrincipale;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ClientPrincipal extends JPanel {
     private BufferedImage fond = ImageIO.read(new File("images/espaceClientFond.jpg"));
@@ -25,10 +27,10 @@ public class ClientPrincipal extends JPanel {
     private JMenuItem totalVersement = new JMenuItem("Total des versements");
     private JMenuItem totalRetrait = new JMenuItem("Total des retraits");
 
-    public ClientPrincipal() throws IOException {
+    public ClientPrincipal() throws IOException, SQLException {
         this.add(afficheTitreEtMenuBar());
     }
-    private JPanel afficheTitreEtMenuBar() throws IOException {
+    private JPanel afficheTitreEtMenuBar() throws SQLException {
         JPanel espaceClient = new JPanel();
         espaceClient.setLayout(new BorderLayout());
         espaceClient.add(titreEspaceClient(), BorderLayout.NORTH);
@@ -38,7 +40,7 @@ public class ClientPrincipal extends JPanel {
         return espaceClient;
     }
 
-    private JPanel titreEspaceClient() {
+    private JPanel titreEspaceClient() throws SQLException {
 
         JPanel conteneurTitre = new JPanel();
         conteneurTitre.setBorder(BorderFactory.createEmptyBorder(0,0,50,0));
@@ -46,7 +48,21 @@ public class ClientPrincipal extends JPanel {
         JLabel titre = new JLabel("Espace client - ");
         titre.setFont(new Init().getTitreFont());
 
-        JLabel bienvenue = new JLabel("Bienvenue !");
+        System.out.println("Utilisateur numéro : " + Utilisateur.getUtilisateurId());
+
+        String queryNomPrenom = "SELECT utl_id, utl_nom, utl_prenom FROM public.t_utilisateur_utl WHERE utl_id = " + Utilisateur.getUtilisateurId();
+
+        Statement state = ConfigDatabase.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+        ResultSet result = state.executeQuery(queryNomPrenom);
+
+        result.first();
+
+        JLabel bienvenue = new JLabel("Bienvenue ! " +
+                result.getString("utl_prenom") + " " +
+                result.getString("utl_nom") +
+                " - Votre identifiant est le : " + result.getInt("utl_id")
+        );
         bienvenue.setFont(new Init().getTitreFont());
 
         conteneurTitre.add(titre);

@@ -94,7 +94,7 @@ public class App extends JFrame {
                 ClientPrincipal espaceClient = null;
                 try {
                     espaceClient = new ClientPrincipal();
-                } catch (IOException ioException) {
+                } catch (IOException | SQLException ioException) {
                     ioException.printStackTrace();
                 }
                 getContent().add(espaceClient, listContent[3]);
@@ -103,7 +103,7 @@ public class App extends JFrame {
                 ConseillerPrincipal espaceConseiller = null;
                 try {
                     espaceConseiller = new ConseillerPrincipal();
-                } catch (IOException ioException) {
+                } catch (IOException | SQLException ioException) {
                     ioException.printStackTrace();
                 }
 
@@ -168,7 +168,7 @@ public class App extends JFrame {
             CompteController.nouveauCompteBancaire();
             try {
                 getContent().add(new ClientPrincipal(), listContent[3]);
-            } catch (IOException ioException) {
+            } catch (IOException | SQLException ioException) {
                 ioException.printStackTrace();
             }
             cl.show(getContent(), listContent[3]);
@@ -239,7 +239,7 @@ public class App extends JFrame {
         ValiderCompteUtilisateur.getBoutonAnnuler().addActionListener(e -> {
             try {
                 getContent().add(new ConseillerPrincipal(), listContent[5]);
-            } catch (IOException ioException) {
+            } catch (IOException | SQLException ioException) {
                 ioException.printStackTrace();
             }
             cl.show(getContent(), listContent[5]);

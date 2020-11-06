@@ -61,4 +61,5 @@ public class Utilisateur {
     public static void setTypeUtilisateur(int typeUtilisateur) {
         Utilisateur.typeUtilisateur = typeUtilisateur;
     }
+
 }

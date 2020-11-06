@@ -90,17 +90,15 @@ public class Auth extends JPanel {
 
                 while (result.next()) {
                     if(!champsIdentifiant.getText().equals("") || !champsMotDePasse.getText().equals("")) {
+                        Utilisateur utilisateur = new Utilisateur(result.getString("utl_nom"), result.getString("utl_prenom"), result.getString("utl_mot_de_passe"));
                         int id = result.getInt("utl_id");
-                        String nom = result.getString("utl_nom");
-                        String prenom = result.getString("utl_prenom");
-                        String mdp = result.getString("utl_mot_de_passe");
-
                         String identifiantText = champsIdentifiant.getText();
                         int identifiantParse = 0;
                         identifiantParse = Integer.parseInt(identifiantText);
 
-                        if (id == identifiantParse && mdp.equals(champsMotDePasse.getText())) {
-                            System.out.println("Trouvé : " + identifiantParse);
+                        if(id == identifiantParse && utilisateur.getUtilisateurMdp().equals(champsMotDePasse.getText())) {
+                            utilisateur.setUtilisateurNom(result.getString("utl_nom"));
+                            Utilisateur.setUtilisateurId(result.getInt("utl_id"));
                             setOkAuth(true);
                             return;
                         }
